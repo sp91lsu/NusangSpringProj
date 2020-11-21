@@ -1,0 +1,10 @@
+
+/*테이블 스페이스 생성*/
+CREATE TABLESPACE NUSANGTABLE DATAFILE 'tablespace' SIZE  250M ;
+
+/*유저 생성*/
+CREATE USER spbooter IDENTIFIED BY 1234 DEFAULT TABLESPACE NUSANGTABLE TEMPORARY TABLESPACE TEMP;
+
+/*권한 주기*/
+GRANT connect, resource, dba TO spbooter;
+
