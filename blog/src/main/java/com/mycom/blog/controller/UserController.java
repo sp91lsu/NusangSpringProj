@@ -71,6 +71,12 @@ public class UserController {
 		System.out.println("search");
 		return "/user/searchUser";
 	}
+	
+	@GetMapping("/search_location")
+	public String userSearch_location() {
+		System.out.println("searchLocation");
+		return "/location/search";
+	}
 
 	@GetMapping("/all_userlist")
 	public String allUserList(Model model) {

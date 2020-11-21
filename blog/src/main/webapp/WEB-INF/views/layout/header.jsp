@@ -52,7 +52,7 @@
 						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a>
 						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a>
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">내 친구목록</a>
-						<li class="nav-item"><a class="nav-link" href="/video/video_view">비디오</a>
+						<li class="nav-item"><a class="nav-link" href="/user/search_location">위치검색</a>
 					</ul>
 				</c:otherwise>
 			</c:choose>
