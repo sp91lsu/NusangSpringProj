@@ -26,12 +26,17 @@ public class KakaoProfile {
 	public class Properties {
 
 		private String nickname;
+		private String profile_image;
+		private String thumbnail_image;
 	}
 
 	@Data
 	public static class Profile {
 
 		private String nickname;
+		private String thumbnail_image_url;
+		private String profile_image_url;
+		
 	}
 
 }
