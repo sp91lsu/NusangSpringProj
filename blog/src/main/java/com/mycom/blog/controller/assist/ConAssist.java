@@ -1,5 +1,8 @@
 package com.mycom.blog.controller.assist;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +18,7 @@ import com.mycom.blog.dto.User;
 
 @Component
 public class ConAssist {
-
+	
 	public String IP = "http://localhost:8000";
 
 	@Autowired

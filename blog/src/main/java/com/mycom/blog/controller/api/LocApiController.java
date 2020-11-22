@@ -64,9 +64,21 @@ public class LocApiController {
 
 		int result = locationService.setLocation(searchValue);
 		User user = conAssist.updateUser();
-
 		System.out.println("수정된 유저 로케이션 " + user.getLocation());
 		return result;
 	}
 
+	@PostMapping("/set_distance")
+	public int set_distance(int view_distance) {
+		int result = locationService.setView_distance(view_distance);
+		conAssist.updateUser();
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

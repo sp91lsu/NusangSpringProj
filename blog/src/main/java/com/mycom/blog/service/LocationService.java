@@ -53,9 +53,24 @@ public class LocationService extends BasicService<Location> {
 				locationEntity.setName2(location.getName2());
 				locationEntity.setName3(location.getName3());
 			}
+
 			return 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+	}
+
+	// 반경설정
+	@Transactional
+	public int setView_distance(int view_distance) {
+
+		try {
+			Location location = locRepository.findByUser(conAssist.getUser());
+			location.setView_distance(view_distance);
+			return 1;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
 		}

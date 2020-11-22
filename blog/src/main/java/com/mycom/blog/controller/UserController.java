@@ -90,9 +90,9 @@ public class UserController {
 	@GetMapping("/kakaologin")
 	public String kakaoCallback(String code) {
 		
-		
 		kakaoBo.login(code);
-
 		return "redirect:/home";
 	}
+	
+	
 }

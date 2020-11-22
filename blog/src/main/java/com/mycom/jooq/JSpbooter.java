@@ -12,6 +12,7 @@ import com.mycom.jooq.tables.JChatMessageRoom;
 import com.mycom.jooq.tables.JChatRoom;
 import com.mycom.jooq.tables.JFriend;
 import com.mycom.jooq.tables.JLocation;
+import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JUser1;
 
@@ -39,7 +40,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JSpbooter extends SchemaImpl {
 
-    private static final long serialVersionUID = -156406165;
+    private static final long serialVersionUID = 1297970970;
 
     /**
      * The reference instance of <code>SPBOOTER</code>
@@ -87,6 +88,11 @@ public class JSpbooter extends SchemaImpl {
     public final JLocation LOCATION = com.mycom.jooq.tables.JLocation.LOCATION;
 
     /**
+     * The table <code>SPBOOTER.NOTICE</code>.
+     */
+    public final JNotice NOTICE = com.mycom.jooq.tables.JNotice.NOTICE;
+
+    /**
      * The table <code>SPBOOTER.REPLY</code>.
      */
     public final JReply REPLY = com.mycom.jooq.tables.JReply.REPLY;
@@ -126,6 +132,7 @@ public class JSpbooter extends SchemaImpl {
             JChatRoom.CHAT_ROOM,
             JFriend.FRIEND,
             JLocation.LOCATION,
+            JNotice.NOTICE,
             JReply.REPLY,
             JUser1.USER1);
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpSession;
 
 import org.jooq.DSLContext;
@@ -36,6 +37,9 @@ import com.mycom.blog.repository.UserRepository;
 @Service
 public class BasicService<T> {
 
+	@Autowired
+	EntityManagerFactory emf;
+	
 	protected JpaRepository<T, Integer> repository;
 
 	@Autowired

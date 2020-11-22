@@ -36,7 +36,7 @@ import lombok.ToString;
 @Table(name = "LOCATION")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성
-@ToString(exclude = "user") 
+@ToString(exclude = "user")
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class Location {
 
@@ -55,7 +55,7 @@ public class Location {
 	private String tabletype;
 	@ColumnDefault("5")
 	@JoinColumn(name = "view_distance")
-	private Integer view_distance;
+	private int view_distance = 5;
 
 	public String getAddress() {
 		return getName1() + " " + getName2() + " " + getName3();

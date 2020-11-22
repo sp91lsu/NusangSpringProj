@@ -84,3 +84,4 @@
 		</div>
 	</nav>
 	<br>
+	<script type="text/javascript" src="/js/common/header.js"></script>

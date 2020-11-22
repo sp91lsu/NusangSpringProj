@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -134,6 +132,7 @@
 			<version>4.5.10</version>
 		</dependency>
 
+
 	</dependencies>
 
 	<build>
@@ -148,8 +147,7 @@
 						<version>1.2.1.RELEASE</version>
 					</dependency>
 				</dependencies>
-				<!-- <configuration> <jvmArguments> -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8001,suspend=y 
-					</jvmArguments> </configuration> -->
+				<!-- <configuration> <jvmArguments> -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8001,suspend=y </jvmArguments> </configuration> -->
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -181,8 +179,7 @@
 							<!-- The database type. The format here is: org.jooq.meta.[database].[database]Database -->
 							<name>org.jooq.meta.jdbc.JDBCDatabase</name>
 
-							<!-- <properties> <property> <key>packages</key> <value>com.mycom.blog</value> 
-								</property> </properties> -->
+							<!-- <properties> <property> <key>packages</key> <value>com.mycom.blog</value> </property> </properties> -->
 							<includes>.*</includes>
 							<excludes></excludes>
 							<inputSchema>SPBOOTER</inputSchema>

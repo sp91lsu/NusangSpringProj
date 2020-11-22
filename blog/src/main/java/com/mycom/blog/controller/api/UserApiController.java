@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycom.blog.auth.PrincipalDetail;
@@ -30,6 +31,7 @@ import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.service.UserService;
 
 @RestController
+@RequestMapping(value = { "/auth", "/user" })
 public class UserApiController {
 
 	@Autowired
@@ -40,7 +42,7 @@ public class UserApiController {
 //	@Autowired
 //	HttpSession session;
 
-	@PostMapping("/auth/joinProc")
+	@PostMapping("/joinProc")
 	public Response<Integer> normalSignUp(@RequestBody User user) {
 
 		try {
@@ -56,7 +58,7 @@ public class UserApiController {
 	}
 
 	// 유저정보 업데이트
-	@PostMapping("/user/updateInfo")
+	@PostMapping("/updateInfo")
 	public Response<Integer> update(@RequestBody User user) {
 		int result = userService.updateUserInfo(user);
 
@@ -67,12 +69,11 @@ public class UserApiController {
 		return new Response<Integer>(HttpStatus.OK.value(), result);
 	}
 
-	@PostMapping("/user/search_ok")
+	@PostMapping("/search_ok")
 	public User userSearch_ok(String searchValue, @AuthenticationPrincipal PrincipalDetail principal) {
 		User user = userService.searchNickname(searchValue, principal.getUser());
 
 		return user;
 	}
-	
 	
 }

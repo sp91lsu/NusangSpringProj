@@ -18,7 +18,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row10;
+import org.jooq.Row9;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JUser1 extends TableImpl<JUser1Record> {
 
-    private static final long serialVersionUID = -643401481;
+    private static final long serialVersionUID = 1987573039;
 
     /**
      * The reference instance of <code>SPBOOTER.USER1</code>
@@ -77,12 +77,6 @@ public class JUser1 extends TableImpl<JUser1Record> {
      */
     @java.lang.Deprecated
     public final TableField<JUser1Record, Object> EMAIL = createField(DSL.name("EMAIL"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
-
-    /**
-     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
-     */
-    @java.lang.Deprecated
-    public final TableField<JUser1Record, Object> HH = createField(DSL.name("HH"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
@@ -189,11 +183,11 @@ public class JUser1 extends TableImpl<JUser1Record> {
     }
 
     // -------------------------------------------------------------------------
-    // Row10 type methods
+    // Row9 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Object, Object, Timestamp, Object, Object, Object, Object, Object, Object, Object> fieldsRow() {
-        return (Row10) super.fieldsRow();
+    public Row9<Object, Object, Timestamp, Object, Object, Object, Object, Object, Object> fieldsRow() {
+        return (Row9) super.fieldsRow();
     }
 }

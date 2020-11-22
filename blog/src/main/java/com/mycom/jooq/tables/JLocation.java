@@ -17,7 +17,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row8;
+import org.jooq.Row9;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -39,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JLocation extends TableImpl<JLocationRecord> {
 
-    private static final long serialVersionUID = 322872878;
+    private static final long serialVersionUID = -256042481;
 
     /**
      * The reference instance of <code>SPBOOTER.LOCATION</code>
@@ -93,6 +93,12 @@ public class JLocation extends TableImpl<JLocationRecord> {
      */
     @java.lang.Deprecated
     public final TableField<JLocationRecord, Object> TABLETYPE = createField(DSL.name("TABLETYPE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
+    public final TableField<JLocationRecord, Object> VIEW_DISTANCE = createField(DSL.name("VIEW_DISTANCE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
@@ -175,11 +181,11 @@ public class JLocation extends TableImpl<JLocationRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row9 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<Object, Double, Double, Object, Object, Object, Object, Object> fieldsRow() {
-        return (Row8) super.fieldsRow();
+    public Row9<Object, Double, Double, Object, Object, Object, Object, Object, Object> fieldsRow() {
+        return (Row9) super.fieldsRow();
     }
 }
