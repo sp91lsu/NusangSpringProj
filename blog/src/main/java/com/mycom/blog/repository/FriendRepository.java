@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.mycom.blog.dto.Friend;
 import com.mycom.blog.dto.User;
-import com.mycom.blog.dto.simple.SimpleUser;
 
 //DAO 
 //자동으로 빈등록 가능 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +16,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -24,8 +29,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.FriendType;
 import com.mycom.blog.dto.enumtype.RoleType;
-import com.mycom.blog.dto.simple.SimpleUser;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -57,8 +62,18 @@ public class Friend {
 	@OneToOne
 	private User user;
 
+	@OneToOne
+	private User fromWho;
+	
+	@Enumerated(EnumType.STRING)
+	private FriendType friendType = FriendType.REQUEST;
+	
 	@ManyToOne
 	@JoinColumn(name = "userno")
 	private User me;
+	
+	@CreationTimestamp // 시간이 자동입력
+	private Timestamp createDate;
+	
 
 }

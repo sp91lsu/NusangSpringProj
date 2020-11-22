@@ -24,7 +24,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.dto.enumtype.RoleType;
+import com.mycom.jooq.tables.records.JFriendRecord;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -65,6 +67,11 @@ public class User {
 
 	@Column(nullable = false, length = 100, unique = true)
 	private String nickname;
+	
+	private int age;
+	
+	@Enumerated(EnumType.STRING)
+	private GenderType gender;
 
 	@Column(nullable = false, length = 100)
 	private String password;
@@ -86,7 +93,7 @@ public class User {
 	
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList;
-
+	
 	/*
 	 * @OneToMany(mappedBy = "userno" ,fetch = FetchType.LAZY)
 	 * 

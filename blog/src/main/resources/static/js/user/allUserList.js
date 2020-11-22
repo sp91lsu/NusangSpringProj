@@ -1,21 +1,22 @@
 (function() {
-	
-	
+
 	$(".btn-add-friend").click(function() {
-		
 		$.ajax({
-			url: "/friend/add_friend",
-			type: "POST",
+			url : "/friend/add_friend_req",
+			type : "POST",
 			data : {
 				friendno : $(this).val()
 			},
-			success: function(res) {
+			success : function(res) {
 				console.log(res);
-				alert("친구 추가 응답 ");
+				if (res == 1) {
+					alert("친구 요청에 성공하였습니다.");
+					location.reload();
+				}else{
+					alert("친구 요청실패.");
+				}
 			}
 		})
 	});
-	
-	
-	
+
 })()

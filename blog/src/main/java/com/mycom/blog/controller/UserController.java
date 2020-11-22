@@ -26,7 +26,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycom.blog.bo.KakaoBo;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
-import com.mycom.blog.dto.simple.SimpleUser;
 import com.mycom.blog.model.KakaoProfile;
 import com.mycom.blog.model.OAuthToken;
 import com.mycom.blog.service.UserService;
