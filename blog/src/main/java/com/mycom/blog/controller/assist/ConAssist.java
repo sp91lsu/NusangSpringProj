@@ -28,15 +28,20 @@ public class ConAssist {
 		PrincipalDetail pd = getPrincipal();
 		return pd.getUser();
 	}
+	
+	public int getUserno() {
+		PrincipalDetail pd = getPrincipal();
+		return pd.getUser().getUserno();
+	}
 
 	public PrincipalDetail getPrincipal() {
 		return (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 
 	// DB에서 유저 정보를 반환
-	public User updateUser(User user) {
+	public User updateUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		PrincipalDetail principal = principalService.loadUserByUsername(user.getUserid());
+		PrincipalDetail principal = principalService.loadUserByUserno(getUserno());
 		UsernamePasswordAuthenticationToken newAuth = new UsernamePasswordAuthenticationToken(principal,
 				auth.getCredentials(), principal.getAuthorities());
 		newAuth.setDetails(principal);

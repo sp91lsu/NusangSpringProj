@@ -51,7 +51,7 @@ public class FriendService extends BasicService<Friend> {
 		User friendUser = userRep.findById(friendno).get();
 		Friend friend = Friend.builder().me(me).user(friendUser).build();
 		save(friend);
-		conAssist.updateUser(me);
+		conAssist.updateUser();
 	}
 
 }

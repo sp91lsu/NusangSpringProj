@@ -25,8 +25,13 @@ public class PrincipalDetailService implements UserDetailsService{
 				.orElseThrow(()-> {return new UsernameNotFoundException("유저id를 찾을 수 없음 : " + userid); });
 	
 		return new PrincipalDetail(principal);
-	
 	}
 
+	public PrincipalDetail loadUserByUserno(int userno) throws UsernameNotFoundException {
+		
+		User principal = userRep.findById(userno)
+				.orElseThrow(()-> {return new UsernameNotFoundException("유저no를 찾을 수 없음 : " + userno); });
 	
+		return new PrincipalDetail(principal);
+	}
 }

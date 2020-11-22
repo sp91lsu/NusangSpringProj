@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mycom.blog.auth.PrincipalDetailService;
+import com.mycom.blog.bo.KakaoBo;
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.ChatRoom;
 import com.mycom.blog.dto.User;
@@ -34,6 +37,15 @@ import com.mycom.blog.repository.UserRepository;
 public class BasicService<T> {
 
 	protected JpaRepository<T, Integer> repository;
+
+	@Autowired
+	protected DSLContext dsl;
+
+	@Autowired
+	protected KakaoBo kakaoBo;
+
+	@Autowired
+	protected ConAssist conAssist;
 
 	public void setRepository(JpaRepository<T, Integer> repository) {
 		this.repository = (JpaRepository<T, Integer>) repository;
@@ -50,9 +62,9 @@ public class BasicService<T> {
 
 	@Transactional(readOnly = true)
 	public List<T> findAll() {
-		
+
 		List<T> list = repository.findAll();
-		
+
 		return list;
 	}
 

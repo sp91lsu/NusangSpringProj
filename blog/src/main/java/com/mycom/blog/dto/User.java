@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -80,6 +81,9 @@ public class User {
 	@OneToMany(mappedBy = "me")
 	private List<ChatRoom> chatRoomList;
 
+	@OneToOne(mappedBy = "user")
+	private Location location;
+	
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList;
 

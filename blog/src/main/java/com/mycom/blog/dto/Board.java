@@ -53,7 +53,7 @@ public class Board {
 	private int count;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "userno")
 	private User user;
 
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) // 연관관계의 주인이 아니다

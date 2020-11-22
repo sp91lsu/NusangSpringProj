@@ -17,62 +17,56 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.mycom.blog.auth.PrincipalDetail;
+import com.mycom.blog.bo.KakaoBo;
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.ChatRoom;
+import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.Response;
+import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ChatRoomRepository;
+import com.mycom.blog.repository.ReplyRepository;
+import com.mycom.blog.service.LocationService;
 import com.mycom.blog.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
-public class UserApiController {
+@RequestMapping("/location")
+@RequiredArgsConstructor
+public class LocApiController {
 
+	private final KakaoBo kakaoBo;
+
+	private final ConAssist conAssist;
 	@Autowired
-	private UserService userService;
+	LocationService locationService;
 
-	@Autowired
-	private ConAssist conAssist;
-//	@Autowired
-//	HttpSession session;
+	@GetMapping("/search_location")
+	public String search_location(String searchValue) {
 
-	@PostMapping("/auth/joinProc")
-	public Response<Integer> normalSignUp(@RequestBody User user) {
-
-		try {
-			System.out.println("UserApiController : save ");
-
-			int result = userService.signUp(user, AuthType.NORMAL);
-		
-			return new Response<Integer>(HttpStatus.OK.value(), result);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new Response<Integer>(HttpStatus.INTERNAL_SERVER_ERROR.value(), -1);
-		}
+		System.out.println("search_location");
+		JsonNode value = kakaoBo.reqLocationList(searchValue);
+		return value.toString();
 	}
 
-	// 유저정보 업데이트
-	@PostMapping("/user/updateInfo")
-	public Response<Integer> update(@RequestBody User user) {
-		int result = userService.updateUserInfo(user);
+	@PostMapping("/set_location")
+	public int set_location(String searchValue) {
 
-		// 회원수정에 성공햇다면
-		if (result == 1) {
-			conAssist.setSessionUser(user);
-		}
-		return new Response<Integer>(HttpStatus.OK.value(), result);
+		System.out.println("set_location");
+
+		int result = locationService.setLocation(searchValue);
+		User user = conAssist.updateUser();
+
+		System.out.println("수정된 유저 로케이션 ");
+		return result;
 	}
 
-	@PostMapping("/user/search_ok")
-	public User userSearch_ok(String searchValue, @AuthenticationPrincipal PrincipalDetail principal) {
-		User user = userService.searchNickname(searchValue, principal.getUser());
-
-		return user;
-	}
-	
-	
 }
