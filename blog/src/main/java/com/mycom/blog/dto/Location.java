@@ -51,9 +51,10 @@ public class Location {
 	private String name2;
 	private String name3;
 	private String tabletype;
+	private double view_distance;
 
 	public String getAddress() {
-		return getName1()  + " " + getName2() + " " + getName3();
+		return getName1() + " " + getName2() + " " + getName3();
 	}
 
 	public String getAddress2() {

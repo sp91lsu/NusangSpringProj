@@ -87,7 +87,7 @@ public class UserService extends BasicService<User> {
 
 			System.out.println("찾아냈구나 " + jsonNode.toPrettyString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("아이디 음슴");
 		}
 		return findUser != null;
 	}
