@@ -1,5 +1,7 @@
 (function() {
 
+	
+	
 	$(".add_friend_btn").click(function() {
 		$.ajax({
 			url : "/friend/add_friend",
