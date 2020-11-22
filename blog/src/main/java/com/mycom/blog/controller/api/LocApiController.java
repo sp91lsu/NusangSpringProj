@@ -65,7 +65,7 @@ public class LocApiController {
 		int result = locationService.setLocation(searchValue);
 		User user = conAssist.updateUser();
 
-		System.out.println("수정된 유저 로케이션 ");
+		System.out.println("수정된 유저 로케이션 " + user.getLocation());
 		return result;
 	}
 

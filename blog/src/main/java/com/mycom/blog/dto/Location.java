@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -35,6 +36,7 @@ import lombok.ToString;
 @Table(name = "LOCATION")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성
+@ToString(exclude = "user") 
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class Location {
 
@@ -51,7 +53,9 @@ public class Location {
 	private String name2;
 	private String name3;
 	private String tabletype;
-	private double view_distance;
+	@ColumnDefault("5")
+	@JoinColumn(name = "view_distance")
+	private Integer view_distance;
 
 	public String getAddress() {
 		return getName1() + " " + getName2() + " " + getName3();

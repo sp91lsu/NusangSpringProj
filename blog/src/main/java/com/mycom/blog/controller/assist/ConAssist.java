@@ -40,6 +40,7 @@ public class ConAssist {
 
 	// DB에서 유저 정보를 반환
 	public User updateUser() {
+		try {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		PrincipalDetail principal = principalService.loadUserByUserno(getUserno());
 		UsernamePasswordAuthenticationToken newAuth = new UsernamePasswordAuthenticationToken(principal,
@@ -47,6 +48,10 @@ public class ConAssist {
 		newAuth.setDetails(principal);
 		SecurityContextHolder.getContext().setAuthentication(newAuth);
 		return getUser();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	// 강제 유저 로그인 시키기

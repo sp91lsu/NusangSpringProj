@@ -86,11 +86,11 @@
 				},
 				type : "POST",
 				success : function(data) {
-					if (data.charAt(0) == '/') {
-						location.href = data;
-					} else {
-						alert(data);
+					if (data == 1) {
+						alert("위치설정 완료");
 						location.reload();
+					} else {
+						alert("위치설정 실패");
 					}
 				}
 			})

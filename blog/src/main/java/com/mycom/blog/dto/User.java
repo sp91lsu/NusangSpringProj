@@ -87,8 +87,6 @@ public class User {
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList;
 
-	@Column(nullable = false)
-	private int hh;
 	/*
 	 * @OneToMany(mappedBy = "userno" ,fetch = FetchType.LAZY)
 	 * 
