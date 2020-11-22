@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JBoard extends TableImpl<JBoardRecord> {
 
-    private static final long serialVersionUID = -1336413372;
+    private static final long serialVersionUID = -568163764;
 
     /**
      * The reference instance of <code>SPBOOTER.BOARD</code>
@@ -87,7 +87,7 @@ public class JBoard extends TableImpl<JBoardRecord> {
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
-    public final TableField<JBoardRecord, Object> USER_ID = createField(DSL.name("USER_ID"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+    public final TableField<JBoardRecord, Object> USERNO = createField(DSL.name("USERNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * Create a <code>SPBOOTER.BOARD</code> table reference
