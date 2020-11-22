@@ -24,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.FriendType;
 import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.jooq.tables.records.JFriendRecord;
@@ -55,7 +56,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ_GEN")
 	private int userno; // 시퀀스 auto_increment
 
-	
 	@Enumerated(EnumType.STRING)
 	private AuthType authType;
 
@@ -67,9 +67,9 @@ public class User {
 
 	@Column(nullable = false, length = 100, unique = true)
 	private String nickname;
-	
+
 	private int age;
-	
+
 	@Enumerated(EnumType.STRING)
 	private GenderType gender;
 
@@ -90,10 +90,10 @@ public class User {
 
 	@OneToOne(mappedBy = "user")
 	private Location location;
-	
+
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList;
-	
+
 	/*
 	 * @OneToMany(mappedBy = "userno" ,fetch = FetchType.LAZY)
 	 * 
@@ -115,13 +115,14 @@ public class User {
 
 		if (nickname.equals(user.getNickname()))
 			return true;
-		
+
 		for (Friend myFriend : friendList) {
-			if (myFriend.getUser().nickname.equals(user.getNickname())) {
+			if (myFriend.getFriendType() == FriendType.REALATIONSHIP
+					&& myFriend.getUser().nickname.equals(user.getNickname())) {
 				return true;
 			}
 		}
 		return false;
 	}
-
+	
 }

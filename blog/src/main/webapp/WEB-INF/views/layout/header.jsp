@@ -50,6 +50,7 @@
 						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a>
 						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a>
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">내 친구목록</a>
+						<li class="nav-item"><a class="nav-link" href="/friend/friends_request_view">내 친구요청목록</a>
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">
 

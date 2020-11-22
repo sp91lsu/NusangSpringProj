@@ -22,6 +22,7 @@ import com.mycom.blog.dto.ChatRoom;
 import com.mycom.blog.dto.Friend;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.FriendType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.FriendRepository;
@@ -63,8 +64,8 @@ public class FriendService extends BasicService<Friend> {
 		try {
 			User me = conAssist.getUser();
 			User friendUser = userRep.findById(friendno).get();
-			Friend myfriend = Friend.builder().me(me).user(friendUser).fromWho(me).build();
-			Friend targetFriend = Friend.builder().me(friendUser).user(me).fromWho(me).build();
+			Friend myfriend = Friend.builder().me(me).user(friendUser).friendType(FriendType.REQUEST).fromWho(me).build();
+			Friend targetFriend = Friend.builder().me(friendUser).user(me).friendType(FriendType.REQUEST).fromWho(me).build();
 			save(myfriend);
 			save(targetFriend);
 			return 1;
