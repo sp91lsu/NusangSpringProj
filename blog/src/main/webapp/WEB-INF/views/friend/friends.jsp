@@ -37,8 +37,9 @@
 </body>
 
 <script type="text/javascript" src="/js/user/allUserList.js">
-	<script type="text/javascript" src="/js/friend/friend.js">
+	
+</script>
+<script type="text/javascript" src="/js/friend/friend.js">
+	
 </script>
 </html>
-
-

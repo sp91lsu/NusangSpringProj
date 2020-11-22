@@ -12,6 +12,7 @@ public class ChatMessage {
 	private MessageType type;
 	private String content;
 	private String sender;
+	private int userno;
 	private String subscribe;
 
 	

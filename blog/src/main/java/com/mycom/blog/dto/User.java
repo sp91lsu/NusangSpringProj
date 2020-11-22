@@ -113,6 +113,20 @@ public class User {
 				.password(this.password).email(this.email).role(this.role).authType(this.authType).build();
 	}
 
+	
+	public boolean availableReqFriend(User user) {
+		
+		if (userno == user.getUserno())
+			return false;
+		
+		for (Friend myFriend : friendList) {
+			if ( myFriend.getUser().getUserno() == user.getUserno()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public boolean isMyFriend(User user) {
 
 		if (nickname.equals(user.getNickname()))

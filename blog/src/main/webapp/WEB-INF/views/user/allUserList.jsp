@@ -7,8 +7,8 @@
 
 		<div>${users.nickname }
 
-			<c:if test="${!user.isMyFriend(users) }">
-				<button class="btn-add-friend btn btn-primary" value="${users.userno }">${users.userno }친구추가</button>
+			<c:if test="${user.availableReqFriend(users) }">
+				<button class="btn-add-friend btn btn-primary" value="${users.userno }">${users.userno }친구요청</button>
 			</c:if>
 		</div>
 
