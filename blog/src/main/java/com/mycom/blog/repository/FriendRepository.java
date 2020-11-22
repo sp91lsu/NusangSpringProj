@@ -11,7 +11,7 @@ import com.mycom.blog.dto.User;
 //DAO 
 //자동으로 빈등록 가능 
 
-public interface FriendRepository extends JpaRepository<Friend, Integer>{
-	
-	
+public interface FriendRepository extends JpaRepository<Friend, Integer> {
+
+	Friend findByMeAndUser(User me, User user);
 }

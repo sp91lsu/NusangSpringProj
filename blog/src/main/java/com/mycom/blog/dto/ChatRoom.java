@@ -66,13 +66,13 @@ public class ChatRoom {
 	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<ChatMessage> messageList;
 
-	//채팅방 고유 string 값
+	// 채팅방 고유 string 값
 	public void setTopic(User user1, User user2) {
 
 		Integer no1 = user1.getUserno();
 		Integer no2 = user2.getUserno();
-		
+
 		topic = "chatRoom";
-		topic += no1 < no2 ? no1.toString() + no2.toString() : no2.toString() + no1.toString();
+		topic += no1 < no2 ? no1.toString() + "_" + no2.toString() : no2.toString() + "_" + no1.toString();
 	}
 }

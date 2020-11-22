@@ -48,14 +48,19 @@ public class FriendService extends BasicService<Friend> {
 	}
 
 	@Transactional
-	public void addFriend(int friendno, User me) {
+	public int addFriend(int friendno, User me) {
 
-		User friendUser = userRep.findById(friendno).get();
-		Friend friend = Friend.builder().me(me).user(friendUser).build();
-
-		conAssist.getUser();
-		save(friend);
-		conAssist.updateUser();
+		try {
+			User friendUser = userRep.findById(friendno).get();
+			Friend friendEntity = friendRep.findByMeAndUser(me, friendUser);
+			Friend friendEntity2 = friendRep.findByMeAndUser(friendUser, me);
+			friendEntity.setFriendType(FriendType.REALATIONSHIP);
+			friendEntity2.setFriendType(FriendType.REALATIONSHIP);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 
 	@Transactional
@@ -64,8 +69,10 @@ public class FriendService extends BasicService<Friend> {
 		try {
 			User me = conAssist.getUser();
 			User friendUser = userRep.findById(friendno).get();
-			Friend myfriend = Friend.builder().me(me).user(friendUser).friendType(FriendType.REQUEST).fromWho(me).build();
-			Friend targetFriend = Friend.builder().me(friendUser).user(me).friendType(FriendType.REQUEST).fromWho(me).build();
+			Friend myfriend = Friend.builder().me(me).user(friendUser).friendType(FriendType.REQUEST).fromWho(me)
+					.build();
+			Friend targetFriend = Friend.builder().me(friendUser).user(me).friendType(FriendType.REQUEST).fromWho(me)
+					.build();
 			save(myfriend);
 			save(targetFriend);
 			return 1;

@@ -30,11 +30,12 @@ public class FriendApiController {
 	private UserService userService;
 
 	@PostMapping("/friend/add_friend")
-	public Response<Integer> addFriend(int friendno, @AuthenticationPrincipal PrincipalDetail principal) {
+	public int addFriend(int friendno, @AuthenticationPrincipal PrincipalDetail principal) {
 
 		System.out.println("friendno : " + friendno);
-		friendService.addFriend(friendno, principal.getUser());
-		return new Response<Integer>(HttpStatus.OK.value(), 0);
+		int result = friendService.addFriend(friendno, principal.getUser());
+		conAssist.updateUser();
+		return result;
 	}
 
 	@PostMapping("/friend/add_friend_req")

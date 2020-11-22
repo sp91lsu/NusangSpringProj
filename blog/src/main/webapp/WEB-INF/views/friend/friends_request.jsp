@@ -4,11 +4,9 @@
 <div class="container">
 
 	<c:forEach var="friend" items="${user.friend_reqList(false)}">
-		<form action="/chat/go_chatroom">
-			<div>${friend.user.nickname }
-				<button name="chat_userno" class="btn-chat btn btn-primary" value="${friend.user.userno }">${friend.user.userno }친구추가</button>
-			</div>
-		</form>
+		<div>${friend.user.nickname }
+			<button class="add_friend_btn btn btn-primary" value="${friend.user.userno }">${friend.user.userno }친구추가</button>
+		</div>
 	</c:forEach>
 
 </div>
@@ -17,7 +15,7 @@
 <%@ include file="../layout/footer.jsp"%>
 </body>
 
-<script type="text/javascript" src="/js/user/allUserList.js">
+<script type="text/javascript" src="/js/friend/friend.js">
 	
 </script>
 </html>
