@@ -22,5 +22,9 @@ public class FriendController {
 		System.out.println("friends_request_view");
 		return "friend/friends_request";
 	}
-
+	
+	@GetMapping("/friends_req_fromme_view")
+	public String friend_request_fromme_view() {
+		return "friend/friends_req_fromme_view";
+	}
 }

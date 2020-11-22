@@ -27,17 +27,17 @@ public class ConAssist {
 	@Autowired
 	private PrincipalDetailService principalService;
 
-	public User getUser() {
+	public static User getUser() {
 		PrincipalDetail pd = getPrincipal();
 		return pd.getUser();
 	}
 	
-	public int getUserno() {
+	public static int getUserno() {
 		PrincipalDetail pd = getPrincipal();
 		return pd.getUser().getUserno();
 	}
 
-	public PrincipalDetail getPrincipal() {
+	public static PrincipalDetail getPrincipal() {
 		return (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 

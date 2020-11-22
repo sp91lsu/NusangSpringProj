@@ -1,6 +1,7 @@
 package com.mycom.blog.dto;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.FriendType;
 import com.mycom.blog.dto.enumtype.GenderType;
@@ -124,5 +126,19 @@ public class User {
 		}
 		return false;
 	}
+	
+	public List<Friend> friend_reqList(boolean fromMe) {
+
+		List<Friend> list = new ArrayList<Friend>();
+		
+		for (Friend addFriend : friendList) {
+			if (addFriend.getFriendType() == FriendType.REQUEST
+					&& fromMe == (addFriend.getFromWho().getUserno() == ConAssist.getUserno())) {
+				list.add(addFriend);
+			}
+		}
+		return list;
+	}
+	
 	
 }
