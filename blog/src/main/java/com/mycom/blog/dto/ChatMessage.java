@@ -46,7 +46,7 @@ import lombok.ToString;
 @Table(name = "CHAT_MESSAGE_ROOM")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성s
-@ToString(exclude = "chatRoom") 
+@ToString(exclude = {"chatRoom","user"}) 
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class ChatMessage {
 
@@ -60,5 +60,11 @@ public class ChatMessage {
 	
 	private String text;
 	
-	private int userno;
+	@ManyToOne
+	@JoinColumn(name = "userno")
+	private User user;
+	
+	@CreationTimestamp
+	private Timestamp createDate;
+	
 }

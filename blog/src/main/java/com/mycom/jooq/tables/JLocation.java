@@ -8,6 +8,7 @@ import com.mycom.jooq.JSpbooter;
 import com.mycom.jooq.Keys;
 import com.mycom.jooq.tables.records.JLocationRecord;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row9;
+import org.jooq.Row10;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -39,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JLocation extends TableImpl<JLocationRecord> {
 
-    private static final long serialVersionUID = -256042481;
+    private static final long serialVersionUID = 1415506563;
 
     /**
      * The reference instance of <code>SPBOOTER.LOCATION</code>
@@ -59,6 +60,11 @@ public class JLocation extends TableImpl<JLocationRecord> {
      */
     @java.lang.Deprecated
     public final TableField<JLocationRecord, Object> LOCATIONNO = createField(DSL.name("LOCATIONNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * The column <code>SPBOOTER.LOCATION.CREATE_DATE</code>.
+     */
+    public final TableField<JLocationRecord, Timestamp> CREATE_DATE = createField(DSL.name("CREATE_DATE"), org.jooq.impl.SQLDataType.TIMESTAMP.precision(11).defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
      * The column <code>SPBOOTER.LOCATION.LATITUDE</code>.
@@ -181,11 +187,11 @@ public class JLocation extends TableImpl<JLocationRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row9 type methods
+    // Row10 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<Object, Double, Double, Object, Object, Object, Object, Object, Object> fieldsRow() {
-        return (Row9) super.fieldsRow();
+    public Row10<Object, Timestamp, Double, Double, Object, Object, Object, Object, Object, Object> fieldsRow() {
+        return (Row10) super.fieldsRow();
     }
 }

@@ -4,22 +4,22 @@
 package com.mycom.jooq;
 
 
-import com.mycom.jooq.tables.JBaseEntity;
 import com.mycom.jooq.tables.JBoard;
 import com.mycom.jooq.tables.JBook;
 import com.mycom.jooq.tables.JBookStore;
 import com.mycom.jooq.tables.JChatMessageRoom;
 import com.mycom.jooq.tables.JChatRoom;
+import com.mycom.jooq.tables.JChatRoomGuide;
 import com.mycom.jooq.tables.JFriend;
 import com.mycom.jooq.tables.JLocation;
 import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JUser1;
-import com.mycom.jooq.tables.records.JBaseEntityRecord;
 import com.mycom.jooq.tables.records.JBoardRecord;
 import com.mycom.jooq.tables.records.JBookRecord;
 import com.mycom.jooq.tables.records.JBookStoreRecord;
 import com.mycom.jooq.tables.records.JChatMessageRoomRecord;
+import com.mycom.jooq.tables.records.JChatRoomGuideRecord;
 import com.mycom.jooq.tables.records.JChatRoomRecord;
 import com.mycom.jooq.tables.records.JFriendRecord;
 import com.mycom.jooq.tables.records.JLocationRecord;
@@ -56,12 +56,12 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<JBaseEntityRecord> PK_BASE_ENTITY = UniqueKeys0.PK_BASE_ENTITY;
     public static final UniqueKey<JBoardRecord> PK_BOARD = UniqueKeys0.PK_BOARD;
     public static final UniqueKey<JBookRecord> PK_BOOK = UniqueKeys0.PK_BOOK;
     public static final UniqueKey<JBookStoreRecord> PK_BOOK_STORE = UniqueKeys0.PK_BOOK_STORE;
     public static final UniqueKey<JChatMessageRoomRecord> PK_CHAT_MESSAGE_ROOM = UniqueKeys0.PK_CHAT_MESSAGE_ROOM;
     public static final UniqueKey<JChatRoomRecord> PK_CHAT_ROOM = UniqueKeys0.PK_CHAT_ROOM;
+    public static final UniqueKey<JChatRoomGuideRecord> PK_CHAT_ROOM_GUIDE = UniqueKeys0.PK_CHAT_ROOM_GUIDE;
     public static final UniqueKey<JFriendRecord> PK_FRIEND = UniqueKeys0.PK_FRIEND;
     public static final UniqueKey<JLocationRecord> PK_LOCATION = UniqueKeys0.PK_LOCATION;
     public static final UniqueKey<JNoticeRecord> PK_NOTICE = UniqueKeys0.PK_NOTICE;
@@ -78,12 +78,12 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class UniqueKeys0 {
-        public static final UniqueKey<JBaseEntityRecord> PK_BASE_ENTITY = Internal.createUniqueKey(JBaseEntity.BASE_ENTITY, "PK_BASE_ENTITY", JBaseEntity.BASE_ENTITY.ROOMNO);
         public static final UniqueKey<JBoardRecord> PK_BOARD = Internal.createUniqueKey(JBoard.BOARD, "PK_BOARD", JBoard.BOARD.ID);
         public static final UniqueKey<JBookRecord> PK_BOOK = Internal.createUniqueKey(JBook.BOOK, "PK_BOOK", JBook.BOOK.ID);
         public static final UniqueKey<JBookStoreRecord> PK_BOOK_STORE = Internal.createUniqueKey(JBookStore.BOOK_STORE, "PK_BOOK_STORE", JBookStore.BOOK_STORE.ID);
         public static final UniqueKey<JChatMessageRoomRecord> PK_CHAT_MESSAGE_ROOM = Internal.createUniqueKey(JChatMessageRoom.CHAT_MESSAGE_ROOM, "PK_CHAT_MESSAGE_ROOM", JChatMessageRoom.CHAT_MESSAGE_ROOM.MESSAGENO);
         public static final UniqueKey<JChatRoomRecord> PK_CHAT_ROOM = Internal.createUniqueKey(JChatRoom.CHAT_ROOM, "PK_CHAT_ROOM", JChatRoom.CHAT_ROOM.ROOMNO);
+        public static final UniqueKey<JChatRoomGuideRecord> PK_CHAT_ROOM_GUIDE = Internal.createUniqueKey(JChatRoomGuide.CHAT_ROOM_GUIDE, "PK_CHAT_ROOM_GUIDE", JChatRoomGuide.CHAT_ROOM_GUIDE.NO);
         public static final UniqueKey<JFriendRecord> PK_FRIEND = Internal.createUniqueKey(JFriend.FRIEND, "PK_FRIEND", JFriend.FRIEND.FRIEND_NO);
         public static final UniqueKey<JLocationRecord> PK_LOCATION = Internal.createUniqueKey(JLocation.LOCATION, "PK_LOCATION", JLocation.LOCATION.LOCATIONNO);
         public static final UniqueKey<JNoticeRecord> PK_NOTICE = Internal.createUniqueKey(JNotice.NOTICE, "PK_NOTICE", JNotice.NOTICE.NO);

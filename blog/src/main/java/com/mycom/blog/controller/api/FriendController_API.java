@@ -18,7 +18,7 @@ import com.mycom.blog.service.FriendService;
 import com.mycom.blog.service.UserService;
 
 @RestController
-public class FriendApiController {
+public class FriendController_API {
 
 	@Autowired
 	ConAssist conAssist;
@@ -34,7 +34,6 @@ public class FriendApiController {
 
 		System.out.println("friendno : " + friendno);
 		int result = friendService.addFriend(friendno, principal.getUser());
-		conAssist.updateUser();
 		return result;
 	}
 
@@ -43,7 +42,6 @@ public class FriendApiController {
 
 		System.out.println("friendno : " + friendno);
 		int result = friendService.addFriend_request(friendno);
-		conAssist.updateUser();
 		return result;
 	}
 

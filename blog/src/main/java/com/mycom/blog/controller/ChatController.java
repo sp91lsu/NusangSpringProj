@@ -15,37 +15,45 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.mycom.blog.auth.PrincipalDetail;
 import com.mycom.blog.dto.ChatRoom;
-import com.mycom.blog.model.ChatMessage;
+import com.mycom.blog.model.MessageObject;
 import com.mycom.blog.service.ChatRoomService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 public class ChatController {
-	
+
 	@Autowired
-	private  SimpMessagingTemplate simpMessagingTemplate;
+	private SimpMessagingTemplate simpMessagingTemplate;
 
 	@Autowired
 	private ChatRoomService chatRoomService;
 
 	@MessageMapping("/chat.sendMessage")
-	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+	public MessageObject sendMessage(@Payload MessageObject chatMessage) {
 		System.out.println(chatMessage.getSubscribe());
-		simpMessagingTemplate.convertAndSend("/topic/" + chatMessage.getSubscribe(), chatMessage);
-		return chatMessage;
+
+		int result = chatRoomService.sendMessage(chatMessage);
+
+		if (result == 1) {
+			simpMessagingTemplate.convertAndSend("/topic/" + chatMessage.getSubscribe(), chatMessage);
+			return chatMessage;
+		} else {
+			chatMessage.setContent("네트워크가 원활하지 않습니다.");
+			return chatMessage;
+		}
 	}
 
 	@MessageMapping("/chat.addUser")
-	public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-		Map<String, Object> map =  headerAccessor.getSessionAttributes();
+	public MessageObject addUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+		Map<String, Object> map = headerAccessor.getSessionAttributes();
 		map.put("username", chatMessage.getSender());
 		return chatMessage;
 	}
 
 	@MessageMapping("/app/chat.leave")
 	@SendTo("/topic/public")
-	public ChatMessage leaveUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+	public MessageObject leaveUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		headerAccessor.getSessionAttributes().remove("username");
 		return chatMessage;
 	}
@@ -73,5 +81,5 @@ public class ChatController {
 		System.out.println("video");
 		return "/video/videoTest";
 	}
-	
+
 }

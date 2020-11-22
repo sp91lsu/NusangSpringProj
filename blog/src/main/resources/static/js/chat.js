@@ -12,7 +12,7 @@ var nickname = document.querySelector('#nickname').value.trim();
 var chatRoomTopic =   $("#chatRoomTopic").val();
 
 
-var userId = document.querySelector('#userid').value.trim();
+var userno = document.querySelector('#userno').value.trim();
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -59,7 +59,8 @@ function sendMessage(event) {
             sender: nickname,
             content: messageInput.value,
             type: 'CHAT',
-            subscribe : chatRoomTopic
+            subscribe : chatRoomTopic,
+            "userno": userno
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';

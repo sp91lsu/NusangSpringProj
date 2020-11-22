@@ -1,6 +1,7 @@
 package com.mycom.blog.dto;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -47,7 +49,7 @@ import lombok.ToString;
 @Table(name = "CHAT_ROOM")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성s
-@ToString(exclude = "me")
+@ToString(exclude = {"roomGuideList"})
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class ChatRoom {
 
@@ -57,22 +59,14 @@ public class ChatRoom {
 
 	private String topic;
 
-	@ManyToOne
-	private User me;
-
-	@OneToOne
-	private User chatUser;
+	@OneToMany(mappedBy = "chatRoom")
+	private List<ChatRoomGuide> roomGuideList;
 
 	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private List<ChatMessage> messageList;
+	@OrderBy("createDate asc")
+	private List<ChatMessage> messageList = new ArrayList<ChatMessage>();
 
-	// 채팅방 고유 string 값
-	public void setTopic(User user1, User user2) {
-
-		Integer no1 = user1.getUserno();
-		Integer no2 = user2.getUserno();
-
-		topic = "chatRoom";
-		topic += no1 < no2 ? no1.toString() + "_" + no2.toString() : no2.toString() + "_" + no1.toString();
-	}
+	@CreationTimestamp
+	private Timestamp createDate;
+	
 }

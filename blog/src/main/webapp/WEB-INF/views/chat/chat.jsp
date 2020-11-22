@@ -18,11 +18,15 @@
 			<div class="connecting">연결중...</div>
 			<ul id="messageArea">
 
+				<c:forEach var="message" items="${ chatRoom.messageList}">
+					<li class="chat-message"><i>t</i><span>${ message.user.nickname}</span>
+						<p>${message.text }</p></li>
+				</c:forEach>
+
 			</ul>
 
 
-			${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno} <input type="hidden" id="nickname" value="${principal.user.nickname }"> <input type="hidden"
-				id="userid" value="${principal.user.userid }"> <input type="hidden" id="chatRoomTopic" value="${chatRoom.topic}">
+			${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno} <input type="hidden" id="nickname" value="${principal.user.nickname }"> <input type="hidden" id="userno" value="${principal.user.userno }"> <input type="hidden" id="chatRoomTopic" value="${chatRoom.topic}">
 			<form id="messageForm" name="messageForm">
 				<div class="form-group">
 					<div class="input-group clearfix">

@@ -4,17 +4,18 @@
 package com.mycom.jooq;
 
 
-import com.mycom.jooq.tables.JBaseEntity;
 import com.mycom.jooq.tables.JBoard;
 import com.mycom.jooq.tables.JBook;
 import com.mycom.jooq.tables.JBookStore;
 import com.mycom.jooq.tables.JChatMessageRoom;
 import com.mycom.jooq.tables.JChatRoom;
+import com.mycom.jooq.tables.JChatRoomGuide;
 import com.mycom.jooq.tables.JFriend;
 import com.mycom.jooq.tables.JLocation;
 import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JUser1;
+import com.mycom.jooq.tables.JUser1FriendRequest;
 
 import javax.annotation.Generated;
 
@@ -31,11 +32,6 @@ import javax.annotation.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
-
-    /**
-     * The table <code>SPBOOTER.BASE_ENTITY</code>.
-     */
-    public static final JBaseEntity BASE_ENTITY = JBaseEntity.BASE_ENTITY;
 
     /**
      * The table <code>SPBOOTER.BOARD</code>.
@@ -63,6 +59,11 @@ public class Tables {
     public static final JChatRoom CHAT_ROOM = JChatRoom.CHAT_ROOM;
 
     /**
+     * The table <code>SPBOOTER.CHAT_ROOM_GUIDE</code>.
+     */
+    public static final JChatRoomGuide CHAT_ROOM_GUIDE = JChatRoomGuide.CHAT_ROOM_GUIDE;
+
+    /**
      * The table <code>SPBOOTER.FRIEND</code>.
      */
     public static final JFriend FRIEND = JFriend.FRIEND;
@@ -86,4 +87,9 @@ public class Tables {
      * The table <code>SPBOOTER.USER1</code>.
      */
     public static final JUser1 USER1 = JUser1.USER1;
+
+    /**
+     * The table <code>SPBOOTER.USER1_FRIEND_REQUEST</code>.
+     */
+    public static final JUser1FriendRequest USER1_FRIEND_REQUEST = JUser1FriendRequest.USER1_FRIEND_REQUEST;
 }

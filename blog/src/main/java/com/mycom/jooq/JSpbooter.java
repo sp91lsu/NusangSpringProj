@@ -4,17 +4,18 @@
 package com.mycom.jooq;
 
 
-import com.mycom.jooq.tables.JBaseEntity;
 import com.mycom.jooq.tables.JBoard;
 import com.mycom.jooq.tables.JBook;
 import com.mycom.jooq.tables.JBookStore;
 import com.mycom.jooq.tables.JChatMessageRoom;
 import com.mycom.jooq.tables.JChatRoom;
+import com.mycom.jooq.tables.JChatRoomGuide;
 import com.mycom.jooq.tables.JFriend;
 import com.mycom.jooq.tables.JLocation;
 import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JUser1;
+import com.mycom.jooq.tables.JUser1FriendRequest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,17 +41,12 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JSpbooter extends SchemaImpl {
 
-    private static final long serialVersionUID = 1297970970;
+    private static final long serialVersionUID = -1734869107;
 
     /**
      * The reference instance of <code>SPBOOTER</code>
      */
     public static final JSpbooter SPBOOTER = new JSpbooter();
-
-    /**
-     * The table <code>SPBOOTER.BASE_ENTITY</code>.
-     */
-    public final JBaseEntity BASE_ENTITY = com.mycom.jooq.tables.JBaseEntity.BASE_ENTITY;
 
     /**
      * The table <code>SPBOOTER.BOARD</code>.
@@ -78,6 +74,11 @@ public class JSpbooter extends SchemaImpl {
     public final JChatRoom CHAT_ROOM = com.mycom.jooq.tables.JChatRoom.CHAT_ROOM;
 
     /**
+     * The table <code>SPBOOTER.CHAT_ROOM_GUIDE</code>.
+     */
+    public final JChatRoomGuide CHAT_ROOM_GUIDE = com.mycom.jooq.tables.JChatRoomGuide.CHAT_ROOM_GUIDE;
+
+    /**
      * The table <code>SPBOOTER.FRIEND</code>.
      */
     public final JFriend FRIEND = com.mycom.jooq.tables.JFriend.FRIEND;
@@ -103,6 +104,11 @@ public class JSpbooter extends SchemaImpl {
     public final JUser1 USER1 = com.mycom.jooq.tables.JUser1.USER1;
 
     /**
+     * The table <code>SPBOOTER.USER1_FRIEND_REQUEST</code>.
+     */
+    public final JUser1FriendRequest USER1_FRIEND_REQUEST = com.mycom.jooq.tables.JUser1FriendRequest.USER1_FRIEND_REQUEST;
+
+    /**
      * No further instances allowed
      */
     private JSpbooter() {
@@ -124,16 +130,17 @@ public class JSpbooter extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
-            JBaseEntity.BASE_ENTITY,
             JBoard.BOARD,
             JBook.BOOK,
             JBookStore.BOOK_STORE,
             JChatMessageRoom.CHAT_MESSAGE_ROOM,
             JChatRoom.CHAT_ROOM,
+            JChatRoomGuide.CHAT_ROOM_GUIDE,
             JFriend.FRIEND,
             JLocation.LOCATION,
             JNotice.NOTICE,
             JReply.REPLY,
-            JUser1.USER1);
+            JUser1.USER1,
+            JUser1FriendRequest.USER1_FRIEND_REQUEST);
     }
 }

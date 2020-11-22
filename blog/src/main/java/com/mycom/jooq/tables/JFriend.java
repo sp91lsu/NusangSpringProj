@@ -8,6 +8,7 @@ import com.mycom.jooq.JSpbooter;
 import com.mycom.jooq.Keys;
 import com.mycom.jooq.tables.records.JFriendRecord;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row3;
+import org.jooq.Row6;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -39,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JFriend extends TableImpl<JFriendRecord> {
 
-    private static final long serialVersionUID = -1155478519;
+    private static final long serialVersionUID = 1331229467;
 
     /**
      * The reference instance of <code>SPBOOTER.FRIEND</code>
@@ -59,6 +60,23 @@ public class JFriend extends TableImpl<JFriendRecord> {
      */
     @java.lang.Deprecated
     public final TableField<JFriendRecord, Object> FRIEND_NO = createField(DSL.name("FRIEND_NO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * The column <code>SPBOOTER.FRIEND.CREATE_DATE</code>.
+     */
+    public final TableField<JFriendRecord, Timestamp> CREATE_DATE = createField(DSL.name("CREATE_DATE"), org.jooq.impl.SQLDataType.TIMESTAMP.precision(11).defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
+    public final TableField<JFriendRecord, Object> FRIEND_TYPE = createField(DSL.name("FRIEND_TYPE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
+    public final TableField<JFriendRecord, Object> FROM_WHO_USERNO = createField(DSL.name("FROM_WHO_USERNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
@@ -147,11 +165,11 @@ public class JFriend extends TableImpl<JFriendRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Object, Object, Object> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row6<Object, Timestamp, Object, Object, Object, Object> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 }

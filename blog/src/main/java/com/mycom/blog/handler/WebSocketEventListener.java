@@ -9,7 +9,7 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-import com.mycom.blog.model.ChatMessage;
+import com.mycom.blog.model.MessageObject;
 import com.mycom.blog.model.MessageType;
 
 public class WebSocketEventListener {
@@ -32,7 +32,7 @@ public class WebSocketEventListener {
 		if (username != null) {
 			logger.info("User Disconnected : " + username);
 
-			ChatMessage chatMessage = new ChatMessage();
+			MessageObject chatMessage = new MessageObject();
 			chatMessage.setType(MessageType.LEAVE);
 			chatMessage.setSender(username);
 

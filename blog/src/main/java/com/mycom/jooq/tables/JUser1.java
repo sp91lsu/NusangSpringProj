@@ -18,7 +18,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row9;
+import org.jooq.Row11;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JUser1 extends TableImpl<JUser1Record> {
 
-    private static final long serialVersionUID = 1987573039;
+    private static final long serialVersionUID = 1930938371;
 
     /**
      * The reference instance of <code>SPBOOTER.USER1</code>
@@ -65,6 +65,12 @@ public class JUser1 extends TableImpl<JUser1Record> {
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
+    public final TableField<JUser1Record, Object> AGE = createField(DSL.name("AGE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
     public final TableField<JUser1Record, Object> AUTH_TYPE = createField(DSL.name("AUTH_TYPE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
@@ -77,6 +83,12 @@ public class JUser1 extends TableImpl<JUser1Record> {
      */
     @java.lang.Deprecated
     public final TableField<JUser1Record, Object> EMAIL = createField(DSL.name("EMAIL"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
+    public final TableField<JUser1Record, Object> GENDER = createField(DSL.name("GENDER"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
@@ -183,11 +195,11 @@ public class JUser1 extends TableImpl<JUser1Record> {
     }
 
     // -------------------------------------------------------------------------
-    // Row9 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<Object, Object, Timestamp, Object, Object, Object, Object, Object, Object> fieldsRow() {
-        return (Row9) super.fieldsRow();
+    public Row11<Object, Object, Object, Timestamp, Object, Object, Object, Object, Object, Object, Object> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 }

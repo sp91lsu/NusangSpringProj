@@ -8,6 +8,7 @@ import com.mycom.jooq.JSpbooter;
 import com.mycom.jooq.Keys;
 import com.mycom.jooq.tables.records.JChatMessageRoomRecord;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -39,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JChatMessageRoom extends TableImpl<JChatMessageRoomRecord> {
 
-    private static final long serialVersionUID = -62067007;
+    private static final long serialVersionUID = -1360469553;
 
     /**
      * The reference instance of <code>SPBOOTER.CHAT_MESSAGE_ROOM</code>
@@ -59,6 +60,11 @@ public class JChatMessageRoom extends TableImpl<JChatMessageRoomRecord> {
      */
     @java.lang.Deprecated
     public final TableField<JChatMessageRoomRecord, Object> MESSAGENO = createField(DSL.name("MESSAGENO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * The column <code>SPBOOTER.CHAT_MESSAGE_ROOM.CREATE_DATE</code>.
+     */
+    public final TableField<JChatMessageRoomRecord, Timestamp> CREATE_DATE = createField(DSL.name("CREATE_DATE"), org.jooq.impl.SQLDataType.TIMESTAMP.precision(11).defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
@@ -153,11 +159,11 @@ public class JChatMessageRoom extends TableImpl<JChatMessageRoomRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Object, Object, Object, Object> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Object, Timestamp, Object, Object, Object> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 }

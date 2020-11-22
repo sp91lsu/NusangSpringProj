@@ -88,13 +88,13 @@ public class User {
 	private Timestamp createDate;
 
 	@OneToMany(mappedBy = "me")
-	private List<ChatRoom> chatRoomList;
+	private List<ChatRoomGuide> chatRoomGuideList;
 
 	@OneToOne(mappedBy = "user")
 	private Location location;
 
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	private List<Friend> friendList;
+	private List<Friend> friendList = new ArrayList<Friend>();
 
 	/*
 	 * @OneToMany(mappedBy = "userno" ,fetch = FetchType.LAZY)
@@ -113,20 +113,21 @@ public class User {
 				.password(this.password).email(this.email).role(this.role).authType(this.authType).build();
 	}
 
-	
 	public boolean availableReqFriend(User user) {
-		
-		if (userno == user.getUserno())
+
+		if (userno == user.getUserno() ||
+				friendList == null)
 			return false;
-		
-		for (Friend myFriend : friendList) {
-			if ( myFriend.getUser().getUserno() == user.getUserno()) {
+
+		for (int i = 0; i < friendList.size(); i++) {
+			if (friendList.get(i).getUser().getUserno() == user.getUserno()) {
 				return false;
 			}
 		}
+
 		return true;
 	}
-	
+
 	public boolean isMyFriend(User user) {
 
 		if (nickname.equals(user.getNickname()))
@@ -140,11 +141,11 @@ public class User {
 		}
 		return false;
 	}
-	
+
 	public List<Friend> friend_reqList(boolean fromMe) {
 
 		List<Friend> list = new ArrayList<Friend>();
-		
+
 		for (Friend addFriend : friendList) {
 			if (addFriend.getFriendType() == FriendType.REQUEST
 					&& fromMe == (addFriend.getFromWho().getUserno() == ConAssist.getUserno())) {
@@ -153,6 +154,4 @@ public class User {
 		}
 		return list;
 	}
-	
-	
 }
