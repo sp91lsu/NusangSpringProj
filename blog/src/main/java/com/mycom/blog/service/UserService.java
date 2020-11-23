@@ -3,13 +3,7 @@ package com.mycom.blog.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jooq.DSLContext;
-import org.jooq.Routine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +14,6 @@ import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.RoleType;
-import com.mycom.blog.model.Calc_distance_func;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.jooq.tables.JUser1;
@@ -78,7 +71,7 @@ public class UserService extends BasicService<UserRepository,User> {
 	}
 
 	// 회원 존재 여부
-	@Transactional(readOnly = true)
+	@Transactional
 	public boolean isExsistUserName(String username) {
 		User findUser = null;
 		try {
