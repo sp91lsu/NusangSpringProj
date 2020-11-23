@@ -34,4 +34,20 @@ public class NoticeService {
 
 		return -1;
 	}
+	
+	
+	@Transactional
+	public int updateOk(int no) {
+		Notice notice = repository.findById(no).get();
+		
+		try {
+			/*
+			 * dto.setTitle(dto.getTitle()); dto.setContents(dto.getContents());
+			 */
+			return 1;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

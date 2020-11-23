@@ -5,7 +5,7 @@
 <br>
 <div class="container">
 
-	<form action="/manager/writeOk" method="post">
+	<form action="/manager/noticeWriteOk" method="post">
 		<div class="form-group">
 			<input  name="title" type="text" class="form-control" placeholder="Enter title" id="title">
 		</div>
@@ -23,7 +23,7 @@
 		height : 300
 	});
 </script>
-<%@ include file="../layout/footer.jsp"%>
+<%@ include file="manager_footer.jsp"%>
 </body>
 </html>
 

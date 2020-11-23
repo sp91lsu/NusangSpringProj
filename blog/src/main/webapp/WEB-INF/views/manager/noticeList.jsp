@@ -12,18 +12,18 @@
 	<caption><h3>공지사항</h3></caption>
 	<div style = "float: right;"><button class = "btn btn-secondary" onclick = "location.href='/manager/noticeWrite'">글쓰기</button></div>
 	<br>
-<table class="table" border = "1">
+<table class="table">
   <thead class="thead-dark" align = "center">
     <tr>
-      <th scope="col">내용</th>
-      <th scope="col">등록일</th>
+      <th style = "width:300px;" scope="col">내용</th>
+      <th style = "width:100px;" scope="col">등록일</th>
     </tr>
   </thead>
   <tbody>
   		<c:forEach var="dto" items="${list }">
   			<tr>
-  				<td>${dto.title }</td>
-  				<td>${dto.regdate }</td>
+  				<td><a href="/manager/noticeView?no=${dto.no }">${dto.title }</a> </td>
+  				<td align = "center">${dto.regdate }</td>
   			</tr>
   		
   		</c:forEach>

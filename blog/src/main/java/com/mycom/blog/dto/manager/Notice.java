@@ -1,8 +1,6 @@
 package com.mycom.blog.dto.manager;
 
-import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,16 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
-import com.mycom.blog.dto.ChatRoom;
-import com.mycom.blog.dto.Friend;
-import com.mycom.blog.dto.Location;
-import com.mycom.blog.dto.User;
-import com.mycom.blog.dto.enumtype.AuthType;
-import com.mycom.blog.dto.enumtype.RoleType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,6 +42,7 @@ public class Notice {
 	private String title;
 	private String contents;
 	private String name;
+	@CreationTimestamp
 	private Date regdate;
 
 }

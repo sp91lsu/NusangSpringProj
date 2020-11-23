@@ -30,36 +30,36 @@ public class managerController {
 	public String noticeWrite() {
 		return "/manager/noticeWrite";
 	}
-	@RequestMapping(value="/writeOk", method = RequestMethod.POST)
+	@RequestMapping(value="/noticeWriteOk", method = RequestMethod.POST)
 	public String writeOk(Notice dto, Model model) {
 		int res = noticeService.save(dto);
 		model.addAttribute("res", res);
 		
-		return "/manager/writeOk";
+		return "/manager/noticeWriteOk";
 	}
 	
-//	@RequestMapping("/view.do")
-//	public String view(int uid, Model model) {
-//		model.addAttribute("uid", uid);
-//		new BViewCommand().execute(model);
-//		return "board/view";
-//	}
-//	
-//	@RequestMapping("/update.do")
-//	public String update(int uid, Model model) {
-//		model.addAttribute("uid", uid);
-//		new BSelectCommand().execute(model);		
-//		return "board/update";
-//	}
-//	
-//	@RequestMapping(value="/updateOk.do", method= RequestMethod.POST)
-//	public String updateOk(Notice dto, Model model) {
-//		model.addAttribute("dto", dto);
-//		
-//		new BUpdateCommand().execute(model);
-//		
-//		return "board/updateOk";
-//	}
+	@RequestMapping("/noticeView")
+	public String view(int no, Model model) {
+		Notice view = noticeService.findByNo(no);
+		model.addAttribute("view", view);
+		
+		return "/manager/noticeView";
+	}
+
+	@RequestMapping("/noticeUpdate")
+	public String noticeUpdate(int no, Model model) {
+		Notice update = noticeService.(no);
+		model.addAttribute("update",update);
+		return "/manager/noticeUpdate";
+	}
+	@RequestMapping(value="/noticeUpdateOk", method= RequestMethod.POST)
+	public String noticeUpdateOk(int no, Model model) {
+		int res = noticeService.updateOk(no);
+		model.addAttribute("dto", dto);
+		model.addAttribute("res", res);
+		
+		return "/manager/noticeUpdateOk";
+	}
 //	
 //	@RequestMapping(value="/deleteOk.do")
 //	public String deleteOk(int uid, Model model) {
