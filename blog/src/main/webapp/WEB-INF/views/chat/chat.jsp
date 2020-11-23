@@ -13,7 +13,7 @@
 	<div id="chat-page">
 		<div class="chat-container">
 			<div class="chat-header">
-				<h2>Spring WebSocket Chat Demo</h2>
+				<h2>${chatRoom.getMatchedUser().nickname }님과 대화</h2>
 			</div>
 			<div class="connecting">연결중...</div>
 			<ul id="messageArea">

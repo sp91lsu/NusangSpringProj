@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
+import com.mycom.blog.controller.assist.ConAssist;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,7 +50,7 @@ import lombok.ToString;
 @Table(name = "CHAT_ROOM")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성s
-@ToString(exclude = {"roomGuideList"})
+@ToString(exclude = { "roomGuideList" })
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class ChatRoom {
 
@@ -68,5 +69,15 @@ public class ChatRoom {
 
 	@CreationTimestamp
 	private Timestamp createDate;
-	
+
+	public User getMatchedUser() {
+		for (ChatRoomGuide guid : roomGuideList) {
+
+			if (guid.getMe().getUserno() != ConAssist.getUserno()) {
+				return guid.getMe();
+			}
+		}
+		return null;
+	}
+
 }
