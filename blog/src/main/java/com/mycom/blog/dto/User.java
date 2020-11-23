@@ -159,4 +159,13 @@ public class User {
 		}
 		return list;
 	}
+	
+	public boolean isMe(User user)
+	{
+		if(user.userno == ConAssist.getUserno())
+		{
+			return true;
+		}
+		return false;
+	}
 }

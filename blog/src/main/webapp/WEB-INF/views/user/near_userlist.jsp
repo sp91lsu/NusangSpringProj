@@ -5,7 +5,11 @@
 
 	<c:forEach var="user_i" items="${nearUserList}">
 		<div>${user_i.nickname }
-			<button class="btn-add-friend btn btn-primary" value="${user_i.userno }">${user_i.userno }친구요청</button>
+
+			<c:if test="${!user_i.isMe(user_i) }">
+				<button class="btn-add-friend btn btn-primary" value="${user_i.userno }">${user_i.userno }친구요청</button>
+			</c:if>
+
 		</div>
 	</c:forEach>
 
