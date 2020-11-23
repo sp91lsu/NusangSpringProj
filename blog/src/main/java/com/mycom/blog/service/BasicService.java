@@ -74,9 +74,15 @@ public class BasicService<T, E> {
 	}
 
 	@Transactional
-	public void deleteById(int id) {
-		JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
-		t.deleteById(id);
+	public int deleteById(int id) {
+		try {
+			JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
+			t.deleteById(id);
+			return 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 	@Transactional

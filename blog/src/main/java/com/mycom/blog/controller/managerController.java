@@ -41,7 +41,7 @@ public class managerController {
 		return "/manager/noticeWriteOk";
 	}
 
-	@RequestMapping("/noticeView")
+	@RequestMapping(value = "/noticeView")
 	public String view(int no, Model model) {
 		Notice view = noticeService.findById(no);
 		model.addAttribute("view", view);
@@ -49,7 +49,7 @@ public class managerController {
 		return "/manager/noticeView";
 	}
 
-	@RequestMapping("/noticeUpdate")
+	@RequestMapping(value = "/noticeUpdate")
 	public String noticeUpdate(int no, Model model) {
 		Notice update = noticeService.findById(no);
 		model.addAttribute("update",update);
@@ -66,11 +66,11 @@ public class managerController {
 
 		return "/manager/noticeUpdateOk";
 	}
-//	
-//	@RequestMapping(value="/deleteOk.do")
-//	public String deleteOk(int uid, Model model) {
-//		model.addAttribute("uid", uid);
-//		new BDeleteCommand().execute(model);
-//		return "board/deleteOk";
-//	}
+	
+	@RequestMapping(value="/noticeDeleteOk", method = RequestMethod.POST)
+	public String noticeDeleteOk(int no, Model model) {
+		int res = noticeService.deleteById(no);
+		model.addAttribute("res", res);
+		return "/manager/noticeDeleteOk";
+	}
 }

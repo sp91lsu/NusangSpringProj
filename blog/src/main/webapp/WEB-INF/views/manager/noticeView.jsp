@@ -19,8 +19,12 @@
 
 </div>
 <div align = "center">
-<button class = "btn btn-primary" onclick = "location.href = '/manager/noticeUpdate?no=${view.no}'">수정</button>
-<button class = "btn btn-secondary" onclick = "location.href = '/manager/noticeDelete?no${view.no}'">삭제</button>
+<form action="/manager/noticeDeleteOk" method = "post">
+<button type = "button" class = "btn btn-primary" onclick = "location.href = '/manager/noticeUpdate?no=${view.no}'">수정</button>
+<button type = "button" class = "btn btn-primary" onclick = "location.href = '/manager/noticeList'">목록으로</button>
+<input type="hidden" name = "no" value = "${view.no }" />
+<button type = "submit" class = "btn btn-secondary">삭제</button>
+</form>
 </div>
 <%@ include file = "manager_footer.jsp" %>
 </body>

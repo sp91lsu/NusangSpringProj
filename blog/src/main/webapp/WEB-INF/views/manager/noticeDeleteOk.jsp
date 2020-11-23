@@ -5,26 +5,17 @@
 <c:choose>
 	<c:when test="${res == 1 }">
 		<script>
-			alert("수정이 완료 되었습니다.");
-			location.href = "/manager/noticeView?no=${notice.no}";
+			alert("해당글이 삭제 되었습니다.");
+			location.href = "/manager/noticeList";
 		</script>
 	</c:when>
 	<c:otherwise>
 		<script>
-			alert("수정실패ㅠㅠㅠㅠ");
+			alert("삭제 실패!!!");
 			history.back();
 		</script>
-	
 	</c:otherwise>
-
-
 </c:choose>
 
 
-
-
-
-
-
-
-<%@ include file="manager_footer.jsp"%>
+<%@ include file = "manager_footer.jsp" %>
