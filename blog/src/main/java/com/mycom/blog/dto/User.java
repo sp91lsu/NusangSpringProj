@@ -92,11 +92,13 @@ public class User {
 	@OneToMany(mappedBy = "me")
 	private List<ChatRoomGuide> chatRoomGuideList;
 
-	@OneToOne 
+	@OneToOne
 	@JoinColumn(name = "locationno")
 	private Location location;
-	
+
 	private String picture;
+
+	private int coin;
 
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
@@ -120,8 +122,7 @@ public class User {
 
 	public boolean availableReqFriend(User user) {
 
-		if (userno == user.getUserno() ||
-				friendList == null)
+		if (userno == user.getUserno() || friendList == null)
 			return false;
 
 		for (int i = 0; i < friendList.size(); i++) {
@@ -159,11 +160,9 @@ public class User {
 		}
 		return list;
 	}
-	
-	public boolean isMe(User user)
-	{
-		if(user.userno == ConAssist.getUserno())
-		{
+
+	public boolean isMe(User user) {
+		if (user.userno == ConAssist.getUserno()) {
 			return true;
 		}
 		return false;
