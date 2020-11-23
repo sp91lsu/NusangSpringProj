@@ -1,18 +1,14 @@
 package com.mycom.blog.repository.manager;
 
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.manager.Notice;
 
 //DAO 
 //자동으로 빈등록 가능 
 
 public interface NoticeRepository extends JpaRepository<Notice, Integer>{
-	
 //	Optional<Notice> findByUsername(String username);
 //	Optional<Notice> findByUserid(String userid);
 //	User findByNickname(String nickname);
