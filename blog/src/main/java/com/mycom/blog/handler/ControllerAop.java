@@ -29,6 +29,22 @@ public class ControllerAop {
 	 * pjp.getSignature().getName()); Object result = pjp.proceed(); return result;
 	 * }
 	 */
+	@Pointcut("execution(* com.mycom.blog.controller.ShopController.*(..))")
+	private void ShopController() {
+	}
+
+	@Pointcut("execution(* com.mycom.blog.controller.api.PaymentApiController.*(..))")
+	private void PaymentApiController() {
+	}
+
+	@Pointcut("within(com.mycom.blog.controller.assist..*)")
+	private void conAssistPackage() {
+	}
+
+	@Pointcut("within(com.mycom.blog.controller..*)")
+	private void controllerPackage() {
+	}
+
 	@Pointcut("execution(* com.mycom.blog.controller.FriendController.*(..))")
 	private void friendController() {
 	}
@@ -45,12 +61,17 @@ public class ControllerAop {
 	private void loginAfter() {
 	}
 
-	@Around("friendController() || friendController_API()")
+	@Around("friendController() || friendController_API() || ShopController() "
+			+ "|| PaymentApiController()")
 	public Object chkUpdateUser(ProceedingJoinPoint pjp) throws Throwable {
+		
+				Object result = pjp.proceed();
+		if (conAssist.getUser() != null) {
+			conAssist.updateUser();
+			System.out.println("AOP 유저 정보 갱신 - " + pjp.getSignature().getDeclaringTypeName() + " / " + pjp.getSignature().getName());
 
-		logger.info("요청 경로 - " + pjp.getSignature().getDeclaringTypeName() + " / " + pjp.getSignature().getName());
-		Object result = pjp.proceed();
-		conAssist.updateUser();
+		}
+		
 		return result;
 	}
 

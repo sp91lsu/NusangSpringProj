@@ -1,7 +1,10 @@
 package com.mycom.blog.controller.api;
 
 import java.io.Console;
+import java.io.IOException;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,45 +23,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycom.blog.auth.PrincipalDetail;
+import com.mycom.blog.bo.KakaoBo;
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.ChatRoom;
+import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.Response;
+import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ChatRoomRepository;
+import com.mycom.blog.repository.ReplyRepository;
+import com.mycom.blog.service.LocationService;
+import com.mycom.blog.service.ShopService;
 import com.mycom.blog.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
-@RequestMapping(value = { "/user" })
-public class UserApiController {
+@RequestMapping("/payment")
+public class PaymentApiController {
 
 	@Autowired
-	private UserService userService;
+	ShopService shopService;
 
 	@Autowired
-	private ConAssist conAssist;
-//	@Autowired
-//	HttpSession session;
+	UserService userService;
 
-	// 유저정보 업데이트
-	@PostMapping("/updateInfo")
-	public Response<Integer> update(@RequestBody User user) {
-		int result = userService.updateUserInfo(user);
+	@PostMapping("/webhook")
+	public void search_location(HttpServletRequest request) throws IOException {
 
-		// 회원수정에 성공햇다면
-		if (result == 1) {
-			conAssist.setSessionUser(user);
+		System.out.println(request.getInputStream());
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> jsonMap = mapper.readValue(request.getInputStream(), Map.class);
+
+		String status = jsonMap.get("status").toString();
+
+		if (status.equals("paid")) {
+			userService.buyCoin(jsonMap);
 		}
-		return new Response<Integer>(HttpStatus.OK.value(), result);
-	}
-
-	@PostMapping("/search_ok")
-	public User userSearch_ok(String searchValue, @AuthenticationPrincipal PrincipalDetail principal) {
-		User user = userService.searchNickname(searchValue, principal.getUser());
-
-		return user;
 	}
 
 }

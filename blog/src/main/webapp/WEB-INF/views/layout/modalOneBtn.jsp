@@ -18,7 +18,7 @@ String body = URLDecoder.decode(request.getParameter("body"), "UTF-8");
 			</div>
 			<div class="modal-body"><%=body%></div>
 			<div class="modal-footer">
-				<a class="btn" id="modalY">예</a>
+				<a class="btn" id="modalY">확인</a>
 			</div>
 		</div>
 	</div>

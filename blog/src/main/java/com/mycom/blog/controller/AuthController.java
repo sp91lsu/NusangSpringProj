@@ -33,8 +33,8 @@ import com.mycom.blog.service.UserService;
 //@SessionAttributes("id") //id라는 키로 저장된 attribute는 세션객체에 저장 됨
 
 @Controller
-@RequestMapping(value = { "/user" })
-public class UserController {
+@RequestMapping(value = "/auth")
+public class AuthController {
 
 	// yml파일에 있는 키값
 	@Value("${cos.key}")
@@ -46,36 +46,25 @@ public class UserController {
 	@Autowired
 	private KakaoBo kakaoBo;
 
-	@GetMapping("/updateForm")
-	public String updateForm() {
-		System.out.println("updateForm");
-		return "/user/updateForm";
+	@GetMapping("/joinForm")
+	public String joinForm() {
+
+		System.out.println("joinForm");
+		return "user/joinForm";
 	}
 
-	@GetMapping("/search")
-	public String userSearch() {
-		return "/user/searchUser";
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		System.out.println("loginForm");
+		return "user/loginForm";
 	}
 
-	@GetMapping("/near_userlist")
-	public String near_userlist(Model model) {
-		List<User> nearUserList = userService.findNearUserList();
-		model.addAttribute("nearUserList", nearUserList);
-		return "/user/near_userlist";
-	}
+	// @ResponseBody : 데이터를 리턴해주는 함수로 바뀜 restController같은 역할
+	@GetMapping("/kakaologin")
+	public String kakaoCallback(String code) {
 
-	@GetMapping("/search_location")
-	public String userSearch_location() {
-		System.out.println("searchLocation");
-		return "/location/search";
-	}
-
-	@GetMapping("/all_userlist")
-	public String allUserList(Model model) {
-		System.out.println("/user/all_userlist");
-		List<User> userlist = userService.findAll();
-		model.addAttribute("allUserList", userlist);
-		return "/user/allUserList";
+		kakaoBo.login(code);
+		return "redirect:/home";
 	}
 
 }

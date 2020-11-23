@@ -2,6 +2,7 @@ package com.mycom.blog.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,18 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycom.blog.dto.Item;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.repository.ChatRoomRepository;
+import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-public class UserService extends BasicService<UserRepository,User> {
+public class UserService extends BasicService<UserRepository, User> {
 
+	@Autowired
+	ItemRepository itemRep;
 
 	@Autowired
 	public UserService(UserRepository repository) {
@@ -104,6 +109,7 @@ public class UserService extends BasicService<UserRepository,User> {
 		return findUser;
 	}
 
+	@Transactional
 	public List<User> findNearUserList() {
 
 		Location location = conAssist.getUser().getLocation();
@@ -123,5 +129,32 @@ public class UserService extends BasicService<UserRepository,User> {
 //		return userRep.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 //	}
 //	
+	@Transactional
+	public int buyCoin(Map<String, Object> jsonMap) {
+
+		try {
+			System.out.println(jsonMap.get("imp_uid"));
+			System.out.println(jsonMap.get("merchant_uid"));
+			System.out.println(jsonMap.get("status"));
+
+			String[] payLoad = jsonMap.get("merchant_uid").toString().split("_");
+
+			int userno = Integer.parseInt(payLoad[0]);
+			int itemno = Integer.parseInt(payLoad[1]);
+			String merchant_uid = payLoad[2];
+
+			User user = findById(userno);
+			Item item = itemRep.findById(itemno).get();
+
+			int totalCoin = user.getCoin() + item.getNum();
+			user.setCoin(totalCoin);
+			// 이후 결제내역 추가해야함
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		
+	}
 
 }

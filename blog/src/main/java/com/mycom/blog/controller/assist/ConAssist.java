@@ -18,7 +18,7 @@ import com.mycom.blog.dto.User;
 
 @Component
 public class ConAssist {
-	
+
 	public String IP = "http://localhost:8000";
 
 	@Autowired
@@ -28,30 +28,45 @@ public class ConAssist {
 	private PrincipalDetailService principalService;
 
 	public static User getUser() {
-		PrincipalDetail pd = getPrincipal();
-		return pd.getUser();
+
+		try {
+			PrincipalDetail pd = getPrincipal();
+			return pd.getUser();
+		} catch (Exception e) {
+			return null;
+		}
 	}
-	
+
 	public static int getUserno() {
-		PrincipalDetail pd = getPrincipal();
-		return pd.getUser().getUserno();
+		try {
+			PrincipalDetail pd = getPrincipal();
+			return pd.getUser().getUserno();
+		} catch (Exception e) {
+			return 0;
+		}
+
 	}
 
 	public static PrincipalDetail getPrincipal() {
-		return (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		try {
+			return (PrincipalDetail) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 
 	// DB에서 유저 정보를 반환
 	public User updateUser() {
 		try {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		PrincipalDetail principal = principalService.loadUserByUserno(getUserno());
-		UsernamePasswordAuthenticationToken newAuth = new UsernamePasswordAuthenticationToken(principal,
-				auth.getCredentials(), principal.getAuthorities());
-		newAuth.setDetails(principal);
-		SecurityContextHolder.getContext().setAuthentication(newAuth);
-		return getUser();
-		}catch(Exception e) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			PrincipalDetail principal = principalService.loadUserByUserno(getUserno());
+			UsernamePasswordAuthenticationToken newAuth = new UsernamePasswordAuthenticationToken(principal,
+					auth.getCredentials(), principal.getAuthorities());
+			newAuth.setDetails(principal);
+			SecurityContextHolder.getContext().setAuthentication(newAuth);
+			return getUser();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
