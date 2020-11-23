@@ -46,8 +46,7 @@ public class Location {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOCATION_SEQ_GEN")
 	private int locationno;
 
-	@OneToOne
-	@JoinColumn(name = "userno")
+	@OneToOne(mappedBy = "location")
 	private User user;
 	private double latitude;
 	private double longtitude;

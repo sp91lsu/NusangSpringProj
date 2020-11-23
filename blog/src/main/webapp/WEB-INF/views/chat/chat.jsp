@@ -13,7 +13,7 @@
 	<div id="chat-page">
 		<div class="chat-container">
 			<div class="chat-header">
-				<h2>${chatRoom.getMatchedUser().nickname }님과 대화</h2>
+				<h2>${chatRoom.getMatchedUser().nickname }님과대화</h2>
 			</div>
 			<div class="connecting">연결중...</div>
 			<ul id="messageArea">
@@ -26,7 +26,7 @@
 			</ul>
 
 
-			${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno}${chatRoom.roomno} <input type="hidden" id="nickname" value="${principal.user.nickname }"> <input type="hidden" id="userno" value="${principal.user.userno }"> <input type="hidden" id="chatRoomTopic" value="${chatRoom.topic}">
+			<input type="hidden" id="nickname" value="${principal.user.nickname }"> <input type="hidden" id="userno" value="${principal.user.userno }"> <input type="hidden" id="chatRoomTopic" value="${chatRoom.topic}">
 			<form id="messageForm" name="messageForm">
 				<div class="form-group">
 					<div class="input-group clearfix">

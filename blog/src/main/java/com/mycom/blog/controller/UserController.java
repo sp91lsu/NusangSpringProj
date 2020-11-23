@@ -67,10 +67,16 @@ public class UserController {
 
 	@GetMapping("/search")
 	public String userSearch() {
-		System.out.println("search");
 		return "/user/searchUser";
 	}
-	
+
+	@GetMapping("/near_userlist")
+	public String near_userlist(Model model) {
+		List<User> nearUserList = userService.findNearUserList();
+		model.addAttribute("nearUserList", nearUserList);
+		return "/user/near_userlist";
+	}
+
 	@GetMapping("/search_location")
 	public String userSearch_location() {
 		System.out.println("searchLocation");
@@ -79,7 +85,7 @@ public class UserController {
 
 	@GetMapping("/all_userlist")
 	public String allUserList(Model model) {
-		System.out.println("/user/sll_userlist");
+		System.out.println("/user/all_userlist");
 		List<User> userlist = userService.findAll();
 		model.addAttribute("allUserList", userlist);
 		return "/user/allUserList";
@@ -88,10 +94,9 @@ public class UserController {
 	// @ResponseBody : 데이터를 리턴해주는 함수로 바뀜 restController같은 역할
 	@GetMapping("/kakaologin")
 	public String kakaoCallback(String code) {
-		
+
 		kakaoBo.login(code);
 		return "redirect:/home";
 	}
-	
-	
+
 }

@@ -108,6 +108,7 @@ function onMessageReceived(payload) {
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
+        
     }
 
     var textElement = document.createElement('p');

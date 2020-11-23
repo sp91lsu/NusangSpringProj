@@ -32,9 +32,7 @@ import com.mycom.jooq.tables.records.JFriendRecord;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-public class FriendService extends BasicService<Friend> {
-
-	FriendRepository friendRep;
+public class FriendService extends BasicService<FriendRepository,Friend> {
 
 	@Autowired
 	UserRepository userRep;
@@ -43,8 +41,7 @@ public class FriendService extends BasicService<Friend> {
 
 	@Autowired
 	public FriendService(FriendRepository friendRep) {
-		this.friendRep = friendRep;
-		setRepository(this.friendRep);
+		setRepository(friendRep);
 	}
 
 	@Transactional
@@ -52,8 +49,8 @@ public class FriendService extends BasicService<Friend> {
 
 		try {
 			User friendUser = userRep.findById(friendno).get();
-			Friend friendEntity = friendRep.findByMeAndUser(me, friendUser);
-			Friend friendEntity2 = friendRep.findByMeAndUser(friendUser, me);
+			Friend friendEntity = repository.findByMeAndUser(me, friendUser);
+			Friend friendEntity2 = repository.findByMeAndUser(friendUser, me);
 			friendEntity.setFriendType(FriendType.REALATIONSHIP);
 			friendEntity2.setFriendType(FriendType.REALATIONSHIP);
 			return 1;

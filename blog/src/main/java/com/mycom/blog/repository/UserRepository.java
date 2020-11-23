@@ -1,10 +1,13 @@
 package com.mycom.blog.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 
 //DAO 
@@ -16,9 +19,13 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	Optional<User> findByUserid(String userid);
 	User findByNickname(String nickname);
 	User findByEmail(String email);
-	//jpa 네이밍 전략 findBy 바로 다음에 올 컬럼명을 밑에와 같이 입력하면 쿼리가 작동한다. 그다음 컬럼은 and를 붙여 사용
-//		User1 findByUsernameAndPassword(String username,String password);
-		
-//		@Query(value = "SELECT * FROM user1 WHERE username = ?1 AND password = ?2",nativeQuery = true)
-//		User1 login(String username, String password);
+	
+	@Modifying
+	@Query(value = "SELECT *" + 
+			" FROM USER1" + 
+			" WHERE" + 
+			" locationno IN" + 
+			"  (SELECT loc.locationno FROM location loc WHERE" + 
+			"  calc_distance(?1, ?2,loc.latitude, loc.longtitude ) <= ?3 )", nativeQuery = true)
+	List<User> calc_distance(double latitude, double longtitude , int distance);
 }

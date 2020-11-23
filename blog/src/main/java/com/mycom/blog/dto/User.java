@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -50,6 +51,7 @@ import lombok.ToString;
 @Table(name = "User1")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성
+@ToString(exclude = "location")
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class User {
 
@@ -90,7 +92,8 @@ public class User {
 	@OneToMany(mappedBy = "me")
 	private List<ChatRoomGuide> chatRoomGuideList;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne 
+	@JoinColumn(name = "locationno")
 	private Location location;
 
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)

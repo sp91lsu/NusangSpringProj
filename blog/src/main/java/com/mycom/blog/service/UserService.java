@@ -1,6 +1,10 @@
 package com.mycom.blog.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jooq.DSLContext;
+import org.jooq.Routine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,26 +16,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.RoleType;
+import com.mycom.blog.model.Calc_distance_func;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-public class UserService extends BasicService<User> {
+public class UserService extends BasicService<UserRepository,User> {
 
-	UserRepository userRepository;
-
-	@Autowired
-	DSLContext dsl;
 
 	@Autowired
 	public UserService(UserRepository repository) {
 		setRepository(repository);
-		userRepository = repository;
 	}
 
 	@Autowired
@@ -41,6 +42,7 @@ public class UserService extends BasicService<User> {
 	private ChatRoomRepository chatRoomRep;
 
 	JUser1 juser1 = JUser1.USER1;
+
 	@Transactional
 	public int signUp(User user, AuthType authType) {
 		try {
@@ -48,8 +50,8 @@ public class UserService extends BasicService<User> {
 			user.setAuthType(authType);
 			User setUser = user.clone();
 			setUser.setPassword(pwEncoder, user.getPassword());
-			userRepository.save(setUser);
-			
+			repository.save(setUser);
+
 			return 1;
 
 		} catch (Exception e) {
@@ -63,7 +65,7 @@ public class UserService extends BasicService<User> {
 	@Transactional
 	public int updateUserInfo(User user) {
 
-		User findUser = userRepository.findByUsername(user.getUsername()).orElseThrow(() -> {
+		User findUser = repository.findByUsername(user.getUsername()).orElseThrow(() -> {
 			return new IllegalArgumentException("updateUserInfo : dbError");
 		});
 
@@ -80,7 +82,7 @@ public class UserService extends BasicService<User> {
 	public boolean isExsistUserName(String username) {
 		User findUser = null;
 		try {
-			findUser = userRepository.findByUsername(username).get();
+			findUser = repository.findByUsername(username).get();
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(findUser);
 			JsonNode jsonNode = mapper.readTree(json);
@@ -95,8 +97,8 @@ public class UserService extends BasicService<User> {
 	@Transactional
 	public User searchNickname(String searchValue, User myUser) {
 		System.out.println("searchValue " + searchValue);
-		User findUser = userRepository.findByNickname(searchValue);
-		
+		User findUser = repository.findByNickname(searchValue);
+
 		if (findUser != null) {
 			/*
 			 * ChatRoom room = ChatRoom.builder().user(myUser).chatUser(findUser).build();
@@ -107,6 +109,20 @@ public class UserService extends BasicService<User> {
 			 */
 		}
 		return findUser;
+	}
+
+	public List<User> findNearUserList() {
+
+		Location location = conAssist.getUser().getLocation();
+		List<User> nearUserList = new ArrayList<User>();
+		try {
+			nearUserList = repository.calc_distance(location.getLatitude(), location.getLongtitude(),
+					location.getView_distance());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("근처 회원 없음");
+		}
+		return nearUserList;
 	}
 
 //	@Transactional(readOnly = true) //정합성 유지

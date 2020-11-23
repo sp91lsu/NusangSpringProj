@@ -36,12 +36,12 @@ import com.mycom.jooq.tables.JFriend;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-public class BasicService<T> {
+public class BasicService<T, E> {
 
 	@Autowired
 	EntityManagerFactory emf;
-	
-	protected JpaRepository<T, Integer> repository;
+
+	protected T repository;
 
 	@Autowired
 	protected DSLContext dsl;
@@ -52,35 +52,37 @@ public class BasicService<T> {
 	@Autowired
 	protected ConAssist conAssist;
 
-	public void setRepository(JpaRepository<T, Integer> repository) {
-		this.repository = (JpaRepository<T, Integer>) repository;
+	public void setRepository(T repository) {
+		this.repository = repository;
 	}
-	
+
 	@Transactional
-	public T findById(int id) {
-		T t;
-		t = (T) repository.findById(id).orElseThrow(() -> {
+	public E findById(int id) {
+		JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
+		E e = t.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("findbyid Error");
 		});
-		return t;
+		return e;
 	}
 
 	@Transactional(readOnly = true)
-	public List<T> findAll() {
-
-		List<T> list = repository.findAll();
+	public List<E> findAll() {
+		JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
+		List<E> list = t.findAll();
 
 		return list;
 	}
 
 	@Transactional
 	public void deleteById(int id) {
-		repository.deleteById(id);
+		JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
+		t.deleteById(id);
 	}
 
 	@Transactional
-	public T save(T entity) {
-		return repository.save(entity);
+	public E save(E entity) {
+		JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
+		return t.save(entity);
 	}
 
 }

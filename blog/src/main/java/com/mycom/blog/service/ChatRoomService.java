@@ -30,9 +30,8 @@ class Student {
 //spring container 
 
 @Service
-public class ChatRoomService extends BasicService<ChatRoom> {
+public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> {
 
-	private ChatRoomRepository chatRoomRep;
 
 	@Autowired
 	private ChatRoomGuideRepository chatRoomGuidRep;
@@ -49,7 +48,6 @@ public class ChatRoomService extends BasicService<ChatRoom> {
 
 	@Autowired
 	public ChatRoomService(ChatRoomRepository chatRoomRep) {
-		this.chatRoomRep = chatRoomRep;
 		setRepository(chatRoomRep);
 	}
 
@@ -71,7 +69,7 @@ public class ChatRoomService extends BasicService<ChatRoom> {
 
 		String topic = createTopic(me, friend);
 
-		ChatRoom chatRoom = chatRoomRep.findByTopic(topic);
+		ChatRoom chatRoom = repository.findByTopic(topic);
 
 		System.out.println(chatRoom);
 
@@ -95,7 +93,7 @@ public class ChatRoomService extends BasicService<ChatRoom> {
 	public int sendMessage(MessageObject mObj) {
 
 		try {
-			ChatRoom chatRoom = chatRoomRep.findByTopic(mObj.getSubscribe());
+			ChatRoom chatRoom = repository.findByTopic(mObj.getSubscribe());
 
 			User user = userRep.findById(mObj.getUserno()).get();
 			ChatMessage message = ChatMessage.builder().chatRoom(chatRoom).text(mObj.getContent()).user(user).build();

@@ -49,6 +49,7 @@
 						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보보기</a>
 						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a>
 						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a>
+						<li class="nav-item"><a class="nav-link" href="/user/near_userlist">내 근처회원</a>
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a>
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">

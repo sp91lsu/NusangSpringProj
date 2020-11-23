@@ -23,17 +23,15 @@ import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-public class LocationService extends BasicService<Location> {
+public class LocationService extends BasicService<LocationRepository,Location> {
 
 	@Autowired
 	UserRepository userRep;
 
-	LocationRepository locRepository;
 
 	@Autowired
 	public LocationService(LocationRepository repository) {
 		setRepository(repository);
-		locRepository = repository;
 	}
 
 	@Transactional
@@ -43,17 +41,22 @@ public class LocationService extends BasicService<Location> {
 		try {
 			location = kakaoBo.reqLocation(searchValue);
 			location.setUser(conAssist.getUser());
+			User user = userRep.findById(conAssist.getUserno()).get();
+			
 			if (conAssist.getUser().getLocation() == null) {
-				locRepository.save(location);
+				repository.save(location);
+				user.setLocation(location);
 			} else {
-				Location locationEntity = locRepository.findByUser(location.getUser());
+				Location locationEntity = repository.findByUser(location.getUser());
 				locationEntity.setLatitude(location.getLatitude());
 				locationEntity.setLongtitude(location.getLongtitude());
 				locationEntity.setName1(location.getName1());
 				locationEntity.setName2(location.getName2());
 				locationEntity.setName3(location.getName3());
+				user.setLocation(locationEntity);
 			}
-
+			
+			
 			return 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -67,7 +70,7 @@ public class LocationService extends BasicService<Location> {
 	public int setView_distance(int view_distance) {
 
 		try {
-			Location location = locRepository.findByUser(conAssist.getUser());
+			Location location = repository.findByUser(conAssist.getUser());
 			location.setView_distance(view_distance);
 			return 1;
 		} catch (Exception e) {
