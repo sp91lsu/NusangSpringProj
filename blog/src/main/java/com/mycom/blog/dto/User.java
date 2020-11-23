@@ -95,6 +95,8 @@ public class User {
 	@OneToOne 
 	@JoinColumn(name = "locationno")
 	private Location location;
+	
+	private String picture;
 
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
