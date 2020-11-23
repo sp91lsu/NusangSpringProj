@@ -13,7 +13,6 @@ import com.mycom.blog.dto.manager.Notice;
 
 public interface NoticeRepository extends JpaRepository<Notice, Integer>{
 	
-	Notice findbyContents(String contents);
 //	Optional<Notice> findByUsername(String username);
 //	Optional<Notice> findByUserid(String userid);
 //	User findByNickname(String nickname);

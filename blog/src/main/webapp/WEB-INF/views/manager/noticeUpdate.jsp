@@ -7,13 +7,13 @@
 
 	<form action="/manager/noticeUpdateOk" method="post">
 		<div class="form-group">
-			<input  name="title" type="text" class="form-control" placeholder="Enter title" id="title" value = "${update.title }">
+			<input type="hidden" name="no" value="${update.no }"> <input name="title" type="text" class="form-control" placeholder="Enter title" id="title" value="${update.title }">
 		</div>
 		<div class="form-group">
-			<textarea name = "contents" class="summernote" id="content">${update.contents }</textarea>
+			<textarea name="contents" class="summernote" id="content">${update.contents }</textarea>
 		</div>
-		<button type = "submit" id="btn-save" class="btn btn-primary">수정 완료</button>
-		<input type = "button" class="btn btn-secondary" onclick = "history.back()" value = "취소"></input>
+		<button type="submit" id="btn-save" class="btn btn-primary">수정 완료</button>
+		<input type="button" class="btn btn-secondary" onclick="history.back()" value="취소"></input>
 	</form>
 </div>
 

@@ -19,45 +19,51 @@ import com.mycom.blog.service.manager.NoticeService;
 public class managerController {
 	@Autowired
 	private NoticeService noticeService;
-	
+
 	@RequestMapping("/noticeList")
-	public String noticeList(Model model){
+	public String noticeList(Model model) {
 		List<Notice> list = noticeService.findAll();
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 		return "/manager/noticeList";
 	}
+
 	@RequestMapping("/noticeWrite")
 	public String noticeWrite() {
 		return "/manager/noticeWrite";
 	}
-	@RequestMapping(value="/noticeWriteOk", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/noticeWriteOk", method = RequestMethod.POST)
 	public String writeOk(Notice dto, Model model) {
-		int res = noticeService.save(dto);
+		dto = noticeService.save(dto);
+		int res = dto != null ? 1 : 0; 
 		model.addAttribute("res", res);
-		
+
 		return "/manager/noticeWriteOk";
 	}
-	
+
 	@RequestMapping("/noticeView")
 	public String view(int no, Model model) {
-		Notice view = noticeService.findByNo(no);
+		Notice view = noticeService.findById(no);
 		model.addAttribute("view", view);
-		
+
 		return "/manager/noticeView";
 	}
 
 	@RequestMapping("/noticeUpdate")
 	public String noticeUpdate(int no, Model model) {
-		Notice update = noticeService.(no);
+		Notice update = noticeService.findById(no);
 		model.addAttribute("update",update);
 		return "/manager/noticeUpdate";
 	}
-	@RequestMapping(value="/noticeUpdateOk", method= RequestMethod.POST)
-	public String noticeUpdateOk(int no, Model model) {
-		int res = noticeService.updateOk(no);
-		model.addAttribute("dto", dto);
+
+	@RequestMapping(value = "/noticeUpdateOk", method = RequestMethod.POST)
+	public String noticeUpdateOk(Notice notice, Model model) {
+
+		int res = noticeService.updateOk(notice);
+		notice = noticeService.findById(notice.getNo());
+		model.addAttribute("notice", notice);
 		model.addAttribute("res", res);
-		
+
 		return "/manager/noticeUpdateOk";
 	}
 //	

@@ -26,7 +26,8 @@ spring:
     password: 4521 
     username: spbooter  
     
-  jpa:
+    jpa:
+    database-platform: com.mycom.blog.config.OracleDialect
     
     open-in-view: true
 #    generate-ddl: true

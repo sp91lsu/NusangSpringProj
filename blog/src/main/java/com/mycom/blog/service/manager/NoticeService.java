@@ -11,39 +11,27 @@ import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.dto.manager.Notice;
 import com.mycom.blog.repository.manager.NoticeRepository;
+import com.mycom.blog.service.BasicService;
 @Service
-public class NoticeService {
+public class NoticeService extends BasicService<NoticeRepository, Notice>{
+	
 	@Autowired
-	NoticeRepository repository;
+	public NoticeService(NoticeRepository rep) {
+		setRepository(rep);
+	}
 	
 	public List<Notice> findAll() {
 		List<Notice> list = repository.findAll();
 		return list;
 	}
-	@Transactional
-	public int save(Notice dto) {
-		try {
-			
-			repository.save(dto);
-			
-			return 1;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return -1;
-	}
 	
 	
 	@Transactional
-	public int updateOk(int no) {
-		Notice notice = repository.findById(no).get();
-		
+	public int updateOk(Notice updateDto) {
 		try {
-			/*
-			 * dto.setTitle(dto.getTitle()); dto.setContents(dto.getContents());
-			 */
+			Notice notice = repository.findById(updateDto.getNo()).get();
+			notice.setTitle(updateDto.getTitle());
+			notice.setContents(updateDto.getContents());
 			return 1;
 		}catch(Exception e){
 			e.printStackTrace();
