@@ -4,7 +4,8 @@
 
 <div class="container">
 
-
+	<%@ include file="client/post/post_list.jsp"%>
+	
 	<c:forEach var="board" items="${boards.content}">
 		<div class="card m-2">
 			<div class="card-body">
@@ -35,7 +36,6 @@
 			</c:otherwise>
 		</c:choose>
 
-
 	</ul>
 </div>
 <br />
@@ -43,5 +43,4 @@
 <script src="/js/user.js"></script>
 </body>
 </html>
-
 

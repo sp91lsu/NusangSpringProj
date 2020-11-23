@@ -30,6 +30,8 @@
 
 <link rel="stylesheet" href="/css/list.css" />
 <link rel="stylesheet" href="/css/header.css"/> 
+<link rel="stylesheet" href="/css/post_list.css" />
+
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background: #FFF;; border-bottom: 3px solid #333">
 		<a class="navbar-brand" href="/home">홈</a>
