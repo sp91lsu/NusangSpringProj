@@ -9,6 +9,6 @@ public class PostController {
 	
 	@RequestMapping(value = "/post_write")
 	public String write() {
-		return "client/post/post_write";
+		return "/post/post_write";
 	}
 }

@@ -4,7 +4,7 @@
 
 <div class="container">
 
-	<%@ include file="client/post/post_list.jsp"%>
+	<%@ include file="post/post_list.jsp"%>
 	
 	<c:forEach var="board" items="${boards.content}">
 		<div class="card m-2">
