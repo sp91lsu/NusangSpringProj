@@ -28,6 +28,8 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
+<link rel="stylesheet" href="/css/list.css" />
+
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background: #FFF;; border-bottom: 3px solid #333">
 		<a class="navbar-brand" href="/home">홈</a>
@@ -51,6 +53,7 @@
 						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a>
 						<li class="nav-item"><a class="nav-link" href="/user/near_userlist">내 근처회원</a>
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a>
+						<li class="nav-item"><a class="nav-link" href="/community/list">커뮤니티</a>
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">
 
