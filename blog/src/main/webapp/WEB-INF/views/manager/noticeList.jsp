@@ -20,18 +20,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>개인정보 처리방침 개정안내</td>
-      <td align = "center">2020-11-03</td>
-    </tr>
-    <tr>
-      <td>개인정보 처리방침 개정안내</td>
-      <td align = "center">2020-11-03</td>
-    </tr>
-    <tr>
-      <td>개인정보 처리방침 개정안내</td>
-      <td align = "center">2020-11-03</td>
-    </tr>
+  		<c:forEach var="dto" items="${list }">
+  			<tr>
+  				<td>${dto.title }</td>
+  				<td>${dto.regdate }</td>
+  			</tr>
+  		
+  		</c:forEach>
+  	
   </tbody>
 </table>
 </div>
