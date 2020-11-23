@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JChatMessageRoom extends TableImpl<JChatMessageRoomRecord> {
 
-    private static final long serialVersionUID = -1360469553;
+    private static final long serialVersionUID = 682123727;
 
     /**
      * The reference instance of <code>SPBOOTER.CHAT_MESSAGE_ROOM</code>
@@ -76,13 +76,13 @@ public class JChatMessageRoom extends TableImpl<JChatMessageRoomRecord> {
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
-    public final TableField<JChatMessageRoomRecord, Object> USERNO = createField(DSL.name("USERNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+    public final TableField<JChatMessageRoomRecord, Object> ROOMNO = createField(DSL.name("ROOMNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
-    public final TableField<JChatMessageRoomRecord, Object> ROOMNO = createField(DSL.name("ROOMNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+    public final TableField<JChatMessageRoomRecord, Object> USERNO = createField(DSL.name("USERNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * Create a <code>SPBOOTER.CHAT_MESSAGE_ROOM</code> table reference

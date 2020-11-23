@@ -5,15 +5,16 @@ package com.mycom.jooq;
 
 
 import com.mycom.jooq.tables.JBoard;
-import com.mycom.jooq.tables.JBook;
-import com.mycom.jooq.tables.JBookStore;
 import com.mycom.jooq.tables.JChatMessageRoom;
 import com.mycom.jooq.tables.JChatRoom;
 import com.mycom.jooq.tables.JChatRoomGuide;
 import com.mycom.jooq.tables.JFriend;
+import com.mycom.jooq.tables.JItem;
 import com.mycom.jooq.tables.JLocation;
 import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JReply;
+import com.mycom.jooq.tables.JShop;
+import com.mycom.jooq.tables.JShopRoom;
 import com.mycom.jooq.tables.JUser1;
 import com.mycom.jooq.tables.JUser1FriendRequest;
 
@@ -41,7 +42,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JSpbooter extends SchemaImpl {
 
-    private static final long serialVersionUID = -1734869107;
+    private static final long serialVersionUID = 929389908;
 
     /**
      * The reference instance of <code>SPBOOTER</code>
@@ -52,16 +53,6 @@ public class JSpbooter extends SchemaImpl {
      * The table <code>SPBOOTER.BOARD</code>.
      */
     public final JBoard BOARD = com.mycom.jooq.tables.JBoard.BOARD;
-
-    /**
-     * The table <code>SPBOOTER.BOOK</code>.
-     */
-    public final JBook BOOK = com.mycom.jooq.tables.JBook.BOOK;
-
-    /**
-     * The table <code>SPBOOTER.BOOK_STORE</code>.
-     */
-    public final JBookStore BOOK_STORE = com.mycom.jooq.tables.JBookStore.BOOK_STORE;
 
     /**
      * The table <code>SPBOOTER.CHAT_MESSAGE_ROOM</code>.
@@ -84,6 +75,11 @@ public class JSpbooter extends SchemaImpl {
     public final JFriend FRIEND = com.mycom.jooq.tables.JFriend.FRIEND;
 
     /**
+     * The table <code>SPBOOTER.ITEM</code>.
+     */
+    public final JItem ITEM = com.mycom.jooq.tables.JItem.ITEM;
+
+    /**
      * The table <code>SPBOOTER.LOCATION</code>.
      */
     public final JLocation LOCATION = com.mycom.jooq.tables.JLocation.LOCATION;
@@ -97,6 +93,16 @@ public class JSpbooter extends SchemaImpl {
      * The table <code>SPBOOTER.REPLY</code>.
      */
     public final JReply REPLY = com.mycom.jooq.tables.JReply.REPLY;
+
+    /**
+     * The table <code>SPBOOTER.SHOP</code>.
+     */
+    public final JShop SHOP = com.mycom.jooq.tables.JShop.SHOP;
+
+    /**
+     * The table <code>SPBOOTER.SHOP_ROOM</code>.
+     */
+    public final JShopRoom SHOP_ROOM = com.mycom.jooq.tables.JShopRoom.SHOP_ROOM;
 
     /**
      * The table <code>SPBOOTER.USER1</code>.
@@ -131,15 +137,16 @@ public class JSpbooter extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             JBoard.BOARD,
-            JBook.BOOK,
-            JBookStore.BOOK_STORE,
             JChatMessageRoom.CHAT_MESSAGE_ROOM,
             JChatRoom.CHAT_ROOM,
             JChatRoomGuide.CHAT_ROOM_GUIDE,
             JFriend.FRIEND,
+            JItem.ITEM,
             JLocation.LOCATION,
             JNotice.NOTICE,
             JReply.REPLY,
+            JShop.SHOP,
+            JShopRoom.SHOP_ROOM,
             JUser1.USER1,
             JUser1FriendRequest.USER1_FRIEND_REQUEST);
     }

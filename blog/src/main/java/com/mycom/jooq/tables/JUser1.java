@@ -18,7 +18,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row11;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JUser1 extends TableImpl<JUser1Record> {
 
-    private static final long serialVersionUID = 1930938371;
+    private static final long serialVersionUID = 683721721;
 
     /**
      * The reference instance of <code>SPBOOTER.USER1</code>
@@ -72,6 +72,12 @@ public class JUser1 extends TableImpl<JUser1Record> {
      */
     @java.lang.Deprecated
     public final TableField<JUser1Record, Object> AUTH_TYPE = createField(DSL.name("AUTH_TYPE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
+    public final TableField<JUser1Record, Object> COIN = createField(DSL.name("COIN"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * The column <code>SPBOOTER.USER1.CREATE_DATE</code>.
@@ -106,6 +112,12 @@ public class JUser1 extends TableImpl<JUser1Record> {
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
+    public final TableField<JUser1Record, Object> PICTURE = createField(DSL.name("PICTURE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
     public final TableField<JUser1Record, Object> ROLE = createField(DSL.name("ROLE"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
@@ -119,6 +131,12 @@ public class JUser1 extends TableImpl<JUser1Record> {
      */
     @java.lang.Deprecated
     public final TableField<JUser1Record, Object> USERNAME = createField(DSL.name("USERNAME"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
+
+    /**
+     * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
+     */
+    @java.lang.Deprecated
+    public final TableField<JUser1Record, Object> LOCATIONNO = createField(DSL.name("LOCATIONNO"), org.jooq.impl.SQLDataType.OTHER.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.OTHER)), this, "");
 
     /**
      * Create a <code>SPBOOTER.USER1</code> table reference
@@ -195,11 +213,11 @@ public class JUser1 extends TableImpl<JUser1Record> {
     }
 
     // -------------------------------------------------------------------------
-    // Row11 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row11<Object, Object, Object, Timestamp, Object, Object, Object, Object, Object, Object, Object> fieldsRow() {
-        return (Row11) super.fieldsRow();
+    public Row14<Object, Object, Object, Object, Timestamp, Object, Object, Object, Object, Object, Object, Object, Object, Object> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 }

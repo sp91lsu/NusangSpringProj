@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoomRecord> implements Record5<Object, Timestamp, Object, Object, Object> {
 
-    private static final long serialVersionUID = 1009708942;
+    private static final long serialVersionUID = -622347282;
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
@@ -82,7 +82,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
-    public void setUserno(Object value) {
+    public void setRoomno(Object value) {
         set(3, value);
     }
 
@@ -90,7 +90,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
-    public Object getUserno() {
+    public Object getRoomno() {
         return get(3);
     }
 
@@ -98,7 +98,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
-    public void setRoomno(Object value) {
+    public void setUserno(Object value) {
         set(4, value);
     }
 
@@ -106,7 +106,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
      */
     @java.lang.Deprecated
-    public Object getRoomno() {
+    public Object getUserno() {
         return get(4);
     }
 
@@ -162,7 +162,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public Field<Object> field4() {
-        return JChatMessageRoom.CHAT_MESSAGE_ROOM.USERNO;
+        return JChatMessageRoom.CHAT_MESSAGE_ROOM.ROOMNO;
     }
 
     /**
@@ -171,7 +171,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public Field<Object> field5() {
-        return JChatMessageRoom.CHAT_MESSAGE_ROOM.ROOMNO;
+        return JChatMessageRoom.CHAT_MESSAGE_ROOM.USERNO;
     }
 
     /**
@@ -203,7 +203,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public Object component4() {
-        return getUserno();
+        return getRoomno();
     }
 
     /**
@@ -212,7 +212,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public Object component5() {
-        return getRoomno();
+        return getUserno();
     }
 
     /**
@@ -244,7 +244,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public Object value4() {
-        return getUserno();
+        return getRoomno();
     }
 
     /**
@@ -253,7 +253,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public Object value5() {
-        return getRoomno();
+        return getUserno();
     }
 
     /**
@@ -288,7 +288,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public JChatMessageRoomRecord value4(Object value) {
-        setUserno(value);
+        setRoomno(value);
         return this;
     }
 
@@ -298,7 +298,7 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     @java.lang.Deprecated
     @Override
     public JChatMessageRoomRecord value5(Object value) {
-        setRoomno(value);
+        setUserno(value);
         return this;
     }
 
@@ -326,13 +326,13 @@ public class JChatMessageRoomRecord extends UpdatableRecordImpl<JChatMessageRoom
     /**
      * Create a detached, initialised JChatMessageRoomRecord
      */
-    public JChatMessageRoomRecord(Object messageno, Timestamp createDate, Object text, Object userno, Object roomno) {
+    public JChatMessageRoomRecord(Object messageno, Timestamp createDate, Object text, Object roomno, Object userno) {
         super(JChatMessageRoom.CHAT_MESSAGE_ROOM);
 
         set(0, messageno);
         set(1, createDate);
         set(2, text);
-        set(3, userno);
-        set(4, roomno);
+        set(3, roomno);
+        set(4, userno);
     }
 }

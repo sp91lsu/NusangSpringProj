@@ -62,11 +62,13 @@ public class Item {
 	private int itemno; // 시퀀스 auto_increment
 
 	@Enumerated(EnumType.STRING)
-	private ItemType item_type = ItemType.COIN;
+	private ItemType type = ItemType.COIN;
 
 	private int num;
 
 	private int price;
+	
+	private String picture;
 	
 	@ManyToOne
 	@JoinColumn(name = "no")

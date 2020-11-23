@@ -58,15 +58,15 @@ public class ShopService extends BasicService<ShopRepository, Shop> {
 			System.out.println("상점 생성");
 			Shop shop = Shop.builder().itemType(ItemType.COIN).build();
 			shopRep.save(shop);
-			itemRep.save(createItem_coin(50, 100, shop));
-			itemRep.save(createItem_coin(100, 100, shop));
-			itemRep.save(createItem_coin(500, 100, shop));
-			itemRep.save(createItem_coin(1000, 100, shop));
+			itemRep.save(createItem_coin(50, 100, shop,"/image/cm1.png"));
+			itemRep.save(createItem_coin(100, 100, shop,"/image/cm2.png"));
+			itemRep.save(createItem_coin(500, 100, shop,"/image/cm3.png"));
+			itemRep.save(createItem_coin(1000, 100, shop,"/image/cm4.png"));
 		}
 	}
 
-	public Item createItem_coin(int num, int price, Shop shop) {
-		return Item.builder().item_type(ItemType.COIN).num(num).price(price).shop(shop).build();
+	public Item createItem_coin(int num, int price, Shop shop,String picture) {
+		return Item.builder().type(ItemType.COIN).num(num).picture(picture).price(price).shop(shop).build();
 	}
 
 	@Autowired
@@ -74,4 +74,9 @@ public class ShopService extends BasicService<ShopRepository, Shop> {
 		setRepository(repository);
 	}
 
+	public Shop findShop(ItemType type) {
+		Shop shop = shopRep.findByItemType(type);
+
+		return shop;
+	}
 }

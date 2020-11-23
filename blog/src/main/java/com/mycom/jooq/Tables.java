@@ -5,15 +5,16 @@ package com.mycom.jooq;
 
 
 import com.mycom.jooq.tables.JBoard;
-import com.mycom.jooq.tables.JBook;
-import com.mycom.jooq.tables.JBookStore;
 import com.mycom.jooq.tables.JChatMessageRoom;
 import com.mycom.jooq.tables.JChatRoom;
 import com.mycom.jooq.tables.JChatRoomGuide;
 import com.mycom.jooq.tables.JFriend;
+import com.mycom.jooq.tables.JItem;
 import com.mycom.jooq.tables.JLocation;
 import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JReply;
+import com.mycom.jooq.tables.JShop;
+import com.mycom.jooq.tables.JShopRoom;
 import com.mycom.jooq.tables.JUser1;
 import com.mycom.jooq.tables.JUser1FriendRequest;
 
@@ -39,16 +40,6 @@ public class Tables {
     public static final JBoard BOARD = JBoard.BOARD;
 
     /**
-     * The table <code>SPBOOTER.BOOK</code>.
-     */
-    public static final JBook BOOK = JBook.BOOK;
-
-    /**
-     * The table <code>SPBOOTER.BOOK_STORE</code>.
-     */
-    public static final JBookStore BOOK_STORE = JBookStore.BOOK_STORE;
-
-    /**
      * The table <code>SPBOOTER.CHAT_MESSAGE_ROOM</code>.
      */
     public static final JChatMessageRoom CHAT_MESSAGE_ROOM = JChatMessageRoom.CHAT_MESSAGE_ROOM;
@@ -69,6 +60,11 @@ public class Tables {
     public static final JFriend FRIEND = JFriend.FRIEND;
 
     /**
+     * The table <code>SPBOOTER.ITEM</code>.
+     */
+    public static final JItem ITEM = JItem.ITEM;
+
+    /**
      * The table <code>SPBOOTER.LOCATION</code>.
      */
     public static final JLocation LOCATION = JLocation.LOCATION;
@@ -82,6 +78,16 @@ public class Tables {
      * The table <code>SPBOOTER.REPLY</code>.
      */
     public static final JReply REPLY = JReply.REPLY;
+
+    /**
+     * The table <code>SPBOOTER.SHOP</code>.
+     */
+    public static final JShop SHOP = JShop.SHOP;
+
+    /**
+     * The table <code>SPBOOTER.SHOP_ROOM</code>.
+     */
+    public static final JShopRoom SHOP_ROOM = JShopRoom.SHOP_ROOM;
 
     /**
      * The table <code>SPBOOTER.USER1</code>.
