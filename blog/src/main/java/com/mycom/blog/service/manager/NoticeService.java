@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mycom.blog.dto.User;
+import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.dto.manager.Notice;
 import com.mycom.blog.repository.manager.NoticeRepository;
 import com.mycom.blog.service.BasicService;
@@ -17,10 +20,10 @@ public class NoticeService extends BasicService<NoticeRepository, Notice>{
 		setRepository(rep);
 	}
 	
-//	public List<Notice> findAll() {
-//		List<Notice> list = repository.findAll();
-//		return list;
-//	}
+	public List<Notice> findAll() {
+		List<Notice> list = repository.findAll();
+		return list;
+	}
 	
 	
 	@Transactional
