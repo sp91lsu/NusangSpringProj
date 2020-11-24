@@ -9,6 +9,7 @@
 </head>
 <body>
  <div class = "container">
+ 	<br><br>
 	<caption><h3>공지사항</h3></caption>
 	<div style = "float: right;"><button class = "btn btn-secondary" onclick = "location.href='/manager/noticeWrite'">글쓰기</button></div>
 	<br>

@@ -1,13 +1,19 @@
 package com.mycom.blog.dto.manager;
 
+
+
+
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -40,9 +46,12 @@ public class Notice {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Notice_SEQ_GEN")
 	private int no;
 	private String title;
+	@Column(length = 20000)
 	private String contents;
 	private String name;
-	@CreationTimestamp
+	//@CreationTimestamp
+	@CreationTimestamp 
+	@Temporal(value = TemporalType.DATE)
 	private Date regdate;
 
 }

@@ -1,4 +1,4 @@
-package com.mycom.blog.controller;
+package com.mycom.blog.controller.manager;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import com.mycom.blog.service.manager.NoticeService;
 
 @Controller
 @RequestMapping("/manager")
-public class managerController {
+public class noticeController {
 	@Autowired
 	private NoticeService noticeService;
 
