@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <div class="community_list container">
-		<button onclick="location.href='/post/post_write'">글쓰기</button>
+		<button class="btn btn-primary" onclick="location.href='/post/post_write'">글쓰기</button>
 		
 		<c:forEach var="board" items="${boards.content}">
 			<div class="post" onclick="location.href='/post/post_read?postno=${board.id}'">

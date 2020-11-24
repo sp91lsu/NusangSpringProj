@@ -23,6 +23,11 @@
 		${board.content}
 	</div>
 </div>
+<!--  
+<script src="/js/post/write.js"></script>
+-->
+
+<script src="/js/board.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>
 </body>
