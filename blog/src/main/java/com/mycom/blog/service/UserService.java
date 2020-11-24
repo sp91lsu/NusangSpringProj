@@ -15,10 +15,13 @@ import com.mycom.blog.dto.Item;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.PayType;
 import com.mycom.blog.dto.enumtype.RoleType;
+import com.mycom.blog.dto.manager.Payment;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.UserRepository;
+import com.mycom.blog.repository.manager.PaymentRepository;
 import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
@@ -28,6 +31,9 @@ public class UserService extends BasicService<UserRepository, User> {
 	@Autowired
 	ItemRepository itemRep;
 
+	@Autowired
+	PaymentRepository paymentRep;
+	
 	@Autowired
 	public UserService(UserRepository repository) {
 		setRepository(repository);
@@ -148,7 +154,14 @@ public class UserService extends BasicService<UserRepository, User> {
 
 			int totalCoin = user.getCoin() + item.getNum();
 			user.setCoin(totalCoin);
-			// 이후 결제내역 추가해야함
+
+			Payment payment = Payment.builder()
+					.imp_uid(merchant_uid)
+					.pay(100)
+					.paytype(PayType.BUY)
+					.user(user).build();
+			paymentRep.save(payment);
+			
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
