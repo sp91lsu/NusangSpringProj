@@ -12,6 +12,7 @@ import com.mycom.jooq.tables.JFriend;
 import com.mycom.jooq.tables.JItem;
 import com.mycom.jooq.tables.JLocation;
 import com.mycom.jooq.tables.JNotice;
+import com.mycom.jooq.tables.JPayment;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JShop;
 import com.mycom.jooq.tables.JShopRoom;
@@ -73,6 +74,11 @@ public class Tables {
      * The table <code>SPBOOTER.NOTICE</code>.
      */
     public static final JNotice NOTICE = JNotice.NOTICE;
+
+    /**
+     * The table <code>SPBOOTER.PAYMENT</code>.
+     */
+    public static final JPayment PAYMENT = JPayment.PAYMENT;
 
     /**
      * The table <code>SPBOOTER.REPLY</code>.

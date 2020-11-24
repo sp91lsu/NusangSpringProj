@@ -8,7 +8,7 @@ import com.mycom.jooq.JSpbooter;
 import com.mycom.jooq.Keys;
 import com.mycom.jooq.tables.records.JNoticeRecord;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JNotice extends TableImpl<JNoticeRecord> {
 
-    private static final long serialVersionUID = 2079886098;
+    private static final long serialVersionUID = 993239381;
 
     /**
      * The reference instance of <code>SPBOOTER.NOTICE</code>
@@ -76,7 +76,7 @@ public class JNotice extends TableImpl<JNoticeRecord> {
     /**
      * The column <code>SPBOOTER.NOTICE.REGDATE</code>.
      */
-    public final TableField<JNoticeRecord, Timestamp> REGDATE = createField(DSL.name("REGDATE"), org.jooq.impl.SQLDataType.TIMESTAMP.precision(11).defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
+    public final TableField<JNoticeRecord, Date> REGDATE = createField(DSL.name("REGDATE"), org.jooq.impl.SQLDataType.DATE.defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.DATE)), this, "");
 
     /**
      * @deprecated Unknown data type. Please define an explicit {@link org.jooq.Binding} to specify how this type should be handled. Deprecation can be turned off using {@literal <deprecationOnUnknownTypes/>} in your code generator configuration.
@@ -163,7 +163,7 @@ public class JNotice extends TableImpl<JNoticeRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Object, Object, Object, Timestamp, Object> fieldsRow() {
+    public Row5<Object, Object, Object, Date, Object> fieldsRow() {
         return (Row5) super.fieldsRow();
     }
 }
