@@ -64,8 +64,6 @@
 
 
 
-
-
 </div>
 
 <script src="/js/board.js"></script>
