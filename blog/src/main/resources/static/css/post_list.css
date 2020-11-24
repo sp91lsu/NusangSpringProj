@@ -13,8 +13,8 @@
 }
 
 .community_list>button {
-	float: right; 
-	font-size : 30px;
+	float: right;
+	font-size: 30px;
 	margin: 20px 0px 15px 0px;
 }
 
@@ -25,6 +25,10 @@
 	border: 1px solid black;
 	box-sizing: border-box;
 	margin-bottom: 20px;
+}
+
+.community_list>.post:hover {
+	cursor: pointer;
 }
 
 .community_list>.post>.img {

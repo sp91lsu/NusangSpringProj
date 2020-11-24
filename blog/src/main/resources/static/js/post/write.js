@@ -1,8 +1,16 @@
+
 let post = {
+		
 		init:function(){
+			
 			$("#btn_write").on("click",()=>{
 				this.write();
 			});
+			
+			$("#btn_delete").on("click",()=>{	
+				this.delete();
+			});
+			
 		},
 		
 		write:function(){// 글쓰기
@@ -26,6 +34,9 @@ let post = {
 				console.log("error: " + err);
 			});
 		},
+		delete:function(){
+			console.log("삭제버튼 클릭!");
+		}
 }
 
 post.init();

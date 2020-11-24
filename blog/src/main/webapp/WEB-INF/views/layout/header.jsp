@@ -29,7 +29,8 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <link rel="stylesheet" href="/css/header.css"/> 
-<link rel="stylesheet" href="/css/post_list.css" />
+<link rel="stylesheet" href="/css/post_list.css"/>
+<link rel="stylesheet" href="/css/post_read.css"/>
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background: #FFF;; border-bottom: 3px solid #333">

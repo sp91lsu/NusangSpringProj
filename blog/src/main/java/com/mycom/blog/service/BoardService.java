@@ -2,6 +2,7 @@ package com.mycom.blog.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,23 +14,26 @@ import com.mycom.blog.model.ReplySaveReq;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ReplyRepository;
 
-import lombok.RequiredArgsConstructor;
-
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-@RequiredArgsConstructor // 선언시 초기화가 꼭 필요한 객체(final)에다가 의존성 주입을 시켜줘!
-public class BoardService {
+public class BoardService extends BasicService<BoardRepository, Board>{
 
-	private final BoardRepository boardRep;
-	private final ReplyRepository replyRep;
+	@Autowired
+	private  ReplyRepository replyRep;
 
+	
+	@Autowired
+	public BoardService(BoardRepository boardRep) {
+		setRepository(boardRep);
+	}
+	
 	@Transactional
 	public int writeBoard(Board board, User user) {
 		try {
 			System.out.println("BoardService : " + board.getContent());
 			board.setUser(user);
 			board.setCount(0);
-			boardRep.save(board);
+			repository.save(board);
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,12 +43,12 @@ public class BoardService {
 
 	@Transactional(readOnly = true)
 	public Page<Board> getBoardList(Pageable pageable) {
-		return boardRep.findAll(pageable);
+		return repository.findAll(pageable);
 	}
 
 	@Transactional(readOnly = true)
 	public Board moreInfoDetail(int id) {
-		Optional<Board> oBoard = boardRep.findById(id);
+		Optional<Board> oBoard = repository.findById(id);
 
 		oBoard.orElseThrow(() -> {
 			return new IllegalArgumentException("글 상세보기 실패");
@@ -56,14 +60,14 @@ public class BoardService {
 	@Transactional
 	public void deleteBoad(int id) {
 
-		boardRep.deleteById(id);
+		repository.deleteById(id);
 	}
 
 	@Transactional
 	public void updateBoard(Board board) {
 
 		System.out.println("수정할 보드의 값은 : " + board.getId());
-		Board findBoard = boardRep.findById(board.getId()).orElseThrow(() -> {
+		Board findBoard = repository.findById(board.getId()).orElseThrow(() -> {
 			return new IllegalArgumentException("업데이트에 실패하였습니다.");
 		});
 

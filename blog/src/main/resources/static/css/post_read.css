@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	border: 0px;
+	box-sizing: border-box;
+}
+
+.post_read {
+	margin-top:50px;
+	width: 1000px;
+	background: lightgray;
+}
+
+.post_read>.user_info {
+	width: 970px;
+	height: 100px;
+	display: inline-block;
+	background: gray;
+}
+
+.post_read>.user_info>.img {
+	height: 100px;
+	float: left;
+}
+
+.post_read>.user_info>.img>img {
+	height: 100px;
+}
+
+.post_read>.user_info>.txt {
+	height: 100px;
+	float: left;
+}
+
+.post_read>.user_info>.txt>.user_id {
+	height: 50px;
+	margin: 35px 0px 0px 30px;
+	float: left;
+	font-size: 20px;
+}
+
+.post_read>.user_info>.txt>.update_delete {
+	width: 200px;
+	height: 100%;
+	margin-left: 580px;
+}
+
+.post_read>.user_info>.txt>.update_delete>button {
+	width: 90px;
+	height: 50px;
+	margin-top: 25px;
+}
+
+.post_read>.content {
+	width: 970px;
+	background: gray;
+}
