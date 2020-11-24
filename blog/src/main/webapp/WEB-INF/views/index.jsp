@@ -4,7 +4,7 @@
 
 <div class="container">
 
-	<%@ include file="post/post_read.jsp"%>
+	<%@ include file="post/post_list.jsp"%>
 
 	<ul class="pagination justify-content-center">
 
