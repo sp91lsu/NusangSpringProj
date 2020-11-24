@@ -1,8 +1,7 @@
 
-
 let index = {
 		init:function(){
-			$("#btn-save").on("click",()=>{	
+			$("#btn_save").on("click",()=>{	
 				this.save();
 			});
 			

@@ -1,27 +1,17 @@
 package com.mycom.blog.service;
 
-import java.io.Console;
-import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mycom.blog.auth.PrincipalDetail;
 import com.mycom.blog.dto.Board;
-import com.mycom.blog.dto.Reply;
 import com.mycom.blog.dto.User;
-import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.ReplySaveReq;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ReplyRepository;
-import com.mycom.blog.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,13 +24,17 @@ public class BoardService {
 	private final ReplyRepository replyRep;
 
 	@Transactional
-	public void writeBoard(Board board, User user) {
-
-		
-		System.out.println("BoardService : " + board.getContent());
-		board.setUser(user);
-		board.setCount(0);
-		boardRep.save(board);
+	public int writeBoard(Board board, User user) {
+		try {
+			System.out.println("BoardService : " + board.getContent());
+			board.setUser(user);
+			board.setCount(0);
+			boardRep.save(board);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	@Transactional(readOnly = true)

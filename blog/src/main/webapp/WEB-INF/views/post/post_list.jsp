@@ -4,27 +4,17 @@
 <div class="community_list container">
 		<button onclick="location.href='/post/post_write'">글쓰기</button>
 		
-		<div class="post">
-			<div class="img">
-				<img src=/image/panda.jpg>
-			</div>
+		<c:forEach var="board" items="${boards.content}">
+			<div class="post" onclick="location.href='/board/${board.id}'">
+				<div class="img">
+					<img src=/image/panda.jpg>
+				</div>
 			
-			<div class="txt">
-				<div class="writer">윤종운</div>
-				<div class="comment">글 내용은 여기다</div>
-				<div class="view"><span>추천수0</span><span>조회수0</span></div>
+				<div class="txt">
+					<div class="writer">윤종운 ${board.title}</div>
+					<div class="comment">${board.content}</div>
+					<div class="view"><span>추천수0</span><span>조회수:0</span></div>
+				</div>
 			</div>
-		</div>
-		
-		<div class="post">
-			<div class="img">
-				<img src=/image/panda.jpg>
-			</div>
-			
-			<div class="txt">
-				<div class="writer">윤종운</div>
-				<div class="comment">글 내용은 여기다</div>
-				<div class="view"><span>추천수0</span><span>조회수0</span></div>
-			</div>
-		</div>
+		</c:forEach>
 </div>
