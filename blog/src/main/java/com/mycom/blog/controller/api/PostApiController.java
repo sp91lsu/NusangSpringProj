@@ -26,17 +26,15 @@ public class PostApiController {
 
 	@PostMapping("/api/post")
 	public int write(Board board) {
-		System.out.println("경로:"+"api/post");
+		System.out.println("경로:api/post/write");
 		int result = boardService.writeBoard(board, conAssist.getUser());
 		return result;
 	}
 	
 	@DeleteMapping("/api/post/{id}")
-	public Response<Integer> delete(@PathVariable int id) {
-		System.out.println("게시글 삭제");
-		System.out.println("id : " + id);
-		boardService.deleteBoad(id);
-
-		return new Response<Integer>(HttpStatus.OK.value(), 1);
+	public int delete(Board board){
+		System.out.println("경로:"+"api/post/delete"+board.getId());
+		int result = boardService.deleteBoad(board.getId());
+		return result;
 	}
 }

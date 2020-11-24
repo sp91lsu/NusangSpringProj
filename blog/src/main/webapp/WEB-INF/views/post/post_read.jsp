@@ -17,17 +17,15 @@
 				<button id="btn_delete" class="btn btn-primary">삭제</button>
 			</div>
 		</div>
+		<input type="hidden" id="id" value="${board.id}">
 	</div>
 	
 	<div class="content">
 		${board.content}
 	</div>
 </div>
-<!--  
+ 
 <script src="/js/post/write.js"></script>
--->
-
-<script src="/js/board.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>
 </body>

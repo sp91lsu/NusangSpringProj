@@ -1,11 +1,12 @@
 
 let index = {
+		
 		init:function(){
 			$("#btn_save").on("click",()=>{	
 				this.save();
 			});
 			
-			$("#btn-delete").on("click",()=>{	
+			$("#btn_delete").on("click",()=>{
 				this.deleteById();
 			});
 			
@@ -15,9 +16,8 @@ let index = {
 			$("#btn-reply-save").on("click",()=>{	
 				this.replySave();
 			});
-			
-			
 		},
+		
 		save:function(){
 
 			console.log("js : save()");
@@ -50,7 +50,7 @@ let index = {
 		deleteById: function() {
 			
 			let id = $("#id").text();
-			
+			console.log(id);
 			
 			// ajax호출
 			$.ajax({				
@@ -59,7 +59,6 @@ let index = {
 				contentType:"application/json; charset=utf-8",
 				dataType:"json" // 응답을 jsObject로 반환
 			}).done(function(res){
-				
 				console.log(JSON.stringify(res));
 				if(res.status == 200){
 					alert("삭제가 완료되었습니다.");

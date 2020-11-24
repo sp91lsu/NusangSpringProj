@@ -5,7 +5,7 @@
 		<button class="btn btn-primary" onclick="location.href='/post/post_write'">글쓰기</button>
 		
 		<c:forEach var="board" items="${boards.content}">
-			<div class="post" onclick="location.href='/post/post_read?postno=${board.id}'">
+			<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 				<div class="img">
 					<img src=/image/panda.jpg>
 				</div>
