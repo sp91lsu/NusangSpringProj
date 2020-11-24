@@ -60,7 +60,7 @@
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">
 
-									<li class="nav-item"><a class="nav-link" href="/myinfo/profile" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
+									<li class="nav-item"><a class="nav-link" href="/profile/profileMain" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
 									</a></li>
 									<li class="nav-item"><button id="logoutBtn" type="button" class="btn btn-secondary btn-sm" onclick="location.href='/logout'">로그아웃</button></li>
 									<li class="nav-item"><div class="dropdown">

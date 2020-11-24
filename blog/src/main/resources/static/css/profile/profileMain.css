@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.profileImg {
+	width: 200px;
+	height: 200px;
+	float: left;
+	margin-left: 50px;
+}
+
+.nickname {
+	width: 200px;
+	float: left;
+}
+
+.infoSection {
+	height: 200px;
+	display: inline-block;
+	padding: 50px 0 0 100px;
+}
+
+.infoSection ul{
+	padding: 0;
+	margin-top: 10px;
+}
+
+.infoSection ul li{
+	width: 150px;
+	list-style: none;
+	float: left;
+}
+
+.postSection{
+	width: 100%;
+}
+
+.myPost{
+	height: 600px;
+	border: 1px solid black;
+	margin: 0;
+}
+
+.createPost{
+	padding-top: 200px;
+	margin: 0;
+}
