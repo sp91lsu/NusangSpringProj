@@ -5,14 +5,14 @@
 <br>
 <div class="container">
 
-	<form action="/manager/noticeWriteOk" method="post">
+	<form name = "writeform" action="/manager/noticeWriteOk" method="post">
 		<div class="form-group">
 			<input  name="title" type="text" class="form-control" placeholder="Enter title" id="title">
 		</div>
 		<div class="form-group">
-			<textarea name = "contents" class="summernote" id="content"></textarea>
+			<textarea name = "contents" class="summernote" id="contents"></textarea>
 		</div>
-		<button type = "submit" id="btn-save" class="btn btn-primary">글쓰기 완료</button>
+		<button type = "button" id="btn-save" class="btn btn-primary">글쓰기 완료</button>
 	</form>
 </div>
 
@@ -22,6 +22,16 @@
 		tabsize : 2,
 		height : 300
 	});
+	
+	$("#btn-save").click(function(){
+		var title = $("#title").val();
+		var contents = $("#contents").val();
+		if(title == "" || contents == ""){
+			alert("제목과 내용을 모두 작성해주세요");
+		}else{
+			${"writeform"}.submit();
+		}
+	})
 </script>
 <%@ include file="manager_footer.jsp"%>
 </body>

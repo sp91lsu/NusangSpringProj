@@ -12,8 +12,10 @@
 		<div class="form-group">
 			<textarea name="contents" class="summernote" id="content">${update.contents }</textarea>
 		</div>
+		<div align = "center">
 		<button type="submit" id="btn-save" class="btn btn-primary">수정 완료</button>
 		<input type="button" class="btn btn-secondary" onclick="history.back()" value="취소"></input>
+		</div>
 	</form>
 </div>
 
