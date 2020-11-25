@@ -25,12 +25,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<!-- Load font awesome icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 <link rel="stylesheet" href="/css/manager/noticeView.css" />
+<link rel="stylesheet" href="/css/manager/header_subnav.css" />
+
 <link rel="stylesheet" href="/css/manager/noticeList.css" />
-<body>
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<body style="height:1500px">
+	<div class="container-fluid">
+	  <br>
+	  <h3>___관리자님 환영합니다!</h3>
+	  <p>A sticky navigation bar stays fixed at the top of the page when you scroll past it.</p>
+	  <p>Scroll this page to see the effect. <strong>Note:</strong> sticky-top does not work in IE11 and earlier.</p>
+	</div>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
 		<a class="navbar-brand" href="/home">홈</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -45,10 +58,30 @@
 					</ul>
 				</c:when>
 				<c:otherwise>
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="">회원관리</a></li>
-						<li class="nav-item"><a class="nav-link" href="">채팅하기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a></li>
+					<ul class="navbar-nav overfH">
+						<li class="nav-item"><a class="nav-link" href="">일반사용자 메뉴</a></li>
+						<li class="nav-item subnav">
+							<a class="nav-link subnav-li" href="">회원관리</a>
+							<div class="subnav-content">
+								<a href="#bring">회원검색</a>
+								<a href="#deliver">블랙리스트</a>
+								<a href="#package">회원동향 분석</a>
+							</div>
+						</li>
+						<li class="nav-item subnav">
+							<a class="nav-link subnav-li" href="">매출분석</a>
+							<div class="subnav-content">
+								<a href="#bring">매출통계</a>
+								<a href="#deliver">지역별 매출통계</a>
+							</div>
+						</li>
+						<li class="nav-item subnav">
+							<a class="nav-link subnav-li" href="">게시판관리</a>
+							<div class="subnav-content">
+								<a href="/manager/noticeList">공지사항</a>
+								<a href="">FAQ</a>
+							</div>
+						</li>
 					</ul>
 					<ul class="navbar-nav ml-auto">
 						<li id="logout" class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
@@ -57,4 +90,21 @@
 			</c:choose>
 		</div>
 	</nav>
+	<div class="subnav-content_bellow"></div>
 	<br>
+	<script type="text/javascript">
+		$(function(){
+			 var sub = $(".subnav");
+			 var con = $(".subnav-content");
+			 
+			 sub.hover(
+	    		 function(){
+	    			 var lt = $(this).position().left;
+	    			 con.css("padding-left", lt);
+    			 },
+    			 function(){
+    				 con.css("padding-left", "0");
+    			 }
+    		 );
+		});
+	</script>

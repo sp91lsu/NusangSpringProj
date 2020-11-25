@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+
+/* The navigation menu */
+.overfH {
+  overflow: hidden;
+}
+
+.navbar{
+	padding: 0rem 1rem;
+}
+
+/* Navigation links */
+.navbar a {
+  /* float: left; */
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 1rem 0rem;
+  text-decoration: none;
+}
+
+/* The subnavigation menu */
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+/* Subnav subnav-li */
+.subnav .subnav-li {
+  font-size: 16px;
+  color: white;
+}
+
+/* Style the subnav content - positioned absolute */
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #7791ac;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Style the subnav links */
+.subnav-content a {
+  float: left;
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+}
+
+/* Add a grey background color on hover */
+.subnav-content a:hover {
+  color: rgb(0, 0, 0);
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+@media(max-width: 767px){
+  .subnav-content {
+	position: relative;
+    z-index: 0;
+  }
+}
