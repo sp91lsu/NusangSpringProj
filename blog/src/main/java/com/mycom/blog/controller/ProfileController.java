@@ -31,7 +31,12 @@ public class ProfileController {
 		return "profile/profileMain";
 	}
 	
-	
+	@PostMapping(value =  "/updatePicture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest rquest){
+		profileService.updatePicture(file, rquest);
+		conAssist.updateUser();
+		return "profile/profileMain";
+	}
 	
 		
 }
