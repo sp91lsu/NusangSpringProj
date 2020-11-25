@@ -45,13 +45,8 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/board/writeForm">글쓰기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보보기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/chat/chatpage">채팅하기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a></li>
-						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">내 친구목록</a></li>
-						<li class="nav-item"><a class="nav-link" href="/video/video_view">비디오</a></li>
+						<li class="nav-item"><a class="nav-link" href="">회원관리</a></li>
+						<li class="nav-item"><a class="nav-link" href="">채팅하기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a></li>
 					</ul>
 					<ul class="navbar-nav ml-auto">
