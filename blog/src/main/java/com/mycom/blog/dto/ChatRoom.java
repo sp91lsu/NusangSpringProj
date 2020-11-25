@@ -71,6 +71,8 @@ public class ChatRoom {
 	private Timestamp createDate;
 
 	public User getMatchedUser() {
+		
+		if(roomGuideList == null) return null;
 		for (ChatRoomGuide guid : roomGuideList) {
 
 			if (guid.getMe().getUserno() != ConAssist.getUserno()) {

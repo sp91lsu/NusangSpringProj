@@ -29,6 +29,10 @@ public class ControllerAop {
 	 * pjp.getSignature().getName()); Object result = pjp.proceed(); return result;
 	 * }
 	 */
+	@Pointcut("execution(* com.mycom.blog.controller.UserController.*(..))")
+	private void UserController() {
+	}
+	
 	@Pointcut("execution(* com.mycom.blog.controller.ShopController.*(..))")
 	private void ShopController() {
 	}
@@ -62,7 +66,7 @@ public class ControllerAop {
 	}
 
 	@Around("friendController() || friendController_API() || ShopController() "
-			+ "|| PaymentApiController()")
+			+ "|| PaymentApiController() || UserController()")
 	public Object chkUpdateUser(ProceedingJoinPoint pjp) throws Throwable {
 		
 				Object result = pjp.proceed();
