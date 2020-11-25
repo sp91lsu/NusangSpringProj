@@ -10,7 +10,9 @@
 		</div>
 		
 		<div class="txt">
-			<div class="user_id">아이디</div>
+			<div class="user_id">아이디를뭐라할까</div>
+			
+			<div class="title"> 글 제목</div>
 			
 			<div class="update_delete">
 				<button class="btn btn-primary">수정</button>

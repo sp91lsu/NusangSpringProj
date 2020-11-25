@@ -3,26 +3,33 @@
 * {
 	margin: 0px;
 	border: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
 .community_list {
 	width: 900px;
-	max-width: 900px;
 	min-height: 500px;
 }
 
-.community_list>button {
+.btn_write {
+	width: 900px;
+	display: inline-block;
+	margin: 20px 105px 20px 105px;
+}
+.btn_write>button {
 	float: right;
-	font-size: 30px;
-	margin: 20px 0px 15px 0px;
+	font-size: 25px;
 }
 
 .community_list>.post {
 	width: 900px;
 	height: 160px;
 	display: inline-block;
-	border: 1px solid black;
+	border: 1px solid lightgray;
+	border-radius : 15px 15px 15px 15px;
+	box-shadow : 5px 7px 5px lightgray;
+	overflow:hidden;
 	box-sizing: border-box;
 	margin-bottom: 20px;
 }

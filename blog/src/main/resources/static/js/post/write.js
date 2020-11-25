@@ -3,7 +3,7 @@ var content;
 
 var post = {
 		init:function(){
-			$("#btn_write").on("click",()=>{ //글쓰기완료버튼 클릭
+			$("#btn_write").click(function(){ //글쓰기
 				title = $('#title').val().trim();
 				content = $('#content').val();
 				
@@ -22,7 +22,7 @@ var post = {
 				}
 			});
 			
-			$("#btn_delete").on("click",()=>{//글삭제
+			$("#btn_delete").click(function(){ //글삭제
 				this.delete();
 			});
 		},

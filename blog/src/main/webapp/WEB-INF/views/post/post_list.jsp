@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<button class="btn btn-primary"
-	onclick="location.href='/post/post_write'">글쓰기</button>
+<div class= "btn_write container">
+	<button class="btn btn-primary" onclick="location.href='/post/post_write'">글쓰기</button>
+</div>
+
 <div class="community_list container">
 		<c:forEach var="board" items="${boards.content}">
 			<div class="post" onclick="location.href='/post/post_read/${board.id}'">
