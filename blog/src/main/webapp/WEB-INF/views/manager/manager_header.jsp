@@ -27,7 +27,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<link rel="stylesheet" href="/css/noticeView.css" />
+<link rel="stylesheet" href="/css/manager/noticeView.css" />
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="/home">홈</a>
@@ -46,14 +46,16 @@
 				<c:otherwise>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="/board/writeForm">글쓰기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보보기</a>
-						<li id="logout" class="nav-item"><a class="nav-link" href="/logout">로그아웃</a>
-						<li class="nav-item"><a class="nav-link" href="/chat/chatpage">채팅하기</a>
-						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a>
-						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a>
-						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">내 친구목록</a>
-						<li class="nav-item"><a class="nav-link" href="/video/video_view">비디오</a>
-						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a>
+						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/chat/chatpage">채팅하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a></li>
+						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">내 친구목록</a></li>
+						<li class="nav-item"><a class="nav-link" href="/video/video_view">비디오</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a></li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li id="logout" class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 					</ul>
 				</c:otherwise>
 			</c:choose>
