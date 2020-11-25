@@ -16,17 +16,16 @@ import com.mycom.blog.repository.ReplyRepository;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-public class BoardService extends BasicService<BoardRepository, Board>{
+public class BoardService extends BasicService<BoardRepository, Board> {
 
 	@Autowired
-	private  ReplyRepository replyRep;
+	private ReplyRepository replyRep;
 
-	
 	@Autowired
 	public BoardService(BoardRepository boardRep) {
 		setRepository(boardRep);
 	}
-	
+
 	@Transactional
 	public int writeBoard(Board board, User user) {
 		try {
@@ -58,9 +57,13 @@ public class BoardService extends BasicService<BoardRepository, Board>{
 	}
 
 	@Transactional
-	public void deleteBoad(int id) {
-
-		repository.deleteById(id);
+	public int deleteBoad(int id) {
+		try {
+			repository.deleteById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 1;
 	}
 
 	@Transactional
