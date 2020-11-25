@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -170,4 +171,8 @@ public class UserService extends BasicService<UserRepository, User> {
 		
 	}
 
+	@Scheduled(cron = "0 0 * * * *")
+	public void availableTalkUpdate() {
+		System.out.println("gg");
+	}
 }

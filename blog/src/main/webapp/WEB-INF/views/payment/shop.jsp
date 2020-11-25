@@ -11,12 +11,12 @@
 	
 	<div>
 	<h3>내 cm : ${user.coin }</h3></div>
-	<div class="d-flex justify-content-between">
+	<div class="row d-flex justify-content-between">
 		<input type="hidden" id="user_email" value="${user.email}" />
 		<input type="hidden" id="user_no" value="${user.userno}" />
 		<c:forEach var="item" items="${coin_shop.itemList }">
 
-			<div class="card mr-5 product_item" style="width: 18rem;">
+			<div class="card mr-5 mt-5 product_item" style="width: 13rem;">
 				<input type="hidden" id="item_price" value="${item.price }" /> <input type="hidden" id="itemno" value="${item.itemno}" />
 				<div class="card text-center" style="width: 90%; float: none; margin: 10px;">
 					<img class="card-img-top" src="${item.picture }" alt="Card image cap">
