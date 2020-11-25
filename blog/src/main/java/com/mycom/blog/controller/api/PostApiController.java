@@ -36,7 +36,7 @@ public class PostApiController {
 	@DeleteMapping("/api/post/{id}")
 	public int delete(Board board){
 		System.out.println("경로:"+"api/post/delete"+board.getId());
-		int result = 0;// boardService.deleteBoad(board.getId());
+		int result = boardService.deleteBoad(board.getId());
 		return result;
 	}
 }

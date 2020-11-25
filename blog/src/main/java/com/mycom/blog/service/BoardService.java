@@ -60,10 +60,11 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	public int deleteBoad(int id) {
 		try {
 			repository.deleteById(id);
+			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 1;
+		return -1;
 	}
 
 	@Transactional
