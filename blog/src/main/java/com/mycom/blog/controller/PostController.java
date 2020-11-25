@@ -24,7 +24,7 @@ public class PostController {
 
 	@GetMapping(value = "/post_read/{id}") // 글 읽기
 	public String read(Board board, Model model) {
-		System.out.println(board.getId()+"번 글읽기 이동");
+		System.out.println(board.getId() + "번 글읽기 이동");
 		Board post_no = boardService.findById(board.getId());
 		model.addAttribute("board", post_no);
 		return "post/post_read";

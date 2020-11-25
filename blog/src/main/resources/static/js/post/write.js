@@ -1,12 +1,22 @@
+var title;
+var content;
 
 var post = {
 		init:function(){
-			$("#btn_write").on("click",()=>{ //글쓰기
-				console.log($('#content').val().trim());
-				if(($('#title').val().trim()=="")){//제목공백
-					alert("제목");
-				}else if($('#content').val().trim()==""){
-					alert("내용");
+			$("#btn_write").on("click",()=>{ //글쓰기완료버튼 클릭
+				title = $('#title').val().trim();
+				content = $('#content').val();
+				
+				content = content.replace(/<p>/g , '');//치환(무시)할 문자들
+				content = content.replace(/&nbsp;/g , '');
+				content = content.replace(/<\/p>/g , '');
+				content = content.replace(/<br>/g , '');
+				content = content.trim();
+				
+				if(title==""){//제목공백
+					alert("제목을 입력하세요");
+				}else if(content==""){
+					alert("내용을 입력하세요");
 				}else {
 					this.write();
 				}
@@ -17,15 +27,14 @@ var post = {
 			});
 		},
 		
-		write:function(){// 글쓰기
-			console.log("글쓰기중 내용:"+$('#content').val());
+		write:function(){// 글쓰기처리
 						
 			$.ajax({	
 				type:"POST",
 				url:"/api/post",
 				data:{
-					"title" : $('#title').val(),// 제목
-					"content" : $('#content').val(),// 내용
+					"title" : title,// 제목
+					"content" : content,// 내용
 				}
 			}).done(function(res){
 				if(res == 1){
@@ -39,7 +48,7 @@ var post = {
 			});
 		},
 		
-		delete:function() { // 글 삭제
+		delete:function() { // 글 삭제처리
 			var id = $("#id").val();
 			
 			$.ajax({
