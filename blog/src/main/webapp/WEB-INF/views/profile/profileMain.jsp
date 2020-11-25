@@ -8,14 +8,20 @@
 
 <div class="container">
 	
-	<img id="img" class="profileImg" src="/upload/${user.picture }">
-	<form action="/profile/updatePicture" id="form" method="post" enctype="multipart/form-data">
-		<input type="file" name="file" id="file" style="display: none">
-	</form>
+	<div class="pictureSection">
+		<img id="img" class="profileImg" src="/upload/${user.picture }">
+		<form action="/profile/updatePicture" id="form" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" id="file" accept=".gif, .jpg, .png" style="display: none">
+		</form>
+		<button class="picUpdateBtn" id="picUpdateBtn">사진변경</button>
+		<button class="picDeleteBtn" id="picDeleteBtn">기존사진 삭제</button>
+	</div>
 	<div class="infoSection">
 		<div class="nicknameSection">
-			<span class="nickname">닉네임넣을곳</span>
-			<button>닉네임 변경</button>
+			<form>
+				<input class="nickName" name="nickName" type="text" id="nickName" value=${user.nickname } >
+				<button type="button" id="nicknameChange">닉네임 변경</button>
+			</form>
 		</div>
 		<span>성별: ${user.gender } / 나이: ${user.age } 세</span>
 		<ul>
@@ -36,8 +42,7 @@
 </div>
 
 <script>
-	$('#img').click(function(){
-		console.log("aaa")
+	$('#picUpdateBtn').click(function(){
 		$('#file').click();
 	})
 	
@@ -45,6 +50,21 @@
 		document.getElementById("form").submit();
 		
 	};
+	
+ 	$('#nicknameChange').click(function(){
+		var nickName = $('#nickName').val();
+		
+		$.ajax({
+			url : "/api/profile/nickNameUpdate" ,
+			type : "POST",
+			data : {
+				"nickName" : nickName
+			}
+		})
+	}) 
+	
+	
+	
 	
 </script>
 

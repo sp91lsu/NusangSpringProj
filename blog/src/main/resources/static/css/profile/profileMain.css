@@ -5,6 +5,7 @@
 	height: 200px;
 	float: left;
 	margin-left: 50px;
+	border: 1px solid #ccc;
 }
 
 .nickname {
@@ -13,9 +14,9 @@
 }
 
 .infoSection {
-	height: 200px;
+	height: 250px;
 	display: inline-block;
-	padding: 50px 0 0 100px;
+	padding: 70px 0 0 100px;
 }
 
 .infoSection ul{
@@ -42,4 +43,19 @@
 .createPost{
 	padding-top: 200px;
 	margin: 0;
+}
+
+.pictureSection{
+	float: left;
+	width: 300px;
+	height: 250px;
+}
+
+.picUpdateBtn {
+	margin-top: 15px;
+	margin-left: 50px;
+}
+
+.picDeleteBtn {
+	margin-top: 15px;
 }
