@@ -2,13 +2,19 @@ package com.mycom.blog.controller.api;
 
 import java.io.Console;
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +38,23 @@ public class BoardApiController {
 
 	@Autowired
 	private BoardService boardService;
+
+	@GetMapping("/api/paging")
+	public Page<Board> index(Model model,
+			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+
+		System.out.println("page :" + pageable.getPageNumber());
+		Page<Board> pageList = boardService.getBoardList(pageable);
+//		System.out.println("getTotalPages" + pageList.getTotalPages());
+//		System.out.println("getNumber" + pageList.getNumber()); // 현재 페이지
+//		System.out.println("getSize" + pageList.getSize());// 페이 안의 최대 사이즈
+//		System.out.println("getNumberOfElements" + pageList.getNumberOfElements()); // 페이지 안의 실제 갯수
+//		System.out.println("isLast" + pageList.isLast()); // 페이지 안의 실제 갯수
+//		
+		model.addAttribute("boards", pageList);
+
+		return pageList;
+	}
 
 	@PostMapping("/api/board")
 	public Response<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {

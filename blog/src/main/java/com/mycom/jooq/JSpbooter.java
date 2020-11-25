@@ -15,9 +15,7 @@ import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JPayment;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JShop;
-import com.mycom.jooq.tables.JShopRoom;
 import com.mycom.jooq.tables.JUser1;
-import com.mycom.jooq.tables.JUser1FriendRequest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +41,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JSpbooter extends SchemaImpl {
 
-    private static final long serialVersionUID = -1686700825;
+    private static final long serialVersionUID = 2145240747;
 
     /**
      * The reference instance of <code>SPBOOTER</code>
@@ -106,19 +104,9 @@ public class JSpbooter extends SchemaImpl {
     public final JShop SHOP = com.mycom.jooq.tables.JShop.SHOP;
 
     /**
-     * The table <code>SPBOOTER.SHOP_ROOM</code>.
-     */
-    public final JShopRoom SHOP_ROOM = com.mycom.jooq.tables.JShopRoom.SHOP_ROOM;
-
-    /**
      * The table <code>SPBOOTER.USER1</code>.
      */
     public final JUser1 USER1 = com.mycom.jooq.tables.JUser1.USER1;
-
-    /**
-     * The table <code>SPBOOTER.USER1_FRIEND_REQUEST</code>.
-     */
-    public final JUser1FriendRequest USER1_FRIEND_REQUEST = com.mycom.jooq.tables.JUser1FriendRequest.USER1_FRIEND_REQUEST;
 
     /**
      * No further instances allowed
@@ -153,8 +141,6 @@ public class JSpbooter extends SchemaImpl {
             JPayment.PAYMENT,
             JReply.REPLY,
             JShop.SHOP,
-            JShopRoom.SHOP_ROOM,
-            JUser1.USER1,
-            JUser1FriendRequest.USER1_FRIEND_REQUEST);
+            JUser1.USER1);
     }
 }

@@ -15,9 +15,7 @@ import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JPayment;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JShop;
-import com.mycom.jooq.tables.JShopRoom;
 import com.mycom.jooq.tables.JUser1;
-import com.mycom.jooq.tables.JUser1FriendRequest;
 
 import javax.annotation.Generated;
 
@@ -91,17 +89,7 @@ public class Tables {
     public static final JShop SHOP = JShop.SHOP;
 
     /**
-     * The table <code>SPBOOTER.SHOP_ROOM</code>.
-     */
-    public static final JShopRoom SHOP_ROOM = JShopRoom.SHOP_ROOM;
-
-    /**
      * The table <code>SPBOOTER.USER1</code>.
      */
     public static final JUser1 USER1 = JUser1.USER1;
-
-    /**
-     * The table <code>SPBOOTER.USER1_FRIEND_REQUEST</code>.
-     */
-    public static final JUser1FriendRequest USER1_FRIEND_REQUEST = JUser1FriendRequest.USER1_FRIEND_REQUEST;
 }

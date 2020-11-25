@@ -3,11 +3,17 @@ package com.mycom.blog.controller.manager;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.manager.Notice;
 import com.mycom.blog.service.manager.NoticeService;
 
@@ -17,10 +23,21 @@ public class noticeController {
 	@Autowired
 	private NoticeService noticeService;
 
-	@RequestMapping("/noticeList")
+	@RequestMapping("/noticesList")
 	public String noticeList(Model model) {
 		List<Notice> list = noticeService.findAll();
+		
+		
 		model.addAttribute("list", list);
+		
+		return "/manager/noticeList";
+	} 
+	
+	@GetMapping("/noticeList")
+	public String index(Model model,
+			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+		Page<Notice> pageList = noticeService.getPageList(pageable);
+		model.addAttribute("list", pageList);
 		return "/manager/noticeList";
 	}
 

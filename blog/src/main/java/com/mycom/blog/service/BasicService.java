@@ -6,6 +6,8 @@ import javax.persistence.EntityManagerFactory;
 
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,7 +60,7 @@ public class BasicService<T, E> {
 			JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
 			t.deleteById(id);
 			return 1;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
@@ -70,4 +72,9 @@ public class BasicService<T, E> {
 		return t.save(entity);
 	}
 
+	@Transactional(readOnly = true)
+	public Page<E> getPageList(Pageable pageable) {
+		JpaRepository<E, Integer> t = (JpaRepository<E, Integer>) repository;
+		return t.findAll(pageable);
+	}
 }

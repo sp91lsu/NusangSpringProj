@@ -15,7 +15,6 @@ import com.mycom.jooq.tables.JNotice;
 import com.mycom.jooq.tables.JPayment;
 import com.mycom.jooq.tables.JReply;
 import com.mycom.jooq.tables.JShop;
-import com.mycom.jooq.tables.JShopRoom;
 import com.mycom.jooq.tables.JUser1;
 import com.mycom.jooq.tables.records.JBoardRecord;
 import com.mycom.jooq.tables.records.JChatMessageRoomRecord;
@@ -28,7 +27,6 @@ import com.mycom.jooq.tables.records.JNoticeRecord;
 import com.mycom.jooq.tables.records.JPaymentRecord;
 import com.mycom.jooq.tables.records.JReplyRecord;
 import com.mycom.jooq.tables.records.JShopRecord;
-import com.mycom.jooq.tables.records.JShopRoomRecord;
 import com.mycom.jooq.tables.records.JUser1Record;
 
 import javax.annotation.Generated;
@@ -71,7 +69,6 @@ public class Keys {
     public static final UniqueKey<JPaymentRecord> PK_PAYMENT = UniqueKeys0.PK_PAYMENT;
     public static final UniqueKey<JReplyRecord> PK_REPLY = UniqueKeys0.PK_REPLY;
     public static final UniqueKey<JShopRecord> PK_SHOP = UniqueKeys0.PK_SHOP;
-    public static final UniqueKey<JShopRoomRecord> PK_SHOP_ROOM = UniqueKeys0.PK_SHOP_ROOM;
     public static final UniqueKey<JUser1Record> PK_USER1 = UniqueKeys0.PK_USER1;
 
     // -------------------------------------------------------------------------
@@ -95,7 +92,6 @@ public class Keys {
         public static final UniqueKey<JPaymentRecord> PK_PAYMENT = Internal.createUniqueKey(JPayment.PAYMENT, "PK_PAYMENT", JPayment.PAYMENT.PAYMENTNO);
         public static final UniqueKey<JReplyRecord> PK_REPLY = Internal.createUniqueKey(JReply.REPLY, "PK_REPLY", JReply.REPLY.ID);
         public static final UniqueKey<JShopRecord> PK_SHOP = Internal.createUniqueKey(JShop.SHOP, "PK_SHOP", JShop.SHOP.NO);
-        public static final UniqueKey<JShopRoomRecord> PK_SHOP_ROOM = Internal.createUniqueKey(JShopRoom.SHOP_ROOM, "PK_SHOP_ROOM", JShopRoom.SHOP_ROOM.NO);
         public static final UniqueKey<JUser1Record> PK_USER1 = Internal.createUniqueKey(JUser1.USER1, "PK_USER1", JUser1.USER1.USERNO);
     }
 }
