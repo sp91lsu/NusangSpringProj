@@ -35,6 +35,12 @@ public class ProfileController {
 	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest rquest){
 		profileService.updatePicture(file, rquest);
 		conAssist.updateUser();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "profile/profileMain";
 	}
 	

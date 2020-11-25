@@ -45,6 +45,7 @@ public class ProfileService {
 	@Autowired
 	UserRepository userRepository;
 
+	//사진 업데이트
 	@Transactional
 	public int updatePicture(MultipartFile file, HttpServletRequest request) {
 
@@ -117,10 +118,20 @@ public class ProfileService {
 
 	}
 
+	
+	//닉네임 체인지
 	@Transactional
-	public int nickNameUpdate() {
-
-		return 1;
+	public int nickNameUpdate(String nickName) {
+		
+		try {
+			User user = userRepository.findById(conAssist.getUserno()).get();
+			user.setNickname(nickName);
+			
+			return 1;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
 	}
 
 	// 프로젝트 경로
