@@ -12,13 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container " style="font-family: 'Noto Sans KR', sans-serif;">
-		<br>
-		<br>
-		<caption>
-			<h3>공지사항</h3>
-		</caption>
-		<div style="float: right;">
+	<div class="container ">
+		<br> <br>
+		<h3>공지사항</h3>
+		<div class = "writeBtn">
 			<button class="btn btn-warning"
 				onclick="location.href='/manager/noticeWrite'">글쓰기</button>
 		</div>
@@ -26,14 +23,14 @@
 		<table class="table ">
 			<thead class="thead-dark" align="center">
 				<tr>
-					<th style="width: 300px;" scope="col">내용</th>
-					<th style="width: 100px;" scope="col">등록일</th>
+					<th class = "conTh" scope="col">내용</th>
+					<th class = "dateTh" scope="col">등록일</th>
 				</tr>
 			</thead>
 			<tbody class="notice_list">
 				<c:forEach var="dto" items="${list.toList() }">
 					<tr>
-						<td><a style="color: black;"
+						<td><a class = "titleColor"
 							href="/manager/noticeView?no=${dto.no }">${dto.title }</a></td>
 						<td align="center">${dto.regdate }</td>
 					</tr>
@@ -42,11 +39,11 @@
 
 			</tbody>
 		</table>
-		<c:forEach var="i" begin="1" end="${list.getTotalPages() }">
-
-			<a class="ml-2 mr-2 paging_input">${i}</a>
-
-		</c:forEach>
+		<ul class="pagination justify-content-center">
+			<c:forEach var="i" begin="1" end="${list.getTotalPages() }">
+				<a class="ml-2 mr-2 paging_input">${i}</a>
+			</c:forEach>
+		</ul>
 	</div>
 
 
