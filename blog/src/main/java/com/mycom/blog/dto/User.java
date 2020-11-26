@@ -103,10 +103,10 @@ public class User {
 	
 	private int coin;
 	
-	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Board> boardList = new ArrayList<Board>();
 	
 	private int availableTalk;
