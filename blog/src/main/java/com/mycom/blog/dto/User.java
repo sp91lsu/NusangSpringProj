@@ -104,6 +104,9 @@ public class User {
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
 
+	@OneToMany(mappedBy = "user")
+	private List<Board> boardList = new ArrayList<Board>();
+	
 	private int availableTalk;
 	
 	/*

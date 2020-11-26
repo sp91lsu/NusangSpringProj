@@ -21,12 +21,15 @@ import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -38,6 +41,8 @@ import lombok.NoArgsConstructor;
 		allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 )
 @Entity
+@ToString(exclude = "user")
+@JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class Board {
 
 	@Id
@@ -52,10 +57,10 @@ public class Board {
 
 	private int count;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "userno")
 	private User user;
-
+	
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) // 연관관계의 주인이 아니다
 	@JsonIgnoreProperties({ "board" })
 	@OrderBy("id desc")
