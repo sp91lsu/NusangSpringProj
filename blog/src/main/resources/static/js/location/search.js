@@ -1,5 +1,6 @@
 (function() {
 
+	
 	$("#searchBtn")
 			.click(
 					function() {
@@ -62,6 +63,7 @@
 		}
 	});
 
+	
 	function setLocation(searchTab) {
 
 		let
@@ -85,6 +87,7 @@
 					"searchValue" : locName
 				},
 				type : "POST",
+				"headers": headers,
 				success : function(data) {
 					if (data == 1) {
 						alert("위치설정 완료");
