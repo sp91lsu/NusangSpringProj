@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycom.blog.bo.KakaoBo;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.KakaoProfile;
 import com.mycom.blog.model.OAuthToken;
 import com.mycom.blog.service.UserService;
@@ -63,8 +64,15 @@ public class AuthController {
 	@GetMapping("/kakaologin")
 	public String kakaoCallback(String code) {
 
-		kakaoBo.login(code);
-		return "redirect:/home";
+		User user = kakaoBo.login(code);
+		
+		if(user.getRole() == RoleType.USER)
+		{
+			return "redirect:/home";
+		}else {
+			return "redirect:/manager/notice/noticeList";
+		}
+		
 	}
 
 }

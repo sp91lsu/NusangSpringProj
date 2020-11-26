@@ -30,6 +30,7 @@ import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.KakaoProfile;
 import com.mycom.blog.model.OAuthToken;
 import com.mycom.blog.service.UserService;
@@ -58,7 +59,7 @@ public class KakaoBo extends BasicBO {
 		reqUserInfoURL = "https://kapi.kakao.com/v2/user/me";
 	}
 
-	public void login(String code) {
+	public User login(String code) {
 		System.out.println(code);
 
 		reqAuthToken(code);
@@ -104,8 +105,9 @@ public class KakaoBo extends BasicBO {
 			System.out.println("아이디가 존재 하지 않군요 가입해야겠어요");
 			userService.signUp(user, AuthType.KAKAO);
 		}
-
+		
 		conAssist.setSessionUser(user);
+		return user;
 	}
 
 	@Override
