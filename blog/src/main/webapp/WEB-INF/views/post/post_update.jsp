@@ -9,10 +9,11 @@
 			<input  name="title" type="text" class="form-control" placeholder="제목을 입력하세요" id="title" value="${board.title}">
 		</div>
 		<div class="form-group">
-			<textarea   class="summernote" id="content"></textarea>
+			<textarea   class="summernote" id="content">${board.content}</textarea>
 		</div>
 	</form>
-	<button id="btn_write" class="btn btn-primary">글쓰기 완료</button>
+	<button id="btn_update" class="btn btn-primary">수정 완료</button>
+	<input type="hidden" id="id" value="${board.id}">
 </div>
 	
 <%@ include file="../layout/footer.jsp"%>

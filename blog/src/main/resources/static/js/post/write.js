@@ -1,17 +1,24 @@
 var title;
 var content;
 
+function get_TitleContent(){
+	title = $('#title').val().trim();
+	content = $('#content').val();
+	
+	content = content.replace(/<p>/g , '');//치환(무시)할 문자들
+	content = content.replace(/&nbsp;/g , '');
+	content = content.replace(/<\/p>/g , '');
+	content = content.replace(/<br>/g , '');
+	content = content.trim();
+	
+	console.log("제목:" + title);
+	console.log("내용:" + content);
+}
+
 var post = {
 		init:function(){
 			$("#btn_write").click(function(){ //글쓰기
-				title = $('#title').val().trim();
-				content = $('#content').val();
-				
-				content = content.replace(/<p>/g , '');//치환(무시)할 문자들
-				content = content.replace(/&nbsp;/g , '');
-				content = content.replace(/<\/p>/g , '');
-				content = content.replace(/<br>/g , '');
-				content = content.trim();
+				get_TitleContent()
 				
 				if(title==""){//제목공백
 					alert("제목을 입력하세요");
@@ -24,6 +31,18 @@ var post = {
 			
 			$("#btn_delete").click(function(){ //글삭제
 				post.delete();
+			});
+			
+			$("#btn_update").click(function(){//글수정
+				get_TitleContent()
+				
+				if(title==""){
+					alert("제목을 입력하세요");
+				}else if(content==""){
+					alert("내용을 입력하세요");
+				}else {
+					post.update();
+				}
 			});
 		},
 		
@@ -65,6 +84,29 @@ var post = {
 					alert("글삭제 실패");
 				}
 			}).fail(function(err) {
+				console.log("error: " + err);
+			});
+		},
+		
+		update:function(){
+			console.log("수정하기 버튼 클릭");
+			$.ajax({
+				type:"PUT",
+				url:"/api/post/update",
+				data:{
+					"title" : title,
+					"content" : content,
+					"id" : $("#id").val()
+				},
+				headers: headers
+			}).done(function(res){
+				if(res == 1){
+					location.href = "/home";
+					alert("수정 성공");
+				}else{
+					alert("수정 실패");
+				}
+			}).fail(function(err){
 				console.log("error: " + err);
 			});
 		}

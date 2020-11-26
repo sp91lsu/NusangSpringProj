@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,15 +29,19 @@ public class PostApiController {
 
 	@PostMapping("/api/post")
 	public int write(Board board) {
-		System.out.println("경로:api/post/write");
 		int result = boardService.writeBoard(board, conAssist.getUser());
 		return result;
 	}
 	
 	@DeleteMapping("/api/post/{id}")
 	public int delete(Board board){
-		System.out.println("경로:"+"api/post/delete"+board.getId());
 		int result = boardService.deleteBoad(board.getId());
+		return result;
+	}
+	
+	@PutMapping("/api/post/update")
+	public int update(Board board){
+		int result = boardService.updateBoard(board);
 		return result;
 	}
 }

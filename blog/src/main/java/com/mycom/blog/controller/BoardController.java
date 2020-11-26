@@ -39,25 +39,4 @@ public class BoardController {
 
 		return "/index";
 	}
-
-	@GetMapping("/board/writeForm")
-	public String writeForm() {
-		return "board/writeForm";
-	}
-
-	@GetMapping("/board/{id}") // 모델을 통해서 다음페이지에 쓸 객체를 담는다.
-	public String findById(@PathVariable int id, Model model) {
-
-		model.addAttribute("board", boardService.moreInfoDetail(id));
-		return "board/detail";
-	}
-
-	@GetMapping("/board/{id}/updateForm")
-	public String updateBoard(@PathVariable int id, Model model) {
-
-		model.addAttribute("board", boardService.moreInfoDetail(id));
-
-		return "board/updateForm";
-	}
-
 }

@@ -33,10 +33,33 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int writeBoard(Board board, User user) {
 		try {
-			System.out.println("BoardService : " + board.getContent());
 			board.setUser(user);
 			board.setCount(0);
 			repository.save(board);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	@Transactional
+	public int deleteBoad(int id) {
+		try {
+			repository.deleteById(id);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	@Transactional
+	public int updateBoard(Board board) {
+		try {
+			Board findBoard = repository.findById(board.getId()).get();
+			findBoard.setContent(board.getContent());
+			findBoard.setTitle(board.getTitle());
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +86,7 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 					location.getView_distance());
 			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
 			return pages;
-			
+
 		} else {
 			return repository.findAll(pageable);
 		}
@@ -79,29 +102,6 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 		});
 
 		return oBoard.get();
-	}
-
-	@Transactional
-	public int deleteBoad(int id) {
-		try {
-			repository.deleteById(id);
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
-
-	@Transactional
-	public void updateBoard(Board board) {
-
-		System.out.println("수정할 보드의 값은 : " + board.getId());
-		Board findBoard = repository.findById(board.getId()).orElseThrow(() -> {
-			return new IllegalArgumentException("업데이트에 실패하였습니다.");
-		});
-
-		findBoard.setContent(board.getContent());
-		findBoard.setTitle(board.getTitle());
 	}
 
 	@Transactional
