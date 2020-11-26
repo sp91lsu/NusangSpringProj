@@ -11,6 +11,7 @@ import java.nio.file.WatchEvent.Kind;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +66,6 @@ public class ProfileService {
 			file.transferTo(newFile);
 
 			user.setPicture(fileName);
-		
 
 			return 1;
 		} catch (IllegalStateException e) {
@@ -84,19 +84,21 @@ public class ProfileService {
 	//닉네임 체인지
 	@Transactional
 	public int nickNameUpdate(String nickName) {
+		String namePattern = "^[a-zA-Z0-9가-힣!@#$%^&*()_+-=~.]{2,8}$"; //한글만 2~8자
+		boolean chk = Pattern.matches(namePattern, nickName);
 		
-		try {
-			User user = userRepository.findById(conAssist.getUserno()).get();
-			user.setNickname(nickName);
+		if(chk == true) {
 			
-			return 1;
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+			try {
+				User user = userRepository.findById(conAssist.getUserno()).get();
+				user.setNickname(nickName);
+				return 1;
+			} catch (Exception e) {}
+		} 
 		return 0;
+		
 	}
 
-	// 프로젝트 경로
 
 
 }
