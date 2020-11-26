@@ -16,7 +16,7 @@ import com.mycom.blog.dto.manager.Notice;
 import com.mycom.blog.service.manager.NoticeService;
 
 @RestController
-@RequestMapping("/manager")
+@RequestMapping("/manager/notice/")
 public class NoticeApiController {
 
 	@Autowired

@@ -18,32 +18,32 @@ import com.mycom.blog.dto.manager.Notice;
 import com.mycom.blog.service.manager.NoticeService;
 
 @Controller
-@RequestMapping("/manager")
-public class noticeController {
+@RequestMapping("/manager/notice")
+public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
-	@RequestMapping("/noticesList")
-	public String noticeList(Model model) {
-		List<Notice> list = noticeService.findAll();
-		
-		
-		model.addAttribute("list", list);
-		
-		return "/manager/noticeList";
-	} 
+//	@RequestMapping("/noticesList")
+//	public String noticeList(Model model) {
+//		List<Notice> list = noticeService.findAll();
+//		
+//		
+//		model.addAttribute("list", list);
+//		
+//		return "/manager/notice/noticeList";
+//	} 
 	
 	@GetMapping("/noticeList")
 	public String index(Model model,
 			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
 		Page<Notice> pageList = noticeService.getPageList(pageable);
 		model.addAttribute("list", pageList);
-		return "/manager/noticeList";
+		return "/manager/notice/noticeList";
 	}
 
 	@RequestMapping("/noticeWrite")
 	public String noticeWrite() {
-		return "/manager/noticeWrite";
+		return "/manager/notice/noticeWrite";
 	}
 
 	@RequestMapping(value = "/noticeWriteOk", method = RequestMethod.POST)
@@ -52,7 +52,7 @@ public class noticeController {
 		int res = dto != null ? 1 : 0; 
 		model.addAttribute("res", res);
 
-		return "/manager/noticeWriteOk";
+		return "/manager/notice/noticeWriteOk";
 	}
 
 	@RequestMapping(value = "/noticeView")
@@ -60,14 +60,14 @@ public class noticeController {
 		Notice view = noticeService.findById(no);
 		model.addAttribute("view", view);
 
-		return "/manager/noticeView";
+		return "/manager/notice/noticeView";
 	}
 
 	@RequestMapping(value = "/noticeUpdate")
 	public String noticeUpdate(int no, Model model) {
 		Notice update = noticeService.findById(no);
 		model.addAttribute("update",update);
-		return "/manager/noticeUpdate";
+		return "/manager/notice/noticeUpdate";
 	}
 
 	@RequestMapping(value = "/noticeUpdateOk", method = RequestMethod.POST)
@@ -78,13 +78,13 @@ public class noticeController {
 		model.addAttribute("notice", notice);
 		model.addAttribute("res", res);
 
-		return "/manager/noticeUpdateOk";
+		return "/manager/notice/noticeUpdateOk";
 	}
 	
 	@RequestMapping(value="/noticeDeleteOk", method = RequestMethod.POST)
 	public String noticeDeleteOk(int no, Model model) {
 		int res = noticeService.deleteById(no);
 		model.addAttribute("res", res);
-		return "/manager/noticeDeleteOk";
+		return "/manager/notice/noticeDeleteOk";
 	}
 }
