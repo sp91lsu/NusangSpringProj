@@ -5,8 +5,8 @@ var headers = {};
 headers[csrfHeader] = csrfToken;
 
 function sendNum(number) {
-	
-
+	var result = confirm("검색 반경을 " + number + "km 로 설정하시겠습니까?");
+	headers[csrfHeader] = csrfToken;
 
 	console.log(headers)
 	if (result) {
