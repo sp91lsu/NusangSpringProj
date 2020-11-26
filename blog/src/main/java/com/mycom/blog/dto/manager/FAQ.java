@@ -1,8 +1,5 @@
 package com.mycom.blog.dto.manager;
 
-
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,38 +19,35 @@ import org.hibernate.annotations.DynamicInsert;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
+import com.mycom.blog.dto.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 
-@SequenceGenerator(name = "Notice_SEQ_GEN", // 시퀀스 제너레이터 이름
-		sequenceName = "Notice_SEQ", // 시퀀스 이름
-		initialValue = 1, // 시작값
-		allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
-)
+@SequenceGenerator(name = "FAQ_SEQ_GEN",
+				   sequenceName = "FAQ_SEQ",
+				   initialValue = 1,
+				   allocationSize = 1)
+
 @Builder
-@Table(name = "Notice")
-@DynamicInsert // insert 시에 null인 필드 는 제외시킴
-@Entity // notice클래스가 자동으로 테이블을 생성
+@Table(name = "FAQ")
+@DynamicInsert
+@Entity
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
-public class Notice {
-	
+public class FAQ {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Notice_SEQ_GEN")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FAQ_SEQ_GEN")
 	private int no;
 	private String title;
 	@Column(length = 20000)
 	private String contents;
-	private String name;
-	//@CreationTimestamp
-	@CreationTimestamp 
-	@Temporal(value = TemporalType.DATE)
-	private Date regdate;
+	
+	
 
 }
