@@ -18,7 +18,7 @@ var post = {
 				}else if(content==""){
 					alert("내용을 입력하세요");
 				}else {
-					this.write();
+					post.write();
 				}
 			});
 			
@@ -32,9 +32,11 @@ var post = {
 			$.ajax({	
 				type:"POST",
 				url:"/api/post",
+				headers: headers,
 				data:{
 					"title" : title,// 제목
 					"content" : content,// 내용
+					
 				}
 			}).done(function(res){
 				if(res == 1){
