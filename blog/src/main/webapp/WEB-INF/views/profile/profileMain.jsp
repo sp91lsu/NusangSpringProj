@@ -46,7 +46,7 @@
 	<!-- 내 글 보기 -->
 	<div class="postSection row">
 		<div class="myPost community_list col-7">
-		 	<c:forEach var="board" items="${user.getBoardList()}">
+ 		 	<c:forEach var="board" items="${user.getBoardList()}">
 				<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 					<div class="img">
 						<img src="/upload/${user.picture }">
@@ -58,7 +58,7 @@
 						<div class="view"><span>추천수0</span><span>조회수:0</span></div>
 					</div>
 				</div>
-			</c:forEach> 
+			</c:forEach>  
 		</div>
 		<div class="createPost col-4">
 			<h4>나의 일상을 공유해 보세요</h4>
@@ -101,6 +101,25 @@
 			}
 		})
 	}) 
+	
+	$('#picDeleteBtn').click(function(){
+		$.ajax({
+			url : "/api/profile/deletePicture" ,
+			type : "GET",
+			success : function(res) {
+
+				if (res == 0) {
+					alert("사진 변경에 실패했습니다. 다시 시도해주세요.");
+					location.href = "/profile/profileMain"
+				} else {
+					alert("기존 사진이 삭제되었습니다.")
+					location.href = "/profile/profileMain"
+				}
+
+			}
+			
+		})
+	})
 	
 	
 	

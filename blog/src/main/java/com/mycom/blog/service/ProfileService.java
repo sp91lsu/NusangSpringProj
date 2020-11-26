@@ -93,10 +93,24 @@ public class ProfileService {
 				User user = userRepository.findById(conAssist.getUserno()).get();
 				user.setNickname(nickName);
 				return 1;
-			} catch (Exception e) {}
+			} catch (Exception e) {
+			}
 		} 
 		return 0;
 		
+	}
+
+
+	public int deletePicture() {
+		
+		try {
+			User user = userRepository.findById(conAssist.getUserno()).get();
+			user.setPicture("profileImg.jpg");
+			return 1;
+			
+		} catch (Exception e) {
+		}
+		return 0;
 	}
 
 

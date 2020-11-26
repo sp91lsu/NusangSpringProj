@@ -31,5 +31,15 @@ public class ProfileApiController {
 		conaAssist.updateUser();
 		return res;
 	}
+	
+	@RequestMapping("/deletePicture")
+	public int deletePic() {
+		
+		int res = profileService.deletePicture();
+		conaAssist.updateUser();
+		return res;
+	}
+	
+	
 
 }
