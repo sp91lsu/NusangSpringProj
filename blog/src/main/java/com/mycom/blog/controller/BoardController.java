@@ -34,8 +34,6 @@ public class BoardController {
 //		System.out.println("getNumberOfElements" + pageList.getNumberOfElements()); //페이지 안의 실제 갯수
 //		System.out.println("isLast" + pageList.isLast()); //페이지 안의 실제 갯수
 		model.addAttribute("boards", pageList);
-		
-		
 
 		return "/index";
 	}

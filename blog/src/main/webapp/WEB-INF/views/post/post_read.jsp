@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp"%>
 
@@ -15,8 +14,15 @@
 			<div class="title">${board.title}</div>
 			
 			<div class="update_delete">
-				<button class="btn btn-primary" onclick="location.href='/post/post_update/${board.id}'">수정</button>
-				<button id="btn_delete" class="btn btn-primary">삭제</button>
+				<c:choose>
+					<c:when test = "${user.userno == board.user.userno}">
+						<button class="btn btn-primary" onclick="location.href='/post/post_update/${board.id}'">수정</button>
+						<button id="btn_delete" class="btn btn-primary">삭제</button>
+      			   </c:when>
+      			   
+      			   <c:otherwise>
+      			   </c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<input type="hidden" id="id" value="${board.id}">
