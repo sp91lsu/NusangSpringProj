@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="manager_header.jsp"%>
+<%@ include file="../manager_header.jsp"%>
 <!DOCTYPE html>
 <html>
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -25,16 +25,17 @@
 		<hr>
 
 		<div align="center">
-			<form action="/manager/noticeDeleteOk" method="post">
+			<form action="/manager/notice/noticeDeleteOk" method="post">
+			<sec:csrfInput />
 				<button type="button" class="btn btn-info"
-					onclick="location.href = '/manager/noticeUpdate?no=${view.no}'">수정</button>
+					onclick="location.href = '/manager/notice/noticeUpdate?no=${view.no}'">수정</button>
 				<button type="button" class="btn btn-primary"
-					onclick="location.href = '/manager/noticeList'">목록으로</button>
+					onclick="location.href = '/manager/notice/noticeList'">목록으로</button>
 				<input type="hidden" name="no" value="${view.no }" />
 				<button type="submit" class="btn btn-secondary">삭제</button>
 			</form>
 		</div>
 	</div>
-	<%@ include file="manager_footer.jsp"%>
+	<%@ include file="../manager_footer.jsp"%>
 </body>
 </html>

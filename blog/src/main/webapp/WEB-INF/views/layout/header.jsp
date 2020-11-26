@@ -59,7 +59,7 @@
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a></li>
 						<li class="nav-item"><a class="nav-link" href="/community/list">커뮤니티</a></li>
 						<li class="nav-item"><a class="nav-link" href="/shop/shop_view">아이템샵</a></li>
-						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/notice/noticeList">공지사항</a></li>
 						<li class="nav-item">	<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">
 

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="manager_header.jsp"%>
+<%@ include file="../manager_header.jsp"%>
 <br>
 <br>
 <div class="container">
 
-	<form name = "writeform" action="/manager/noticeWriteOk" method="post">
+	<form name = "writeform" action="/manager/notice/noticeWriteOk" method="post">
+	<sec:csrfInput />
 		<div class="form-group">
 			<input  name="title" type="text" class="form-control" placeholder="Enter title" id="title">
 		</div>
@@ -39,7 +40,7 @@
 		}
 	})
 </script>
-<%@ include file="manager_footer.jsp"%>
+<%@ include file="../manager_footer.jsp"%>
 </body>
 </html>
 

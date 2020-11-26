@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="manager_header.jsp"%>
+<%@ include file="../manager_header.jsp"%>
 <!DOCTYPE html>
 <html>
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,7 +17,7 @@
 		<h3>공지사항</h3>
 		<div class = "writeBtn">
 			<button class="btn btn-warning"
-				onclick="location.href='/manager/noticeWrite'">글쓰기</button>
+				onclick="location.href='/manager/notice/noticeWrite'">글쓰기</button>
 		</div>
 		<br>
 		<table class="table ">
@@ -31,7 +31,7 @@
 				<c:forEach var="dto" items="${list.toList() }">
 					<tr>
 						<td><a class = "titleColor"
-							href="/manager/noticeView?no=${dto.no }">${dto.title }</a></td>
+							href="/manager/notice/noticeView?no=${dto.no }">${dto.title }</a></td>
 						<td align="center">${dto.regdate }</td>
 					</tr>
 
@@ -46,7 +46,7 @@
 		</ul>
 	</div>
 
-
+<%@ include file="../manager_footer.jsp"%>
 </body>
 <script src="/js/paging/noticePage.js"></script>
 </html>

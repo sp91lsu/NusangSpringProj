@@ -8,7 +8,7 @@
 
 				$.ajax({
 
-					url : "/manager/api/noticeList/?page="
+					url : "/manager/notice/api/noticeList/?page="
 							+ ($(this).html() -1),
 					success : function(res) {
 						
@@ -17,7 +17,7 @@
 						
 						var post = '<tr>' +
 						'<td><a style="color: black;"' +
-							'href="/manager/noticeView?no='+element.no+'">'+element.title+'</a></td>' +
+							'href="/manager/notice/noticeView?no='+element.no+'">'+element.title+'</a></td>' +
 						'<td align="center"> ' +element.regdate+ '</td>' +
 					'</tr>'
 								
