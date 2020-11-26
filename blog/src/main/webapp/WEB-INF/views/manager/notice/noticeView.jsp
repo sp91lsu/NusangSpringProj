@@ -26,13 +26,23 @@
 
 		<div align="center">
 			<form action="/manager/notice/noticeDeleteOk" method="post">
-			<sec:csrfInput />
-				<button type="button" class="btn btn-info"
-					onclick="location.href = '/manager/notice/noticeUpdate?no=${view.no}'">수정</button>
+				<sec:csrfInput />
+				<c:choose>
+					<c:when test="${user.role == 'ADMIN' }">
+						<button type="button" class="btn btn-info"
+							onclick="location.href = '/manager/notice/noticeUpdate?no=${view.no}'">수정
+						</button>
+					</c:when>
+				</c:choose>
 				<button type="button" class="btn btn-primary"
-					onclick="location.href = '/manager/notice/noticeList'">목록으로</button>
+					onclick="location.href = '/manager/notice/noticeList'">목록으로
+				</button>
 				<input type="hidden" name="no" value="${view.no }" />
-				<button type="submit" class="btn btn-secondary">삭제</button>
+				<c:choose>
+					<c:when test="${user.role == 'ADMIN' }">
+						<button type="submit" class="btn btn-secondary">삭제</button>
+					</c:when>
+				</c:choose>
 			</form>
 		</div>
 	</div>

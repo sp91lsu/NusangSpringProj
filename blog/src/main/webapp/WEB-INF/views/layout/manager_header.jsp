@@ -40,7 +40,7 @@
 							</div></li>
 						<li class="nav-item subnav"><a class="nav-link subnav-li" href="">게시판관리</a>
 							<div class="subnav-content">
-								<a href="/manager/noticeList">공지사항</a> <a href="">FAQ</a>
+								<a href="/manager/notice/noticeList">공지사항</a> <a href="">FAQ</a>
 							</div></li>
 					</ul>
 					<ul class="navbar-nav ml-auto">
