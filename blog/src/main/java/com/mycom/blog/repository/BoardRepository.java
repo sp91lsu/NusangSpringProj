@@ -3,6 +3,7 @@ package com.mycom.blog.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +22,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	@Query(value =
 	"SELECT * FROM " + 
 	"BOARD WHERE " + 
-	"BOARD.id IN " + 
+	"BOARD.userno IN " + 
 	"(SELECT userno " + 
 	" FROM USER1 " + 
 	" WHERE locationno IN " + 

@@ -1,14 +1,18 @@
 package com.mycom.blog.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Board;
+import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.model.ReplySaveReq;
 import com.mycom.blog.repository.BoardRepository;
@@ -44,10 +48,27 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	public Page<Board> getBoardList(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Page<Board> getNearBoadList(Pageable pageable) {
-		return repository.findAll(pageable);
+
+		User user = ConAssist.getUser();
+		if (user != null && user.getLocation() != null) {
+			System.out.println("getNearBoardList");
+			Location location = user.getLocation();
+			System.out.println(location.getLatitude());
+			System.out.println(location.getLongtitude());
+			System.out.println(location.getView_distance());
+			List<Board> boardList = repository.getNearBoardList(location.getLatitude(), location.getLongtitude(),
+					location.getView_distance());
+
+			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
+			return pages;
+			
+		} else {
+			return repository.findAll(pageable);
+		}
+
 	}
 
 	@Transactional(readOnly = true)
