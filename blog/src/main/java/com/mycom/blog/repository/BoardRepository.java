@@ -1,8 +1,10 @@
 package com.mycom.blog.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.mycom.blog.dto.Board;
@@ -13,6 +15,18 @@ import com.mycom.blog.dto.User;
 
 public interface BoardRepository extends JpaRepository<Board, Integer>{
 	
-	
 	Board findByTitle(String title);
+	
+	@Modifying
+	@Query(value =
+	"SELECT * FROM " + 
+	"BOARD WHERE " + 
+	"BOARD.id IN " + 
+	"(SELECT userno " + 
+	" FROM USER1 " + 
+	" WHERE locationno IN " + 
+	" (SELECT loc.locationno FROM location loc WHERE calc_distance(?1, ?2,loc.latitude, loc.longtitude ) <= ?3 )) " + 
+	" ORDER BY CREATE_DATE ASC",nativeQuery = true)
+	List<Board> getNearBoardList(double latitude, double longtitude , int distance);
+	
 }

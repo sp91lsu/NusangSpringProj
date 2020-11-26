@@ -4,6 +4,7 @@
 <div class="container">
 
 	<form action="/auth/loginProc" method="post">
+		<sec:csrfInput />
 		<div class="form-group">
 			<label for="username">userName :</label> 
 			<input name="username" type="text" class="form-control" placeholder="Enter username" id="username">

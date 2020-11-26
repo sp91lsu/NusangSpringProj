@@ -25,6 +25,7 @@ let index = {
 			$.ajax({				
 				type:"POST",
 				url:"/auth/joinProc",
+				headers: headers,
 				data:JSON.stringify(data), // bodyData
 				contentType:"application/json; charset=utf-8",
 				dataType:"json" // 응답을 jsObject로 반환

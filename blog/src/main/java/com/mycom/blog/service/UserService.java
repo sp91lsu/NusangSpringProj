@@ -122,7 +122,7 @@ public class UserService extends BasicService<UserRepository, User> {
 		Location location = conAssist.getUser().getLocation();
 		List<User> nearUserList = new ArrayList<User>();
 		try {
-			nearUserList = repository.calc_distance(location.getLatitude(), location.getLongtitude(),
+			nearUserList = repository.getNearUserList(location.getLatitude(), location.getLongtitude(),
 					location.getView_distance());
 		} catch (Exception e) {
 			e.printStackTrace();

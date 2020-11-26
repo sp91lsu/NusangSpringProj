@@ -27,5 +27,5 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 			" locationno IN" + 
 			"  (SELECT loc.locationno FROM location loc WHERE" + 
 			"  calc_distance(?1, ?2,loc.latitude, loc.longtitude ) <= ?3 )", nativeQuery = true)
-	List<User> calc_distance(double latitude, double longtitude , int distance);
+	List<User> getNearUserList(double latitude, double longtitude , int distance);
 }

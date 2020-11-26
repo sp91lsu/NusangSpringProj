@@ -44,6 +44,11 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	public Page<Board> getBoardList(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
+	
+	@Transactional(readOnly = true)
+	public Page<Board> getNearBoadList(Pageable pageable) {
+		return repository.findAll(pageable);
+	}
 
 	@Transactional(readOnly = true)
 	public Board moreInfoDetail(int id) {

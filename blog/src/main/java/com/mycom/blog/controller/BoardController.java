@@ -24,16 +24,18 @@ public class BoardController {
 	// @AuthenticationPrincipal PrinciapalDetail principal
 	@GetMapping("/home")
 	public String index(Model model,
-			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+			@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
 		
 		System.out.println("page :" + pageable.getPageNumber());
-		Page<Board> pageList = boardService.getBoardList(pageable);
-		System.out.println("getTotalPages" + pageList.getTotalPages());
-		System.out.println("getNumber" + pageList.getNumber()); //현재 페이지 
-		System.out.println("getSize" + pageList.getSize());// 페이 안의 최대 사이즈
-		System.out.println("getNumberOfElements" + pageList.getNumberOfElements()); //페이지 안의 실제 갯수
-		System.out.println("isLast" + pageList.isLast()); //페이지 안의 실제 갯수
+		Page<Board> pageList = boardService.getNearBoadList(pageable);
+//		System.out.println("getTotalPages" + pageList.getTotalPages());
+//		System.out.println("getNumber" + pageList.getNumber()); //현재 페이지 
+//		System.out.println("getSize" + pageList.getSize());// 페이 안의 최대 사이즈
+//		System.out.println("getNumberOfElements" + pageList.getNumberOfElements()); //페이지 안의 실제 갯수
+//		System.out.println("isLast" + pageList.isLast()); //페이지 안의 실제 갯수
 		model.addAttribute("boards", pageList);
+		
+		
 
 		return "index";
 	}
