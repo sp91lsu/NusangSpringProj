@@ -61,20 +61,7 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav overfH">
-						<li class="nav-item subnav">
-							<a class="nav-link subnav-li" href="">일반사용자 메뉴</a>
-							<div class="subnav-content">
-								<a href="/board/writeForm">글쓰기</a>
-								<a href="/user/updateForm">회원정보보기</a>
-								<a href="/user/search">회원검색</a>
-								<a href="/user/all_userlist">모든 유저</a>
-								<a href="/user/near_userlist">내 근처회원</a>
-								<a href="/friend/friends_view">친구관리</a>
-								<a href="/community/list">커뮤니티</a>
-								<a href="/shop/shop_view">아이템샵</a>
-								<a href="/manager/noticeList">공지사항</a>
-							</div>
-						</li>
+						<li class="nav-item"><a class="nav-link" href="">일반사용자 메뉴</a></li>
 						<li class="nav-item subnav">
 							<a class="nav-link subnav-li" href="">회원관리</a>
 							<div class="subnav-content">
