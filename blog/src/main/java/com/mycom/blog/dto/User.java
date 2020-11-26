@@ -85,7 +85,8 @@ public class User {
 	private String email;
 
 	@Enumerated(EnumType.STRING)
-	private RoleType role; // Enum을 쓰는게 좋다.
+	@Column(nullable = false)
+	private RoleType role = RoleType.USER; // Enum을 쓰는게 좋다.
 
 	@Column(nullable = false)
 	@CreationTimestamp // 시간이 자동입력
