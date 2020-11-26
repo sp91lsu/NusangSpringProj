@@ -106,12 +106,11 @@ public class KakaoBo extends BasicBO {
 
 		kProfile.getKakao_account().getBirthday();
 		
-		GenderType gender = kProfile.getKakao_account().getGender().equals("male") ? GenderType.MALE : GenderType.FEMALE;
 		User user = User.builder().userid(kProfile.getKakao_account().getEmail() + "_" + kProfile.getId())
 				.username(kProfile.getProperties().getNickname()).nickname(kProfile.getProperties().getNickname())
 				.email(kProfile.getKakao_account().getEmail()).password(cosKey)// UUID.randomUUID().toString()
-				.gender(gender).build();
-
+				.build();
+		
 		// 회원가입
 		System.out.println("유저 이름이 뭔데 : " + user.getUsername());
 		System.out.println("유저 이름이 뭔데 : " + user.getPassword());
