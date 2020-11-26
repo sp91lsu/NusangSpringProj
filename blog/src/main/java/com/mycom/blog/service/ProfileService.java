@@ -58,7 +58,7 @@ public class ProfileService {
 
 			// 이전 사진파일 지우기
 			File f = new File(savePath + user.getPicture());
-			if (f.exists()) {
+			if (f.exists() && !user.getPicture().equals("profileImg.jpg")) {
 				f.delete();
 			}
 

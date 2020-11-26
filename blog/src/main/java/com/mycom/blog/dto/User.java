@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -97,10 +98,11 @@ public class User {
 	@JoinColumn(name = "locationno")
 	private Location location;
 
+	@Column(columnDefinition = "varchar(255) default 'profileImg.jpg'")
 	private String picture;
-
+	
 	private int coin;
-
+	
 	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
 

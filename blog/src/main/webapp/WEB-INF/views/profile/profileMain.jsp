@@ -8,15 +8,25 @@
 
 <div class="container">
 	
+	<!-- 프로필 사진 -->
 	<div class="pictureSection">
-		<img id="img" class="profileImg" src="/upload/${user.picture }">
-		<form action="/profile/updatePicture" id="form" method="post" enctype="multipart/form-data">
-			<sec:csrfInput />
-			<input type="file" name="file" id="file" accept=".gif, .jpg, .png" style="display: none">
-		</form>
-		<button class="picUpdateBtn" id="picUpdateBtn">사진변경</button>
-		<button class="picDeleteBtn" id="picDeleteBtn">기존사진 삭제</button>
+		<c:choose>
+			<c:when test="${!empty user.picture}">
+				<img id="img" class="profileImg" src="/upload/${user.picture }">
+			</c:when>
+			<c:otherwise>
+				<img id="img" class="profileImg" src="/image/profileImg.jpg">
+			</c:otherwise>
+		</c:choose>
+			<form action="/profile/updatePicture" id="form" method="post" enctype="multipart/form-data">
+				<sec:csrfInput />
+				<input type="file" name="file" id="file" accept=".gif, .jpg, .png" style="display: none">
+			</form>
+			<button class="picUpdateBtn" id="picUpdateBtn">사진변경</button>
+			<button class="picDeleteBtn" id="picDeleteBtn">기존사진 삭제</button>
 	</div>
+	
+	<!-- 닉네임 및 내 정보 -->
 	<div class="infoSection">
 		<div class="nicknameSection">
 			<form>
@@ -32,12 +42,14 @@
 
 	</div>
 	<hr>
+	
+	<!-- 내 글 보기 -->
 	<div class="postSection row">
-		<div class="myPost col-7">
-			<c:forEach var="board" items="${boards.content}">
+		<div class="myPost community_list col-7">
+		 	<c:forEach var="board" items="${user.getBoardList()}">
 				<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 					<div class="img">
-						<img src=/image/panda.jpg>
+						<img src="/upload/${user.picture }">
 					</div>
 				
 					<div class="txt">
@@ -46,7 +58,7 @@
 						<div class="view"><span>추천수0</span><span>조회수:0</span></div>
 					</div>
 				</div>
-			</c:forEach>
+			</c:forEach> 
 		</div>
 		<div class="createPost col-4">
 			<h4>나의 일상을 공유해 보세요</h4>
