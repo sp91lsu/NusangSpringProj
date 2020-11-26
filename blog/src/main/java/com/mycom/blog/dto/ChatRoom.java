@@ -60,7 +60,7 @@ public class ChatRoom {
 
 	private String topic;
 
-	@OneToMany(mappedBy = "chatRoom")
+	@OneToMany(mappedBy = "chatRoom" ,fetch = FetchType.EAGER)
 	private List<ChatRoomGuide> roomGuideList;
 
 	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

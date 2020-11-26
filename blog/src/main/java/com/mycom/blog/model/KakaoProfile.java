@@ -20,6 +20,13 @@ public class KakaoProfile {
 		private Boolean is_email_valid;
 		private Boolean is_email_verified;
 		private String email;
+		private Boolean has_birthday;
+		private Boolean birthday_needs_agreement;
+		private String birthday;
+		private String birthday_type;
+		private Boolean has_gender;
+		private Boolean gender_needs_agreement;
+		private String gender;
 	}
 
 	@Data

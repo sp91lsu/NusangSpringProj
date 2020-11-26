@@ -62,11 +62,16 @@ public class AuthController {
 
 	// @ResponseBody : 데이터를 리턴해주는 함수로 바뀜 restController같은 역할
 	@GetMapping("/kakaologin")
-	public String kakaoCallback(String code) {
+	public String kakaoCallback(String code,Model model) {
 
 		User user = kakaoBo.login(code);
 		
-		if(user.getRole() == RoleType.USER)
+		if(user == null)
+		{
+			model.addAttribute("error","다시 로그인하여 카카오 추가 동의를 해주세요.");
+			return "/layout/error";
+		}
+		else if(user.getRole() == RoleType.USER)
 		{
 			return "redirect:/home";
 		}else {

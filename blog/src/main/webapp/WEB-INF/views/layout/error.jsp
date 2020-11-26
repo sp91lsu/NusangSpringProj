@@ -1,16 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="/css/error.css">
-
-<c:set var="error" value="${requestScope.error}" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>ERROR</title>
-</head>
-<body>
+<%@ include file="../layout/header.jsp"%>
+<div class="container">
 
 	<div class="container d-flex justify-content-center flex-column" style="min-height: 500px;">
 		<div id="imgDiv" class="d-flex justify-content-center">
@@ -20,10 +11,11 @@
 			<div id="content">${error}</div>
 		</div>
 	</div>
+</div>
 
-
+<script type="text/javascript" src="/js/user.js"></script>
+<%@ include file="../layout/footer.jsp"%>
 </body>
-
 </html>
 
 
