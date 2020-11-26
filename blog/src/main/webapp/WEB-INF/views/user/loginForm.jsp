@@ -7,16 +7,16 @@
 		<sec:csrfInput />
 		<div class="form-group">
 			<label for="username">userName :</label> 
-			<input name="username" type="text" class="form-control" placeholder="Enter username" id="username">
+			<input name="username" type="text" class="form-control" placeholder="Enter username" id="username" required="required">
 		</div>
 		
 		<div class="form-group">
 			<label for="password">Password:</label>
-			 <input name="password" type="password" class="form-control" placeholder="Enter password" id="password">
+			 <input name="password" type="password" class="form-control" placeholder="Enter password" id="password" required="required">
 		</div>
 		
 	
-		<button id="btn-login" class="btn btn-primary">로그인</button>
+		<button type="submit"  class="btn btn-primary">로그인</button>
 		<a href="https://kauth.kakao.com/oauth/authorize?client_id=08d4e0306ac821705c50a3083bf85370&redirect_uri=http://localhost:8000/auth/kakaologin&response_type=code"><img height="38px" src="/image/kakaoLoginButton.png"></a>
 	</form>
 	

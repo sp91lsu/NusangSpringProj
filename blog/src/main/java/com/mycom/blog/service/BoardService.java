@@ -61,8 +61,6 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 			System.out.println(location.getView_distance());
 			List<Board> boardList = repository.getNearBoardList(location.getLatitude(), location.getLongtitude(),
 					location.getView_distance());
-			if(boardList.size() != 0)
-			boardList.get(0).toString();
 			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
 			return pages;
 			

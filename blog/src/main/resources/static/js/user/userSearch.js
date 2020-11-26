@@ -6,6 +6,7 @@
 				
 				url:"/user/search_ok",
 				type: "POST",
+				headers:headers,
 				data: {
 					searchValue : $("#searchValue").val()
 				},

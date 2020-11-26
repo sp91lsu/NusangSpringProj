@@ -7,6 +7,7 @@
 			data : {
 				friendno : $(this).val()
 			},
+			headers:headers,
 			success : function(res) {
 				console.log(res);
 				if (res == 1) {
