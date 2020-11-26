@@ -10,9 +10,6 @@ function get_TitleContent(){
 	content = content.replace(/<\/p>/g , '');
 	content = content.replace(/<br>/g , '');
 	content = content.trim();
-	
-	console.log("제목:" + title);
-	console.log("내용:" + content);
 }
 
 var post = {

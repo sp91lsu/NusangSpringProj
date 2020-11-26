@@ -7,22 +7,24 @@
 	box-sizing: border-box;
 }
 
-.community_list {
+.post_list {
 	width: 900px;
 	min-height: 500px;
 }
 
 .btn_write {
 	width: 900px;
+	height: 50px;
 	display: inline-block;
 	margin: 20px 105px 20px 105px;
 }
 .btn_write>button {
 	float: right;
 	font-size: 25px;
+	margin-bottom: 20px;
 }
 
-.community_list>.post {
+.post_list>.post {
 	width: 900px;
 	height: 160px;
 	display: inline-block;
@@ -34,22 +36,22 @@
 	margin-bottom: 20px;
 }
 
-.community_list>.post:hover {
+.post_list>.post:hover {
 	cursor: pointer;
 }
 
-.community_list>.post>.img {
+.post_list>.post>.img {
 	width: 200px;
 	height: 100%;
 	float: left;
 }
 
-.community_list>.post>.img>img {
+.post_list>.post>.img>img {
 	width: 100%;
 	height: 100%;
 }
 
-.community_list>.post>.txt {
+.post_list>.post>.txt {
 	float: left;
 	margin: 5px 0px 0px 15px;
 }
