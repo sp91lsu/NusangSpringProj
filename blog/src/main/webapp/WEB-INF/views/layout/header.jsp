@@ -60,7 +60,7 @@
 						<li class="nav-item"><a class="nav-link" href="/community/list">커뮤니티</a></li>
 						<li class="nav-item"><a class="nav-link" href="/shop/shop_view">아이템샵</a></li>
 						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a></li>
-							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
+						<li class="nav-item">	<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">
 
 									<li class="nav-item"><a class="nav-link" href="/profile/profileMain" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
@@ -89,6 +89,7 @@
 									</li>
 								</div>
 							</div>
+							</li>
 					</ul>
 
 				</c:otherwise>
