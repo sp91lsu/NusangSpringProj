@@ -4,7 +4,7 @@
 
 <div class="post_read container">
 	<div class="user_info">
-		<div class="img">
+		<div class="img" onclick="location.href='/profile/profileMain/'">
 			<img src=/upload/${board.user.picture}>
 		</div>
 		
