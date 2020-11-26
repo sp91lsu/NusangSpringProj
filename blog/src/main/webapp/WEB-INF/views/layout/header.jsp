@@ -52,20 +52,24 @@
 				<c:otherwise>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="/board/writeForm">글쓰기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보보기</a>
-						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a>
-						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a>
-						<li class="nav-item"><a class="nav-link" href="/user/near_userlist">내 근처회원</a>
-						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a>
-						<li class="nav-item"><a class="nav-link" href="/community/list">커뮤니티</a>
-						<li class="nav-item"><a class="nav-link" href="/shop/shop_view">아이템샵</a>
-						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a>
+						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/near_userlist">내 근처회원</a></li>
+						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a></li>
+						<li class="nav-item"><a class="nav-link" href="/community/list">커뮤니티</a></li>
+						<li class="nav-item"><a class="nav-link" href="/shop/shop_view">아이템샵</a></li>
+						<li class="nav-item"><a class="nav-link" href="/manager/noticeList">공지사항</a></li>
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">
 
 									<li class="nav-item"><a class="nav-link" href="/profile/profileMain" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
 									</a></li>
-									<li class="nav-item"><button id="logoutBtn" type="button" class="btn btn-secondary btn-sm" onclick="location.href='/logout'">로그아웃</button></li>
+									<li class="nav-item">
+									<form action="/logout" method="post">
+									<sec:csrfInput />
+									<button id="logoutBtn" type="submit" class="btn btn-secondary btn-sm" >로그아웃</button></li>
+									</form>
 									<li class="nav-item"><div class="dropdown">
 											<button class="btn btn-outline-dark dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${user.location != null ? user.location.name3 : '위치를 설정해주세요' }</button>
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
