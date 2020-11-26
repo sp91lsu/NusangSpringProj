@@ -15,7 +15,7 @@
 			<div class="title"> 글 제목</div>
 			
 			<div class="update_delete">
-				<button class="btn btn-primary" href="/post/post_update/${board.id}">수정</button>
+				<button class="btn btn-primary" onclick="location.href='/post/post_update/${board.id}'">수정</button>
 				<button id="btn_delete" class="btn btn-primary">삭제</button>
 			</div>
 		</div>

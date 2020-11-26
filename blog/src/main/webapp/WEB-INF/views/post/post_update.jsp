@@ -6,7 +6,7 @@
 
 	<form action="" method="post">
 		<div class="form-group">
-			<input  name="title" type="text" class="form-control" placeholder="제목을 입력하세요" id="title">
+			<input  name="title" type="text" class="form-control" placeholder="제목을 입력하세요" id="title" value="${board.title}">
 		</div>
 		<div class="form-group">
 			<textarea   class="summernote" id="content"></textarea>

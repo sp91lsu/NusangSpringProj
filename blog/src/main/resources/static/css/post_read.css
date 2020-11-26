@@ -25,6 +25,7 @@
 }
 
 .post_read>.user_info>.img {
+	width: 180px;
 	height: 100px;
 	float: left;
 	border-radius: 15px 15px 15px 15px;
@@ -32,9 +33,10 @@
 }
 
 .post_read>.user_info>.img>img {
+	width: 180px;
+	height: 100px;
 	border-radius: 15px 15px 15px 15px;
 	overflow: hidden;
-	height: 100px;
 }
 
 .post_read>.user_info>.txt {

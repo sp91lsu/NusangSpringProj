@@ -23,7 +23,7 @@ var post = {
 			});
 			
 			$("#btn_delete").click(function(){ //글삭제
-				this.delete();
+				post.delete();
 			});
 		},
 		
@@ -55,7 +55,8 @@ var post = {
 			
 			$.ajax({
 				type:"DELETE",
-				url:"/api/post/" + id
+				url:"/api/post/" + id,
+				headers: headers
 			}).done(function(res){
 				if(res == 1) {
 					alert(id+"번글 삭제 성공");
