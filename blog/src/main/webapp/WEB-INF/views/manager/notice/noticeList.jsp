@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../manager_header.jsp"%>
+<%@ include file="../../layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <link rel="preconnect" href="https://fonts.gstatic.com">
