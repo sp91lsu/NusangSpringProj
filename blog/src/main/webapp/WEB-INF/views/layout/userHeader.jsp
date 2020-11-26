@@ -20,8 +20,6 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/board/writeForm">글쓰기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보보기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/near_userlist">내 근처회원</a></li>

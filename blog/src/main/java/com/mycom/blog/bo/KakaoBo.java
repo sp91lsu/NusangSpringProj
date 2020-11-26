@@ -2,6 +2,7 @@ package com.mycom.blog.bo;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.KakaoProfile;
 import com.mycom.blog.model.OAuthToken;
@@ -78,7 +80,18 @@ public class KakaoBo extends BasicBO {
 
 		KakaoProfile kProfile = null;
 
+		System.out.println("바디바디 :" + response.getBody());
+		boolean agreeMentChk = response.getBody().contains("needs_agreement\":true");
+		
+		
+		if(agreeMentChk)
+		{
+			reqUnlink();
+			return null;
+		}
+		
 		try {
+			
 			kProfile = m.readValue(response.getBody(), KakaoProfile.class);
 		} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
@@ -91,10 +104,13 @@ public class KakaoBo extends BasicBO {
 		System.out.println(kProfile.getId());
 		System.out.println(kProfile.getKakao_account().getEmail());
 
+		kProfile.getKakao_account().getBirthday();
+		
+		GenderType gender = kProfile.getKakao_account().getGender().equals("male") ? GenderType.MALE : GenderType.FEMALE;
 		User user = User.builder().userid(kProfile.getKakao_account().getEmail() + "_" + kProfile.getId())
 				.username(kProfile.getProperties().getNickname()).nickname(kProfile.getProperties().getNickname())
 				.email(kProfile.getKakao_account().getEmail()).password(cosKey)// UUID.randomUUID().toString()
-				.build();
+				.gender(gender).build();
 
 		// 회원가입
 		System.out.println("유저 이름이 뭔데 : " + user.getUsername());
@@ -106,7 +122,9 @@ public class KakaoBo extends BasicBO {
 			userService.signUp(user, AuthType.KAKAO);
 		}
 		
+		
 		conAssist.setSessionUser(user);
+		
 		return user;
 	}
 
