@@ -6,16 +6,16 @@
 <div class="post_read container">
 	<div class="user_info">
 		<div class="img">
-			<img src=/image/panda.jpg>
+			<img src=/upload/${board.user.picture}>
 		</div>
 		
 		<div class="txt">
-			<div class="user_id">아이디를뭐라할까</div>
+			<div class="user_id">${board.user.nickname}</div>
 			
 			<div class="title"> 글 제목</div>
 			
 			<div class="update_delete">
-				<button class="btn btn-primary">수정</button>
+				<button class="btn btn-primary" href="/post/post_update/${board.id}">수정</button>
 				<button id="btn_delete" class="btn btn-primary">삭제</button>
 			</div>
 		</div>
