@@ -42,22 +42,24 @@
 
 .createPost{
 	padding-top: 200px;
-	margin: 0;
+	margin: 0 0 0 50px;
 }
 
 .pictureSection{
 	float: left;
 	width: 300px;
 	height: 250px;
+	margin-left: 50px;
 }
 
 .picUpdateBtn {
 	margin-top: 15px;
-	margin-left: 50px;
+	margin-left: 60px;
 }
 
 .picDeleteBtn {
 	margin-top: 15px;
+	margin-left: 10px;
 }
 
 

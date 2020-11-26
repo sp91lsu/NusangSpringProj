@@ -49,7 +49,7 @@
  		 	<c:forEach var="board" items="${user.getBoardList()}">
 				<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 					<div class="img">
-						<img src="/upload/${user.picture }">
+						<img src="/upload/${board.user.picture }">
 					</div>
 				
 					<div class="txt">
@@ -62,7 +62,7 @@
 		</div>
 		<div class="createPost col-4">
 			<h4>나의 일상을 공유해 보세요</h4>
-			<button>글쓰기</button>
+			<button onclick="location.href='/post/post_write'">글쓰기</button>
 		</div>
 	</div>
 

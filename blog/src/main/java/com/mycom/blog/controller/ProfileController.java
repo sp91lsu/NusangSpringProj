@@ -28,20 +28,21 @@ public class ProfileController {
 	
 	@RequestMapping("/profileMain")
 	String profile() {
+		conAssist.updateUser();
+		System.out.println("여기타냐");
 		return "profile/profileMain";
 	}
 	
 	@PostMapping(value =  "/updatePicture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest rquest){
-		profileService.updatePicture(file, rquest);
-		conAssist.updateUser();
+	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request){
+		profileService.updatePicture(file, request);
+		
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "profile/profileMain";
+		return "redirect:/profile/profileMain";
 	}
 	
 		
