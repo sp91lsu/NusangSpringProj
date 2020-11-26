@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<link rel="stylesheet" href="/css/manager/noticeView.css" />
-<link rel="stylesheet" href="/css/manager/header_subnav.css" />
 
-<link rel="stylesheet" href="/css/manager/noticeList.css" />
+
 <body style="height: 1500px">
 	<div class="container-fluid">
 		<br>
