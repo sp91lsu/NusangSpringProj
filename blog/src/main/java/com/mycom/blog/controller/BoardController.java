@@ -37,7 +37,7 @@ public class BoardController {
 		
 		
 
-		return "index";
+		return "/index";
 	}
 
 	@GetMapping("/board/writeForm")
