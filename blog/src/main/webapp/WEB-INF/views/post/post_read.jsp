@@ -4,8 +4,8 @@
 
 <div class="post_read container">
 	<div class="user_info">
-		<div class="img">
-				<div class="img" onclick="location.href='/profile/profileMain/${board.user.userno}'">
+		<div class="img" onclick="location.href='/profile/profileMain/${board.user.userno}'">
+            <img src=/upload/${board.user.picture}>
 		</div>
 		
 		<div class="txt">
