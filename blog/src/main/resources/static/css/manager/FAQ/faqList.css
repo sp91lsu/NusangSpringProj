@@ -2,8 +2,8 @@
 
 .container1, .container2{
 	font-family: 'Noto Sans KR', sans-serif;
-	min-height: 500px;
-	max-width:500px;
+	min-height: 900px;
+	width:500px;
 	display: inline-block;
 }
 
@@ -22,8 +22,13 @@
 }
 .titleColor{
 	color: black;
+	cursor: pointer;
 }
 
 .paging_input{
 	cursor: pointer;
+}
+
+.contents{
+	display:none;
 }

@@ -3,6 +3,7 @@
 .container{
 	font-family: 'Noto Sans KR', sans-serif;
 	min-height: 500px;
+	max-width: 900px;
 }
 
 .container .writeBtn{

@@ -10,18 +10,35 @@ import com.mycom.blog.dto.manager.FAQ;
 import com.mycom.blog.repository.manager.FAQRepository;
 
 @Service
-public class FAQService<E> {
+public class FAQService {
 	@Autowired
 	private FAQRepository faqRepository;
 	
-	public List<E> findAll(){
-		JpaRepository<E, Integer> e =(JpaRepository<E, Integer>) faqRepository;
-		List<E> faqList = e.findAll();
+	public List findAll(){
+		List faqList = faqRepository.findAll();
 		return faqList;
 	}
 	
-	public E save(E entity) {
-		JpaRepository<E, Integer> e =(JpaRepository<E, Integer>) faqRepository;
-		 return e.save(entity);
+	public FAQ save(FAQ dto) {
+		FAQ faq = faqRepository.save(dto);
+		 return faq;
+	}
+	public FAQ findbyid(int id) {
+		
+		FAQ faq =faqRepository.findById(id).get();
+		return faq;
+	}
+	
+	public int updateOk(FAQ updateDto) {
+		try {
+			FAQ dto = faqRepository.findById(updateDto.getNo()).get();
+			dto.setTitle(updateDto.getTitle());
+			dto.setContents(updateDto.getContents());
+			return 1;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

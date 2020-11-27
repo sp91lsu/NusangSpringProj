@@ -13,13 +13,13 @@ import com.mycom.blog.service.manager.FAQService;
 
 @Controller
 @RequestMapping("/manager/FAQ")
-public class FAQController<E> {
+public class FAQController {
 	@Autowired
 	FAQService faqService;
 	
 	@RequestMapping("/faqList")
 	public String faqList(Model model) {
-		List<E> faqList = faqService.findAll();
+		List faqList = faqService.findAll();
 		model.addAttribute("list", faqList);
 		return "/manager/FAQ/faqList";
 	}
@@ -29,10 +29,23 @@ public class FAQController<E> {
 	}
 	
 	@RequestMapping(value = "faqWriteOk", method = RequestMethod.POST)
-	public String faqWriteOk(FAQ dto, Model model) {
-		dto = (FAQ)faqService.save(dto);
+	public void faqWriteOk(FAQ dto, Model model) {
+		dto = faqService.save(dto);
 		int res = dto != null ? 1 : 0;
 		model.addAttribute("res", res);
-		return "/manager/FAQ/faqWriteOk";
 	}
+	@RequestMapping(value = "faqUpdate")
+	public void faqUpdate(int no, Model model) {
+		FAQ updateDto =faqService.findbyid(no);
+		model.addAttribute("updateDto",updateDto );
+	}
+	@RequestMapping(value = "faqUpdateOk", method = RequestMethod.POST)
+	public void faqUpdateOk(int no, FAQ dto,Model model) {
+		int res = faqService.updateOk(dto);
+		dto = faqService.findbyid(no);
+		model.addAttribute("dto", dto);
+		model.addAttribute("res", res);
+	}
+	
+	
 }
