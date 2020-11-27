@@ -1,6 +1,8 @@
 package com.mycom.blog.dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -64,7 +68,16 @@ public class ChatMessage {
 	@JoinColumn(name = "userno")
 	private User user;
 	
+	@Temporal(value = TemporalType.DATE)
 	@CreationTimestamp
-	private Timestamp createDate;
+	private Date createDate;
+	
+	
+	public String getFormatStr() {
+		SimpleDateFormat format = new SimpleDateFormat ( "HH:mm");
+		String timeStr = format.format(createDate);
+		return timeStr;
+	}
+	
 	
 }
