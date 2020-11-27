@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<input type="hidden" id="id" value="${board.id}">
-		<input type="hidden" id="boardno" value="${board.user.userno}">
+		<input type="hidden" id="boardno" value="${board.id}">
 	</div>
 	
 	<div class="content">

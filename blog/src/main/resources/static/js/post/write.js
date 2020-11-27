@@ -117,9 +117,9 @@ var post = {
 			
 			$.ajax({
 				type:"POST",
-				url:"/profile/userChk",
+				url:"/api/profile/userChk",
 				data: {
-					"title" : boardno
+					"id" : boardno
 				},
 				headers: headers
 			}).done(function(res){
