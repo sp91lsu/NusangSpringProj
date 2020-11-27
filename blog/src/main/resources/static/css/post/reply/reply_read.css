@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.reply {
+	width: 1000px;
+}
+
+.reply>.reply_write>textarea {
+	border: 1px solid black;
+}
+
+.reply>.reply_write>input[type=button] {
+	font-size: 15px;
+}

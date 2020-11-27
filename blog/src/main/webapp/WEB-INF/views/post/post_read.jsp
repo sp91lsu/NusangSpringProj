@@ -33,9 +33,11 @@
 		${board.content}
 	</div>
 </div>
- 
-<script src="/js/post/write.js"></script>
 
+<%@ include file="reply/reply_read.jsp"%>
+  
 <%@ include file="../layout/footer.jsp"%>
+
+<script src="/js/post/write.js"></script>
 </body>
 </html>
