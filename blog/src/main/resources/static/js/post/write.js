@@ -41,6 +41,10 @@ var post = {
 					post.update();
 				}
 			});
+			
+			$(".img").click(function(){
+				post.profile();
+			})
 		},
 		
 		write:function(){// 글쓰기처리
@@ -106,6 +110,28 @@ var post = {
 			}).fail(function(err){
 				console.log("error: " + err);
 			});
+		},
+		
+		profile:function(){
+			var boardno = $("#boardno").val();
+			
+			$.ajax({
+				type:"POST",
+				url:"/profile/userChk",
+				data: {
+					"title" : boardno
+				},
+				headers: headers
+			}).done(function(res){
+				if(res == 1){
+					location.href="/profile/profileMain"
+					alert("프로필 이동 성공");
+				}else{
+					alert("프로필 이동 실패");
+				}
+			}).fail(function(err){
+				console.log("error: " + err);
+			})
 		}
 }
 

@@ -37,4 +37,5 @@ public class PostController {
 		model.addAttribute("board", post_no);
 		return "post/post_update";
 	}
+		
 }

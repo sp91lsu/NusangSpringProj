@@ -4,7 +4,7 @@
 
 <div class="post_read container">
 	<div class="user_info">
-		<div class="img" onclick="location.href='/profile/profileMain/'">
+		<div class="img">
 			<img src=/upload/${board.user.picture}>
 		</div>
 		
@@ -26,6 +26,7 @@
 			</div>
 		</div>
 		<input type="hidden" id="id" value="${board.id}">
+		<input type="hidden" id="boardno" value="${board.user.userno}">
 	</div>
 	
 	<div class="content">
