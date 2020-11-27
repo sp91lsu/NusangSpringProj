@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.container{
+	font-family: 'Noto Sans KR', sans-serif;
+	min-height: 500px;
+}
+
+.container .writeBtn{
+	float: right;
+}
+
+.noTh{
+	width: 30px;
+}
+.conTh{
+	width: 100px;
+}
+.titleColor{
+	color: black;
+}
+
+.paging_input{
+	cursor: pointer;
+}
