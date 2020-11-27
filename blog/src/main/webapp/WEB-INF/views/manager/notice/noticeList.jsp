@@ -13,6 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="container ">
 		<br> <br>
 		<h3>공지사항</h3>

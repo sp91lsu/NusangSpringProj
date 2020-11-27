@@ -1,14 +1,16 @@
 @charset "UTF-8";
 
-.container{
+.container1, .container2{
 	font-family: 'Noto Sans KR', sans-serif;
 	min-height: 500px;
+	max-width:500px;
+	display: inline-block;
 }
 
-.table{
-	max-width:800px;
+.container1{
+	margin-right:150px;
 }
-.container .writeBtn{
+.container1 .writeBtn,.container2 .writeBtn{
 	float: right;
 }
 
@@ -16,7 +18,7 @@
 	width: 30px;
 }
 .conTh{
-	width: 200px;
+	width: 400px;
 }
 .titleColor{
 	color: black;
