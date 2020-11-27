@@ -5,7 +5,7 @@
 <div class="post_read container">
 	<div class="user_info">
 		<div class="img">
-			<img src=/upload/${board.user.picture}>
+				<div class="img" onclick="location.href='/profile/profileMain/${board.user.userno}'">
 		</div>
 		
 		<div class="txt">

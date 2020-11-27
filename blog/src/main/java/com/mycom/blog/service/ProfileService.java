@@ -25,7 +25,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 
 import com.mycom.blog.controller.assist.ConAssist;
+import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.User;
+import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -119,5 +121,11 @@ public class ProfileService {
 		}
 		return 0;
 	}
+
+	public User userChk(User user) {
+		user = userRepository.findById(user.getUserno()).get();
+		return user;
+	}
+
 
 }

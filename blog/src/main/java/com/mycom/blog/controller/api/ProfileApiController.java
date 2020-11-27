@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycom.blog.controller.assist.ConAssist;
+import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.model.Response;
+import com.mycom.blog.repository.BoardRepository;
+import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.service.ProfileService;
 
 @RestController
@@ -23,28 +26,27 @@ import com.mycom.blog.service.ProfileService;
 public class ProfileApiController {
 	
 	@Autowired
-	ConAssist conaAssist;
+	ConAssist conAssist;
 	
 	@Autowired
 	ProfileService profileService;
-	
+	 
 	@RequestMapping("/nickNameUpdate")
 	public int update(String nickName) {
 		System.out.println("닉네임 변경 컨트롤러 " + nickName);
 		
 		int res = profileService.nickNameUpdate(nickName);
-		conaAssist.updateUser();
+		conAssist.updateUser();
 		return res;
 	}
 	
 	@GetMapping("/deletePicture")
 	public int deletePic( HttpServletRequest request) {
 		int res = profileService.deletePicture(request);
-		User user =  conaAssist.updateUser();
+		User user =  conAssist.updateUser();
 		//System.out.println(user.getBoardList().size());
 		return res;
 	}
-	
 	
 
 }

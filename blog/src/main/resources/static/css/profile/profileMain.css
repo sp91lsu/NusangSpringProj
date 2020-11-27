@@ -6,22 +6,35 @@
 	float: left;
 	margin-left: 50px;
 	border: 1px solid #ccc;
+	border-radius: 7px;
+}
+
+.nicknameSection{
+	margin-bottom: 20px;
+	font-size: 18px;
 }
 
 .nickname {
 	width: 200px;
 	float: left;
+	font-size: 18px;
+	border: 1px solid black;
 }
 
 .infoSection {
 	height: 250px;
 	display: inline-block;
-	padding: 70px 0 0 100px;
+	padding: 50px 0 0 100px;
+	font-size: 18px;
+}
+
+.infoSection span{
+	margin-top: 30px;
 }
 
 .infoSection ul{
 	padding: 0;
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 .infoSection ul li{
@@ -35,9 +48,10 @@
 }
 
 .myPost{
-	height: 600px;
-	border: 1px solid black;
-	margin: 0;
+	height: 630px;
+	border: 2px solid #eee;
+	padding: 20px;
+	margin: 0 0 0 40px;
 }
 
 .createPost{
@@ -62,12 +76,14 @@
 	margin-left: 10px;
 }
 
-
+.chatBtn {
+	margin-top: 15px;
+}
 
 
 /* 내글에 대한 스타일 */
 .community_list {
-	width: 590px;
+	width: 630px;
 	min-height: 300px;
 }
 
