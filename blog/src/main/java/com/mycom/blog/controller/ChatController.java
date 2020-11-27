@@ -14,9 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.mycom.blog.auth.PrincipalDetail;
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.ChatRoom;
 import com.mycom.blog.model.MessageObject;
 import com.mycom.blog.service.ChatRoomService;
+import com.mycom.blog.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +30,9 @@ public class ChatController {
 
 	@Autowired
 	private ChatRoomService chatRoomService;
+
+	@Autowired
+	private ConAssist conAssist;
 
 	@MessageMapping("/chat.sendMessage")
 	public MessageObject sendMessage(@Payload MessageObject chatMessage) {
@@ -59,20 +64,19 @@ public class ChatController {
 	}
 
 	@GetMapping("/chat/chatpage")
-	public String moveChatPage() {
-
-		System.out.println("chat");
+	public String moveChatPage(int chat_userno,Model model) {
+		System.out.println("chat : " + chat_userno);
+		
+		ChatRoom chatRoom = chatRoomService.getChatRoom(chat_userno, conAssist.getUser());
+		model.addAttribute("chatRoom", chatRoom);
 		return "/chat/chat";
 	}
 
 	@GetMapping("chat/go_chatroom")
 	public String goChatPage(int chat_userno, @AuthenticationPrincipal PrincipalDetail principal, Model model) {
-
-		ChatRoom chatRoom = chatRoomService.openChatRoom(chat_userno, principal.getUser());
-		model.addAttribute("chatRoom", chatRoom);
-
-		System.out.println("chat" + chatRoom.getRoomno());
-		return "/chat/chat";
+ 
+		chatRoomService.openChatRoom(chat_userno, principal.getUser());
+		return "redirect:/chat/chatpage?chat_userno=" +chat_userno;
 	}
 
 	@GetMapping("/video/video_view")

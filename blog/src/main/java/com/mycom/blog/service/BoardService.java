@@ -86,11 +86,12 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 					location.getView_distance());
 			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
 			return pages;
-
 		} else {
-			return repository.findAll(pageable);
+			
+			List<Board> boardList =  repository.findAllByOrderByCreateDateAsc();
+			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
+			return pages;
 		}
-
 	}
 
 	@Transactional(readOnly = true)

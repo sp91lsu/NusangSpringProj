@@ -28,11 +28,6 @@ public class BoardController {
 		
 		System.out.println("page :" + pageable.getPageNumber());
 		Page<Board> pageList = boardService.getNearBoadList(pageable);
-//		System.out.println("getTotalPages" + pageList.getTotalPages());
-//		System.out.println("getNumber" + pageList.getNumber()); //현재 페이지 
-//		System.out.println("getSize" + pageList.getSize());// 페이 안의 최대 사이즈
-//		System.out.println("getNumberOfElements" + pageList.getNumberOfElements()); //페이지 안의 실제 갯수
-//		System.out.println("isLast" + pageList.isLast()); //페이지 안의 실제 갯수
 		model.addAttribute("boards", pageList);
 
 		return "/index";

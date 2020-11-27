@@ -82,4 +82,15 @@ public class ConAssist {
 
 		return getUser();
 	}
+	
+	public String createTopic(User user1, User user2) {
+
+		String topic = null;
+		Integer no1 = user1.getUserno();
+		Integer no2 = user2.getUserno();
+
+		topic = "chatRoom";
+		topic += no1 < no2 ? no1.toString() + "_" + no2.toString() : no2.toString() + "_" + no1.toString();
+		return topic;
+	}
 }

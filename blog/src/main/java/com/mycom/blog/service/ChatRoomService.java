@@ -32,14 +32,10 @@ class Student {
 @Service
 public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> {
 
-
 	@Autowired
 	private ChatRoomGuideRepository chatRoomGuidRep;
 	@Autowired
 	private ChatMessageRepository messageRep;
-
-	@Autowired
-	DSLContext dsl;
 
 	@Autowired
 	private UserRepository userRep;
@@ -51,40 +47,45 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 		setRepository(chatRoomRep);
 	}
 
-	public String createTopic(User user1, User user2) {
+	@Transactional
+	public void openChatRoom(int friendno, User me) {
 
-		String topic = null;
-		Integer no1 = user1.getUserno();
-		Integer no2 = user2.getUserno();
+		try {
+			User friend = userRep.findById(friendno).get();
 
-		topic = "chatRoom";
-		topic += no1 < no2 ? no1.toString() + "_" + no2.toString() : no2.toString() + "_" + no1.toString();
-		return topic;
+			String topic = conAssist.createTopic(me, friend);
+
+			ChatRoom chatRoom = repository.findByTopic(topic);
+
+			System.out.println(chatRoom);
+
+			if (chatRoom == null) {
+
+				chatRoom = ChatRoom.builder().build();
+				chatRoom.setTopic(topic);
+				chatRoom = save(chatRoom);
+				ChatRoomGuide roomGuide1 = ChatRoomGuide.builder().me(me).chatRoom(chatRoom).build();
+				ChatRoomGuide roomGuide2 = ChatRoomGuide.builder().me(friend).chatRoom(chatRoom).build();
+				chatRoomGuidRep.save(roomGuide1);
+				chatRoomGuidRep.save(roomGuide2);
+			}
+
+			System.out.println("채팅방 개설");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Transactional
-	public ChatRoom openChatRoom(int friendno, User me) {
+	public ChatRoom getChatRoom(int friendno, User me) {
 
 		User friend = userRep.findById(friendno).get();
 
-		String topic = createTopic(me, friend);
+		String topic = conAssist.createTopic(me, friend);
 
 		ChatRoom chatRoom = repository.findByTopic(topic);
 
 		System.out.println(chatRoom);
-
-		if (chatRoom == null) {
-
-			chatRoom = ChatRoom.builder().build();
-			chatRoom.setTopic(topic);
-			chatRoom = save(chatRoom);
-			ChatRoomGuide roomGuide1 = ChatRoomGuide.builder().me(me).chatRoom(chatRoom).build();
-			ChatRoomGuide roomGuide2 = ChatRoomGuide.builder().me(friend).chatRoom(chatRoom).build();
-			chatRoomGuidRep.save(roomGuide1);
-			chatRoomGuidRep.save(roomGuide2);
-		}
-
-		System.out.println("채팅방 개설");
 
 		return chatRoom;
 	}
