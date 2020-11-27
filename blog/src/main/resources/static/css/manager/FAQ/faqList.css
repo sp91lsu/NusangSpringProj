@@ -5,6 +5,9 @@
 	min-height: 500px;
 }
 
+.table{
+	max-width:800px;
+}
 .container .writeBtn{
 	float: right;
 }
@@ -13,7 +16,7 @@
 	width: 30px;
 }
 .conTh{
-	width: 100px;
+	width: 200px;
 }
 .titleColor{
 	color: black;

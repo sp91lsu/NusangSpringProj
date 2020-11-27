@@ -3,7 +3,7 @@
 <%@ include file="../../layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="/css/manager/faqList.css" />
+<link rel="stylesheet" href="/css/manager/FAQ/faqList.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
@@ -15,7 +15,7 @@
 <body>
 	<div class="container ">
 		<br> <br>
-		<h3>공지사항</h3>
+		<h3>FAQ</h3>
 		<%-- <c:choose>
 			<c:when test="${user.role == 'ADMIN' }"> --%>
 				<div class="writeBtn">

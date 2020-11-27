@@ -3,7 +3,7 @@
 <%@ include file="../../layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="/css/manager/noticeList.css" />
+<link rel="stylesheet" href="/css/manager/notice/noticeList.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
