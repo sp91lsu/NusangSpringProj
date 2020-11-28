@@ -147,3 +147,10 @@
 .txt>.view>span {
 	margin-right: 15px;
 }
+
+#loading{
+	position: relative;
+	top: 90px;
+	left: 130px;
+	display: none;
+}

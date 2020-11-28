@@ -9,13 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.User;
+import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.model.Response;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.UserRepository;
@@ -45,6 +48,20 @@ public class ProfileApiController {
 		int res = profileService.deletePicture(request);
 		User user =  conAssist.updateUser();
 		//System.out.println(user.getBoardList().size());
+		return res;
+	}
+	
+	@PostMapping("/genderSelect")
+	public int updateGender(@RequestParam GenderType gender) {
+		int res = profileService.updateGender(gender);
+		conAssist.updateUser();
+		return res;
+	}
+	
+	@PostMapping("/ageSelect")
+	public int updateGender(int age) {
+		int res = profileService.updateAge(age);
+		conAssist.updateUser();
 		return res;
 	}
 	

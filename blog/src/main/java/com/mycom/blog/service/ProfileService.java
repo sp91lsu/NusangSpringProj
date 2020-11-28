@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartResolver;
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.User;
+import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.oreilly.servlet.MultipartRequest;
@@ -122,10 +123,33 @@ public class ProfileService {
 		return 0;
 	}
 
+	//성별 변경
 	@Transactional
 	public User userChk(User user) {
 		user = userRepository.findById(user.getUserno()).get();
 		return user;
+	}
+	
+	@Transactional
+	public int updateGender(GenderType gender) {
+		try {
+			User user = userRepository.findById(conAssist.getUserno()).get();
+			user.setGender(gender);
+			return 1;
+		} catch (Exception e) {
+		}
+		return 0;
+	}
+
+	@Transactional
+	public int updateAge(int age) {
+		try {
+			User user = userRepository.findById(conAssist.getUserno()).get();
+			user.setAge(age);
+			return 1;
+		} catch (Exception e) {
+		}
+		return 0;
 	}
 
 

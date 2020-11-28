@@ -56,6 +56,7 @@ public class ProfileController {
 		user = profileService.userChk(user);
 		System.out.println("해당글 유저: " + user);
 		model.addAttribute("boardUser", user);
+		
 		return "profile/profileMain";
 	}
 		
