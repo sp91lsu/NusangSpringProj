@@ -6,13 +6,13 @@
 	function toggleWatchList(isWatchlist) {
 		if (isWatchlist == true) {
 			console.log("찜하기상태")
-			sendUrl = "post/delete_watchlist"
+			sendUrl = "/api/post/delete_wish"
 			$("#heart_icon").attr('class', 'fas fa-heart');
 			$("#heart_icon").css("color", "red");
 			toggleWatch = true;
 		} else {
 			console.log("찜하기X")
-			sendUrl = "post/set_watchlist"
+			sendUrl = "/api/post/add_wish"
 			$("#heart_icon").attr('class', 'far fa-heart');
 			$("#heart_icon").css("color", "black");
 			toggleWatch = false;
@@ -28,15 +28,14 @@
 			url : sendUrl,
 			type : "POST",
 			data : {
-				postno : $("#postno").val()
+				boardno : $("#boardno").val()
 			},
-			hearders : headers,
+			headers : headers,
 			success : function(data) {
 
-				var jData = JSON.parse(data);
 				console.log(data);
 
-				if (jData.result > 0) {
+				if (data > 0) {
 					if (toggleWatch == true) {
 						toggleWatchList(false);
 						watchCnt -= 1;
@@ -45,7 +44,6 @@
 						watchCnt += 1;
 						toggleWatchList(true);
 					}
-					$("#post_interest").text("관심 [" + watchCnt + "]");
 				} else {
 					alert("관심목록 수정 실패.");
 				}

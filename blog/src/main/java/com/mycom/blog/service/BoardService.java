@@ -15,10 +15,12 @@ import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.Reply;
 import com.mycom.blog.dto.User;
+import com.mycom.blog.dto.Wish;
 import com.mycom.blog.model.ReplySaveReq;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ReplyRepository;
 import com.mycom.blog.repository.UserRepository;
+import com.mycom.blog.repository.WishRepository;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
@@ -28,6 +30,9 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	private UserRepository userRep;
 	@Autowired
 	private ReplyRepository replyRep;
+
+	@Autowired
+	private WishRepository wishRep;
 
 	@Autowired
 	public BoardService(BoardRepository boardRep) {
@@ -136,10 +141,31 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 
 	}
 
-//	@Transactional(readOnly = true) //정합성 유지
-//	public User1 login(User1 user) {
-//		return userRep.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-//	}
-//	
+	@Transactional
+	public int addWish(int boardno) {
 
+		try {
+			Board board = repository.findById(boardno).get();
+			Wish wish = Wish.builder().board(board).me(ConAssist.getUser()).build();
+			wishRep.save(wish);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+
+	@Transactional
+	public int deleteWish(int boardno) {
+
+		try {
+			Board board = repository.findById(boardno).get();
+			wishRep.deleteByBoardAndMe(board, ConAssist.getUser());
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 }

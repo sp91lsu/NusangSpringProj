@@ -12,10 +12,8 @@
 			<div class="user_id">${board.user.nickname}</div>
 
 			<div class="title">${board.title}</div>
-			<div>
-				<input type="hidden" id="isWatchPost" value="${ board.isWishBoard(user)}"> <input type="hidden" id="watchno" value="${board.wishList.size() }">허허 <i id="heart_icon" style="cursor: pointer; width: 50px; height: 50px; margin: 5px 0 0 5px;"></i>
-			</div>
-			
+			<input type="hidden" id="boardno" value="${ board.id}"> <input type="hidden" id="isWatchPost" value="${ board.isWishBoard(user)}"> <input type="hidden" id="watchno" value="${board.wishList.size() }"><i id="heart_icon" style="cursor: pointer; width: 50px; height: 50px; margin: 5px 0 0 5px;"></i>
+
 			<div class="update_delete">
 
 				<c:choose>

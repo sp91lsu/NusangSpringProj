@@ -18,6 +18,7 @@ import com.mycom.blog.model.Response;
 import com.mycom.blog.service.BoardService;
 
 @RestController
+@RequestMapping(value = "/api/post")
 public class PostApiController {
 
 	@Autowired
@@ -26,26 +27,35 @@ public class PostApiController {
 	@Autowired
 	private ConAssist conAssist;
 
-	@PostMapping("/api/post")
+	@PostMapping("")
 	public int write(Board board) {
 		int result = boardService.writeBoard(board, conAssist.getUser());
 		return result;
 	}
-	
-	@DeleteMapping("/api/post/{id}")
-	public int delete(Board board){
+
+	@DeleteMapping("/{id}")
+	public int delete(Board board) {
 		int result = boardService.deleteBoad(board.getId());
 		return result;
 	}
-	
-	@PutMapping("/api/post/update")
-	public int update(Board board){
+
+	@PutMapping("/update")
+	public int update(Board board) {
 		int result = boardService.updateBoard(board);
 		return result;
 	}
+
+	@PostMapping("/add_wish")
+	public int set_wishList(int boardno) {
+		
+		int result = boardService.addWish(boardno);
+		return result;
+	}
 	
-	/*
-	 * @PostMapping("/api/post/update") public int update(Board board){ int result =
-	 * boardService.updateBoard(board); return result; }
-	 */
+	@PostMapping("/delete_wish")
+	public int delete_wishList(int boardno) {
+		int result = boardService.deleteWish(boardno);
+		return result;
+	}
+
 }
