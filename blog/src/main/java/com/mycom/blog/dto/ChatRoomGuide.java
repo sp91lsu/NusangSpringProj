@@ -55,10 +55,10 @@ public class ChatRoomGuide {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHAT_ROOM_GUIDE_SEQ_GEN")
 	private int no; // 시퀀스 auto_increment
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User me;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private ChatRoom chatRoom;
 	
 }
