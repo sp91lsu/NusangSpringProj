@@ -28,30 +28,27 @@ public class ChatController {
 
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
-	
+
 	@Autowired
 	private ChatRoomService chatRoomService;
 
 	@Autowired
 	private ConAssist conAssist;
-	
+
 	@MessageMapping("/chat.sendMessage")
-	public MessageObject sendMessage(@Payload MessageObject messageVO) {
+	public void sendMessage(@Payload MessageObject messageVO) {
 		System.out.println(messageVO.getSubscribe());
-		
+
 		ChatMessage message = chatRoomService.sendMessage(messageVO);
 		message = chatRoomService.findMessage(message.getMessageno());
 		if (message != null) {
-			simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getSubscribe(), messageVO);
 			messageVO.setFormatDateStr(message.getFormatStr());
-			
-			return messageVO;
 		} else {
 			messageVO.setContent("네트워크가 원활하지 않습니다.");
-			return messageVO;
 		}
+		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getSubscribe(), messageVO);
 	}
-	
+
 	@MessageMapping("/chat.addUser")
 	public MessageObject addUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		Map<String, Object> map = headerAccessor.getSessionAttributes();
@@ -67,9 +64,9 @@ public class ChatController {
 	}
 
 	@GetMapping("/chat/chatpage")
-	public String moveChatPage(int chat_userno,Model model) {
+	public String moveChatPage(int chat_userno, Model model) {
 		System.out.println("chat : " + chat_userno);
-		
+
 		ChatRoom chatRoom = chatRoomService.getChatRoom(chat_userno, conAssist.getUser());
 		model.addAttribute("chatRoom", chatRoom);
 		return "/chat/chat";
@@ -77,9 +74,9 @@ public class ChatController {
 
 	@GetMapping("chat/go_chatroom")
 	public String goChatPage(int chat_userno, @AuthenticationPrincipal PrincipalDetail principal, Model model) {
- 
+
 		chatRoomService.openChatRoom(chat_userno, principal.getUser());
-		return "redirect:/chat/chatpage?chat_userno=" +chat_userno;
+		return "redirect:/chat/chatpage?chat_userno=" + chat_userno;
 	}
 
 	@GetMapping("/video/video_view")
