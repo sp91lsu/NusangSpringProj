@@ -20,6 +20,7 @@ import com.mycom.blog.dto.ChatRoom;
 import com.mycom.blog.model.MessageObject;
 import com.mycom.blog.service.ChatRoomService;
 import com.mycom.blog.service.UserService;
+import com.mycom.blog.vo.ChatMessageVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,17 +37,16 @@ public class ChatController {
 	private ConAssist conAssist;
 
 	@MessageMapping("/chat.sendMessage")
-	public void sendMessage(@Payload MessageObject messageVO) {
-		System.out.println(messageVO.getSubscribe());
+	public void sendMessage(@Payload ChatMessageVO messageVO) {
 
-		ChatMessage message = chatRoomService.sendMessage(messageVO);
-		message = chatRoomService.findMessage(message.getMessageno());
-		if (message != null) {
-			messageVO.setFormatDateStr(message.getFormatStr());
-		} else {
-			messageVO.setContent("네트워크가 원활하지 않습니다.");
+		int result = chatRoomService.saveMessage(messageVO);
+		
+		if(result != 1)
+		{
+			messageVO.setText("네트워크 상태가 원활하지 않습니다.");
 		}
-		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getSubscribe(), messageVO);
+		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO);
+		System.out.println("성공?");
 	}
 
 	@MessageMapping("/chat.addUser")

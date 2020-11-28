@@ -1,10 +1,12 @@
 package com.mycom.blog.service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import com.mycom.blog.repository.ChatMessageRepository;
 import com.mycom.blog.repository.ChatRoomGuideRepository;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.UserRepository;
+import com.mycom.blog.vo.ChatMessageVO;
 
 class Student {
 
@@ -34,7 +37,8 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	private ChatRoomGuideRepository chatRoomGuidRep;
 	@Autowired
 	private ChatMessageRepository messageRep;
-
+	@Autowired
+	private SimpMessagingTemplate simpMessagingTemplate;
 	@Autowired
 	private UserRepository userRep;
 
@@ -88,34 +92,26 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	}
 
 	@Transactional
-	public ChatMessage sendMessage(MessageObject mObj) {
+	public int saveMessage(ChatMessageVO mObj) {
 
 		try {
-			ChatRoom chatRoom = repository.findByTopic(mObj.getSubscribe());
+			ChatRoom chatRoom = repository.findByTopic(mObj.getTopic());
 
 			User user = userRep.findById(mObj.getUserno()).get();
-			ChatMessage message = ChatMessage.builder().chatRoom(chatRoom).text(mObj.getContent()).user(user).build();
-			message = messageRep.save(message);
-			return message;
+			
+			
+			ChatMessage message = ChatMessage.builder().chatRoom(chatRoom).text(mObj.getText()).user(user)
+					.createDate(new Date()).build();
+			
+			mObj.setCreateDate(message.getFormatStr());
+			 messageRep.save(message);
+			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return -1;
 		}
 
 	}
 	
-	@Transactional
-	public ChatMessage findMessage(int no) {
-
-		try {
-			ChatMessage message = messageRep.findById(no).get();
-			
-			
-			return message;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
+	
 }

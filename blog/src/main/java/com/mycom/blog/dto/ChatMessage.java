@@ -59,7 +59,7 @@ public class ChatMessage {
 	private int messageno; // 시퀀스 auto_increment
 
 	@ManyToOne
-	@JoinColumn(name = "roomno")
+	@JoinColumn(name = "roomno" )
 	private ChatRoom chatRoom;
 	
 	private String text;
