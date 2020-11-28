@@ -28,29 +28,30 @@ public class ChatController {
 
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
-
+	
 	@Autowired
 	private ChatRoomService chatRoomService;
 
 	@Autowired
 	private ConAssist conAssist;
-
+	
 	@MessageMapping("/chat.sendMessage")
 	public MessageObject sendMessage(@Payload MessageObject messageVO) {
 		System.out.println(messageVO.getSubscribe());
-
+		
 		ChatMessage message = chatRoomService.sendMessage(messageVO);
-
+		message = chatRoomService.findMessage(message.getMessageno());
 		if (message != null) {
 			simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getSubscribe(), messageVO);
 			messageVO.setFormatDateStr(message.getFormatStr());
+			
 			return messageVO;
 		} else {
 			messageVO.setContent("네트워크가 원활하지 않습니다.");
 			return messageVO;
 		}
 	}
-
+	
 	@MessageMapping("/chat.addUser")
 	public MessageObject addUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		Map<String, Object> map = headerAccessor.getSessionAttributes();

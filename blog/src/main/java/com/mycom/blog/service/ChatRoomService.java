@@ -103,5 +103,19 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 		}
 
 	}
+	
+	@Transactional
+	public ChatMessage findMessage(int no) {
 
+		try {
+			ChatMessage message = messageRep.findById(no).get();
+			
+			
+			return message;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 }
