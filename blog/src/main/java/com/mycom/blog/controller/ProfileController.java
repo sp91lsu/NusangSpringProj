@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycom.blog.controller.assist.ConAssist;
+import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.User;
+import com.mycom.blog.repository.UserRepository;
+import com.mycom.blog.service.BoardService;
 import com.mycom.blog.service.ProfileService;
 
 @Controller
@@ -26,23 +29,34 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@RequestMapping("/profileMain")
-	String profile() {
+	String profile(Board board, User user) {
+		conAssist.updateUser();
 		return "profile/profileMain";
 	}
 	
 	@PostMapping(value =  "/updatePicture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest rquest){
-		profileService.updatePicture(file, rquest);
-		conAssist.updateUser();
+	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request){
+		profileService.updatePicture(file, request);
+		
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "profile/profileMain";
+		return "redirect:/profile/profileMain";
 	}
 	
+	
+	@RequestMapping("/profileMain/{userno}")
+	public String userChk(User user, Model model) {
+		user = profileService.userChk(user);
+		System.out.println("해당글 유저: " + user);
+		model.addAttribute("boardUser", user);
+		return "profile/profileMain";
+	}
 		
 }

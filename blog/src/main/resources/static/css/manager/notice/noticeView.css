@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#container{
+	margin-left: 150px;
+	width:1100px; 
+	min-height:500px;
+}
+
+#container #titleDate{
+	padding-top:100px;
+	display: inline-block; 
+	float:left;
+}
+
+#container #titleDate #titleFont{
+	font-family: 'Noto Sans KR', sans-serif; 
+	font-weight: bold; 
+	font-size: 25px;
+}
+
+#container #contents{
+	margin-left: 50px;
+	display: inline-block; 
+	word-break: break-all;
+	min-height:400px;
+}

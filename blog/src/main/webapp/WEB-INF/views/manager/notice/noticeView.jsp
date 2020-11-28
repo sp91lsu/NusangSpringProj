@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../manager_header.jsp"%>
+<%@ include file="../../layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="/css/manager/notice/noticeView.css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
@@ -26,13 +27,23 @@
 
 		<div align="center">
 			<form action="/manager/notice/noticeDeleteOk" method="post">
-			<sec:csrfInput />
-				<button type="button" class="btn btn-info"
-					onclick="location.href = '/manager/notice/noticeUpdate?no=${view.no}'">수정</button>
+				<sec:csrfInput />
+				<c:choose>
+					<c:when test="${user.role == 'ADMIN' }">
+						<button type="button" class="btn btn-info"
+							onclick="location.href = '/manager/notice/noticeUpdate?no=${view.no}'">수정
+						</button>
+					</c:when>
+				</c:choose>
 				<button type="button" class="btn btn-primary"
-					onclick="location.href = '/manager/notice/noticeList'">목록으로</button>
+					onclick="location.href = '/manager/notice/noticeList'">목록으로
+				</button>
 				<input type="hidden" name="no" value="${view.no }" />
-				<button type="submit" class="btn btn-secondary">삭제</button>
+				<c:choose>
+					<c:when test="${user.role == 'ADMIN' }">
+						<button type="submit" class="btn btn-secondary">삭제</button>
+					</c:when>
+				</c:choose>
 			</form>
 		</div>
 	</div>

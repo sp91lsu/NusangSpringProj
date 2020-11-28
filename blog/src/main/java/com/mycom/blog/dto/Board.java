@@ -88,6 +88,7 @@ public class Board {
 		} else if ((time = TimeUnit.MILLISECONDS.toSeconds(betweenTime)) > 0) {
 			return time + "초 전";
 		}
+		
 		return "";
 	}
 }

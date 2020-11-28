@@ -27,8 +27,6 @@ import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.FriendRepository;
 import com.mycom.blog.repository.UserRepository;
-import com.mycom.jooq.tables.JFriend;
-import com.mycom.jooq.tables.records.JFriendRecord;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
@@ -37,7 +35,6 @@ public class FriendService extends BasicService<FriendRepository,Friend> {
 	@Autowired
 	UserRepository userRep;
 
-	JFriend jfriend = JFriend.FRIEND;
 
 	@Autowired
 	public FriendService(FriendRepository friendRep) {

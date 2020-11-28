@@ -38,7 +38,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "Notice")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
-@Entity // user클래스가 자동으로 테이블을 생성
+@Entity // notice클래스가 자동으로 테이블을 생성
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class Notice {
 	

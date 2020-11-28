@@ -28,7 +28,6 @@ import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.LocationRepository;
 import com.mycom.blog.repository.ShopRepository;
 import com.mycom.blog.repository.UserRepository;
-import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service

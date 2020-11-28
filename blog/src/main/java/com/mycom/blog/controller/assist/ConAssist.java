@@ -1,5 +1,8 @@
 package com.mycom.blog.controller.assist;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -81,5 +84,22 @@ public class ConAssist {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return getUser();
+	}
+	
+	public String createTopic(User user1, User user2) {
+
+		String topic = null;
+		Integer no1 = user1.getUserno();
+		Integer no2 = user2.getUserno();
+
+		topic = "chatRoom";
+		topic += no1 < no2 ? no1.toString() + "_" + no2.toString() : no2.toString() + "_" + no1.toString();
+		return topic;
+	}
+	
+	public String getFormatStr(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat ( "HH:mm");
+		String timeStr = format.format(date);
+		return timeStr;
 	}
 }

@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.container1, .container2{
+	font-family: 'Noto Sans KR', sans-serif;
+	min-height: 900px;
+	width:500px;
+	display: inline-block;
+}
+
+.container1{
+	margin-right:150px;
+}
+.container1 .writeBtn,.container2 .writeBtn{
+	float: right;
+}
+
+.noTh{
+	width: 30px;
+}
+.conTh{
+	width: 400px;
+}
+.titleColor{
+	color: black;
+	cursor: pointer;
+}
+
+.paging_input{
+	cursor: pointer;
+}
+
+.contents{
+	display:none;
+}

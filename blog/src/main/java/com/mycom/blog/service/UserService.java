@@ -23,7 +23,6 @@ import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.repository.manager.PaymentRepository;
-import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
@@ -46,7 +45,6 @@ public class UserService extends BasicService<UserRepository, User> {
 	@Autowired
 	private ChatRoomRepository chatRoomRep;
 
-	JUser1 juser1 = JUser1.USER1;
 
 	@Transactional
 	public int signUp(User user, AuthType authType) {

@@ -24,8 +24,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycom.blog.bo.KakaoBo;
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
+import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.KakaoProfile;
 import com.mycom.blog.model.OAuthToken;
 import com.mycom.blog.service.UserService;
@@ -43,6 +45,10 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 
+	
+	@Autowired
+	ConAssist conAssist;
+	
 	@Autowired
 	private KakaoBo kakaoBo;
 
@@ -61,10 +67,23 @@ public class AuthController {
 
 	// @ResponseBody : 데이터를 리턴해주는 함수로 바뀜 restController같은 역할
 	@GetMapping("/kakaologin")
-	public String kakaoCallback(String code) {
+	public String kakaoCallback(String code, Model model) {
 
-		kakaoBo.login(code);
-		return "redirect:/home";
+		User user = kakaoBo.login(code);
+		
+		if (user == null) {
+			model.addAttribute("error", "다시 로그인하여 카카오 추가 동의를 해주세요.");
+			return "/layout/error";
+		} else {
+			
+			user = conAssist.updateUser();
+			if (user.getRole() == RoleType.USER) {
+				return "redirect:/home";
+			} else {
+				return "redirect:/manager/notice/noticeList";
+			}
+		}
+
 	}
 
 }

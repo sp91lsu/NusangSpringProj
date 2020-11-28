@@ -29,4 +29,13 @@ public class PostController {
 		model.addAttribute("board", post_no);
 		return "post/post_read";
 	}
+
+	@GetMapping(value = "/post_update/{id}") // 글 수정
+	public String update(Board board, Model model) {
+		System.out.println(board.getId() + "번 수정페이지 이동");
+		Board post_no = boardService.findById(board.getId());
+		model.addAttribute("board", post_no);
+		return "post/post_update";
+	}
+		
 }

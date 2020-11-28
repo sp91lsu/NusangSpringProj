@@ -25,7 +25,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 
 import com.mycom.blog.controller.assist.ConAssist;
+import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.User;
+import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -42,7 +44,7 @@ public class ProfileService {
 	@Autowired
 	UserRepository userRepository;
 
-	//사진 업데이트
+	// 사진 업데이트
 	@Transactional
 	public int updatePicture(MultipartFile file, HttpServletRequest request) {
 
@@ -80,25 +82,50 @@ public class ProfileService {
 
 	}
 
-	
-	//닉네임 체인지
+	// 사진 지우기(기본사진으로)
+	@Transactional
+	public int deletePicture(HttpServletRequest request) {
+		String savePath = request.getSession().getServletContext().getRealPath("");
+		savePath = savePath.replace("webapp", "resources/static/upload");
+
+		try {
+			User user = userRepository.findById(conAssist.getUserno()).get();
+
+			File f = new File(savePath + user.getPicture());
+			if (f.exists() && !user.getPicture().equals("profileImg.jpg")) {
+				f.delete();
+			}
+
+			user.setPicture("profileImg.jpg");
+			return 1;
+
+		} catch (Exception e) {
+		}
+		return 0;
+	}
+
+	// 닉네임 체인지
 	@Transactional
 	public int nickNameUpdate(String nickName) {
-		String namePattern = "^[a-zA-Z0-9가-힣!@#$%^&*()_+-=~.]{2,8}$"; //한글만 2~8자
+		String namePattern = "^[a-zA-Z0-9가-힣!@#$%^&*()_+-=~.]{2,8}$"; // 한글만 2~8자
 		boolean chk = Pattern.matches(namePattern, nickName);
-		
-		if(chk == true) {
-			
+
+		if (chk == true) {
+
 			try {
 				User user = userRepository.findById(conAssist.getUserno()).get();
 				user.setNickname(nickName);
 				return 1;
-			} catch (Exception e) {}
-		} 
+			} catch (Exception e) {
+			}
+		}
 		return 0;
-		
 	}
 
+	public User userChk(User user) {
+		user = userRepository.findById(user.getUserno()).get();
+		return user;
+	}
 
 
 }

@@ -48,15 +48,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 	//csrf().disable() //csrf 토큰 비활성화(테스트용)
 		.authorizeRequests().
-		antMatchers("/api/paging","/payment/webhook","/auth/**","/js/**","/css/**","/image/**","/home") // auth/로 해당하는 경로를
+		antMatchers("/api/paging","/layout/error","/payment/webhook","/auth/**","/js/**","/css/**","/image/**","/home","/upload/**") // auth/로 해당하는 경로를
 				.permitAll() // 모두 허용하고
+				.antMatchers("manager/**").hasRole("ADMIN")
 				.anyRequest() // 나머지 경로는
 				.authenticated() // 인증이 필요하기 때문에 접근 불가합니다.
 				.and() // 그리고
 				.formLogin() // 인증이 필요한 경로들은 로그인 폼으로 이동 되며
 				.loginPage("/auth/loginForm") // 해당경로로 이동됩니다.
 				.loginProcessingUrl("/auth/loginProc") //스프링 시큐리티가 로그인 경로를 가로챈다 
-				.defaultSuccessUrl("/home") //로그인 성공시 홈 경로로 간다 
+				.defaultSuccessUrl("/home") //로그인 성공시 홈 경로로 간다
+				
 				;
 		}
 }

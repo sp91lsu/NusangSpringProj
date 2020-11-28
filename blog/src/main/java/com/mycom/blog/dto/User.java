@@ -31,7 +31,6 @@ import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.FriendType;
 import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.dto.enumtype.RoleType;
-import com.mycom.jooq.tables.records.JFriendRecord;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -85,7 +84,8 @@ public class User {
 	private String email;
 
 	@Enumerated(EnumType.STRING)
-	private RoleType role; // Enum을 쓰는게 좋다.
+	@Column(nullable = false)
+	private RoleType role = RoleType.USER; // Enum을 쓰는게 좋다.
 
 	@Column(nullable = false)
 	@CreationTimestamp // 시간이 자동입력
@@ -103,10 +103,10 @@ public class User {
 	
 	private int coin;
 	
-	@OneToMany(mappedBy = "me", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Board> boardList = new ArrayList<Board>();
 	
 	private int availableTalk;

@@ -76,8 +76,8 @@ public class NoticeController {
 	public String noticeUpdateOk(Notice notice, Model model) {
 
 		int res = noticeService.updateOk(notice);
-		notice = noticeService.findById(notice.getNo());
-		model.addAttribute("notice", notice);
+//		notice = noticeService.findById(notice.getNo());
+//		model.addAttribute("notice", notice);
 		model.addAttribute("res", res);
 
 		return "/manager/notice/noticeUpdateOk";
