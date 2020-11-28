@@ -51,7 +51,7 @@ import lombok.ToString;
 @Table(name = "Friend")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성
-@ToString(exclude = "me")
+@ToString(exclude = {"me","user","fromWho" })
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class Friend {
 

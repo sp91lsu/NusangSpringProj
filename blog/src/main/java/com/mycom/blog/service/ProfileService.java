@@ -122,6 +122,7 @@ public class ProfileService {
 		return 0;
 	}
 
+	@Transactional
 	public User userChk(User user) {
 		user = userRepository.findById(user.getUserno()).get();
 		return user;
