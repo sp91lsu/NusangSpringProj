@@ -13,15 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Board;
 import com.mycom.blog.dto.Location;
+import com.mycom.blog.dto.Reply;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.model.ReplySaveReq;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ReplyRepository;
+import com.mycom.blog.repository.UserRepository;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
 public class BoardService extends BasicService<BoardRepository, Board> {
 
+	@Autowired
+	private UserRepository userRep;
 	@Autowired
 	private ReplyRepository replyRep;
 
@@ -87,8 +91,8 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
 			return pages;
 		} else {
-			
-			List<Board> boardList =  repository.findAllByOrderByCreateDateAsc();
+
+			List<Board> boardList = repository.findAllByOrderByCreateDateAsc();
 			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
 			return pages;
 		}
@@ -107,23 +111,22 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 
 	@Transactional
 	public int saveReply(ReplySaveReq dto) {
+		System.out.println("userno:" + dto.getUserId());
+		System.out.println("boardno:" + dto.getBoardId());
+		System.out.println("내용:" + dto.getContent());
 
-		System.out.println("replySave1");
-//		Board board = boardRep.findById(id).orElseThrow(()->{
-//			return new IllegalArgumentException("리플을 달던 중 board를 찾을 수 없습니다.");
-//		});
-//		System.out.println("replySave2");
-//		reply.setUser(user);
-//		reply.setBoard(board);
-//		replyRep.save(reply);
+		try {
 
-		System.out.println("데이터 확인-----------------------");
-		System.out.println(dto.getUserId());
-		System.out.println(dto.getBoardId());
-		System.out.println(dto.getContent());
+			Board board = repository.findById(dto.getBoardId()).get();
+			User user = userRep.findById(dto.getUserId()).get();
 
-		return replyRep.mSave(dto.getUserId(), dto.getBoardId(), dto.getContent());
-
+			Reply reply = Reply.builder().board(board).content(dto.getContent()).user(user).build();
+			replyRep.save(reply);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 
 	@Transactional

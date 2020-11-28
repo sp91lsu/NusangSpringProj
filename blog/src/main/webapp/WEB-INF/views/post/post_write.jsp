@@ -26,4 +26,4 @@
 		height : 300
 	});
 </script>
-<script src="/js/post/write.js"></script>
+<script src="/js/post/post.js"></script>

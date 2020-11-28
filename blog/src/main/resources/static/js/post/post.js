@@ -67,7 +67,7 @@ var post = {
 		},
 		
 		delete:function() { // 글 삭제처리
-			var id = $("#id").val();
+			var id = $("#board_no").val();
 			
 			$.ajax({
 				type:"DELETE",
@@ -93,7 +93,7 @@ var post = {
 				data:{
 					"title" : title,
 					"content" : content,
-					"id" : $("#id").val()
+					"id" : $("#board_no").val()
 				},
 				headers: headers
 			}).done(function(res){

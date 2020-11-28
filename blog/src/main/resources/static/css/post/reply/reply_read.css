@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 .reply {
-	width: 1000px;
+	width: 950px;
+	margin-bottom: 20px;
 }
 
 .reply>.reply_write>textarea {
@@ -14,12 +15,17 @@
 
 .reply>.reply_list>.reply {
 	height: 120px;
+	background: lightgray;
 }
 
-.reply>.reply_list>.reply>.img{
+.reply>.reply_list>.reply>.img {
 	width: 180px;
 	height: 100%;
-	float:left;
+	float: left;
+}
+
+.reply>.reply_list>.reply>.img:hover {
+	cursor: pointer;
 }
 
 .reply>.reply_list>.reply>.img>img{
@@ -29,33 +35,48 @@
 
 .reply>.reply_list>.reply>.txt{
 	margin-left: 10px;
-	width: 810px;
+	width: 740px;
 	height: 100%;
 	float:left;
 }
 
 .reply>.reply_list>.reply>.txt>.top {
 	height: 35px;
-	background: red;
 }
 
 .reply>.reply_list>.reply>.txt>.top>.nickname {
-	background: red;
-	float:left;
+	margin: 8px 0px 0px 5px;
+	float: left;
 }
 
-.reply>.reply_list>.reply>.txt>.top>.btn_ud  {
-	background: red;
+.reply>.reply_list>.reply>.txt>.top>.nickname:hover {
+	cursor: pointer;
+}
+
+.reply>.reply_list>.reply>.txt>.top>.btn_ud {
 	float: right;
-	}
+	margin: 8px 15px 0px 0px;
+}
+
+.reply>.reply_list>.reply>.txt>.top>.btn_ud>button {
+	margin-left: 15px;
+}
 
 .reply>.reply_list>.reply>.txt>.mid {
-	height: 60px;
-	background: blue;
+	width: 730px;
+	height: 65px;
 	margin-left: 10px;
 }
 
 .reply>.reply_list>.reply>.txt>.bot {
-	height: 25px;
-	background: black;
+	height: 20px;
+	font-size: 13px;
+}
+
+
+
+
+/* ////////////////// */
+.reply_write{
+	margin-top: 20px;
 }

@@ -21,10 +21,14 @@
 				</div>
 				
 				<div class="bot">
-					
+					2020.11.27  20:24
 				</div>
 			</div>
 		</div>
+	
+	<div class="reply_write">
+		<textarea id="reply_content" rows="3" cols="50" placeholder="댓글을 입력하세요"></textarea>
+		<input type="button" id="btn_reply_write" value="등록">
 	</div>
-	<%@ include file="reply_write.jsp"%>
+	
 </div>

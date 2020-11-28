@@ -25,8 +25,8 @@
 				</c:choose>
 			</div>
 		</div>
-		<input type="hidden" id="id" value="${board.id}">
-		<input type="hidden" id="boardno" value="${board.id}">
+		<input type="hidden" id="board_no" value="${board.id}">
+		<input type="hidden" id="user_no" value="${user.userno}">
 	</div>
 	
 	<div class="content">
@@ -38,6 +38,7 @@
   
 <%@ include file="../layout/footer.jsp"%>
 
-<script src="/js/post/write.js"></script>
+<script src="/js/post/post.js"></script>
+<script src="/js/post/reply.js"></script>
 </body>
 </html>

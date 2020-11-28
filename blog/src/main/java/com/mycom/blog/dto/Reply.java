@@ -37,11 +37,11 @@ public class Reply {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="REPLY_SEQ_GEN")
 	private int id;
 	
-	@Column(nullable = false, length =  200)
+	@Column(nullable = false, length =  200) 
 	private String content;
 	
 	@ManyToOne
-	@JoinColumn(name = "boardId")
+	@JoinColumn(name = "board_id")
 	private Board board;
 	
 	@ManyToOne

@@ -18,7 +18,6 @@ import com.mycom.blog.model.Response;
 import com.mycom.blog.service.BoardService;
 
 @RestController
-
 public class PostApiController {
 
 	@Autowired
