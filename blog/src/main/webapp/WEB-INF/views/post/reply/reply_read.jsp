@@ -25,6 +25,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	
 	<div class="reply_write">
 		<textarea id="reply_content" rows="3" cols="50" placeholder="댓글을 입력하세요"></textarea>
