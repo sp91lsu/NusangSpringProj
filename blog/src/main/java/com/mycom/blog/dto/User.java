@@ -109,6 +109,9 @@ public class User {
 	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Board> boardList = new ArrayList<Board>();
 	
+	@OneToMany(mappedBy = "me",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private List<Wish> wishList = new ArrayList<Wish>();
+	
 	private int availableTalk;
 	
 	/*

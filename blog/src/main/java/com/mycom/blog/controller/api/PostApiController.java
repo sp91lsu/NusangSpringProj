@@ -43,4 +43,9 @@ public class PostApiController {
 		int result = boardService.updateBoard(board);
 		return result;
 	}
+	
+	/*
+	 * @PostMapping("/api/post/update") public int update(Board board){ int result =
+	 * boardService.updateBoard(board); return result; }
+	 */
 }

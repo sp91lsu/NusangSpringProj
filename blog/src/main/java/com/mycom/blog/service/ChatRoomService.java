@@ -42,7 +42,6 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	@Autowired
 	private UserRepository userRep;
 
-
 	@Autowired
 	public ChatRoomService(ChatRoomRepository chatRoomRep) {
 		setRepository(chatRoomRep);
@@ -110,8 +109,5 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 			e.printStackTrace();
 			return -1;
 		}
-
 	}
-	
-	
 }

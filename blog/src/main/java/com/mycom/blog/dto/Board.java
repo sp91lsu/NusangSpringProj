@@ -1,8 +1,11 @@
 package com.mycom.blog.dto;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.persistence.CascadeType;
@@ -24,6 +27,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
+import com.mycom.blog.controller.assist.ConAssist;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -63,7 +67,7 @@ public class Board {
 	
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) // 연관관계의 주인이 아니다
 	@JsonIgnoreProperties({ "board" })
-	@OrderBy("id desc")
+	@OrderBy("id Asc")
 	private List<Reply> replyList;
 
 	@CreationTimestamp
@@ -73,6 +77,19 @@ public class Board {
 
 	private int heartcnt;
 
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private List<Wish> wishList = new ArrayList<Wish>();
+	
+	public boolean isWishBoard(User user) {
+		
+		for (Wish wish : wishList) {
+			if(wish.getMe().getUserno() == ConAssist.getUserno()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public String calcTime() {
 		Date current = new Date(System.currentTimeMillis());
 
