@@ -13,7 +13,11 @@ import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
+
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +35,8 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = { "board","user" })
+@JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class Reply {
 
 	@Id

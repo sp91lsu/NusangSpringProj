@@ -29,7 +29,7 @@
 						<span class="nickName" id="nickName" >${boardUser.nickname }</span>
 					</form>
 				</div>
-				<span>성별: ${boardUser.gender.toString() } / 나이: ${boardUser.age } 세</span>
+				<span>성별: ${boardUser.gender.toString() }&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;나이: ${boardUser.age } 세</span>
 				<ul>
 					<li>좋아요글 3</li>
 					<li>나의 캐쉬 40 coin</li>
