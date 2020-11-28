@@ -69,6 +69,7 @@
 		</c:choose> --%>
 		<br>
 		<form action="/manager/FAQ/faqDeleteOk" method = "post">
+		<sec:csrfInput />
 		<table class="table">
 			<thead class="thead-dark" align="center">
 				<tr>
