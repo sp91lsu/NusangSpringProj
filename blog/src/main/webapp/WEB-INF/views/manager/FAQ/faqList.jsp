@@ -68,6 +68,7 @@
 		<%-- 	</c:when>
 		</c:choose> --%>
 		<br>
+		<form action="/manager/FAQ/faqDeleteOk" method = "post">
 		<table class="table">
 			<thead class="thead-dark" align="center">
 				<tr>
@@ -84,8 +85,9 @@
 						<td>
 						<div class="titleColor">${dto.title }</div>
 						<div class = "contents"><br>${dto.contents }<br>
-							<button class = "btn btn-primary btn-sm" onclick="location.href = '/manager/FAQ/faqUpdate?no=${dto.no}'">수정</button>
-							<button class = "btn btn-secondary btn-sm">삭제</button>
+							<button type = "button" class = "btn btn-primary btn-sm" onclick="location.href = '/manager/FAQ/faqUpdate?no=${dto.no}'">수정</button>
+							<input type="hidden" name="no" value="${dto.no }" />
+							<button type = "submit" class = "btn btn-secondary btn-sm">삭제</button>
 						</div>
 						</td>
 					</tr>
@@ -93,6 +95,7 @@
 
 			</tbody>
 		</table>
+	</form>
 		<%-- <ul class="pagination justify-content-center">
 			<c:forEach var="i" begin="1" end="${list.getTotalPages() }">
 				<a class="ml-2 mr-2 paging_input">${i}</a>

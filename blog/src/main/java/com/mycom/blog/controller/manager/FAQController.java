@@ -40,12 +40,18 @@ public class FAQController {
 		model.addAttribute("updateDto",updateDto );
 	}
 	@RequestMapping(value = "faqUpdateOk", method = RequestMethod.POST)
-	public void faqUpdateOk(int no, FAQ dto,Model model) {
-		int res = faqService.updateOk(dto);
-		dto = faqService.findbyid(no);
-		model.addAttribute("dto", dto);
+	public void faqUpdateOk(FAQ updateDto,Model model) {
+		int res = faqService.updateOk(updateDto);
 		model.addAttribute("res", res);
 	}
 	
+	
+	@RequestMapping(value = "/faqDeleteOk", method = RequestMethod.POST)
+	public void faqDeleteOk(int no, Model model) {
+		int res = faqService.deleteById(no);
+		model.addAttribute("res", res);
+		
+	}
+	 
 	
 }
