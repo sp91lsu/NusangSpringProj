@@ -100,20 +100,20 @@ public class User {
 
 	@Column(columnDefinition = "varchar(255) default 'profileImg.jpg'")
 	private String picture;
-	
+
 	private int coin;
-	
+
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
 
-	@OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Board> boardList = new ArrayList<Board>();
-	
-	@OneToMany(mappedBy = "me",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+
+	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Wish> wishList = new ArrayList<Wish>();
-	
+
 	private int availableTalk;
-	
+
 	/*
 	 * @OneToMany(mappedBy = "userno" ,fetch = FetchType.LAZY)
 	 * 
@@ -178,4 +178,41 @@ public class User {
 		}
 		return false;
 	}
+
+	public boolean useAvailableTalk() {
+		if (availableUseAvailableTalk()) {
+			availableTalk -= 1;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean useCoin(int num) {
+		if (availableUseCoin(num)) {
+			coin -= num;
+			return true;
+		}
+		return false;
+	}
+
+	public boolean availableUseCoin(int num) {
+		return coin > num;
+	}
+
+	public boolean availableUseAvailableTalk() {
+		return availableTalk > 0;
+	}
+
+	//재화중 어떤것을 사용할 것인지
+	public int whichOfMyGoodsUse() {
+
+		if (availableUseAvailableTalk()) {
+			return 1;
+		} else if (availableUseCoin(ConAssist.useTalkCoin)) {
+			return 2;
+		} else {
+			return -1;
+		}
+	}
+
 }

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,10 +23,13 @@ import com.mycom.blog.dto.User;
 @Component
 public class ConAssist {
 
-	public String IP = "http://localhost:8000";
+	@Value("${cos.ip}")
+	public static String IP;
+	
+	@Value("${cos.useTalk}")
+	public static int useTalkCoin;
 
-	@Autowired
-	private AuthenticationManager authenticationM;
+	@Autowired private AuthenticationManager authenticationM;
 
 	@Autowired
 	private PrincipalDetailService principalService;
@@ -85,7 +89,7 @@ public class ConAssist {
 
 		return getUser();
 	}
-	
+
 	public String createTopic(User user1, User user2) {
 
 		String topic = null;
@@ -96,9 +100,9 @@ public class ConAssist {
 		topic += no1 < no2 ? no1.toString() + "_" + no2.toString() : no2.toString() + "_" + no1.toString();
 		return topic;
 	}
-	
+
 	public String getFormatStr(Date date) {
-		SimpleDateFormat format = new SimpleDateFormat ( "HH:mm");
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 		String timeStr = format.format(date);
 		return timeStr;
 	}

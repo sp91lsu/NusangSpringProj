@@ -133,6 +133,8 @@ public class ProfileService {
 			user = conAssist.updateUser();
 		}else {
 			user = userRepository.findById(user.getUserno()).get();
+			System.out.println("친구리스트 lazy init");
+			Hibernate.initialize(conAssist.updateUser().getFriendList());
 		}
 		Hibernate.initialize(user.getBoardList());
 		return user;

@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -58,7 +59,7 @@ public class Friend {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FRIEND_SEQ_GEN")
 	private int friend_no; // 시퀀스 auto_increment
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private User user;
 
 	@OneToOne
@@ -67,7 +68,7 @@ public class Friend {
 	@Enumerated(EnumType.STRING)
 	private FriendType friendType = FriendType.REQUEST;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userno")
 	private User me;
 	

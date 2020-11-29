@@ -60,7 +60,7 @@ public class ChatRoom {
 
 	private String topic;
 
-	@OneToMany(mappedBy = "chatRoom",fetch = FetchType.LAZY )
+	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY)
 	private List<ChatRoomGuide> roomGuideList;
 
 	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
@@ -71,8 +71,9 @@ public class ChatRoom {
 	private Timestamp createDate;
 
 	public User getMatchedUser() {
-		
-		if(roomGuideList == null) return null;
+
+		if (roomGuideList == null)
+			return null;
 		for (ChatRoomGuide guid : roomGuideList) {
 
 			if (guid.getMe().getUserno() != ConAssist.getUserno()) {
@@ -80,6 +81,19 @@ public class ChatRoom {
 			}
 		}
 		return null;
+	}
+
+	public String getMatchedUserName() {
+
+		if (roomGuideList == null)
+			return null;
+		for (ChatRoomGuide guid : roomGuideList) {
+
+			if (guid.getMe().getUserno() != ConAssist.getUserno()) {
+				return guid.getMe().getNickname();
+			}
+		}
+		return "알수없는 사용자";
 	}
 
 }

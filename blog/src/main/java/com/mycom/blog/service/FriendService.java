@@ -30,11 +30,10 @@ import com.mycom.blog.repository.UserRepository;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
-public class FriendService extends BasicService<FriendRepository,Friend> {
+public class FriendService extends BasicService<FriendRepository, Friend> {
 
 	@Autowired
-	UserRepository userRep;
-
+	UserService userService;
 
 	@Autowired
 	public FriendService(FriendRepository friendRep) {
@@ -45,7 +44,7 @@ public class FriendService extends BasicService<FriendRepository,Friend> {
 	public int addFriend(int friendno, User me) {
 
 		try {
-			User friendUser = userRep.findById(friendno).get();
+			User friendUser = userService.findById(friendno);
 			Friend friendEntity = repository.findByMeAndUser(me, friendUser);
 			Friend friendEntity2 = repository.findByMeAndUser(friendUser, me);
 			friendEntity.setFriendType(FriendType.REALATIONSHIP);
@@ -62,7 +61,7 @@ public class FriendService extends BasicService<FriendRepository,Friend> {
 
 		try {
 			User me = conAssist.getUser();
-			User friendUser = userRep.findById(friendno).get();
+			User friendUser = userService.findById(friendno);
 			Friend myfriend = Friend.builder().me(me).user(friendUser).friendType(FriendType.REQUEST).fromWho(me)
 					.build();
 			Friend targetFriend = Friend.builder().me(friendUser).user(me).friendType(FriendType.REQUEST).fromWho(me)
@@ -74,6 +73,16 @@ public class FriendService extends BasicService<FriendRepository,Friend> {
 			e.printStackTrace();
 			return -1;
 		}
+	}
+
+	@Transactional
+	public boolean isMyFriend(int userno) {
+
+		User who = userService.findById(userno);
+		Friend friend = repository.findByMeAndUserAndFriendType(ConAssist.getUser(), who, FriendType.REALATIONSHIP);
+
+		return friend != null;
+
 	}
 
 }

@@ -19,6 +19,7 @@ import com.mycom.blog.dto.ChatMessage;
 import com.mycom.blog.dto.ChatRoom;
 import com.mycom.blog.model.MessageObject;
 import com.mycom.blog.service.ChatRoomService;
+import com.mycom.blog.service.FriendService;
 import com.mycom.blog.service.UserService;
 import com.mycom.blog.vo.ChatMessageVO;
 
@@ -34,15 +35,17 @@ public class ChatController {
 	private ChatRoomService chatRoomService;
 
 	@Autowired
+	private FriendService friendService;
+
+	@Autowired
 	private ConAssist conAssist;
 
 	@MessageMapping("/chat.sendMessage")
 	public void sendMessage(@Payload ChatMessageVO messageVO) {
 
 		int result = chatRoomService.saveMessage(messageVO);
-		
-		if(result != 1)
-		{
+
+		if (result != 1) {
 			messageVO.setText("네트워크 상태가 원활하지 않습니다.");
 		}
 		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO);
@@ -73,17 +76,25 @@ public class ChatController {
 	}
 
 	@GetMapping("chat/go_chatroom")
-	public String goChatPage(int chat_userno, @AuthenticationPrincipal PrincipalDetail principal, Model model) {
+	public String openChatPage(int chat_userno, Model model) {
 
-		chatRoomService.openChatRoom(chat_userno, principal.getUser());
-		return "redirect:/chat/chatpage?chat_userno=" + chat_userno;
+		boolean isMyFriend = friendService.isMyFriend(chat_userno);
+
+		int result = chatRoomService.chkFriendOpenChatRoom(chat_userno, isMyFriend);
+
+		if (result == 1) {
+			return "redirect:/chat/chatpage?chat_userno=" + chat_userno;
+		} else {
+			model.addAttribute("error", "채팅 요청에 실패하였습니다.");
+			return "/layout/error";
+		}
 	}
 
-	@GetMapping("/video/video_view")
-	public String videoView() {
+	@GetMapping("/chat/chat_list_view")
+	public String chatListView(Model model) {
 
-		System.out.println("video");
-		return "/video/videoTest";
+		model.addAttribute("chatRoomList", chatRoomService.getUserChatRoomList());
+		return "/chat/chat_list_view";
 	}
 
 }

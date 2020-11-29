@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.mycom.blog.dto.Friend;
 import com.mycom.blog.dto.User;
+import com.mycom.blog.dto.enumtype.FriendType;
 
 //DAO 
 //자동으로 빈등록 가능 
@@ -14,4 +15,6 @@ import com.mycom.blog.dto.User;
 public interface FriendRepository extends JpaRepository<Friend, Integer> {
 
 	Friend findByMeAndUser(User me, User user);
+	
+	Friend findByMeAndUserAndFriendType(User me, User user,FriendType type);
 }

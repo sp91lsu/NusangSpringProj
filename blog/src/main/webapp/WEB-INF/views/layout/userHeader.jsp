@@ -25,6 +25,8 @@
 						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/near_userlist">내 근처회원</a></li>
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a></li>
+						<li class="nav-item"><a class="nav-link" href="/chat/chat_list_view"><img width="50px" src="/image/chat_icon.png" alt="" /></a></li>
+						
 						<li class="nav-item"><a class="nav-link" href="/shop/shop_view">아이템샵</a></li>
 						<li class="nav-item"><a class="nav-link" href="/manager/notice/noticeList">공지사항</a></li>
 						<li class="nav-item subnav"><a class="nav-link subnav-li" href="">게시판관리</a>
