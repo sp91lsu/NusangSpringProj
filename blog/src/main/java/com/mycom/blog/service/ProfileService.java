@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -126,7 +127,14 @@ public class ProfileService {
 	//성별 변경
 	@Transactional
 	public User userChk(User user) {
-		user = userRepository.findById(user.getUserno()).get();
+		
+		if(user.getUserno() == conAssist.getUserno())
+		{
+			user = conAssist.updateUser();
+		}else {
+			user = userRepository.findById(user.getUserno()).get();
+		}
+		Hibernate.initialize(user.getBoardList());
 		return user;
 	}
 	
