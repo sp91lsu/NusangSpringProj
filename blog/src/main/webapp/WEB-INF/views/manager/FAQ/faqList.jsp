@@ -23,10 +23,7 @@
 		<h3>문의 리스트</h3>
 		<%-- <c:choose>
 			<c:when test="${user.role == 'ADMIN' }"> --%>
-				<div class="writeBtn">
-					<button class="btn btn-warning"
-						onclick="location.href='/manager/FAQ/faqWrite'">글쓰기</button>
-				</div>
+				<div class="btnhidden">줄맞춤용</div>
 		<%-- 	</c:when>
 		</c:choose> --%>
 		<br>
@@ -35,16 +32,20 @@
 				<tr>
 					<th class="noTh" scope="col">no</th>
 					<th class="conTh" scope="col">내용</th>
+					<th class="conTh" scope="col">날짜</th>
 				</tr>
 			</thead>
 			<tbody class="faq_list">
-				<c:forEach var="dto" items="${list}">
+				<c:forEach var="dto" items="${qnaList}">
 					<tr>
 						<td align = "center">
 						${dto.no }
 						</td>
 						<td><a class="titleColor"
 							href="/manager/notice/noticeView?no=${dto.no }">${dto.title }</a>
+						</td>
+						<td>
+						${dto.regdate }
 						</td>
 					</tr>
 
@@ -84,7 +85,7 @@
 				</tr>
 			</thead>
 			<tbody class="faq_list">
-				<c:forEach var="dto" items="${list}">
+				<c:forEach var="dto" items="${faqList}">
 					<tr>
 						<td align = "center">
 						${dto.no }
@@ -103,11 +104,11 @@
 			</tbody>
 		</table>
 	</form>
-		<%-- <ul class="pagination justify-content-center">
-			<c:forEach var="i" begin="1" end="${list.getTotalPages() }">
+		<ul class="pagination justify-content-center">
+			<c:forEach var="i" begin="1" end="${faqList.getTotalPages() }">
 				<a class="ml-2 mr-2 paging_input">${i}</a>
 			</c:forEach>
-		</ul> --%>
+		</ul>
 	</div>
 </div>
 <script>
@@ -127,7 +128,7 @@
     });
 </script>
 
-
+<script src="/js/paging/faqPage.js"></script>
 	<%@ include file="../manager_footer.jsp"%>
 </body>
 <script src="/js/paging/noticePage.js"></script>

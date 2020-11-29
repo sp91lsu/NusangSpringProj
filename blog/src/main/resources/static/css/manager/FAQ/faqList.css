@@ -10,7 +10,7 @@
 .container1{
 	margin-right:150px;
 }
-.container1 .writeBtn,.container2 .writeBtn{
+.container2 .writeBtn{
 	float: right;
 }
 
@@ -24,7 +24,14 @@
 	color: black;
 	cursor: pointer;
 }
-
+.btnhidden{
+	float: right;
+	height:38px; 
+	font-size: 38px;
+	color: white;
+	overflow: hidden;
+	cursor: default;
+}
 .paging_input{
 	cursor: pointer;
 }

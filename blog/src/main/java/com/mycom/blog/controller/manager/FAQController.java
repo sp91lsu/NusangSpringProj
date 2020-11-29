@@ -3,6 +3,10 @@ package com.mycom.blog.controller.manager;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +27,13 @@ public class FAQController {
 		model.addAttribute("list", faqList);
 		return "/manager/FAQ/faqList";
 	}
+//	@RequestMapping("/faqList")
+//	public String faqList(Model model,
+//			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+//		Page faqList = faqService.getPageList(pageable);
+//		model.addAttribute("faqList", faqList);
+//		return "/manager/FAQ/faqList";
+//	}
 	@RequestMapping("faqWrite")
 	public String faqWrite() {
 		return "manager/FAQ/faqWrite";
