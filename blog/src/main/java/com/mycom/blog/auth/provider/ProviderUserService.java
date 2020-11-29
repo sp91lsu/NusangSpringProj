@@ -49,7 +49,7 @@ public class ProviderUserService {
 		user.setPassword(cosKey);
 		user.setRole(RoleType.USER);
 
-		User updateUser = userService.searchNickname(user.getNickname());
+		User updateUser = userService.findUserId(user.getUserid());
 		if (updateUser == null) {
 			userService.signUp(user);
 			System.out.println(user.getNickname()); 

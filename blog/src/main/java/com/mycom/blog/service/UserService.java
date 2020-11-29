@@ -36,7 +36,7 @@ public class UserService extends BasicService<UserRepository, User> {
 
 	@Autowired
 	PaymentRepository paymentRep;
-	
+
 	@Autowired
 	public UserService(UserRepository repository) {
 		setRepository(repository);
@@ -47,7 +47,6 @@ public class UserService extends BasicService<UserRepository, User> {
 
 	@Autowired
 	private ChatRoomRepository chatRoomRep;
-
 
 	@Transactional
 	public int signUp(User user) {
@@ -153,31 +152,36 @@ public class UserService extends BasicService<UserRepository, User> {
 			int totalCoin = user.getCoin() + item.getNum();
 			user.setCoin(totalCoin);
 
-			Payment payment = Payment.builder()
-					.imp_uid(merchant_uid)
-					.pay(100)
-					.paytype(PayType.BUY)
-					.user(user).build();
+			Payment payment = Payment.builder().imp_uid(merchant_uid).pay(100).paytype(PayType.BUY).user(user).build();
 			paymentRep.save(payment);
-			
+
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
 		}
-		
+
 	}
 
 	@Transactional
-	@Scheduled(cron = "0 0 0 * * *") 
+	@Scheduled(cron = "0 0 0 * * *")
 	public void availableTalkUpdate() {
-		 repository.updateAvailableTalk();
-		System.out.println("모든 유저 말걸기 갯수 초기화" );
+		repository.updateAvailableTalk();
+		System.out.println("모든 유저 말걸기 갯수 초기화");
 	}
-	
+
 	@Transactional
 	public User searchNickname(String nickname) {
 		User findUser = repository.findByNickname(nickname);
+
+		return findUser;
+	}
+
+	@Transactional
+	public User findUserId(String userid) {
+		User findUser = repository.findByUserid(userid).orElseGet(() -> {
+			return null;
+		});
 
 		return findUser;
 	}
