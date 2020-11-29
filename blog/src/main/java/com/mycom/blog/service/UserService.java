@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -120,7 +123,6 @@ public class UserService extends BasicService<UserRepository, User> {
 			nearUserList = repository.getNearUserList(location.getLatitude(), location.getLongtitude(),
 					location.getView_distance());
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("근처 회원 없음");
 		}
 		return nearUserList;
@@ -166,9 +168,11 @@ public class UserService extends BasicService<UserRepository, User> {
 		
 	}
 
-	@Scheduled(cron = "0 0 * * * *")
+	@Transactional
+	@Scheduled(cron = "0 0 0 * * *") 
 	public void availableTalkUpdate() {
-		System.out.println("gg");
+		 repository.updateAvailableTalk();
+		System.out.println("모든 유저 말걸기 갯수 초기화" );
 	}
 	
 	@Transactional
