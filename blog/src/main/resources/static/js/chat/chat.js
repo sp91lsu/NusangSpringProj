@@ -77,21 +77,38 @@
 		console.log("메세지 들어와땅 " + payload.body)
 		var message = JSON.parse(payload.body);
 
-		var messageElement = document.createElement('li');
+		$.ajax({
 
-		if (message.userno == $("#userno").val()) {
-			messageElement = '<li class="chat-message-li me">'
-					+ '<div class="chat-message">' + '<p>' + message.text
-					+ '</p>' + '</div>' + message.createDate + '</li>';
-		} else {
-			messageElement = '<li class="chat-message-li"><span>'
-					+ message.nickname + '</span>'
-					+ '<div class="chat-message ">' + '<p>' + message.text
-					+ '</p>' + '</div>' + message.createDate + '</li>';
-		}
+			url : "/api/chat/update_read_message",
+			type : "POST",
+			headers : headers,
+			data : {
+				topic : message.topic
+			},
+			success : function(res) {
 
-		$(messageArea).append(messageElement);
-		messageArea.scrollTop = messageArea.scrollHeight;
+				if (res == 1) {
+					var messageElement = document.createElement('li');
+
+					if (message.userno == $("#userno").val()) {
+						messageElement = '<li class="chat-message-li me">'
+								+ '<div class="chat-message"><p>'
+								+ message.text + '</p></div>'
+								+ message.createDate + '</li>';
+					} else {
+						messageElement = '<li class="chat-message-li"><span>'
+								+ message.nickname + '</span>'
+								+ '<div class="chat-message ">' + '<p>'
+								+ message.text + '</p>' + '</div>'
+								+ message.createDate + '</li>';
+					}
+
+					$(messageArea).append(messageElement);
+					messageArea.scrollTop = messageArea.scrollHeight;
+				}
+			}
+		})
+
 	}
 
 	function getAvatarColor(messageSender) {

@@ -11,14 +11,18 @@
 
 	<h2>채팅 리스트</h2>
 	<ul class="list-group">
-
+		<div class="connecting">연결중...</div>
 		<c:forEach var="chatRoom" items="${chatRoomList }">
-			<li onclick="location.href='/chat/chatpage?chat_userno=${chatRoom.getMatchedUser().userno}'" class="list-group-item d-flex justify-content-between align-items-center">${chatRoom.getMatchedUserName() } <span class="badge badge-primary badge-pill">14</span>
+			<input type="hidden" class="room_topic" value="${chatRoom.topic }" />
+			<li onclick="location.href='/chat/chatpage?chat_userno=${chatRoom.getMatchedUser().userno}'" class="list-group-item d-flex justify-content-between align-items-center">${chatRoom.getMatchedUserName() }<span class="badge badge-primary badge-pill">14</span>
 			</li>
 
 		</c:forEach>
 
 	</ul><%@ include file="../layout/footer.jsp"%>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/chat/chat_list_view.js"></script>
 </html>
 

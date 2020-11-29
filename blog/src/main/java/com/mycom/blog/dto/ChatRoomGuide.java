@@ -1,6 +1,7 @@
 package com.mycom.blog.dto;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -60,5 +61,7 @@ public class ChatRoomGuide {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private ChatRoom chatRoom;
+	
+	private int sawMessageCnt;
 	
 }

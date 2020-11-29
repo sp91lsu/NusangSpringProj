@@ -24,7 +24,7 @@ import com.mycom.blog.dto.User;
 public class ConAssist {
 
 	@Value("${cos.ip}")
-	public static String IP;
+	public String IP;
 	
 	@Value("${cos.useTalk}")
 	public static int useTalkCoin;

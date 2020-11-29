@@ -15,5 +15,5 @@ import com.mycom.blog.dto.User;
 
 public interface ChatRoomGuideRepository extends JpaRepository<ChatRoomGuide, Integer>{
 	
-	
+	List<ChatRoomGuide> findByChatRoom(ChatRoom chatRoom);
 }

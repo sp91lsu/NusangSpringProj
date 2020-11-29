@@ -2,6 +2,7 @@ package com.mycom.blog.dto;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -69,6 +70,8 @@ public class ChatRoom {
 
 	@CreationTimestamp
 	private Timestamp createDate;
+
+	private Date updateDate;
 
 	public User getMatchedUser() {
 

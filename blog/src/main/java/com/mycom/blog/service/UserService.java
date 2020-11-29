@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Item;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;

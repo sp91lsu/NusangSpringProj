@@ -46,7 +46,7 @@
 				</div>
 			</form>
 			<form id="leaveForm" name="leaveForm">
-				<button type="submit" class="primary">나가기</button>
+				<button type="button" onclick="history.back()" class="primary">나가기</button>
 			</form>
 		</div>
 	</div>
@@ -55,6 +55,6 @@
 
 	<%@ include file="../layout/footer.jsp"%>
 </body>
-<script src="/js/chat.js"></script>
+<script src="/js/chat/chat.js"></script>
 </html>
 

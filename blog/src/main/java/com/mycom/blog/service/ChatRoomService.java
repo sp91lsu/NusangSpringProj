@@ -61,9 +61,9 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 					// 말걸기 횟수를 깎고
 					User user = conAssist.updateUser();
 					if (!user.useAvailableTalk()) {
-						//없으면 코인을 깎는다 
+						// 없으면 코인을 깎는다
 						if (!user.useCoin(ConAssist.useTalkCoin)) {
-							//코인도 없으면 
+							// 코인도 없으면
 							throw new Exception("말걸기 0 코인 0 비정상적인 요청 의심");
 						}
 					}
@@ -85,7 +85,7 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 			e.printStackTrace();
 			return -1;
 		}
-		
+
 	}
 
 	@Transactional
@@ -95,7 +95,7 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 
 		String topic = conAssist.createTopic(me, friend);
 
-		ChatRoom chatRoom = repository.findByTopic(topic);
+		ChatRoom chatRoom = updateRoom(topic);
 
 		System.out.println(chatRoom);
 
@@ -121,15 +121,33 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 			return -1;
 		}
 	}
-	
+
 	@Transactional
-	public List<ChatRoom> getUserChatRoomList(){
-		
+	public List<ChatRoom> getUserChatRoomList() {
+
 		List<ChatRoom> chatRoomList = repository.getUserChatRoomList(conAssist.getUserno());
-		
+
 		for (ChatRoom chatRoom : chatRoomList) {
 			Hibernate.initialize(chatRoom.getRoomGuideList());
 		}
 		return chatRoomList;
 	}
+
+	@Transactional
+	public ChatRoom updateRoom(String topic) {
+
+		try {
+			ChatRoom chatRoom = repository.findByTopic(topic);
+			chatRoom.setUpdateDate(new Date());
+			List<ChatRoomGuide> guidList = chatRoomGuidRep.findByChatRoom(chatRoom);
+			for (ChatRoomGuide chatRoomGuide : guidList) {
+				chatRoomGuide.setSawMessageCnt(chatRoom.getMessageList().size());
+			}
+			return chatRoom;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
 }

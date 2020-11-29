@@ -49,8 +49,8 @@ import lombok.ToString;
 )
 @Builder
 @Table(name = "User1")
-@DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성
+@DynamicInsert
 @ToString(exclude = "location")
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class User {
@@ -101,7 +101,8 @@ public class User {
 	@Column(columnDefinition = "varchar(255) default 'profileImg.jpg'")
 	private String picture;
 
-	private int coin;
+	
+	private int coin = 0;
 
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
@@ -112,7 +113,8 @@ public class User {
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Wish> wishList = new ArrayList<Wish>();
 
-	private int availableTalk;
+	@ColumnDefault("3")
+	private Integer availableTalk = 3;
 
 	/*
 	 * @OneToMany(mappedBy = "userno" ,fetch = FetchType.LAZY)
