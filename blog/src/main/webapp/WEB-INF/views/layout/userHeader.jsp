@@ -27,6 +27,11 @@
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a></li>
 						<li class="nav-item"><a class="nav-link" href="/shop/shop_view">아이템샵</a></li>
 						<li class="nav-item"><a class="nav-link" href="/manager/notice/noticeList">공지사항</a></li>
+						<li class="nav-item subnav"><a class="nav-link subnav-li" href="">게시판관리</a>
+							<div class="subnav-content">
+								<a href="/manager/notice/noticeList">공지사항</a>
+								<a href="/manager/FAQ/faqList">FAQ</a>
+							</div></li>
 						<li class="nav-item">
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">

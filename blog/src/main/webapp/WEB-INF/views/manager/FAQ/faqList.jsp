@@ -16,6 +16,9 @@
 	
 <div align = "center">
 	<div class="container1 ">
+	<c:choose>
+		<c:when test="${user.role == 'ADMIN' }">
+		
 		<br> <br>
 		<h3>문의 리스트</h3>
 		<%-- <c:choose>
@@ -55,6 +58,9 @@
 			</c:forEach>
 		</ul> --%>
 	</div>
+		</c:when>
+	
+	</c:choose>
 	
 	<div class="container2 ">
 		<br> <br>
