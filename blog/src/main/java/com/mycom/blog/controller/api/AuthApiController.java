@@ -48,7 +48,7 @@ public class AuthApiController {
 		try {
 			System.out.println("UserApiController : save ");
 
-			int result = userService.signUp(user, AuthType.NORMAL);
+			int result = userService.signUp(user);
 
 			return new Response<Integer>(HttpStatus.OK.value(), result);
 		} catch (Exception e) {

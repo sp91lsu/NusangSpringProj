@@ -118,7 +118,7 @@ public class KakaoBo extends BasicBO {
 
 		if (!userService.isExsistUserName(user.getUsername())) {
 			System.out.println("아이디가 존재 하지 않군요 가입해야겠어요");
-			userService.signUp(user, AuthType.KAKAO);
+			userService.signUp(user);
 		}
 		
 		

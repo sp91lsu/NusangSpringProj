@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.mycom.blog.auth.PrincipalDetailService;
+import com.mycom.blog.auth.PrincipalOauth2UserService;
 
 @Configuration // 설정 빈등록
 @EnableWebSecurity // 필터걸기 = spring security가 활성화되어있는데 설정을 여기서 하겠다
@@ -21,7 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PrincipalDetailService pds;
 	
-	
+	@Autowired
+	private PrincipalOauth2UserService pous;
 	//manager를 어디서든 쓸수 있다. 
 	@Bean
 	@Override
@@ -58,7 +60,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/auth/loginForm") // 해당경로로 이동됩니다.
 				.loginProcessingUrl("/auth/loginProc") //스프링 시큐리티가 로그인 경로를 가로챈다 
 				.defaultSuccessUrl("/home") //로그인 성공시 홈 경로로 간다
-				
+				.and()
+				.oauth2Login()
+				.loginPage("/auth/loginForm")
+				.defaultSuccessUrl("/home")
+				.userInfoEndpoint()
+				.userService(pous)
 				;
 		}
 }

@@ -47,13 +47,10 @@ public class UserService extends BasicService<UserRepository, User> {
 
 
 	@Transactional
-	public int signUp(User user, AuthType authType) {
+	public int signUp(User user) {
 		try {
-			user.setRole(RoleType.USER);
-			user.setAuthType(authType);
-			User setUser = user.clone();
-			setUser.setPassword(pwEncoder, user.getPassword());
-			repository.save(setUser);
+			user.setPassword(pwEncoder, user.getPassword());
+			repository.save(user);
 
 			return 1;
 
@@ -172,5 +169,12 @@ public class UserService extends BasicService<UserRepository, User> {
 	@Scheduled(cron = "0 0 * * * *")
 	public void availableTalkUpdate() {
 		System.out.println("gg");
+	}
+	
+	@Transactional
+	public User searchNickname(String nickname) {
+		User findUser = repository.findByNickname(nickname);
+
+		return findUser;
 	}
 }
