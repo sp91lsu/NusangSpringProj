@@ -50,7 +50,10 @@ textarea:focus {
 	overflow: hidden;
 	cursor: default;
 }
-.paging_input{
+.qna_paging{
+	cursor: pointer;
+}
+.faq_paging{
 	cursor: pointer;
 }
 

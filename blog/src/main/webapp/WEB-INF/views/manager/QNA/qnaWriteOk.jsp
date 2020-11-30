@@ -11,11 +11,13 @@
 		<c:when test="${res == 1 }">
 			<script>
 				alert("문의하신 내용이 관리자에게 전송되었습니다.");
+				location.href = "/manager/FAQ/faqList";
 			</script>	
 		</c:when>
 		<c:otherwise>
 			<script>
 				alert("문의실패!!!");
+				history.back();
 			</script>
 		</c:otherwise>
 	

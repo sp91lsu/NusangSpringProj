@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +60,11 @@ public class QNAService {
 		}
 		return 0;
 		
+	}
+	
+	@Transactional()
+	public Page<QNA> getPageList(Pageable pageable) {
+		
+		return qnaRepository.findAll(pageable);
 	}
 }

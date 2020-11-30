@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mycom.blog.dto.manager.FAQ;
+import com.mycom.blog.dto.manager.QNA;
 import com.mycom.blog.service.manager.FAQService;
+import com.mycom.blog.service.manager.QNAService;
 
 @Controller
 @RequestMapping("/manager/FAQ")
 public class FAQController {
 	@Autowired
 	FAQService faqService;
-	
+	@Autowired
+	QNAService qnaService;
 //	@RequestMapping("/faqList")
 //	public String faqList(Model model) {
 //		List faqList = faqService.findAll();
@@ -32,6 +35,9 @@ public class FAQController {
 			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
 		Page<FAQ> faqList = faqService.getPageList(pageable);
 		System.out.println("faqList 출력");
+		//List qnaList = qnaService.findAll();
+		Page<QNA> qnaList = qnaService.getPageList(pageable);
+		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("faqList", faqList);
 		return "/manager/FAQ/faqList";
 	}

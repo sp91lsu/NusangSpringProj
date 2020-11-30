@@ -1,18 +1,18 @@
 (function() {
 
 	
-	$(".faq_paging").click(
+	$(".qna_paging").click(
 			function() {
 
 				
 
 				$.ajax({
 
-					url : "/manager/FAQ/api/faqList/?page="
+					url : "/manager/QNA/api/qnaList/?page="
 							+ ($(this).html() -1),
 					success : function(res) {
 						
-						$(".faq_list").empty();
+						$(".qna_list").empty();
 						res.content.forEach(element => {
 						
 						var post = '<tr>'+
@@ -21,16 +21,13 @@
 						'</td>' +
 						'<td>' +
 						'<div class="titleColor">'+element.title+'</div>'+
-						'<div class = "contents"><br>'+element.contents+'<br>'+
-							'<button type = "button" class = "btn btn-primary btn-sm"'+
-							'onclick="location.href=\'/manager/FAQ/faqUpdate?no='+element.no+'\'">수정</button>' +
-							'<input type="hidden"'+' name="no"'+' value="'+element.no +'" />'+
-							'<button type = "submit" class = "btn btn-secondary btn-sm">삭제</button>' +
+						'<div class = "contents"><br>'+element.contents+'<br>'+	
 						'</div>' +
 						'</td>' +
+						'<td>'+element.regdate+"</td>"
 					'</tr>'
 								
-						$(".faq_list").append(post)
+						$(".qna_list").append(post)
 						console.log(element)
 						});
 						  $(".titleColor").click(function(){

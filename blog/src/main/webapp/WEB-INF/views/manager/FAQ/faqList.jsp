@@ -36,28 +36,27 @@
 				</tr>
 			</thead>
 			<tbody class="qna_list">
-				<c:forEach var="dto" items="${qnaList}">
+				<c:forEach var="qna" items="${qnaList.toList()}">
 					<tr>
 						<td align = "center">
-						${dto.no }
-						</td>
-						<td><a class="titleColor"
-							href="/manager/notice/noticeView?no=${dto.no }">${dto.title }</a>
+						${qna.no }
 						</td>
 						<td>
-						${dto.regdate }
+						<div class="titleColor">${qna.title }</div>
+						<div class = "contents"><br>${qna.contents }<br>
+						</div>
 						</td>
+						<td>${qna.regdate }</td>
 					</tr>
-
 				</c:forEach>
 
 			</tbody>
 		</table>
-		<%-- <ul class="pagination justify-content-center">
-			<c:forEach var="i" begin="1" end="${list.getTotalPages() }">
-				<a class="ml-2 mr-2 paging_input">${i}</a>
+		 <ul class="pagination justify-content-center">
+			<c:forEach var="i" begin="1" end="${qnaList.getTotalPages() }">
+				<a class="ml-2 mr-2 qna_paging">${i}</a>
 			</c:forEach>
-		</ul> --%>
+		</ul>
 		</c:when>
 	
 		<c:otherwise>
@@ -65,11 +64,12 @@
 		<h3>문의하기</h3>
 		
 		<br>
-		<form action="/manager/QNA/qnaWriteOk"></form>
+		<form action="/manager/QNA/qnaWriteOk" method = "post">
+		<sec:csrfInput />
 			문의제목&nbsp;&nbsp;&nbsp;<input name= "title" class = "qnaTitle" type="text" />
 			<textarea class = "textarea" name="contents" cols="54" rows="10" placeholder="문의내용"></textarea>
 			<button type = "submit" class = "btn btn-secondary" style = "float:right;">문의하기</button>
-	
+		</form>
 		</c:otherwise>
 	</c:choose>
 	
@@ -117,7 +117,7 @@
 	</form>
 		<ul class="pagination justify-content-center">
 			<c:forEach var="i" begin="1" end="${faqList.getTotalPages() }">
-				<a class="ml-2 mr-2 paging_input">${i}</a>
+				<a class="ml-2 mr-2 faq_paging">${i}</a>
 			</c:forEach>
 		</ul>
 	</div>
@@ -138,8 +138,8 @@
         });
     });
 </script>
-
-<script src="/js/paging/faqPage.js"></script>
+<script src ="/js/paging/qnaPage.js"></script>
+<script src ="/js/paging/faqPage.js"></script>
 	<%@ include file="../manager_footer.jsp"%>
 </body>
 <script src="/js/paging/noticePage.js"></script>

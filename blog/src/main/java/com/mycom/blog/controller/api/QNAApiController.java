@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mycom.blog.service.manager.FAQService;
+import com.mycom.blog.service.manager.QNAService;
 @RestController
-@RequestMapping("manager/FAQ")
-public class FAQApiController {
+@RequestMapping("manager/QNA")
+public class QNAApiController {
 	@Autowired
-	private FAQService faqService;
+	private QNAService qnaService;
 	
-	@GetMapping("api/faqList")
+	@GetMapping("api/qnaList")
 	public Page index(Model model,
 			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
-		Page faqList = faqService.getPageList(pageable);
+		Page qnaList = qnaService.getPageList(pageable);
 		//model.addAttribute("faqList", faqList);
 
-		return faqList;
+		return qnaList;
 	}
 }
