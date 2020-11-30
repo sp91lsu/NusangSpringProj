@@ -14,9 +14,19 @@
 .container2 .writeBtn{
 	float: right;
 }
-.noTh{
+.faq_noTh{
 	width: 30px;
 }
+.faq_conTh{
+	width: 400px;
+}
+.qna_noTh{
+	width: 30px;
+}
+.qna_conTh{
+	width: 280px;
+}
+
 .qnaTitle{
 	width:300px; 
 	border:1px solid black;
@@ -29,9 +39,6 @@
 }
 textarea:focus {
     outline: none;
-}
-.conTh{
-	width: 400px;
 }
 .titleColor{
 	color: black;

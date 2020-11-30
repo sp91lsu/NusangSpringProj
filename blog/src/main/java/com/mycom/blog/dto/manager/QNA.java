@@ -53,8 +53,8 @@ public class QNA {
 	private String answer;
 	@CreationTimestamp
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
-	private LocalDateTime regdate;
-	//private Date regdate;
+	//private LocalDateTime regdate;
+	private Date regdate;
 //	@ManyToOne
 //	@JoinColumn(name = "userno", nullable = false)
 //	private User user;

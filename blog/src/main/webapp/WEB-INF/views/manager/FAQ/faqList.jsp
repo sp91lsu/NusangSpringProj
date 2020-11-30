@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../layout/header.jsp"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="/css/manager/FAQ/faqList.css" />
@@ -30,9 +32,9 @@
 		<table class="table">
 			<thead class="thead-dark" align="center">
 				<tr>
-					<th class="noTh" scope="col">no</th>
-					<th class="conTh" scope="col">내용</th>
-					<th class="conTh" scope="col">날짜</th>
+					<th class="qna_noTh" scope="col">no</th>
+					<th class="qna_conTh" scope="col">내용</th>
+					<th scope="col">날짜</th>
 				</tr>
 			</thead>
 			<tbody class="qna_list">
@@ -44,9 +46,10 @@
 						<td>
 						<div class="titleColor">${qna.title }</div>
 						<div class = "contents"><br>${qna.contents }<br>
+						<textarea class = "textarea" cols="30" rows="10"></textarea>
 						</div>
 						</td>
-						<td>${qna.regdate }</td>
+						<td><fmt:formatDate value="${qna.regdate}"  pattern="yyyy-MM-dd HH:mm:ss"/></td>
 					</tr>
 				</c:forEach>
 
@@ -91,8 +94,8 @@
 		<table class="table">
 			<thead class="thead-dark" align="center">
 				<tr>
-					<th class="noTh" scope="col">no</th>
-					<th class="conTh" scope="col">내용</th>
+					<th class="faq_noTh" scope="col">no</th>
+					<th class="faq_conTh" scope="col">내용</th>
 				</tr>
 			</thead>
 			<tbody class="faq_list">
