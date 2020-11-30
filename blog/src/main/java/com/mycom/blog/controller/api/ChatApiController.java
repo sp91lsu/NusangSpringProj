@@ -1,9 +1,12 @@
 package com.mycom.blog.controller.api;
 
 import java.io.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +23,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.mycom.blog.auth.PrincipalDetail;
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.ChatRoom;
@@ -30,6 +38,9 @@ import com.mycom.blog.model.Response;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.service.ChatRoomService;
 import com.mycom.blog.service.UserService;
+import com.mycom.blog.vo.ChatRoomVO;
+
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
 
 @RestController
 @RequestMapping(value = { "/api/chat" })
@@ -60,4 +71,13 @@ public class ChatApiController {
 		}
 	}
 
+	@GetMapping("/updat_list_view")
+	public List<ChatRoomVO> updat_list_view(String topic) throws JsonMappingException, JsonProcessingException {
+		
+		List<ChatRoomVO> chatRoomVOList = chatRoomService.getUserChatRoomList();
+		
+		
+		return chatRoomVOList;
+	}
+	
 }

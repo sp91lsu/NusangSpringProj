@@ -1,4 +1,4 @@
-package com.mycom.blog.dto;
+package com.mycom.blog.vo;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -32,6 +32,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
 import com.mycom.blog.controller.assist.ConAssist;
+import com.mycom.blog.dto.ChatMessage;
+import com.mycom.blog.dto.ChatRoomGuide;
+import com.mycom.blog.dto.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,36 +43,16 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+public class ChatRoomVO {
 
-@SequenceGenerator(name = "CHAT_ROOM_SEQ_GEN", // 시퀀스 제너레이터 이름
-		sequenceName = "CHAT_ROOM_SEQ", // 시퀀스 이름
-		initialValue = 1, // 시작값
-		allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
-)
-@Builder
-@Table(name = "CHAT_ROOM")
-@DynamicInsert // insert 시에 null인 필드 는 제외시킴
-@Entity // user클래스가 자동으로 테이블을 생성s
-@ToString(exclude = { "roomGuideList" })
-@JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
-public class ChatRoom {
-
-	@Id // primarykey
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHAT_ROOM_SEQ_GEN")
 	private int roomno; // 시퀀스 auto_increment
 
 	private String topic;
 
-	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY)
 	private List<ChatRoomGuide> roomGuideList;
 
-	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@OrderBy("createDate asc")
 	private List<ChatMessage> messageList = new ArrayList<ChatMessage>();
 
-	@CreationTimestamp
 	private Timestamp createDate;
 
 	private Date updateDate;

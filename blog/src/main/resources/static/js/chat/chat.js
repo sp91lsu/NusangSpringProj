@@ -34,12 +34,7 @@
 		// Subscribe to the Public Topic
 		stompClient.subscribe('/topic/' + chatRoomTopic, onMessageReceived);
 
-		var chatMessage = {
-			topic : matchUserNickname,
-		};
-
 		// Tell your username to the server
-		stompClient.send("/app/chat.updateTopicUser", {}, JSON.stringify(chatMessage))
 
 		connectingElement.classList.add('hidden');
 	}
@@ -56,10 +51,13 @@
 				text : messageInput.value,
 				topic : chatRoomTopic,
 				userno : userno,
-				nickname : nickname
+				nickname : nickname,
+				matchUser : matchUserNickname
 			};
+			
 			stompClient.send("/app/chat.sendMessage", {}, JSON
 					.stringify(chatMessage));
+
 			messageInput.value = '';
 		}
 		event.preventDefault();

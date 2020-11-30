@@ -22,7 +22,7 @@ public interface ChatRoomRepository extends JpaRepository<ChatRoom, Integer>{
 	@Query(value = "SELECT * FROM chat_Room " + 
 			"WHERE roomno IN " + 
 			"(SELECT chat_room_roomno FROM chat_room_guide WHERE " + 
-			"me_userno = ?1)", nativeQuery = true)
+			"me_userno = ?1) ORDER BY update_date DESC", nativeQuery = true)
 	List<ChatRoom> getUserChatRoomList(int userno);
 	
 	

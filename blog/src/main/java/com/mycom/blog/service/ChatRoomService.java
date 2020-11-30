@@ -1,11 +1,13 @@
 package com.mycom.blog.service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.jooq.DSLContext;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
@@ -13,6 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.ChatMessage;
 import com.mycom.blog.dto.ChatRoom;
@@ -24,6 +29,7 @@ import com.mycom.blog.repository.ChatRoomGuideRepository;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.vo.ChatMessageVO;
+import com.mycom.blog.vo.ChatRoomVO;
 
 @Service
 public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> {
@@ -123,14 +129,18 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	}
 
 	@Transactional
-	public List<ChatRoom> getUserChatRoomList() {
+	public List<ChatRoomVO> getUserChatRoomList() throws JsonProcessingException {
 
 		List<ChatRoom> chatRoomList = repository.getUserChatRoomList(conAssist.getUserno());
 
+		List<ChatRoomVO> chatRoomVOList = new ArrayList<ChatRoomVO>();
 		for (ChatRoom chatRoom : chatRoomList) {
-			Hibernate.initialize(chatRoom.getRoomGuideList());
+			ChatRoomVO vo =  new ChatRoomVO();
+			BeanUtils.copyProperties(chatRoom, vo);
+			chatRoomVOList.add(vo);
 		}
-		return chatRoomList;
+		
+		return chatRoomVOList;
 	}
 
 	@Transactional

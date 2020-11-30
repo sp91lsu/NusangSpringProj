@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mycom.blog.auth.PrincipalDetail;
 import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.ChatMessage;
@@ -49,6 +50,7 @@ public class ChatController {
 			messageVO.setText("네트워크 상태가 원활하지 않습니다.");
 		}
 		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO);
+		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getMatchUser(), messageVO);
 		System.out.println("성공?");
 	}
 
@@ -96,7 +98,7 @@ public class ChatController {
 	}
 
 	@GetMapping("/chat/chat_list_view")
-	public String chatListView(Model model) {
+	public String chatListView(Model model) throws JsonProcessingException {
 
 		model.addAttribute("chatRoomList", chatRoomService.getUserChatRoomList());
 		return "/chat/chat_list_view";

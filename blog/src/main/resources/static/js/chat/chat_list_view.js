@@ -1,7 +1,5 @@
 (function() {
 
-	var connectingElement = document.querySelector('.connecting');
-
 	var stompClient = null;
 
 	function connect() {
@@ -14,28 +12,52 @@
 	connect();
 
 	function onConnected() {
-		console.log("내 닉넴으로 기다린다" +$("#user-nickname").val());
+		console.log("내 닉넴으로 기다린다" + $("#user-nickname").val());
 		stompClient.subscribe('/topic/' + $("#user-nickname").val(),
 				onMessageReceived);
-		$(".room_topic").each(
-				function(index, item) {
-					console.log(index + " + " + $(item).val());
-					stompClient.subscribe('/topic/' + $(item).val(),
-							onMessageReceived);
-				})
+		/*
+		 * $(".room_topic").each( function(index, item) { console.log(index + " + " +
+		 * $(item).val()); stompClient.subscribe('/topic/' + $(item).val(),
+		 * onMessageReceived); })
+		 */
 
-		connectingElement.classList.add('hidden');
 	}
 
 	function onError(error) {
-		connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-		connectingElement.style.color = 'red';
+		console.log(error)
 	}
 
 	function onMessageReceived(payload) {
-		console.log("메세지 들어와땅 " + payload.body)
+		console.log("updat_list_view " + payload.body)
 
-		document.location.reload(true);
+		$
+				.ajax({
+
+					url : "/api/chat/updat_list_view",
+					type : "GET",
+					success : function(res) {
+
+						$(".list-group").empty();
+
+						console.log(res)
+
+						$
+								.each(
+										res,
+										function(key, value) {
+
+											var element = '<input type="hidden" class="room_topic" value="'+value.topic+'" />'
+													+ '<li onclick="location.href=\'/chat/chatpage?chat_userno='+value.matchedUser+'\'" class="list-group-item d-flex justify-content-between align-items-center">'+value.matchedUserName+'<span class="badge badge-primary badge-pill">14</span>'
+													+ '</li>';
+
+											$(".list-group").append(element);
+										});
+
+						console.log("rupdate list view")
+					}
+
+				})
+		// document.location.reload(true);
 	}
 
 })()
