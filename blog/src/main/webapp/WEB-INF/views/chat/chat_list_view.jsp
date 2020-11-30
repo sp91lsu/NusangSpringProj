@@ -8,10 +8,11 @@
 </head>
 <body>
 	<%@ include file="../layout/header.jsp"%>
-
+	<input type="hidden" id="user-nickname" value="${user.nickname }" />
 	<h2>채팅 리스트</h2>
 	<ul class="list-group">
 		<div class="connecting">연결중...</div>
+
 		<c:forEach var="chatRoom" items="${chatRoomList }">
 			<input type="hidden" class="room_topic" value="${chatRoom.topic }" />
 			<li onclick="location.href='/chat/chatpage?chat_userno=${chatRoom.getMatchedUser().userno}'" class="list-group-item d-flex justify-content-between align-items-center">${chatRoom.getMatchedUserName() }<span class="badge badge-primary badge-pill">14</span>

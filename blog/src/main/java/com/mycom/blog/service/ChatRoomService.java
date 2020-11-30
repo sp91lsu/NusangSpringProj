@@ -139,10 +139,7 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 		try {
 			ChatRoom chatRoom = repository.findByTopic(topic);
 			chatRoom.setUpdateDate(new Date());
-			List<ChatRoomGuide> guidList = chatRoomGuidRep.findByChatRoom(chatRoom);
-			for (ChatRoomGuide chatRoomGuide : guidList) {
-				chatRoomGuide.setSawMessageCnt(chatRoom.getMessageList().size());
-			}
+			chatRoom.getMyGuide().setSawMessageCnt(chatRoom.getMessageList().size());
 			return chatRoom;
 		} catch (Exception e) {
 			return null;

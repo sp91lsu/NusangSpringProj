@@ -12,6 +12,7 @@
 	<div id="chat-page">
 		<div class="chat-container">
 			<div class="chat-header">
+				<input type="hidden" id="matchUserNickname" value="${chatRoom.getMatchedUser().nickname }" />
 				<h2>${chatRoom.getMatchedUser().nickname }님과대화</h2>
 			</div>
 			<div class="connecting">연결중...</div>

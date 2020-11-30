@@ -10,6 +10,9 @@
 
 	var stompClient = null;
 	var nickname = document.querySelector('#nickname').value.trim();
+	var matchUserNickname = document.querySelector('#matchUserNickname').value
+			.trim();
+
 	var chatRoomTopic = $("#chatRoomTopic").val();
 
 	var userno = document.querySelector('#userno').value.trim();
@@ -31,11 +34,12 @@
 		// Subscribe to the Public Topic
 		stompClient.subscribe('/topic/' + chatRoomTopic, onMessageReceived);
 
+		var chatMessage = {
+			topic : matchUserNickname,
+		};
+
 		// Tell your username to the server
-		stompClient.send("/app/chat.addUser", {}, JSON.stringify({
-			sender : nickname,
-			type : 'JOIN'
-		}))
+		stompClient.send("/app/chat.updateTopicUser", {}, JSON.stringify(chatMessage))
 
 		connectingElement.classList.add('hidden');
 	}

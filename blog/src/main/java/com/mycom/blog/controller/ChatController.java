@@ -52,6 +52,11 @@ public class ChatController {
 		System.out.println("성공?");
 	}
 
+	@MessageMapping("/chat.updateTopicUser")
+	public void updateTopicUser(@Payload ChatMessageVO messageVO) {
+		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO);
+	}
+	
 	@MessageMapping("/chat.addUser")
 	public MessageObject addUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		Map<String, Object> map = headerAccessor.getSessionAttributes();

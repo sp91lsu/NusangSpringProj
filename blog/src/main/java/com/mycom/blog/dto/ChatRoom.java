@@ -85,6 +85,22 @@ public class ChatRoom {
 		}
 		return null;
 	}
+	
+	//나
+	public ChatRoomGuide getMyGuide() {
+
+		if (roomGuideList == null)
+			return null;
+		for (ChatRoomGuide guid : roomGuideList) {
+
+			if (guid.getMe().getUserno() == ConAssist.getUserno()) {
+				return guid;
+			}
+		}
+		return null;
+	}
+
+	
 
 	public String getMatchedUserName() {
 

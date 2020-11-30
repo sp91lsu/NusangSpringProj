@@ -14,12 +14,15 @@
 	connect();
 
 	function onConnected() {
-		$(".room_topic").each(function(index, item) {
-			console.log(index + " + " + $(item).val());
-			stompClient.subscribe('/topic/' + $(item).val(), onMessageReceived);
-		})
-
-		
+		console.log("내 닉넴으로 기다린다" +$("#user-nickname").val());
+		stompClient.subscribe('/topic/' + $("#user-nickname").val(),
+				onMessageReceived);
+		$(".room_topic").each(
+				function(index, item) {
+					console.log(index + " + " + $(item).val());
+					stompClient.subscribe('/topic/' + $(item).val(),
+							onMessageReceived);
+				})
 
 		connectingElement.classList.add('hidden');
 	}
@@ -31,6 +34,8 @@
 
 	function onMessageReceived(payload) {
 		console.log("메세지 들어와땅 " + payload.body)
+
+		document.location.reload(true);
 	}
 
 })()
