@@ -60,7 +60,7 @@ public class FAQService {
 		
 	}
 	@Transactional()
-	public Page getPageList(Pageable pageable) {
+	public Page<FAQ> getPageList(Pageable pageable) {
 		
 		return faqRepository.findAll(pageable);
 	}

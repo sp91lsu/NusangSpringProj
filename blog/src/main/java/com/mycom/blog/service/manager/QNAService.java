@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.mycom.blog.dto.manager.FAQ;
+import com.mycom.blog.dto.manager.QNA;
 import com.mycom.blog.repository.manager.FAQRepository;
 import com.mycom.blog.repository.manager.QNARepository;
 
@@ -23,23 +24,23 @@ public class QNAService {
 		return faqList;
 	}
 	@Transactional
-	public FAQ save(FAQ dto) {
-		FAQ faq = qnaRepository.save(dto);
-		 return faq;
+	public QNA save(QNA dto) {
+		QNA qna = qnaRepository.save(dto);
+		 return qna;
 	}
 	@Transactional
-	public FAQ findbyid(int id) {
+	public QNA findbyid(int id) {
 		
-		FAQ faq =qnaRepository.findById(id).get();
-		return faq;
+		QNA qna =qnaRepository.findById(id).get();
+		return qna;
 	}
 	
 	@Transactional
-	public int updateOk(FAQ updateFAQ) {
+	public int updateOk(QNA updateQNA) {
 		try {
-			FAQ faq = qnaRepository.findById(updateFAQ.getNo()).get();
-			faq.setTitle(updateFAQ.getTitle());
-			faq.setContents(updateFAQ.getContents());
+			QNA qna = qnaRepository.findById(updateQNA.getNo()).get();
+			qna.setTitle(updateQNA.getTitle());
+			qna.setContents(updateQNA.getContents());
 			return 1;
 			
 		}catch (Exception e) {
