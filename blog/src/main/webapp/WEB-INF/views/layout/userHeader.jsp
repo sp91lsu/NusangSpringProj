@@ -21,7 +21,6 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/user/search">회원검색</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/near_userlist">내 근처회원</a></li>
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view">친구관리</a></li>

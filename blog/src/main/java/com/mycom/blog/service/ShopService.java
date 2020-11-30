@@ -58,9 +58,9 @@ public class ShopService extends BasicService<ShopRepository, Shop> {
 			Shop shop = Shop.builder().itemType(ItemType.COIN).build();
 			shopRep.save(shop);
 			itemRep.save(createItem_coin(50, 100, shop,"/image/cm1.png"));
-			itemRep.save(createItem_coin(100, 100, shop,"/image/cm2.png"));
-			itemRep.save(createItem_coin(500, 100, shop,"/image/cm3.png"));
-			itemRep.save(createItem_coin(1000, 100, shop,"/image/cm4.png"));
+			itemRep.save(createItem_coin(100, 110, shop,"/image/cm2.png"));
+			itemRep.save(createItem_coin(500, 120, shop,"/image/cm3.png"));
+			itemRep.save(createItem_coin(1000, 130, shop,"/image/cm4.png"));
 		}
 	}
 

@@ -23,7 +23,7 @@
 			merchant_uid : $("#user_no").val() + "_"
 					+ $(me).find("#itemno").val() + "_" + uuidv4(),
 			name : '상품 구매',
-			amount : 100,
+			amount :  $(me).find("#item_price").val(),
 			buyer_email : $("#user_email").val(),
 			buyer_name : '',
 			buyer_tel : '010-1234-5678',
@@ -68,7 +68,7 @@
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
-				alert("결제에 실패하였습니다. 관리자에게 문의해주세요.")
+				alert(msg)
 			}
 
 		});

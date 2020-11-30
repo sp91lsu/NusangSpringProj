@@ -14,6 +14,7 @@
 	<div class="row d-flex justify-content-between">
 		<input type="hidden" id="user_email" value="${user.email}" />
 		<input type="hidden" id="user_no" value="${user.userno}" />
+		
 		<c:forEach var="item" items="${coin_shop.itemList }">
 
 			<div class="card mr-5 mt-5 product_item" style="width: 13rem;">
@@ -21,6 +22,7 @@
 				<div class="card text-center" style="width: 90%; float: none; margin: 10px;">
 					<img class="card-img-top" src="${item.picture }" alt="Card image cap">
 				</div>
+				<input type="hidden" id="item_price" value="${item.price }" />
 				<div class="card-body">
 					<p class="card-text"> ${item.num }${item.type.name }가격:${item.price }원</p>
 				</div>
