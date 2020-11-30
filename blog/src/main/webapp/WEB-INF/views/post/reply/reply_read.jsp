@@ -2,29 +2,38 @@
 
 <div class="reply container" style="min-height: 200px;">
 	<div class="reply_list">
-		<div class="reply">
-			<div class="img">
-				<img src="/image/panda.jpg">
-			</div>
-			
-			<div class="txt">
-				<div class="top">
-					<div class="nickname">닉네임</div>
-					<div class="btn_ud">
-						<button>수정</button>
-						<button>삭제</button>
+	
+		<c:forEach var="reply" items="${board.replyList}">
+			<div class="reply">
+				<input type="hidden" class="reply_id" value="${reply.id}">
+				<div class="img">
+					<img src="/image/panda.jpg">
+				</div>
+				
+				<div class="txt">
+					<div class="top">
+						<div class="nickname">${reply.user.nickname}</div>
+						
+						<div class="btn_ud">
+						<c:choose>
+							<c:when test = "${reply.user.userno == user.userno}">
+								<button class="btn_reply_update">수정</button>
+								<button class="btn_reply_delete">삭제</button>
+							</c:when>
+						</c:choose>
+						</div>
+					</div>
+					
+					<div class="mid">
+						${reply.content}
+					</div>
+					
+					<div class="bot">
+						${reply.createDate}
 					</div>
 				</div>
-				
-				<div class="mid">
-					여기는 내용
-				</div>
-				
-				<div class="bot">
-					2020.11.27  20:24
-				</div>
 			</div>
-		</div>
+		</c:forEach>
 	</div>
 	
 	<div class="reply_write">

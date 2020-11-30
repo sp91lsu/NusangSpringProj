@@ -22,4 +22,10 @@ public class ReplyApiController {
 		int result = boardService.saveReply(replydto);
 		return result;
 	}
+
+	@PostMapping("/api/reply/delete")
+	public int delete(int reply_id) {
+		int result = boardService.deleteReply(reply_id);
+		return result;
+	}
 }

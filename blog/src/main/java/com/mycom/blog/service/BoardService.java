@@ -135,10 +135,14 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	}
 
 	@Transactional
-	public void deleteReply(int id) {
-		System.out.println("삭제한당 리플 : " + id);
-		replyRep.deleteById(id);
-
+	public int deleteReply(int id) {
+		try {
+			replyRep.deleteById(id);
+			return 1;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	@Transactional
