@@ -59,15 +59,11 @@ public class ChatRoomVO {
 
 	public User getMatchedUser() {
 
-		if (roomGuideList == null)
-			return null;
-		for (ChatRoomGuide guid : roomGuideList) {
-
-			if (guid.getMe().getUserno() != ConAssist.getUserno()) {
-				return guid.getMe();
-			}
-		}
-		return null;
+		return getMatchUserGuide().getMe();
+	}
+	
+	public int getRemainSawCnt() {
+		return getMatchUserGuide().getSawMessageCnt() -  getMyGuide().getSawMessageCnt();
 	}
 	
 	//나
@@ -84,19 +80,29 @@ public class ChatRoomVO {
 		return null;
 	}
 
-	
-
-	public String getMatchedUserName() {
+	public ChatRoomGuide getMatchUserGuide() {
 
 		if (roomGuideList == null)
 			return null;
 		for (ChatRoomGuide guid : roomGuideList) {
 
 			if (guid.getMe().getUserno() != ConAssist.getUserno()) {
-				return guid.getMe().getNickname();
+				return guid;
 			}
 		}
-		return "알수없는 사용자";
+		return null;
+	}
+	
+
+	public String getMatchedUserName() {
+
+		try {
+			return getMatchUserGuide().getMe().getNickname();
+		}catch(Exception e) {
+			return "알수없는 사용자";
+		}
+		
+		
 	}
 
 }
