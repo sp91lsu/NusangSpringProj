@@ -28,35 +28,51 @@
 	}
 
 	function onMessageReceived(payload) {
+		
+		
 		console.log("updat_list_view " + payload.body)
 
-		$
-				.ajax({
+		setTimeout(function(){
+			
+			$
+			.ajax({
 
-					url : "/api/chat/updat_list_view",
-					type : "GET",
-					success : function(res) {
+				url : "/api/chat/updat_list_view",
+				type : "GET",
+				success : function(res) {
 
-						$(".list-group").empty();
+					$(".list-group").empty();
 
-						console.log(res)
+					console.log(res)
 
-						$
-								.each(
-										res,
-										function(key, value) {
+					$
+							.each(
+									res,
+									function(key, value) {
+											
+										var cntElement = "";
+										if(value.remainSawCnt > 0){
+											cntElement = '<span class="badge badge-primary badge-pill">'+
+											value.remainSawCnt+'</span>'
+										}
+										
+										var element = '<input type="hidden" class="room_topic" value="'+value.topic+'" />'
+												+ '<li onclick="location.href=\'/chat/chatpage?chat_userno='+value.matchedUser+'\'" class="list-group-item d-flex justify-content-between align-items-center">'+value.matchedUserName
+												+  cntElement
+												+ '</li>';
 
-											var element = '<input type="hidden" class="room_topic" value="'+value.topic+'" />'
-													+ '<li onclick="location.href=\'/chat/chatpage?chat_userno='+value.matchedUser+'\'" class="list-group-item d-flex justify-content-between align-items-center">'+value.matchedUserName+'<span class="badge badge-primary badge-pill">14</span>'
-													+ '</li>';
+										$(".list-group").append(element);
+										
+										console.log(value.remainSawCnt)
+									});
 
-											$(".list-group").append(element);
-										});
+					
+				}
 
-						console.log("rupdate list view")
-					}
-
-				})
+			})
+			
+		}, 100)
+		
 		// document.location.reload(true);
 	}
 

@@ -29,7 +29,7 @@
 
 				<g style="color:grey ; font-size: 0.9em">로그인</g>
 			</button> </a>
-	</form>
+	</form> 
 
 </div>
 
