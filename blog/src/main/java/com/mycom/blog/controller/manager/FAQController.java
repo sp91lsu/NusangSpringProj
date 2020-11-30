@@ -21,19 +21,20 @@ public class FAQController {
 	@Autowired
 	FAQService faqService;
 	
-	@RequestMapping("/faqList")
-	public String faqList(Model model) {
-		List faqList = faqService.findAll();
-		model.addAttribute("list", faqList);
-		return "/manager/FAQ/faqList";
-	}
 //	@RequestMapping("/faqList")
-//	public String faqList(Model model,
-//			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
-//		Page faqList = faqService.getPageList(pageable);
-//		model.addAttribute("faqList", faqList);
+//	public String faqList(Model model) {
+//		List faqList = faqService.findAll();
+//		model.addAttribute("list", faqList);
 //		return "/manager/FAQ/faqList";
 //	}
+	@RequestMapping("/faqList")
+	public String faqList(Model model,
+			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+		Page<FAQ> faqList = faqService.getPageList(pageable);
+		System.out.println("faqList 출력");
+		model.addAttribute("faqList", faqList);
+		return "/manager/FAQ/faqList";
+	}
 	@RequestMapping("faqWrite")
 	public String faqWrite() {
 		return "manager/FAQ/faqWrite";

@@ -14,8 +14,8 @@
 </head>
 <body>
 	
-<div align = "center">
-	<div class="container1 ">
+<div align = "center" class = "d-flex">
+	<div class="container1 p-6 ">
 	<c:choose>
 		<c:when test="${user.role == 'ADMIN' }">
 		
@@ -35,7 +35,7 @@
 					<th class="conTh" scope="col">날짜</th>
 				</tr>
 			</thead>
-			<tbody class="faq_list">
+			<tbody class="qna_list">
 				<c:forEach var="dto" items="${qnaList}">
 					<tr>
 						<td align = "center">
@@ -58,12 +58,23 @@
 				<a class="ml-2 mr-2 paging_input">${i}</a>
 			</c:forEach>
 		</ul> --%>
-	</div>
 		</c:when>
 	
+		<c:otherwise>
+			<br> <br>
+		<h3>문의하기</h3>
+		
+		<br>
+		<form action="/manager/QNA/qnaWriteOk"></form>
+			문의제목&nbsp;&nbsp;&nbsp;<input name= "title" class = "qnaTitle" type="text" />
+			<textarea class = "textarea" name="contents" cols="54" rows="10" placeholder="문의내용"></textarea>
+			<button type = "submit" class = "btn btn-secondary" style = "float:right;">문의하기</button>
+	
+		</c:otherwise>
 	</c:choose>
 	
-	<div class="container2 ">
+	</div>
+	<div class="container2 p-6">
 		<br> <br>
 		<h3>FAQ</h3>
 		<%-- <c:choose>
@@ -85,7 +96,7 @@
 				</tr>
 			</thead>
 			<tbody class="faq_list">
-				<c:forEach var="dto" items="${faqList}">
+				<c:forEach var="dto" items="${faqList.toList()}">
 					<tr>
 						<td align = "center">
 						${dto.no }

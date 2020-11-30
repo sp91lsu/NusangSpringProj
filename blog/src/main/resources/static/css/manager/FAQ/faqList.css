@@ -8,14 +8,27 @@
 }
 
 .container1{
+	margin-left: 200px;
 	margin-right:150px;
 }
 .container2 .writeBtn{
 	float: right;
 }
-
 .noTh{
 	width: 30px;
+}
+.qnaTitle{
+	width:300px; 
+	border:1px solid black;
+	border-radius: 5px;
+}
+.textarea{
+	background-color: lightgray;
+	margin:20px 0 0 50px;
+	border-radius: 10px;
+}
+textarea:focus {
+    outline: none;
 }
 .conTh{
 	width: 400px;
@@ -23,6 +36,11 @@
 .titleColor{
 	color: black;
 	cursor: pointer;
+}
+.conArea{
+	background: pink;
+	width:300px;
+	height: 300px;
 }
 .btnhidden{
 	float: right;

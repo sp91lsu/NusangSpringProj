@@ -17,14 +17,14 @@
 						
 						var post = '<tr>'+
 						'<td align = "center">'+
-						'${dto.no }' +
+						element.no +
 						'</td>' +
 						'<td>' +
 						'<div class="titleColor">'+element.title+'</div>'+
 						'<div class = "contents"><br>'+element.contents+'<br>'+
 							'<button type = "button" class = "btn btn-primary btn-sm"'+
-							'onclick="'+'location.href'+ '= "/manager/FAQ/faqUpdate?no='+element.no+'">수정</button>' +
-							'<input type="hidden" name="no" value="${dto.no }" />'+
+							'onclick="location.href=\'/manager/FAQ/faqUpdate?no='+element.no+'\'">수정</button>' +
+							'<input type="hidden"'+' name="no"'+' value="'+element.no +'" />'+
 							'<button type = "submit" class = "btn btn-secondary btn-sm">삭제</button>' +
 						'</div>' +
 						'</td>' +
@@ -33,6 +33,16 @@
 						$(".faq_list").append(post)
 						console.log(element)
 						});
+						  $(".titleColor").click(function(){
+					            var submenu = $(this).next("div");
+					 
+					            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+					            if( submenu.is(":visible") ){
+					                submenu.slideUp();
+					            }else{
+					                submenu.slideDown();
+					            }
+					        });
 					}
 				})
 			})
