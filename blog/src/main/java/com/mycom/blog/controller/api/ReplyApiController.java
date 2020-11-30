@@ -28,4 +28,9 @@ public class ReplyApiController {
 		int result = boardService.deleteReply(reply_id);
 		return result;
 	}
+
+	@PostMapping()
+	public int update() {
+		return 1;
+	}
 }

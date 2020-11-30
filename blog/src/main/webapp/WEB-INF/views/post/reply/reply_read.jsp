@@ -27,7 +27,9 @@
 					</div>
 					
 					<div class="mid">
-						${reply.content}
+						<div class="reply_content">
+							${reply.content}
+						</div>
 					</div>
 					
 					<div class="bot">
