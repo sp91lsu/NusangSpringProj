@@ -34,6 +34,7 @@ import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.RoleType;
+import com.mycom.blog.model.ProductPayload;
 import com.mycom.blog.model.Response;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ChatRoomRepository;
@@ -55,7 +56,7 @@ public class PaymentApiController {
 	UserService userService;
 
 	@PostMapping("/webhook")
-	public void search_location(HttpServletRequest request) throws IOException {
+	public void webhook(HttpServletRequest request) throws IOException {
 
 		System.out.println(request.getInputStream());
 		ObjectMapper mapper = new ObjectMapper();
@@ -66,6 +67,16 @@ public class PaymentApiController {
 		if (status.equals("paid")) {
 			userService.buyCoin(jsonMap);
 		}
+	}
+
+	@PostMapping("/buy_product")
+	public int buyCoin(ProductPayload payload) throws IOException {
+
+		System.out.println(payload);
+
+		int result =  userService.buyCoin(payload);
+		
+		return result;
 	}
 
 }

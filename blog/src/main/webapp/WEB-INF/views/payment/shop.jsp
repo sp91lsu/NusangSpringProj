@@ -22,7 +22,7 @@
 					<img class="card-img-top" src="${item.picture }" alt="Card image cap">
 				</div>
 				<div class="card-body">
-					<p class="card-text">남바${item.itemno} ${item.num }${item.type.name }가격:${item.price }원</p>
+					<p class="card-text"> ${item.num }${item.type.name }가격:${item.price }원</p>
 				</div>
 			</div>
 

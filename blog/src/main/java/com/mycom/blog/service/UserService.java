@@ -23,6 +23,7 @@ import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.PayType;
 import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.dto.manager.Payment;
+import com.mycom.blog.model.ProductPayload;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.UserRepository;
@@ -154,6 +155,28 @@ public class UserService extends BasicService<UserRepository, User> {
 			user.setCoin(totalCoin);
 
 			Payment payment = Payment.builder().imp_uid(merchant_uid).pay(100).paytype(PayType.BUY).user(user).build();
+			paymentRep.save(payment);
+
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+
+	}
+	
+	@Transactional
+	public int buyCoin(ProductPayload payload) {
+
+		try {
+
+			User user = findById(payload.getUserno());
+			Item item = itemRep.findById(payload.getItemno()).get();
+
+			int totalCoin = user.getCoin() + item.getNum();
+			user.setCoin(totalCoin);
+
+			Payment payment = Payment.builder().imp_uid(payload.getMerchant_uid()).pay(100).paytype(PayType.BUY).user(user).build();
 			paymentRep.save(payment);
 
 			return 1;

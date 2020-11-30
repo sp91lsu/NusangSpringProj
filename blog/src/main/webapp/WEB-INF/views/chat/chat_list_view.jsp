@@ -13,7 +13,7 @@
 	<ul class="list-group">
 		<c:forEach var="chatRoom" items="${chatRoomList }">
 			<input type="hidden" class="room_topic" value="${chatRoom.topic }" />
-			<li onclick="location.href='/chat/chatpage?chat_userno=${chatRoom.getMatchedUser().userno}'" class="list-group-item d-flex justify-content-between align-items-center">${chatRoom.getMatchedUserName() }
+			<li onclick="location.href='/chat/chatpage?chat_userno=${chatRoom.getMatchedUserNo()}'" class="list-group-item d-flex justify-content-between align-items-center">${chatRoom.getMatchedUserName() }
 			<c:if test="${chatRoom.getRemainSawCnt() > 0}">
 			<span class="badge badge-primary badge-pill">${chatRoom.getRemainSawCnt()}</span>
 			</c:if>

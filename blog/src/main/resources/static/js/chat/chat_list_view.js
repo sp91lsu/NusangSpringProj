@@ -57,7 +57,7 @@
 										}
 										
 										var element = '<input type="hidden" class="room_topic" value="'+value.topic+'" />'
-												+ '<li onclick="location.href=\'/chat/chatpage?chat_userno='+value.matchedUser+'\'" class="list-group-item d-flex justify-content-between align-items-center">'+value.matchedUserName
+												+ '<li onclick="location.href=\'/chat/chatpage?chat_userno='+value.matchedUserNo+'\'" class="list-group-item d-flex justify-content-between align-items-center">'+value.matchedUserName
 												+  cntElement
 												+ '</li>';
 

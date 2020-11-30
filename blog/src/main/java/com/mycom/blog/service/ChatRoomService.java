@@ -137,6 +137,7 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 		for (ChatRoom chatRoom : chatRoomList) {
 			ChatRoomVO vo =  new ChatRoomVO();
 			BeanUtils.copyProperties(chatRoom, vo);
+			System.out.println(vo.getRemainSawCnt());
 			chatRoomVOList.add(vo);
 		}
 		

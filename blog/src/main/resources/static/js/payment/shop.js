@@ -8,17 +8,8 @@
 		buyProduct(this);
 	});
 
-	function testBuyProduct() {
-		$("#pm_merchant_uid").val("merach");
-		$("#pm_imp_uid").val("uiduidtest");
-		$("#pm_paid_amount").val(100);
-		document.createPostForm.submit();
-	}
 	var modalY = $('#modal_buy_item #modalY');
 
-	var merchant_uid;
-	var imp_uid;
-	var paid_amount;
 	$(modalY).click(function(e) {
 		// 게시판 bodytext(내용) 엔터처리
 		location.reload();
@@ -29,8 +20,8 @@
 		IMP.request_pay({
 			pg : 'inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',
-			merchant_uid : $("#user_no").val() + "_" + $(me).find("#itemno").val() + "_"
-					+ uuidv4(),
+			merchant_uid : $("#user_no").val() + "_"
+					+ $(me).find("#itemno").val() + "_" + uuidv4(),
 			name : '상품 구매',
 			amount : 100,
 			buyer_email : $("#user_email").val(),
@@ -48,15 +39,36 @@
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				let
 				modal = $('#modal_buy_item');
-				merchant_uid = rsp.merchant_uid;
-				imp_uid = rsp.imp_uid;
-				paid_amount = rsp.paid_amount;
-				$(modal).modal("show");
+
+				var prouductObject = {
+					userno : $("#user_no").val(),
+					itemno : $(me).find("#itemno").val(),
+					merchant_uid : rsp.merchant_uid,
+					imp_uid : rsp.imp_uid,
+					paid_amount : rsp.paid_amount
+				}
+
+				$.ajax({
+
+					url : "/payment/buy_product",
+					type : "POST",
+					headers: headers,
+					data : prouductObject,
+					success : function(res) {
+						if (res == 1) {
+							$(modal).modal("show");
+						} else {
+							alert("결제에 실패하였습니다. 관리자에게 문의해주세요.")
+						}
+
+					}
+
+				})
 
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
-				alert(msg);
+				alert("결제에 실패하였습니다. 관리자에게 문의해주세요.")
 			}
 
 		});

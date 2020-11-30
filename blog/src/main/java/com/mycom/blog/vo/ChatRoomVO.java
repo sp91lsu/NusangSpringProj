@@ -57,13 +57,17 @@ public class ChatRoomVO {
 
 	private Date updateDate;
 
-	public User getMatchedUser() {
-
-		return getMatchUserGuide().getMe();
+	public int getMatchedUserNo() {
+		
+		User user = getMatchUserGuide().getMe();
+		System.out.println("매칭된 유저 : " + user.getUserno());
+		return  user.getUserno();
 	}
 	
 	public int getRemainSawCnt() {
+		System.out.println(getMatchUserGuide().getSawMessageCnt() + "-" + getMyGuide().getSawMessageCnt());
 		return getMatchUserGuide().getSawMessageCnt() -  getMyGuide().getSawMessageCnt();
+	
 	}
 	
 	//나
