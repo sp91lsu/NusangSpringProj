@@ -21,6 +21,7 @@
 						<img id="img" class="profileImg" src="/image/profileImg.jpg">
 					</c:otherwise>
 				</c:choose>
+				<input type="hidden" id="file">
 			</div>
 
 			<%-- 닉네임 및 정보 --%>
@@ -238,7 +239,7 @@ $('#buy-coin-btn').click(function(e) {
 			success : function(res) {
 
 				if (res == 0) {
-					alert("닉네임 변경에 실패했습니다. 다시 시도해주세요.");
+					alert("닉네임 변경에 실패했습니다. 다시 시도해주세요.\n(2~8글자의 닉네임을 입력해 주세요.)");
 					location.href = "/profile/profileMain"
 				} else {
 					alert("닉네임이 변경되었습니다.")
