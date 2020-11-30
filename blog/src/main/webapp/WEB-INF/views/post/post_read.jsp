@@ -9,7 +9,9 @@
       </div>
 
       <div class="txt">
-         <div class="user_id">${board.user.nickname}</div>
+         <div class="user_id" onclick="location.href='/profile/profileMain/${board.user.userno}'">
+        	 ${board.user.nickname}
+        </div>
 
          <div class="title">${board.title}</div>
          <input type="hidden" id="boardno" value="${ board.id}"> 

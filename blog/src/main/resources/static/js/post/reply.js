@@ -49,7 +49,7 @@ var reply = {
 		})
 	},
 
-	delete_reply : function() {
+	delete_reply : function() {// 댓글삭제
 		console.log("삭제할 댓글번호:" + reply_id);
 		$.ajax({
 			type : "POST",

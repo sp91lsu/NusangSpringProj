@@ -6,13 +6,15 @@
 		<c:forEach var="reply" items="${board.replyList}">
 			<div class="reply">
 				<input type="hidden" class="reply_id" value="${reply.id}">
-				<div class="img">
-					<img src="/image/panda.jpg">
+				<div class="img" onclick="location.href='/profile/profileMain/${reply.user.userno}'">
+					<img src="${reply.user.picture}">
 				</div>
 				
 				<div class="txt">
 					<div class="top">
-						<div class="nickname">${reply.user.nickname}</div>
+						<div class="nickname" onclick="location.href='/profile/profileMain/${reply.user.userno}'">
+							${reply.user.nickname}
+						</div>
 						
 						<div class="btn_ud">
 						<c:choose>
