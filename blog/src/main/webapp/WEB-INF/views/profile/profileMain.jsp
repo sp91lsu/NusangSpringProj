@@ -15,7 +15,7 @@
 			<div class="pictureSection">
 				<c:choose>
 					<c:when test="${!empty boardUser.picture}">
-						<img id="img" class="profileImg" src="/upload/${boardUser.picture }">
+						<img id="img" class="profileImg" src="${boardUser.picture }">
 					</c:when>
 					<c:otherwise>
 						<img id="img" class="profileImg" src="/image/profileImg.jpg">
@@ -109,7 +109,7 @@ $('#buy-coin-btn').click(function(e) {
 					<c:forEach var="board" items="${boardUser.getBoardList()}">
 						<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 							<div class="img">
-								<img src="/upload/${board.user.picture }">
+								<img src="${board.user.picture }">
 							</div>
 
 							<div class="txt">
@@ -133,8 +133,8 @@ $('#buy-coin-btn').click(function(e) {
 			<%-- 프로필 사진 --%>
 			<div class="pictureSection">
 				<c:choose>
-					<c:when test="${!empty user.picture}">
-						<img id="img" class="profileImg" src="/upload/${user.picture }">
+					<c:when test="${!empty user.picture && 'profileImg.jpg' ne user.picture}">
+						<img id="img" class="profileImg" src="${user.picture }">
 						<div class="spinner-border text-secondary" id="loading" role="status">
 							<span class="sr-only">Loading...</span>
 						</div>
@@ -186,7 +186,7 @@ $('#buy-coin-btn').click(function(e) {
 					<c:forEach var="board" items="${user.getBoardList()}">
 						<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 							<div class="img">
-								<img src="/upload/${board.user.picture }">
+								<img src="${board.user.picture }">
 							</div>
 
 							<div class="txt">

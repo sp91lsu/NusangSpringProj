@@ -69,7 +69,7 @@ public class ProfileService {
 			File newFile = new File(savePath + fileName);
 			file.transferTo(newFile);
 
-			user.setPicture(fileName);
+			user.setPicture("/upload/"+fileName);
 
 			return 1;
 		} catch (IllegalStateException e) {
@@ -98,7 +98,7 @@ public class ProfileService {
 				f.delete();
 			}
 
-			user.setPicture("profileImg.jpg");
+			user.setPicture("/upload/profileImg.jpg");
 			return 1;
 
 		} catch (Exception e) {
