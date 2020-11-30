@@ -8,7 +8,7 @@
 	<c:forEach var="board" items="${boards.content}">
 		<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 			<div class="img">
-				<img src="/upload/${board.user.picture}" alt="" />
+				<img src="${board.user.picture}" alt="" />
 			</div>
 
 			<div class="txt">

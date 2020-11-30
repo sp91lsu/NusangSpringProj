@@ -98,7 +98,7 @@ public class User {
 	@JoinColumn(name = "locationno")
 	private Location location;
 
-	@Column(columnDefinition = "varchar(255) default '/uplaod/profileImg.jpg'")
+	@Column(columnDefinition = "varchar(255) default '/upload/profileImg.jpg'")
 	private String picture;
 
 	
