@@ -28,16 +28,16 @@
 	cursor: pointer;
 }
 
-.reply>.reply_list>.reply>.img>img{
+.reply>.reply_list>.reply>.img>img {
 	width: 100%;
 	height: 100%;
 }
 
-.reply>.reply_list>.reply>.txt{
+.reply>.reply_list>.reply>.txt {
 	margin-left: 10px;
 	width: 740px;
 	height: 100%;
-	float:left;
+	float: left;
 }
 
 .reply>.reply_list>.reply>.txt>.top {
@@ -68,15 +68,31 @@
 	margin-left: 10px;
 }
 
+.reply>.reply_list>.reply>.txt>.mid>.reply_content {
+	width: 100%;
+	height: 100%;
+}
+
 .reply>.reply_list>.reply>.txt>.bot {
 	height: 20px;
 	font-size: 13px;
 }
 
-
-
-
 /* ////////////////// */
-.reply_write{
+.reply_write {
 	margin-top: 20px;
+}
+
+/*******************댓글 수정****************/
+.reply>.update_comment {
+	display: inline-block;
+	margin: 15px 0px 0px 15px;
+}
+
+.reply .btn_uc {
+	float: right;
+}
+
+.reply .btn_uc>button {
+	margin-right: 15px;
 }

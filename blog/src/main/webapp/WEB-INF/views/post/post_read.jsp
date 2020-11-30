@@ -2,7 +2,7 @@
 
 <%@ include file="../layout/header.jsp"%>
 
-<div class="post_read container">
+<div class="post_read container" style="min-height: 200px;">
    <div class="user_info">
       <div class="img" onclick="location.href='/profile/profileMain/${board.user.userno}'">
          <img src="${board.user.picture}">
