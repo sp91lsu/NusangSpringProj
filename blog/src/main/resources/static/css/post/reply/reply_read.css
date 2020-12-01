@@ -2,26 +2,32 @@
 
 .reply {
 	width: 950px;
-	margin-bottom: 20px;
 }
 
-.reply>.reply_write>textarea {
+.reply>hr {
+	margin: 3px 0px 3px 0px;
+}
+
+.reply_cutline {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.reply textarea {
 	border: 1px solid black;
 }
 
-.reply>.reply_write>input[type=button] {
-	font-size: 15px;
-}
-
 .reply>.reply_list>.reply {
-	height: 120px;
-	background: lightgray;
+	min-height: 90px;
+	display: inline-block;
 }
 
 .reply>.reply_list>.reply>.img {
-	width: 180px;
-	height: 100%;
+	width: 60px;
+	height: 60px;
 	float: left;
+	overflow: hidden;
+	margin-top: 10px;
 }
 
 .reply>.reply_list>.reply>.img:hover {
@@ -29,14 +35,15 @@
 }
 
 .reply>.reply_list>.reply>.img>img {
-	width: 100%;
-	height: 100%;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px 30px 30px 30px;
 }
 
 .reply>.reply_list>.reply>.txt {
-	margin-left: 10px;
-	width: 740px;
-	height: 100%;
+	width: 840px;
+	min-height: 90px;
+	margin-left: 5px;
 	float: left;
 }
 
@@ -44,33 +51,47 @@
 	height: 35px;
 }
 
-.reply>.reply_list>.reply>.txt>.top>.nickname {
-	margin: 8px 0px 0px 5px;
+.reply>.reply_list>.reply>.txt>.top>div {
 	float: left;
+	margin: 8px 0px 0px 5px;
 }
 
 .reply>.reply_list>.reply>.txt>.top>.nickname:hover {
 	cursor: pointer;
 }
 
+.reply>.reply_list>.reply>.txt>.top>.myReply {
+	color: red;
+	border: 1px solid red;
+	border-radius: 10px 10px 10px 10px;
+	margin-left: 10px;
+	font-size: 13px;
+}
+
 .reply>.reply_list>.reply>.txt>.top>.btn_ud {
 	float: right;
-	margin: 8px 15px 0px 0px;
+	margin-top: 0px;
 }
 
 .reply>.reply_list>.reply>.txt>.top>.btn_ud>button {
-	margin-left: 15px;
+	padding: 5px;
+	background: white;
+}
+
+.reply>.reply_list>.reply>.txt>.top>.btn_ud>button:hover {
+	background: lightgray;
 }
 
 .reply>.reply_list>.reply>.txt>.mid {
-	width: 730px;
-	height: 65px;
+	width: 830px;
+	min-height: 35px;
 	margin-left: 10px;
 }
 
 .reply>.reply_list>.reply>.txt>.mid>.reply_content {
-	width: 100%;
-	height: 100%;
+	max-width: 840px;
+	min-height: 35px;
+	word-break: break-all;
 }
 
 .reply>.reply_list>.reply>.txt>.bot {
@@ -78,11 +99,44 @@
 	font-size: 13px;
 }
 
-/* ////////////////// */
+/*******************댓글 쓰기****************/
 .reply_write {
-	margin-top: 20px;
+	width: 920px;
+	margin: 40px 0px 40px 75px;
+	display: inline-block;
 }
 
+.reply_write>button {
+	background: white;
+	font-size: 15px;
+}
+
+.reply_write>button:hover {
+	background: lightgray;
+}
+
+.reply_write>.write_replyContent {
+	width: 730px;
+	height: 80px;
+	float: left;
+}
+
+.reply_write>.btn_WriteReply {
+	width: 100px;
+	height: 80px;
+	float: left;
+	margin-left: 20px;
+}
+
+.reply_write>.btn_WriteReply>button {
+	margin-top: 15px;
+	padding: 5px;
+	background: white;
+}
+
+.reply_write>.btn_WriteReply>button:hover {
+	background: lightgray;
+}
 /*******************댓글 수정****************/
 .reply>.update_comment {
 	display: inline-block;
@@ -91,8 +145,15 @@
 
 .reply .btn_uc {
 	float: right;
+	margin-right: 40px;
 }
 
 .reply .btn_uc>button {
-	margin-right: 15px;
+	background: white;
+	padding: 5px;
+	margin-right: 1px;
+}
+
+.reply .btn_uc>button:hover {
+	background: lightgray;
 }

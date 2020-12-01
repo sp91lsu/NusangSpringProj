@@ -20,7 +20,6 @@
 	display: inline-block;
 	border-radius: 15px 15px 15px 15px;
 	overflow: hidden;
-	background: lightgray;
 	margin-bottom: 10px;
 }
 
@@ -74,5 +73,4 @@
 
 .post_read>.content {
 	width: 970px;
-	background: lightgray;
 }
