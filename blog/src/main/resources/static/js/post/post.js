@@ -1,5 +1,6 @@
 var title;
 var content;
+var board_id;
 
 function get_TitleContent(){
 	title = $('#title').val().trim();
@@ -67,15 +68,15 @@ var post = {
 		},
 		
 		delete:function() { // 글 삭제처리
-			var id = $("#board_no").val();
+			board_id = $("#board_no").val();
 			
 			$.ajax({
 				type:"DELETE",
-				url:"/api/post/" + id,
+				url:"/api/post/" + board_id,
 				headers: headers
 			}).done(function(res){
 				if(res == 1) {
-					alert(id+"번글 삭제 성공");
+					alert(board_id+"번글 삭제 성공");
 					location.href = "/home";
 				} else {
 					alert("글삭제 실패");
@@ -86,14 +87,15 @@ var post = {
 		},
 		
 		update:function(){
-			console.log("수정하기 버튼 클릭");
+			board_id = $("#id").val();
+			
 			$.ajax({
 				type:"PUT",
 				url:"/api/post/update",
 				data:{
 					"title" : title,
 					"content" : content,
-					"id" : $("#board_no").val()
+					"id" : $("#id").val()
 				},
 				headers: headers
 			}).done(function(res){

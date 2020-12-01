@@ -47,7 +47,6 @@ public class PostApiController {
 
 	@PostMapping("/add_wish")
 	public int set_wishList(int boardno) {
-		
 		int result = boardService.addWish(boardno);
 		return result;
 	}

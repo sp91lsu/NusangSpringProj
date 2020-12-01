@@ -42,6 +42,7 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int writeBoard(Board board, User user) {
 		try {
+			System.out.println("글쓰기 완료");
 			board.setUser(user);
 			board.setCount(0);
 			repository.save(board);
@@ -55,6 +56,7 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int deleteBoad(int id) {
 		try {
+			System.out.println(id + "번 글삭제 완료");
 			repository.deleteById(id);
 			return 1;
 		} catch (Exception e) {
@@ -66,9 +68,54 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int updateBoard(Board board) {
 		try {
+			System.out.println(board.getId() + "번 글수정 완료");
 			Board findBoard = repository.findById(board.getId()).get();
 			findBoard.setContent(board.getContent());
 			findBoard.setTitle(board.getTitle());
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	@Transactional
+	public int saveReply(ReplySaveReq dto) {
+		System.out.println("userno:" + dto.getUserId() + " boardno:" + dto.getBoardId());
+		System.out.println("내용:" + dto.getContent());
+
+		try {
+			System.out.println("댓글쓰기 완료");
+			Board board = repository.findById(dto.getBoardId()).get();
+			User user = userRep.findById(dto.getUserId()).get();
+			Reply reply = Reply.builder().board(board).content(dto.getContent()).user(user).build();
+
+			replyRep.save(reply);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	@Transactional
+	public int deleteReply(int id) {
+		try {
+			System.out.println(id + "번 댓글 삭제 완료");
+			replyRep.deleteById(id);
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	@Transactional
+	public int updateReply(int id, String comment) {
+		try {
+			System.out.println(id + "번 댓글 수정 완료");
+			Reply reply = replyRep.findById(id).get();
+			reply.setContent(comment);
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,7 +144,7 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 			return pages;
 		} else {
 
-			List<Board> boardList = repository.findAllByOrderByCreateDateAsc();
+			List<Board> boardList = repository.findAllByOrderByCreateDateDesc();
 			Page<Board> pages = new PageImpl<Board>(boardList, pageable, boardList.size());
 			return pages;
 		}
@@ -112,37 +159,6 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 		});
 
 		return oBoard.get();
-	}
-
-	@Transactional
-	public int saveReply(ReplySaveReq dto) {
-		System.out.println("userno:" + dto.getUserId());
-		System.out.println("boardno:" + dto.getBoardId());
-		System.out.println("내용:" + dto.getContent());
-
-		try {
-
-			Board board = repository.findById(dto.getBoardId()).get();
-			User user = userRep.findById(dto.getUserId()).get();
-
-			Reply reply = Reply.builder().board(board).content(dto.getContent()).user(user).build();
-			replyRep.save(reply);
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		}
-	}
-
-	@Transactional
-	public int deleteReply(int id) {
-		try {
-			replyRep.deleteById(id);
-			return 1;
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
 	}
 
 	@Transactional
@@ -171,5 +187,5 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 			return -1;
 		}
 	}
-	
+
 }

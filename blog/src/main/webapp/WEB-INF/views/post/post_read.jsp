@@ -14,7 +14,6 @@
         </div>
 
          <div class="title">${board.title}</div>
-         <input type="hidden" id="boardno" value="${ board.id}"> 
          
          <div class="update_delete">
             <c:choose>
@@ -28,7 +27,8 @@
             </c:choose>
          </div>
       </div>
-      <input type="hidden" id="board_no" value="${board.id}"> <input type="hidden" id="user_no" value="${user.userno}">
+      <input type="hidden" id="board_no" value="${board.id}"> 
+      <input type="hidden" id="user_no" value="${user.userno}">
    </div>
 
    <div class="content">${board.content}</div>

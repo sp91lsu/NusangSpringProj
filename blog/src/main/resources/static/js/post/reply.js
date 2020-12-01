@@ -1,9 +1,10 @@
 var boardId;
 var userno;
-var reply_id
+var reply_id;
 var reply_content;
 var detach_location;
 var parent_location;
+var update_comment;
 
 var reply = {
 	init : function() {
@@ -26,25 +27,37 @@ var reply = {
 					parent_location = detach_location = $(this).closest(".reply");
 					detach_location = parent_location.children(".txt");
 					
-					reply.update_reply();
+					detach_location.detach();
+					parent_location.append("<div class='update_comment'>" +
+												"<textarea class='update_reply'rows='3' cols='100'>" +"</textarea>"+
+											"</div>"+
+											
+											"<div class='btn_uc'>" + 
+												"<button class='btn_update_ok'>수정</button>" + 
+												"<button class='btn_updatecancle'>취소</button>" + 
+											"</div>");
+					reply.init();
+					$(".update_reply").text(reply_content);
+					
+					$(".btn_update_ok").click(function(){//수정완료
+						update_comment = $(".update_reply").val();
+						reply.update_reply();
+						location.reload();
+					}),
+					
+					$(".btn_updatecancle").click(function(){//수정취소
+						$(".update_comment").remove();
+						$(".btn_uc").remove();
+						parent_location.append(detach_location);
+					})
 				}),
-
+				
 		$(".btn_reply_delete").click(function() {// 삭제하기
 			reply_id = $(this).closest(".reply").children(".reply_id").val();
 			
 			reply.delete_reply();
-		}),
-		
-		$(".btn_update_ok").click(function(){
-			console.log("수정 클릭");
-		}),
-		
-		$(".btn_updatecancle").click(function(){
-			console.log("취소 클릭");
-			$(".update_comment").remove();
-			$(".btn_uc").remove();
-			parent_location.append(detach_location);
 		})
+		
 	},
 
 	write : function() {// 댓글쓰기
@@ -90,18 +103,24 @@ var reply = {
 		})
 	},
 
-	update_reply : function() {// 댓글수정
-		console.log("댓글번호:" + reply_id + "\n내용:" + reply_content);
-		detach_location.detach();
-		parent_location.append("<div class='update_comment'>" +
-									"<textarea rows='3' cols='100'>" +"</textarea>"+
-								"</div>"+
-								
-								"<div class='btn_uc'>" + 
-									"<button class='btn_update_ok'>수정</button>" + 
-									"<button class='btn_updatecancle'>취소</button>" + 
-								"</div>");
-		reply.init();
+	update_reply : function() {
+		$.ajax({
+			type : "POST",
+			url : "/api/reply/update",
+			headers : headers,
+			data : {
+				"update_comment" : update_comment,
+				"reply_id" : reply_id
+			}
+		}).done(function(res) {
+			if (res == 1) {
+				console.log("수정 성공");
+			} else {
+				console.log("수정 실패");
+			}
+		}).fail(function(err) {
+			console.log("error: " + err);
+		})
 	}
 }
 

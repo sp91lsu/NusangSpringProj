@@ -27,7 +27,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	" FROM USER1 " + 
 	" WHERE locationno IN " + 
 	" (SELECT loc.locationno FROM location loc WHERE calc_distance(?1, ?2,loc.latitude, loc.longtitude ) <= ?3 )) " + 
-	" ORDER BY CREATE_DATE ASC",nativeQuery = true)
+	" ORDER BY CREATE_DATE DESC",nativeQuery = true)
 	List<Board> getNearBoardList(double latitude, double longtitude , int distance);
-	List<Board> findAllByOrderByCreateDateAsc(); 
+	List<Board> findAllByOrderByCreateDateDesc(); 
 }

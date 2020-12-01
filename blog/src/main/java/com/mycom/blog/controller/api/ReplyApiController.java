@@ -29,8 +29,9 @@ public class ReplyApiController {
 		return result;
 	}
 
-	@PostMapping()
-	public int update() {
-		return 1;
+	@PostMapping("/api/reply/update")
+	public int update(int reply_id, String update_comment) {
+		int result = boardService.updateReply(reply_id, update_comment);
+		return result;
 	}
 }
