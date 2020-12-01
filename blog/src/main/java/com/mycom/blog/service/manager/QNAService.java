@@ -40,9 +40,10 @@ public class QNAService {
 	@Transactional
 	public int updateOk(QNA updateQNA) {
 		try {
+			System.out.println("updateQNA.getNo() 모시여" +updateQNA.getContents());
 			QNA qna = qnaRepository.findById(updateQNA.getNo()).get();
-			qna.setTitle(updateQNA.getTitle());
-			qna.setContents(updateQNA.getContents());
+			qna.setAnswer(updateQNA.getAnswer());
+			System.out.println("qna.getAnswer : " + qna.getAnswer());
 			return 1;
 			
 		}catch (Exception e) {

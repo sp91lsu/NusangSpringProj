@@ -66,6 +66,7 @@ public class FAQController {
 	
 	@RequestMapping(value = "/faqDeleteOk", method = RequestMethod.POST)
 	public void faqDeleteOk(int no, Model model) {
+		System.out.println("no : " + no);
 		int res = faqService.deleteById(no);
 		model.addAttribute("res", res);
 		

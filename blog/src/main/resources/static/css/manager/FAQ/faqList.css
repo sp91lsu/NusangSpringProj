@@ -34,13 +34,13 @@
 }
 .textarea{
 	background-color: lightgray;
-	margin:20px 0 0 50px;
+	margin:20px 0 0 0;
 	border-radius: 10px;
 }
 textarea:focus {
     outline: none;
 }
-.titleColor{
+.titleColor .faqtitleColor{
 	color: black;
 	cursor: pointer;
 }
@@ -63,7 +63,9 @@ textarea:focus {
 .faq_paging{
 	cursor: pointer;
 }
-
+.answer{
+	float: right;
+}
 .contents{
 	display:none;
 }
