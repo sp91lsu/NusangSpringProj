@@ -37,7 +37,7 @@
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%">
 
-									<li class="nav-item"><a class="nav-link" href="/profile/profileMain" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
+									<li class="nav-item"><a class="nav-link" href="/profile/profileMain/${user.userno }" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
 									</a></li>
 									<li class="nav-item">
 										<form action="/logout" method="post">

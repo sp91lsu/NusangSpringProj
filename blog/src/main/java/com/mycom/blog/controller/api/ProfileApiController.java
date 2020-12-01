@@ -5,6 +5,10 @@ import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +27,7 @@ import com.mycom.blog.model.Response;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.service.ProfileService;
+import com.mycom.blog.vo.BoardVO;
 
 @RestController
 @RequestMapping("/api/profile")
@@ -63,6 +68,19 @@ public class ProfileApiController {
 		int res = profileService.updateAge(age);
 		conAssist.updateUser();
 		return res;
+	}
+	
+	@RequestMapping("/updatePost")
+	public Page updatePost(Model model,
+			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+			User userno) {
+		System.out.println("유저넘 뭔데?? "+userno);
+		Page<BoardVO> boardList = profileService.getPageList(pageable, userno);
+		System.out.println("boardList 출력:  " + boardList.getContent());
+		model.addAttribute("myBoardList", boardList);
+		 
+		conAssist.updateUser();
+		return boardList;
 	}
 	
 

@@ -11,6 +11,7 @@
 	<c:choose>
 		<%-- 내가 아닌 user의 프로필 --%>
 		<c:when test="${user.userno != boardUser.userno && !empty boardUser.userno }">
+		<input type="hidden" id="userno" value="${boardUser.userno }">
 			<%-- 프로필 사진 --%>
 			<div class="pictureSection">
 				<c:choose>
@@ -107,7 +108,7 @@ $('#buy-coin-btn').click(function(e) {
 			<%-- 내 글 보기 --%>
 			<div class="postSection row">
 				<div class="myPost community_list">
-					<c:forEach var="board" items="${boardUser.getBoardList()}">
+					<c:forEach var="board" items="${myBoardList.toList()}">
 						<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 							<div class="img">
 								<img src="${board.user.picture }">
@@ -124,13 +125,14 @@ $('#buy-coin-btn').click(function(e) {
 					</c:forEach>
 				</div>
 				<div class="createPost">
-					<h4>${boardUser.nickname}님의일상을공유합니다</h4>
+					<h4>${boardUser.nickname} 님의<br>일상을 공유합니다</h4>
 				</div>
 			</div>
 		</c:when>
 
 		<%-- ***내정보 프로필*** --%>
 		<c:otherwise>
+			<input type="hidden" id="userno" value="${user.userno }">
 			<%-- 프로필 사진 --%>
 			<div class="pictureSection">
 				<c:choose>
@@ -168,7 +170,7 @@ $('#buy-coin-btn').click(function(e) {
 						<option value="" selected disabled hidden>${user.age }</option>
 						<script>
 						for(i=0;i<=80;i++){
-						 document.write("<option>"+i+"</option>");
+							document.write("<option>"+i+"</option>");
 						}
 						</script>
 				</select> 세
@@ -184,7 +186,7 @@ $('#buy-coin-btn').click(function(e) {
 			<%-- 내 글 보기 --%>
 			<div class="postSection row">
 				<div class="myPost community_list">
-					<c:forEach var="board" items="${user.getBoardList()}">
+					<c:forEach var="board" items="${myBoardList.toList()}">
 						<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 							<div class="img">
 								<img src="${board.user.picture }">
@@ -323,6 +325,66 @@ $('#buy-coin-btn').click(function(e) {
  		})
  	}
 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	var page = 0;
+ 	var userno = $('#userno').val();
+
+ 	$(window).scroll(function() {
+ 	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+ 	      console.log('바로밑이 페이지 로그');
+ 	      console.log(++page);
+ 	      
+ 	      
+ 	      
+ 	      
+ 	      $.ajax({
+ 	    	 url : "/api/profile/updatePost?page="+page+"&userno="+userno,
+					
+			success : function(res) {
+				console.log(res)
+		 		res.content.forEach(element => {
+		 			var postPath = "'/post/post_read/"
+		 			var postPathEnd = "'"
+						
+					var post =
+					
+					
+					
+					
+					'<div class="post" onclick="location.href='+postPath+element.id+postPathEnd+'">'+
+					'<div class="img">'+
+						'<img src="'+element.user.picture+'">'+
+					'</div>'+
+
+					'<div class="txt">'+
+						'<div class="writer">'+element.title+'</div>'+
+						'<div class="comment">'+element.content+'</div>'+
+						'<div class="view">'+
+							'<span>추천수0</span><span>조회수:0</span>'+
+						'</div>'+
+					'</div>'+
+				'</div>'
+					
+					
+					
+					$(".myPost").append(post)
+					console.log(element)
+					}); 
+				
+				
+			}
+ 	      })
+ 	      
+ 	      
+ 	      
+ 	      
+ 	    }
+ 	});
 	
 </script>
 

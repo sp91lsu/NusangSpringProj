@@ -8,6 +8,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.WatchEvent.Kind;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -18,7 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.hibernate.Hibernate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +36,8 @@ import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.UserRepository;
+import com.mycom.blog.vo.BoardVO;
+import com.mycom.blog.vo.UserVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -45,6 +52,9 @@ public class ProfileService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	BoardRepository boardRepository;
 
 	// 사진 업데이트
 	@Transactional
@@ -69,7 +79,7 @@ public class ProfileService {
 			File newFile = new File(savePath + fileName);
 			file.transferTo(newFile);
 
-			user.setPicture("/upload/"+fileName);
+			user.setPicture("/upload/" + fileName);
 
 			return 1;
 		} catch (IllegalStateException e) {
@@ -124,14 +134,12 @@ public class ProfileService {
 		return 0;
 	}
 
-	//성별 변경
 	@Transactional
 	public User userChk(User user) {
-		
-		if(user.getUserno() == conAssist.getUserno())
-		{
+
+		if (user.getUserno() == conAssist.getUserno()) {
 			user = conAssist.updateUser();
-		}else {
+		} else {
 			user = userRepository.findById(user.getUserno()).get();
 			System.out.println("친구리스트 lazy init");
 			Hibernate.initialize(conAssist.updateUser().getFriendList());
@@ -139,7 +147,8 @@ public class ProfileService {
 		Hibernate.initialize(user.getBoardList());
 		return user;
 	}
-	
+
+	// 성별 변경
 	@Transactional
 	public int updateGender(GenderType gender) {
 		try {
@@ -162,5 +171,25 @@ public class ProfileService {
 		return 0;
 	}
 
+	public Page<BoardVO> getPageList(Pageable pageable, User user) {
+
+		System.out.println("무슨글 담고있니?  " + boardRepository.findAll(pageable).getContent());
+
+		Page<Board> boards = boardRepository.findByUser(user, pageable);
+
+		List<BoardVO> boardList = new ArrayList<BoardVO>();
+		for (Board board : boards) {
+			BoardVO vo = new BoardVO();
+			UserVO userVo = new UserVO();
+			BeanUtils.copyProperties(board, vo);
+			BeanUtils.copyProperties(board.getUser(), userVo);
+			vo.setUser(userVo);
+			boardList.add(vo);
+		}
+
+		Page<BoardVO> boardVoPage = new PageImpl<BoardVO>(boardList, pageable, boardList.size());
+
+		return boardVoPage;
+	}
 
 }
