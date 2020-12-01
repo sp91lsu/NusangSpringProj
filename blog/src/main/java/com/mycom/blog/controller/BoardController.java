@@ -22,7 +22,7 @@ public class BoardController {
 	private BoardService boardService;
 
 	// @AuthenticationPrincipal PrinciapalDetail principal
-	@GetMapping("/home")
+	@GetMapping({"/","/home"})
 	public String index(Model model,
 			@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
 		
