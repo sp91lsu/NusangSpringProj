@@ -5,7 +5,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 <%@ include file="../layout/header.jsp"%>
-<div class="container">
+<div class="container" style="min-height: 400px">
 
 	<h1 class="display-4 text-center mt-5 mb-5">상점</h1>
 	

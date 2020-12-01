@@ -2,6 +2,7 @@ package com.mycom.blog.auth.provider;
 
 import java.util.Map;
 
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,7 @@ import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.model.KakaoProfile;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.service.UserService;
+import com.mycom.jooq.tables.JUser1;
 
 import lombok.Data;
 
@@ -51,6 +53,7 @@ public class ProviderUserService {
 
 		User updateUser = userService.findUserId(user.getUserid());
 		if (updateUser == null) {
+			
 			userService.signUp(user);
 			System.out.println(user.getNickname()); 
 			updateUser = userService.searchNickname(user.getNickname());

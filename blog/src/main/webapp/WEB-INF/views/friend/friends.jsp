@@ -3,18 +3,30 @@
 <%@ include file="../layout/header.jsp"%>
 <div class="container">
 
+	<h1>친구관리</h1>
 	<div>
-		내 친구 목록
-		<c:forEach var="friend" items="${user.friendList}">
-			<c:if test="${friend.friendType == 'REALATIONSHIP' }">
-				<form action="/chat/go_chatroom">
-					<div>${friend.user.nickname }
-						<button name="chat_userno" class="btn-chat btn btn-primary" value="${friend.user.userno }">${friend.user.userno }채팅하기</button>
-					</div>
-				</form>
-			</c:if>
-		</c:forEach>
+		<div class="row">
+			<div class="col-12">
+				<h2>내 친구 목록</h2>
+				<ul class="list-group list-group-horizontal">
+					<c:forEach var="friend" items="${user.friendList}">
+						<c:if test="${friend.friendType == 'REALATIONSHIP' }">
+							<li class="list-group-item">
+								<form action="/chat/go_chatroom">
+									<div>${friend.user.nickname }
+										<button name="chat_userno" class="btn-chat btn btn-primary" value="${friend.user.userno }">${friend.user.userno }채팅하기</button>
+									</div>
+								</form>
+							</li>
+						</c:if>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
 	</div>
+	
+	
+	
 	<div>
 		내 신청 리스트
 		<c:forEach var="friend" items="${user.friend_reqList(true)}">

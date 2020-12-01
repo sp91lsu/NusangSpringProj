@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,6 +29,7 @@ import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.repository.manager.PaymentRepository;
+import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
@@ -54,6 +56,7 @@ public class UserService extends BasicService<UserRepository, User> {
 	public int signUp(User user) {
 		try {
 			user.setPassword(pwEncoder, user.getPassword());
+			//int maxIndex = dsl.select(DSL.max(JUser1.USER1.USERNO)).from(JUser1.USER1).fetch;
 			repository.save(user);
 
 			return 1;
