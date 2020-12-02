@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -39,8 +41,10 @@ import lombok.ToString;
 			  	   allocationSize = 1)
 
 @Builder
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "QNA")
-//@ToString(exclude = "user")
+@ToString(exclude = "me")
 @Entity
 @JsonIdentityInfo(generator = IntSequenceGenerator.class,property = "id")
 public class QNA {
@@ -55,7 +59,10 @@ public class QNA {
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	//private LocalDateTime regdate;
 	private Date regdate;
-//	@ManyToOne
-//	@JoinColumn(name = "userno", nullable = false)
-//	private User user;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "userno")
+	private User me;
+	
 }

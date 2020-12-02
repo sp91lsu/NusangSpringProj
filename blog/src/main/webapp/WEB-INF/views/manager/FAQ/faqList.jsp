@@ -59,12 +59,9 @@
 												placeholder="답변달기">${qna.answer}</textarea>
 											<button type="submit" class="answer btn btn-primary btn-sm">답변달기</button>
 											<input type="hidden" name="no" value="${qna.no }" />
-										</form>
-										</td>
+										
+										</form></td>
 								</tr>
-
-
-
 							</c:forEach>
 
 						</tbody>
@@ -75,23 +72,77 @@
 							<a class="ml-2 mr-2 qna_paging">${i}</a>
 						</c:forEach>
 					</ul>
+
 				</c:when>
 
 				<c:otherwise>
+					<!-- ----------------------------내 문의 내역---------------------------------------- -->
 					<br>
+					<br>
+					<h3>내 문의내역</h3>
+					<br>
+
+					<table class="table">
+						<thead class="thead-dark" align="center">
+							<tr>
+								<th class="qna_noTh" scope="col">no</th>
+								<th class="qna_conTh" scope="col">내용</th>
+								<th scope="col">날짜</th>
+							</tr>
+						</thead>
+						<tbody class="qna_list">
+							<c:forEach var="qna" items="${qnaList.toList()}">
+							<%--  <c:choose>
+								<c:when test="${user.userno == qna.no }">
+								</c:when>							 
+							 </c:choose> --%>
+								<tr>
+									<td align="center">${qna.no }</td>
+									<td>
+										<div class="titleColor">${qna.title }</div>
+									</td>
+									<td><fmt:formatDate value="${qna.regdate}"
+											pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								</tr>
+								<tr class="contents">
+									<td></td>
+									<td colspan="2"><br>${qna.contents }<br>
+										<form action="/manager/QNA/qnaUpdateOk" method="post">
+											<sec:csrfInput />
+											<textarea name="answer" class="textarea" cols="52" rows="7"
+												placeholder="답변달기">${qna.answer}</textarea>
+											<button type="submit" class="answer btn btn-primary btn-sm">답변달기</button>
+											<input type="hidden" name="no" value="${qna.no }" />
+										</form></td>
+								</tr>
+							</c:forEach>
+
+						</tbody>
+					</table>
+
+					<ul class="pagination justify-content-center">
+						<c:forEach var="i" begin="1" end="${qnaList.getTotalPages() }">
+							<a class="ml-2 mr-2 qna_paging">${i}</a>
+						</c:forEach>
+					</ul>
+					<!-- ----------------------------문의하기---------------------------------------- -->
 					<br>
 					<h3>문의하기</h3>
 
 					<br>
 					<form action="/manager/QNA/qnaWriteOk" method="post">
 						<sec:csrfInput />
-						<div style = "margin-right: 80px;"> 문의제목&nbsp;&nbsp;&nbsp;<input name="title" class="qnaTitle"
-							type="text" /></div>
+						<div class="titleBox">
+							문의제목&nbsp;&nbsp;&nbsp;<input name="title" class="qnaTitle"
+								type="text" />
+						</div>
 						<textarea class="textarea" name="contents" cols="54" rows="10"
 							placeholder="문의내용"></textarea>
-						<button type="submit" class="btn btn-secondary btn-sm"
-							style="float: right;margin-right:26px;">문의하기</button>
+							<input type="hidden" name="userno" value="${user.userno }" />
+						<button type="submit" class="btn btn-secondary btn-sm answerBtn">문의하기</button>
 					</form>
+
+
 				</c:otherwise>
 			</c:choose>
 
@@ -100,13 +151,13 @@
 			<br> <br>
 			<h3>FAQ</h3>
 			<c:choose>
-			<c:when test="${user.role == 'ADMIN' }">
-			<div class="writeBtn">
-				<button class="btn btn-warning"
-					onclick="location.href='/manager/FAQ/faqWrite'">글쓰기</button>
-			</div>
-			 	</c:when>
-		</c:choose>
+				<c:when test="${user.role == 'ADMIN' }">
+					<div class="writeBtn">
+						<button class="btn btn-warning"
+							onclick="location.href='/manager/FAQ/faqWrite'">글쓰기</button>
+					</div>
+				</c:when>
+			</c:choose>
 			<br>
 			<form action="/manager/FAQ/faqDeleteOk" method="post">
 				<sec:csrfInput />
@@ -125,10 +176,14 @@
 									<div class="faqtitleColor">${dto.title }</div>
 									<div class="contents">
 										<br>${dto.contents }<br>
-										<button type="button" class="btn btn-primary btn-sm"
-											onclick="location.href = '/manager/FAQ/faqUpdate?no=${dto.no}'">수정</button>
-										<input type="hidden" name="no" value="${dto.no }" />
-										<button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+										<c:choose>
+											<c:when test="${user.role == 'ADMIN' }">
+												<button type="button" class="btn btn-primary btn-sm"
+													onclick="location.href = '/manager/FAQ/faqUpdate?no=${dto.no}'">수정</button>
+												<input type="hidden" name="no" value="${dto.no }" />
+												<button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+											</c:when>
+										</c:choose>
 									</div>
 								</td>
 							</tr>

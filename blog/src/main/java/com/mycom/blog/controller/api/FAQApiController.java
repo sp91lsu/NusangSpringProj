@@ -19,7 +19,7 @@ public class FAQApiController {
 	
 	@GetMapping("api/faqList")
 	public Page index(Model model,
-			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+			@PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
 		Page faqList = faqService.getPageList(pageable);
 		//model.addAttribute("faqList", faqList);
 

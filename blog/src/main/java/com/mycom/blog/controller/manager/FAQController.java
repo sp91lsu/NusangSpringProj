@@ -3,6 +3,7 @@ package com.mycom.blog.controller.manager;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,11 +33,12 @@ public class FAQController {
 //	}
 	@RequestMapping("/faqList")
 	public String faqList(Model model,
-			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+			@Qualifier("aa") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable,
+			@Qualifier("bb") @PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable2) {
 		Page<FAQ> faqList = faqService.getPageList(pageable);
-		System.out.println("faqList 출력");
+		System.out.println("faqList 출력"+ pageable.getPageSize());
 		//List qnaList = qnaService.findAll();
-		Page<QNA> qnaList = qnaService.getPageList(pageable);
+		Page<QNA> qnaList = qnaService.getPageList(pageable2);
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("faqList", faqList);
 		return "/manager/FAQ/faqList";

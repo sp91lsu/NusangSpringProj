@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.manager.QNA;
 import com.mycom.blog.service.manager.QNAService;
 
@@ -24,22 +27,23 @@ public class QNAController {
 //		model.addAttribute("qnaList", qnaList);
 //		return "/manager/FAQ/faqList";
 //	}
-	@RequestMapping(value = "/qnaWriteOk",method = RequestMethod.POST)
-	public String qnaWriteOk(QNA qna,Model model) {
+	@RequestMapping(value = "/qnaWriteOk", method = RequestMethod.POST)
+	public String qnaWriteOk(QNA qna, User user, Model model) {
 		System.out.println("글쓰기 탔니???");
+		//qna.setMe(user);
 		qna = qnaService.save(qna);
 		int res = qna != null ? 1 : 0;
-		System.out.println("res값 : "  + res);
+		System.out.println("res값 : " + res);
 		model.addAttribute("res", res);
 		return "/manager/QNA/qnaWriteOk";
 	}
+
 	@RequestMapping(value = "qnaUpdateOk", method = RequestMethod.POST)
-	public String qnaUpdateOk(QNA updateQNA,Model model) {
+	public String qnaUpdateOk(QNA updateQNA, Model model) {
 		System.out.println("답변달기 탔니????");
 		int res = qnaService.updateOk(updateQNA);
 		model.addAttribute("res", res);
 		return "manager/QNA/qnaUpdateOk";
 	}
-	
-	
+
 }

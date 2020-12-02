@@ -32,6 +32,7 @@ import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.FriendType;
 import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.dto.enumtype.RoleType;
+import com.mycom.blog.dto.manager.QNA;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -115,6 +116,9 @@ public class User {
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Wish> wishList = new ArrayList<Wish>();
 
+	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	private List<QNA> qnaList = new ArrayList<QNA>();
+	
 	@ColumnDefault("3")
 	private Integer availableTalk = 3;
 

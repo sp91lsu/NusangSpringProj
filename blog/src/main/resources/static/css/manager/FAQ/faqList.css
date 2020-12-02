@@ -49,6 +49,13 @@ textarea:focus {
 	width:300px;
 	height: 300px;
 }
+.titleBox{
+	margin-right: 80px;
+}
+.answerBtn{
+	float: right;
+	margin-right:26px;
+}
 .btnhidden{
 	float: right;
 	height:38px; 
