@@ -42,7 +42,7 @@
 		}
 	})
 </script>
-<%@ include file="../manager_footer.jsp"%>
+<%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>
 
