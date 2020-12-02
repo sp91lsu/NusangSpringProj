@@ -45,15 +45,15 @@ public class ProfileController {
 	}
 	
 	@PostMapping(value =  "/updatePicture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request){
+	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request, User user){
 		profileService.updatePicture(file, request);
-		
+		 
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/profile/profileMain";
+		return "redirect:/profile/profileMain/"+user.getUserno();
 	}
 	
 	
