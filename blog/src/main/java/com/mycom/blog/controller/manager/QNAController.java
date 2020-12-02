@@ -30,7 +30,7 @@ public class QNAController {
 	@RequestMapping(value = "/qnaWriteOk", method = RequestMethod.POST)
 	public String qnaWriteOk(QNA qna, User user, Model model) {
 		System.out.println("글쓰기 탔니???");
-		//qna.setMe(user);
+		qna.setMe(user);
 		qna = qnaService.save(qna);
 		int res = qna != null ? 1 : 0;
 		System.out.println("res값 : " + res);
