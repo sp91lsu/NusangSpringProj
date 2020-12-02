@@ -4,14 +4,18 @@
 <div class="container">
 
 	<c:forEach var="user_i" items="${nearUserList}">
-		<div>${user_i.nickname }<c:if test="${user_i.isMe(user_i) }">
+		<div class="watchBox mr-5" style="float: left; border: 1px;">
+			<div class="watch" >
+				<img id="card_img" alt="default image" src="${user_i.picture }" class="rounded-bottom">
+				<div class="textBox" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 5px;">
+					<h5 class="productname" style="margin-top: 10px;">${user_i.nickname }
+						<c:if test="${user_i.isMe(user_i) }">
 			      나
 			</c:if>
-
-			<c:if test="${!user_i.isMe(user_i) }">
-				<button class="btn-add-friend btn btn-primary" value="${user_i.userno }">${user_i.userno }친구요청</button>
-			</c:if>
-
+					</h5>
+				</div>
+				<button class="move btn btn-warning">프로필 보러가기</button>
+			</div>
 		</div>
 	</c:forEach>
 

@@ -65,9 +65,9 @@ public class ProviderUserService {
 	private User ofNaver(Map<String, Object> attributes) {
 
 		attributes = (Map<String, Object>) attributes.get("response");
-		String username = (String) attributes.get("name") + "_" + (String) attributes.get("id");
-
-		return User.builder().nickname(username).userid(username).username(username)
+		String username = (String) attributes.get("name");
+		String signature = username + (String) attributes.get("id");
+		return User.builder().nickname(username).userid(signature).username(username)
 				.email((String) attributes.get("email")).authType(AuthType.NAVER)
 
 				.build();
@@ -84,16 +84,16 @@ public class ProviderUserService {
 				
 		String signiture = name + "_" + id;
 		
-		return User.builder().nickname(signiture).userid(signiture).username(name)
+		return User.builder().nickname(name).userid(signiture).username(name)
 				.email(email).authType(AuthType.KAKAO)
 
 				.build();
 	}
 
 	private User ofGoogle(Map<String, Object> attributes) {
-		String username = (String) attributes.get("name") + "_" + (String) attributes.get("sub");
-
-		return User.builder().nickname(username).userid(username).username(username)
+		String username = (String) attributes.get("name");
+		String signiture = username + "_" + (String) attributes.get("sub");
+		return User.builder().nickname(username).userid(signiture).username(username)
 				.picture((String) attributes.get("picture")).email((String) attributes.get("email"))
 				.authType(AuthType.GOOGLE)
 
@@ -107,7 +107,7 @@ public class ProviderUserService {
 
 		String signiture = name + "_" + id;
 
-		return User.builder().nickname(signiture).userid(signiture).username(name).email(email)
+		return User.builder().nickname(name).userid(signiture).username(name).email(email)
 				.authType(AuthType.FACEBOOK)
 
 				.build();

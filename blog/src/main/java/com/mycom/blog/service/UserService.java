@@ -57,8 +57,8 @@ public class UserService extends BasicService<UserRepository, User> {
 		try {
 			user.setPassword(pwEncoder, user.getPassword());
 			//int maxIndex = dsl.select(DSL.max(JUser1.USER1.USERNO)).from(JUser1.USER1).fetch;
-			repository.save(user);
-
+			user = repository.save(user);
+			user.setNickname(user.getNickname() + "_" +user.getUserno());
 			return 1;
 
 		} catch (Exception e) {
