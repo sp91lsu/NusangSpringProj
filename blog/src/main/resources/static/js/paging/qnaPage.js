@@ -61,7 +61,7 @@
 								success: function(res){
 									console.log(res)
 									if(res == 1)
-									{alert("수정되ㅑ었습니다")
+									{alert("답변이 달렸습니다.")
 									location.reload();	
 									}
 									}

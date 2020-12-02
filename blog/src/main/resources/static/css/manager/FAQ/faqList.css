@@ -33,14 +33,14 @@
 	border-radius: 5px;
 }
 .textarea{
-	background-color: lightgray;
+	background-color: #FFFFD2;
 	margin:20px 0 0 0;
 	border-radius: 10px;
 }
 textarea:focus {
     outline: none;
 }
-.titleColor .faqtitleColor{
+.titleColor, .faqtitleColor{
 	color: black;
 	cursor: pointer;
 }

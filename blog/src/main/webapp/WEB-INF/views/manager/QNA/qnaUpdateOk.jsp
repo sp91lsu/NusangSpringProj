@@ -10,7 +10,7 @@
 	<c:choose>
 		<c:when test="${res == 1 }">
 			<script>
-				alert("답변달기가 성공적으로 이루어졌습니다.");
+				alert("답변이 달렸습니다.");
 				location.href = "/manager/FAQ/faqList";
 			</script>	
 		</c:when>

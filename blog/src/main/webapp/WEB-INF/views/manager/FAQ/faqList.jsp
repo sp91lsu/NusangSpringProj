@@ -85,12 +85,12 @@
 					<br>
 					<form action="/manager/QNA/qnaWriteOk" method="post">
 						<sec:csrfInput />
-						문의제목&nbsp;&nbsp;&nbsp;<input name="title" class="qnaTitle"
-							type="text" />
+						<div style = "margin-right: 80px;"> 문의제목&nbsp;&nbsp;&nbsp;<input name="title" class="qnaTitle"
+							type="text" /></div>
 						<textarea class="textarea" name="contents" cols="54" rows="10"
 							placeholder="문의내용"></textarea>
-						<button type="submit" class="btn btn-secondary"
-							style="float: right;">문의하기</button>
+						<button type="submit" class="btn btn-secondary btn-sm"
+							style="float: right;margin-right:26px;">문의하기</button>
 					</form>
 				</c:otherwise>
 			</c:choose>
