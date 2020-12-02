@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -50,7 +51,8 @@ import lombok.ToString;
 @Builder
 @Table(name = "User1")
 @Entity // user클래스가 자동으로 테이블을 생성
-@DynamicInsert
+@DynamicInsert(value = true)
+@DynamicUpdate
 @ToString(exclude = "location")
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class User {
@@ -87,7 +89,7 @@ public class User {
 	@Column(nullable = false)
 	private RoleType role = RoleType.USER; // Enum을 쓰는게 좋다.
 
-	
+	@Column(nullable = false)
 	@CreationTimestamp // 시간이 자동입력
 	private Timestamp createDate;
 
@@ -98,7 +100,7 @@ public class User {
 	@JoinColumn(name = "locationno")
 	private Location location;
 
-	@Column(columnDefinition = "varchar(255) default '/upload/profileImg.jpg'")
+	@Column(nullable = false,columnDefinition = "varchar(255) default '/upload/profileImg.jpg'")
 	private String picture;
 
 	

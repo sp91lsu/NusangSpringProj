@@ -4,9 +4,11 @@
 <div class="container">
 
 	<c:forEach var="user_i" items="${nearUserList}">
+	${user_i.picture }
 		<div class="watchBox mr-5" style="float: left; border: 1px;">
-			<div class="watch" >
-				<img id="card_img" alt="default image" src="${user_i.picture }" class="rounded-bottom">
+			<div class="watch">
+
+				<img id="card_img" src="${user_i.picture }" class="rounded-bottom">
 				<div class="textBox" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 5px;">
 					<h5 class="productname" style="margin-top: 10px;">${user_i.nickname }
 						<c:if test="${user_i.isMe(user_i) }">

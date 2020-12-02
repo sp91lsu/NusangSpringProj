@@ -56,9 +56,10 @@ public class UserService extends BasicService<UserRepository, User> {
 	public int signUp(User user) {
 		try {
 			user.setPassword(pwEncoder, user.getPassword());
-			//int maxIndex = dsl.select(DSL.max(JUser1.USER1.USERNO)).from(JUser1.USER1).fetch;
+			System.out.println(user.getPicture() + "호이쨔");
 			user = repository.save(user);
-			user.setNickname(user.getNickname() + "_" +user.getUserno());
+			
+			user.setNickname(user.getNickname() + "_" + user.getUserno());
 			return 1;
 
 		} catch (Exception e) {
@@ -167,7 +168,7 @@ public class UserService extends BasicService<UserRepository, User> {
 		}
 
 	}
-	
+
 	@Transactional
 	public int buyCoin(ProductPayload payload) {
 
@@ -179,7 +180,8 @@ public class UserService extends BasicService<UserRepository, User> {
 			int totalCoin = user.getCoin() + item.getNum();
 			user.setCoin(totalCoin);
 
-			Payment payment = Payment.builder().imp_uid(payload.getMerchant_uid()).pay(100).paytype(PayType.BUY).user(user).build();
+			Payment payment = Payment.builder().imp_uid(payload.getMerchant_uid()).pay(100).paytype(PayType.BUY)
+					.user(user).build();
 			paymentRep.save(payment);
 
 			return 1;
