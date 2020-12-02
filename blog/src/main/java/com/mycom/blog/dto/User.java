@@ -66,7 +66,7 @@ public class User {
 	@Column(nullable = false, length = 100, unique = true)
 	private String userid;
 
-	@Column(nullable = false, length = 100, unique = true)
+	@Column(nullable = false, length = 100, unique = false)
 	private String username;
 
 	@Column(nullable = false, length = 100, unique = true)
@@ -215,6 +215,21 @@ public class User {
 		} else {
 			return -1;
 		}
+	}
+	
+	public int chkFriend(int boardUserno) {
+		System.out.println("친구 체크 함수는 타지??? ");
+		
+		for (Friend fl : friendList) {
+			if(fl.getUser().getUserno() == boardUserno) {
+				if(fl.getFriendType() == FriendType.REQUEST) {
+					return 1;
+				} else if(fl.getFriendType() == FriendType.REALATIONSHIP) {
+					return 2;
+				}
+			}
+		}
+		return 0;
 	}
 
 }
