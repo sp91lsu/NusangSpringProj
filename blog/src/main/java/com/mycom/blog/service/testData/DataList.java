@@ -1,8 +1,11 @@
 package com.mycom.blog.service.testData;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class DataList {
+//	 아이디
 	 String engNameList_raw = "Aaliyah,"
 	 		+ "Abby,"
 	 		+ "Abigail,"
@@ -1003,16 +1006,88 @@ public class DataList {
 	 		+ "Zola,"
 	 		+ "Zora,"
 	 		+ "Zuri";
-	 
 	 String [] engNameList() {
 		String [] result = engNameList_raw.split(",");
 		return result;
+	 	}
+	 
+//	 성
+	 String firstNames = "김,이,박,조,최,정,손,강,임,신,장,윤,오,권,전,유,한,서,안,황,송,홍,양,고,문,배,백,류,허,노,남,심,주,구,하,곽,성,차,민,진,우,엄,나,지,변,방,원,채,천,공";
+	 String [] firstNameList() {
+			String [] result = firstNames.split(",");
+			return result;
+	 	}
+	 
+//	 이름
+	 //남자
+	 String secondNames_M = "민준,지훈,현우,주원,시우,우진,지후,현준,서준,도현,지호,승현,진우,도윤,건우,지원,준영,준호,동현,선우,성민,정우,민재,예준,준혁,수현,현수,정훈,민수,준우,연우,민규,준서,정민,지환,성현,재현,민우,서진,지우,민호,시후,정현,재민,민성,승우,상현,재원,윤호,승민";
+	 String [] secondNameList_M() {
+			String [] result = secondNames_M.split(",");
+			return result;
+	 	}
+	 //여자
+	 String secondNames_W = "유진,지영,지은,지원,수진,지혜,서연,수연,민정,민지,지현,지연,혜진,서현,지윤,현정,서윤,수현,소영,지민,수정,은정,은지,소연,민서,현주,지우,민주,은영,민경,혜원,수빈,선영,서영,은주,채원,수아,수민,유정,지수,정은,주희,예진,윤정,윤서,주연,지아,미경,지유,은경";
+	 String [] secondNameList_W() {
+			String [] result = secondNames_W.split(",");
+			return result;
+	 	}
+//	 닉네임
+	 String nicNames = "아바타,닉네임,우유,커피,모카,초코,브라우니,댕댕이,삐삐,뚠뚠,강냉이,저승사자,잠만보,안드로메다,프라하,고인물,갑분싸,인싸,존잘러,곰스,바운스,뚱이,복서,해충박멸,디스코드,후라이팬,존버,꿀꿀이,나쵸,너구리,아몬드,땅콩,치즈,호떡,만두,대파,부엉이,프로,록맨,호구맨,레이저,고독,저격,달님,더힐,놀고있네,프리미어,메이트,바른마음,백구,잇츠,앗메리카노,고고고고,오렌지피클,땡땡이,라이트,월계수,테슬라,실루엣,시계,레전드,결정,시즌,뉴비,버드,열차,공포,다이,전기,윈디,감옥,빌런,데빌,파이어,워터,바이,호시탐탐,레이븐,세트,순대,물범,레이드,베테랑,팔라딘,극비,다이어트,풀피,레나,야채,푸른점,푸른곰팡이,초록괴물,독수리,시사회,청둥오리,아이스크림,대나무,바이올린,바이올렛,인터스텔라";
+	 String [] nicNameList() {
+			String [] result = nicNames.split(",");
+			return result;
+	 	}
+//	 나이 20~40
+	 int [] ageCurve = {
+		3,
+		3,
+		3,
+		3,
+		4,
+		5,
+		6,
+		5,
+		4,
+		4,
+		3,
+		2,
+		2,
+		2,
+		2,
+		2,
+		2,
+		2,
+		2,
+		2,
+		1
+	 };
+	 int [] ageList() {
+		 ArrayList<Integer> result = new ArrayList<Integer>();
+		 for (int i = 0; i < ageCurve.length; i++) {
+			 for (int j = 0; j < ageCurve[i]; j++) {
+				 result.add(i);
+			}
+		}
+		 Integer [] resultI = (Integer[]) result.toArray(new Integer[result.size()]);
+		 return Arrays.stream(resultI).mapToInt(Integer::intValue).toArray();
 	 }
+	 
+//   성별 ex) 남 61.7% 여 38.3%
+	 String gender(double mPer) {
+		 String result = null;
+		 Random r = new Random();
+		 double temp = 0;
+		 temp = (double)r.nextInt(10000);
+		 result = temp/100 >= 0 && temp/100 < mPer ? "남" : "여";
+		 return result;
+	 }
+	 
 	 
 	 
 	 public static void main(String[] args) {
 		DataList s = new DataList();
-		System.out.println(Arrays.toString(s.engNameList()));
-		System.out.println(s.engNameList().length);
+		System.out.println(Arrays.toString(s.nicNameList()));
+		System.out.println(s.nicNameList().length);
+		
 		}
 }

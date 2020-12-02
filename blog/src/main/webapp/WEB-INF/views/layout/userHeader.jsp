@@ -69,4 +69,3 @@
 			</c:choose>
 		</div>
 	</nav>
-	<br>

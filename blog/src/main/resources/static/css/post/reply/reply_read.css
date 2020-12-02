@@ -94,13 +94,14 @@
 	word-break: break-all;
 }
 
-.reply>.reply_list>.reply>.txt>.mid>.reply_content>span{
+.reply>.reply_list>.reply>.txt>.mid>.reply_content>span {
 	color: lightgray;
 }
 
-.reply>.reply_list>.reply>.txt>.mid>.reply_content>.content{
+.reply>.reply_list>.reply>.txt>.mid>.reply_content>.content {
 	color: black;
 }
+
 .reply>.reply_list>.reply>.txt>.bot {
 	height: 20px;
 	font-size: 13px;
@@ -145,6 +146,11 @@
 	background: lightgray;
 }
 /*******************댓글 수정****************/
+.reply textarea{
+	resize: none;
+	border-radius: 5px;
+}
+
 .reply>.update_comment {
 	display: inline-block;
 	margin: 15px 0px 0px 15px;

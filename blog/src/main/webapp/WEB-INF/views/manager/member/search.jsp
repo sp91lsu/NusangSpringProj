@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../layout/header.jsp"%>
+<link rel="stylesheet" href="/css/manager/search.css" />
 <body>
 	<div class="myContainer">
 		<div class="d-flex">

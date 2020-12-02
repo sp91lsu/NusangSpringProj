@@ -60,7 +60,7 @@
 					</div>
 					
 					<div class="bot">
-						${reply.createDate}
+					<fmt:formatDate value="${reply.createDate}" pattern="yyyy.MM.dd '&nbsp;'HH:mm"/>
 					</div>
 				</div>
 			</div>
