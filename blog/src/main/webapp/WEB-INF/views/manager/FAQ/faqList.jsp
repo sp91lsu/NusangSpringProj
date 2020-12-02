@@ -99,14 +99,14 @@
 		<div class="container2 p-6">
 			<br> <br>
 			<h3>FAQ</h3>
-			<%-- <c:choose>
-			<c:when test="${user.role == 'ADMIN' }"> --%>
+			<c:choose>
+			<c:when test="${user.role == 'ADMIN' }">
 			<div class="writeBtn">
 				<button class="btn btn-warning"
 					onclick="location.href='/manager/FAQ/faqWrite'">글쓰기</button>
 			</div>
-			<%-- 	</c:when>
-		</c:choose> --%>
+			 	</c:when>
+		</c:choose>
 			<br>
 			<form action="/manager/FAQ/faqDeleteOk" method="post">
 				<sec:csrfInput />
