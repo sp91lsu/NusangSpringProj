@@ -218,7 +218,6 @@ public class User {
 	}
 	
 	public int chkFriend(int boardUserno) {
-		System.out.println("친구 체크 함수는 타지??? ");
 		
 		for (Friend fl : friendList) {
 			if(fl.getUser().getUserno() == boardUserno) {
