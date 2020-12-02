@@ -38,6 +38,26 @@
 					<li>나의 캐쉬 40 coin</li>
 				</ul>
 
+				<div class="friendUser">
+					<c:set var="chkFriend" value="${user.chkFriend(boardUser.userno)}"></c:set>
+					<c:choose>
+						<c:when test="${chkFriend eq 0 }">
+							<button>친구추가 하기</button>
+						</c:when>
+						<c:when test="${chkFriend eq 1 }">
+							<span>친구 요청중</span>
+						</c:when>
+						<c:when test="${chkFriend eq 2 }">
+							<span>이미 친구임</span>
+						</c:when>
+					
+					</c:choose>
+				
+				
+				</div>
+
+
+
 				<form id="go_chat_form" action="/chat/go_chatroom" method="get">
 					<sec:csrfInput />
 					<input type="hidden" name="chat_userno" value="${boardUser.userno  }"/>
@@ -107,7 +127,7 @@ $('#buy-coin-btn').click(function(e) {
 
 			<%-- 내 글 보기 --%>
 			<div class="postSection row">
-				<div class="myPost community_list">
+				<div class="community_list">
 					<c:forEach var="board" items="${myBoardList.toList()}">
 						<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 							<div class="img">
@@ -169,9 +189,9 @@ $('#buy-coin-btn').click(function(e) {
 				</select> &nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;나이 : <select name="ageSelect" id="ageSelect" onchange="ageSelected()">
 						<option value="" selected disabled hidden>${user.age }</option>
 						<script>
-						for(i=0;i<=80;i++){
-							document.write("<option>"+i+"</option>");
-						}
+							for(i=0;i<=80;i++){
+								document.write("<option>"+i+"</option>");
+							}
 						</script>
 				</select> 세
 				</span>
@@ -181,11 +201,12 @@ $('#buy-coin-btn').click(function(e) {
 				</ul>
 
 			</div>
+			<br><br>
 			<hr>
 
 			<%-- 내 글 보기 --%>
 			<div class="postSection row">
-				<div class="myPost community_list">
+				<div class="community_list">
 					<c:forEach var="board" items="${myBoardList.toList()}">
 						<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 							<div class="img">
@@ -247,7 +268,6 @@ $('#buy-coin-btn').click(function(e) {
 					alert("닉네임이 변경되었습니다.")
 					location.href = "/profile/profileMain"
 				}
-
 			}
 		})
 	}) 
@@ -265,9 +285,7 @@ $('#buy-coin-btn').click(function(e) {
 					alert("기존 사진이 삭제되었습니다.")
 					location.href = "/profile/profileMain"
 				}
-
 			}
-			
 		})
 	})
 	
@@ -295,7 +313,6 @@ $('#buy-coin-btn').click(function(e) {
 					alert("성별이 변경되었습니다.")
 					location.href = "/profile/profileMain"
 				}
-
 			}
  			
  		})
@@ -319,18 +336,10 @@ $('#buy-coin-btn').click(function(e) {
 					alert("나이가 변경되었습니다.")
 					location.href = "/profile/profileMain"
 				}
-
 			}
- 			
  		})
  	}
 	
- 	
- 	
- 	
- 	
- 	
- 	
  	var page = 0;
  	var userno = $('#userno').val();
 
@@ -339,50 +348,34 @@ $('#buy-coin-btn').click(function(e) {
  	      console.log('바로밑이 페이지 로그');
  	      console.log(++page);
  	      
- 	      
- 	      
- 	      
  	      $.ajax({
  	    	 url : "/api/profile/updatePost?page="+page+"&userno="+userno,
 					
 			success : function(res) {
 				console.log(res)
 		 		res.content.forEach(element => {
-		 			var postPath = "'/post/post_read/"
-		 			var postPathEnd = "'"
-						
+		 			var postPath = "'/post/post_read/"+element.id+"'"
 					var post =
 					
-					
-					
-					
-					'<div class="post" onclick="location.href='+postPath+element.id+postPathEnd+'">'+
-					'<div class="img">'+
-						'<img src="'+element.user.picture+'">'+
-					'</div>'+
-
-					'<div class="txt">'+
-						'<div class="writer">'+element.title+'</div>'+
-						'<div class="comment">'+element.content+'</div>'+
-						'<div class="view">'+
-							'<span>추천수0</span><span>조회수:0</span>'+
+					'<div class="post" onclick="location.href='+postPath+'">'+
+						'<div class="img">'+
+							'<img src="'+element.user.picture+'">'+
 						'</div>'+
-					'</div>'+
-				'</div>'
+	
+						'<div class="txt">'+
+							'<div class="writer">'+element.title+'</div>'+
+							'<div class="comment">'+element.content+'</div>'+
+							'<div class="view">'+
+								'<span>추천수0</span><span>조회수:0</span>'+
+							'</div>'+
+						'</div>'+
+					'</div>'
 					
-					
-					
-					$(".myPost").append(post)
+					$(".community_list").append(post)
 					console.log(element)
 					}); 
-				
-				
 			}
  	      })
- 	      
- 	      
- 	      
- 	      
  	    }
  	});
 	

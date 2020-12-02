@@ -40,18 +40,11 @@
 .infoSection ul li{
 	width: 150px;
 	list-style: none;
-	float: left;
+	display: inline-block;
 }
 
 .postSection{
 	width: 100%;
-}
-
-.myPost{
-	height: 630px;
-	border: 2px solid #eee;
-	padding: 20px;
-	margin: 0 0 0 40px;
 }
 
 .createPost{
@@ -64,6 +57,7 @@
 	width: 300px;
 	height: 250px;
 	margin-left: 50px;
+	padding-top: 30px;
 }
 
 .picUpdateBtn {
@@ -83,8 +77,13 @@
 
 /* 내글에 대한 스타일 */
 .community_list {
+	display: inline-block;
 	width: 630px;
 	min-height: 300px;
+	border: 2px solid #eee;
+	padding: 20px;
+	margin: 0 0 0 40px;
+	
 }
 
 .btn_write {
@@ -136,7 +135,7 @@
 }
 
 .txt>.comment {
-	min-height: 90px;
+	min-height: 50px;
 	margin-top: 5px;
 }
 
