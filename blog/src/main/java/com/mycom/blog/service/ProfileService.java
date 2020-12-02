@@ -120,18 +120,27 @@ public class ProfileService {
 	@Transactional
 	public int nickNameUpdate(String nickName) {
 		String namePattern = "^[a-zA-Z0-9가-힣!@#$%^&*()_+-=~.]{2,8}$"; // 한글만 2~8자
-		boolean chk = Pattern.matches(namePattern, nickName);
+		boolean patChk = Pattern.matches(namePattern, nickName);
+		boolean duplChk = true;
+		
+		List<User> userAll = userRepository.findAll();
+		for (User ua : userAll) {
+			if(ua.getNickname().equals(nickName)) {
+				duplChk = false;
+			}
+		}
 
-		if (chk == true) {
-
+		if (patChk == true && duplChk == true) {
 			try {
 				User user = userRepository.findById(conAssist.getUserno()).get();
 				user.setNickname(nickName);
-				return 1;
+				return 0;
 			} catch (Exception e) {
 			}
+		} else if(duplChk == false) {
+			return 2;
 		}
-		return 0;
+		return 1;
 	}
 
 	@Transactional

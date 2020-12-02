@@ -260,14 +260,14 @@ $('#buy-coin-btn').click(function(e) {
 				"nickName" : nickName
 			},
 			success : function(res) {
-
 				if (res == 0) {
+					alert("닉네임이 변경되었습니다.");
+				} else if(res == 1) {
 					alert("닉네임 변경에 실패했습니다. 다시 시도해주세요.\n(2~8글자의 닉네임을 입력해 주세요.)");
-					location.href = "/profile/profileMain"
-				} else {
-					alert("닉네임이 변경되었습니다.")
-					location.href = "/profile/profileMain"
+				} else if(res == 2) {
+					alert("중복된 닉네임 입니다. 다시 시도해주세요.\n(2~8글자의 닉네임을 입력해 주세요.)");
 				}
+				location.href = "/profile/profileMain"
 			}
 		})
 	}) 
@@ -310,7 +310,7 @@ $('#buy-coin-btn').click(function(e) {
 					alert("성별 변경에 실패했습니다. 다시 시도해주세요.");
 					location.href = "/profile/profileMain"
 				} else {
-					alert("성별이 변경되었습니다.")
+					alert("성별이 변경되었습니다.");
 					location.href = "/profile/profileMain"
 				}
 			}

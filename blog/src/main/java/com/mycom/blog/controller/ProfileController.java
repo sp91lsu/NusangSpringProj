@@ -38,15 +38,11 @@ public class ProfileController {
 	@Autowired
 	private UserRepository userRepository;
 	
-//	@RequestMapping("/profileMain")
-//	public String profil(Model model,
-//			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
-//		Page<BoardVO> boardList = profileService.getPageList(pageable);
-//		System.out.println("boardList 출력");
-//		model.addAttribute("myBoardList", boardList);
-//		conAssist.updateUser();
-//		return "profile/profileMain";
-//	}
+	@RequestMapping("/profileMain")
+	public String profil() {
+		conAssist.updateUser();
+		return "profile/profileMain";
+	}
 	
 	@PostMapping(value =  "/updatePicture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request){
