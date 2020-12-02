@@ -152,9 +152,9 @@ $('#buy-coin-btn').click(function(e) {
 
 		<%-- ***내정보 프로필*** --%>
 		<c:otherwise>
-			<input type="hidden" id="userno" value="${user.userno }">
 			<%-- 프로필 사진 --%>
 			<div class="pictureSection">
+				
 				<c:choose>
 					<c:when test="${!empty user.picture && 'profileImg.jpg' ne user.picture}">
 						<img id="img" class="profileImg" src="${user.picture }">
@@ -169,6 +169,7 @@ $('#buy-coin-btn').click(function(e) {
 				<form action="/profile/updatePicture" id="form" method="post" enctype="multipart/form-data">
 					<sec:csrfInput />
 					<input type="file" name="file" id="file" accept=".gif, .jpg, .png" style="display: none">
+					<input type="hidden" id="userno" name="userno"  value="${user.userno }">
 				</form>
 				<button class="picUpdateBtn" id="picUpdateBtn">사진변경</button>
 				<button class="picDeleteBtn" id="picDeleteBtn">기존사진 삭제</button>
@@ -267,7 +268,7 @@ $('#buy-coin-btn').click(function(e) {
 				} else if(res == 2) {
 					alert("중복된 닉네임 입니다. 다시 시도해주세요.\n(2~8글자의 닉네임을 입력해 주세요.)");
 				}
-				location.href = "/profile/profileMain"
+				location.reload();
 			}
 		})
 	}) 
@@ -280,11 +281,10 @@ $('#buy-coin-btn').click(function(e) {
 
 				if (res == 0) {
 					alert("사진 변경에 실패했습니다. 다시 시도해주세요.");
-					location.href = "/profile/profileMain"
 				} else {
 					alert("기존 사진이 삭제되었습니다.")
-					location.href = "/profile/profileMain"
 				}
+				location.reload();
 			}
 		})
 	})
@@ -308,11 +308,10 @@ $('#buy-coin-btn').click(function(e) {
 
 				if (res == 0) {
 					alert("성별 변경에 실패했습니다. 다시 시도해주세요.");
-					location.href = "/profile/profileMain"
 				} else {
 					alert("성별이 변경되었습니다.");
-					location.href = "/profile/profileMain"
 				}
+				location.reload();
 			}
  			
  		})
@@ -331,11 +330,10 @@ $('#buy-coin-btn').click(function(e) {
 			success : function(res) {
 				if (res == 0) {
 					alert("나이 변경에 실패했습니다. 다시 시도해주세요.");
-					location.href = "/profile/profileMain"
 				} else {
-					alert("나이가 변경되었습니다.")
-					location.href = "/profile/profileMain"
+					alert("나이가 변경되었습니다.");
 				}
+				location.reload();
 			}
  		})
  	}
