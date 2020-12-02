@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/manager/header_subnav.css" />
+<link rel="stylesheet" href="/css/manager/search.css" />
 
 
 
-<body style="height: 1500px">
-	<div class="container-fluid">
+<body>
+	<div id="welcome" class="container-fluid">
 		<br>
 		<h3>___관리자님 환영합니다!</h3>
 		<p>A sticky navigation bar stays fixed at the top of the page when you scroll past it.</p>
@@ -13,7 +14,7 @@
 		</p>
 	</div>
 
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+	<nav id="bar" class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
 		<a class="navbar-brand" href="/home">홈</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -32,7 +33,7 @@
 						<li class="nav-item"><a class="nav-link" href="">일반사용자 메뉴</a></li>
 						<li class="nav-item subnav"><a class="nav-link subnav-li" href="">회원관리</a>
 							<div class="subnav-content">
-								<a href="#bring">회원검색</a> <a href="#deliver">블랙리스트</a> <a href="#package">회원동향 분석</a>
+								<a href="/manager/member/search">회원검색</a> <a href="#deliver">블랙리스트</a> <a href="#package">회원동향 분석</a>
 							</div></li>
 						<li class="nav-item subnav"><a class="nav-link subnav-li" href="">매출분석</a>
 							<div class="subnav-content">
