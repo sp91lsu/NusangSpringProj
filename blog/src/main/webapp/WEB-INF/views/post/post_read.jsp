@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.text.SimpleDateFormat"%>
 
 <%@ include file="../layout/header.jsp"%>
 
@@ -39,10 +40,8 @@
 
 	<hr>
 	<div class="content">${board.content}</div>
-	
-	<input type="hidden" id="isWatchPost" value="${ board.isWishBoard(user)}"> 
-	<input type="hidden" id="watchno" value="${board.wishList.size() }"> 
-	<i id="heart_icon" style="cursor: pointer; width: 50px; height: 50px; margin: 5px 0 0 5px;"></i>
+	<i class="heart_icon far fa-heart"></i> ${board.wishList.size()}
+	<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
 	
 	<%@ include file="reply/reply_read.jsp"%>
 </div>
