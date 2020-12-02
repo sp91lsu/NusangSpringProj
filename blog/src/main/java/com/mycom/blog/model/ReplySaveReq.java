@@ -11,5 +11,6 @@ public class ReplySaveReq {
 
 	int userId;
 	int boardId;
+	int secretmode;
 	String content;
 }

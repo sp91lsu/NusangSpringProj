@@ -1,17 +1,17 @@
 var boardId;
 var userno;
 var reply_id;
+var secretmode;
 var reply_content;
-var detach_location;
-var parent_location;
 var update_comment;
 
 var reply = {
 	init : function() {
 		$("#btn_reply_write").click(function() {// 댓글쓰기
-			reply_content = $("#reply_content").val().trim();
-			boardId = $("#board_no").val();
 			userno = $("#user_no").val();
+			boardId = $("#board_no").val();
+			secretmode = $("input[id='secretmode']:checked").length;
+			reply_content = $("#reply_content").val().trim();
 
 			if (reply_content == "") {
 				alert("댓글을 입력해주세요");
@@ -22,10 +22,11 @@ var reply = {
 
 		$(".btn_reply_update").click(function() {// 수정하기
 					reply_id = $(this).closest(".reply").children(".reply_id").val();
-					reply_content = $(this).closest(".txt").children(".mid").text().trim();
+					reply_content = $(this).closest(".txt").children(".mid").children(".reply_content").children(".content").text().trim();
+					console.log(reply_content)
 					
-					parent_location = detach_location = $(this).closest(".reply");
-					detach_location = parent_location.children(".txt");
+					var parent_location = $(this).closest(".reply");
+					var detach_location = parent_location.children(".txt");
 					
 					detach_location.detach();
 					parent_location.append("<div class='update_comment'>" +
@@ -37,6 +38,8 @@ var reply = {
 												"<button class='btn_updatecancle'>취소</button>" + 
 											"</div>");
 					reply.init();
+					
+					
 					$(".update_reply").text(reply_content);
 					
 					$(".btn_update_ok").click(function(){//수정완료
@@ -68,6 +71,7 @@ var reply = {
 			data : {
 				"userId" : userno,
 				"boardId" : boardId,
+				"secretmode" : secretmode,
 				"content" : reply_content
 			}
 		}).done(function(res) {

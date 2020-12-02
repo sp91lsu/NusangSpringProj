@@ -94,6 +94,13 @@
 	word-break: break-all;
 }
 
+.reply>.reply_list>.reply>.txt>.mid>.reply_content>span{
+	color: lightgray;
+}
+
+.reply>.reply_list>.reply>.txt>.mid>.reply_content>.content{
+	color: black;
+}
 .reply>.reply_list>.reply>.txt>.bot {
 	height: 20px;
 	font-size: 13px;

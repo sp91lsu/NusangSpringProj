@@ -40,7 +40,22 @@
 					
 					<div class="mid">
 						<div class="reply_content">
-							${reply.content}
+							<c:choose>
+							
+								<c:when test = "${reply.secretmode==0}"><!--공개글-->
+									<span class="content">${reply.content}</span>
+								</c:when>
+								
+								<c:when test = "${reply.secretmode==1 && 
+									(user.userno == board.user.userno || 
+									user.userno == reply.user.userno)}"><!--글작성자, 댓글작성자-->
+									<span>(비밀댓글입니다)</span> <span class="content">${reply.content}</span>
+								</c:when>
+								
+								<c:otherwise><!--비밀댓글이라 못볼때-->
+									<span>비밀댓글입니다</span>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					

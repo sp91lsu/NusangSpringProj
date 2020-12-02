@@ -81,14 +81,15 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 
 	@Transactional
 	public int saveReply(ReplySaveReq dto) {
-		System.out.println("userno:" + dto.getUserId() + " boardno:" + dto.getBoardId());
+		String secret = dto.getSecretmode() == 0 ? "일반댓글" : "비밀댓글";
+		System.out.println(secret + " userno:" + dto.getUserId() + " boardno:" + dto.getBoardId());
 		System.out.println("내용:" + dto.getContent());
 
 		try {
 			System.out.println("댓글쓰기 완료");
 			Board board = repository.findById(dto.getBoardId()).get();
 			User user = userRep.findById(dto.getUserId()).get();
-			Reply reply = Reply.builder().board(board).content(dto.getContent()).user(user).build();
+			Reply reply = Reply.builder().board(board).content(dto.getContent()).user(user).secretmode(dto.getSecretmode()).build();
 
 			replyRep.save(reply);
 			return 1;
