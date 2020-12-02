@@ -177,7 +177,7 @@
 	</script>
 	<script src="/js/paging/qnaPage.js"></script>
 	<script src="/js/paging/faqPage.js"></script>
-	<%@ include file="../manager_footer.jsp"%>
+	<%@ include file="../../layout/footer.jsp"%>
 </body>
 <script src="/js/paging/noticePage.js"></script>
 </html>

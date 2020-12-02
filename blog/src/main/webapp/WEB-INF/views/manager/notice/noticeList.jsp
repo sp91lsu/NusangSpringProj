@@ -52,7 +52,7 @@
 		</ul>
 	</div>
 
-	<%@ include file="../manager_footer.jsp"%>
+	<%@ include file="../../layout/footer.jsp"%>
 </body>
 <script src="/js/paging/noticePage.js"></script>
 </html>
