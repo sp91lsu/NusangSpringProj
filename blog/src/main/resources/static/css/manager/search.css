@@ -76,9 +76,3 @@
 #searchBody td{
 	padding: 3px 3px;
 }
-
-@media (max-width: 1300px) {
-  .container {
-    width: 1270px;
-  }
-}
