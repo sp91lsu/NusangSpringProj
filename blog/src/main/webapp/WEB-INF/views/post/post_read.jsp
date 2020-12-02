@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../layout/header.jsp"%>
 
@@ -17,7 +18,7 @@
 			</div>
 			
 			<div class="txt_down">
-				${board.createDate}
+				<fmt:formatDate value="${board.createDate}" pattern="yyyy.MM.dd '&nbsp;'HH:mm"/>
 			</div>
 		</div>
 		
