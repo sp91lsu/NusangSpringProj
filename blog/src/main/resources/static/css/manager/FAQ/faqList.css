@@ -75,4 +75,5 @@ textarea:focus {
 }
 .contents{
 	display:none;
+	word-break: break-all;
 }

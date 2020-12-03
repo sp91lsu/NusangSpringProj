@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycom.blog.dto.manager.QNA;
 import com.mycom.blog.service.manager.QNAService;
+import com.mycom.blog.vo.QNAVO;
 @RestController
 @RequestMapping("manager/QNA")
 public class QNAApiController {
@@ -23,9 +24,9 @@ public class QNAApiController {
 	@GetMapping("api/qnaList")
 	public Page index(Model model,
 			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
-		Page qnaList = qnaService.getPageList(pageable);
-		//model.addAttribute("faqList", faqList);
-
+		Page<QNAVO> qnaList = qnaService.getPageList(pageable);
+		//model.addAttribute("qnaList", qnaList);
+		System.out.println("api 페이지 리스트 탔니??");
 		return qnaList;
 	}
 	@PostMapping(value = "api/qnaUpdateOk")

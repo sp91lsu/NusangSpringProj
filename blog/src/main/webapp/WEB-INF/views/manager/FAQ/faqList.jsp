@@ -92,10 +92,8 @@
 						</thead>
 						<tbody class="qna_list">
 							<c:forEach var="qna" items="${qnaList.toList()}">
-							<%--  <c:choose>
-								<c:when test="${user.userno == qna.no }">
-								</c:when>							 
-							 </c:choose> --%>
+							 <c:choose>
+								<c:when test="${user.userno == qna.me.userno }">
 								<tr>
 									<td align="center">${qna.no }</td>
 									<td>
@@ -112,9 +110,12 @@
 											<textarea name="answer" class="textarea" cols="52" rows="7"
 												placeholder="답변달기">${qna.answer}</textarea>
 											<button type="submit" class="answer btn btn-primary btn-sm">답변달기</button>
-											<input type="hidden" name="no" value="${qna.no }" />
+											<input type="hidden" name="no" value="${qna.no}" />
+											<input type="hidden" value="${qna.me.userno}" />
 										</form></td>
 								</tr>
+								</c:when>							 
+							 </c:choose> 
 							</c:forEach>
 
 						</tbody>

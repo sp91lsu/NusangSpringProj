@@ -17,6 +17,7 @@ import com.mycom.blog.dto.manager.FAQ;
 import com.mycom.blog.dto.manager.QNA;
 import com.mycom.blog.service.manager.FAQService;
 import com.mycom.blog.service.manager.QNAService;
+import com.mycom.blog.vo.QNAVO;
 
 @Controller
 @RequestMapping("/manager/FAQ")
@@ -38,7 +39,7 @@ public class FAQController {
 		Page<FAQ> faqList = faqService.getPageList(pageable);
 		System.out.println("faqList 출력"+ pageable.getPageSize());
 		//List qnaList = qnaService.findAll();
-		Page<QNA> qnaList = qnaService.getPageList(pageable2);
+		Page<QNAVO> qnaList = qnaService.getPageList(pageable2);
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("faqList", faqList);
 		return "/manager/FAQ/faqList";

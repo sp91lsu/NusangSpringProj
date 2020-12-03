@@ -12,6 +12,7 @@
 							+ ($(this).html() -1),
 					success : function(res) {
 						
+						console.log(res.content);
 						$(".qna_list").empty();
 						res.content.forEach(element => {
 						if(element.answer == null)
