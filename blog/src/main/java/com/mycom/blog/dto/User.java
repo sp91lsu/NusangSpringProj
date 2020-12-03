@@ -208,6 +208,9 @@ public class User {
 	}
 
 	public boolean availableUseAvailableTalk() {
+		if(availableTalk == null) {
+			return false;
+		}
 		return availableTalk > 0;
 	}
 
