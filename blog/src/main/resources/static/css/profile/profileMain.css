@@ -48,8 +48,8 @@
 }
 
 .createPost{
-	padding-top: 200px;
-	margin: 0 0 0 50px;
+	margin: 120px 0 0 50px;
+	height: 100px;
 }
 
 .pictureSection{
@@ -74,6 +74,23 @@
 	margin-top: 15px;
 }
 
+.myCoin {
+	color: black;
+}
+
+.myCoin:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.sticky-top {
+  top:100px;
+}
+
+.emptyPost {
+	margin-top: 100px;
+	text-align: center;
+}
 
 /* 내글에 대한 스타일 */
 .community_list {
