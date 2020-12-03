@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp"%>
-<div class="container">
+
+
+<div class="container display-4 mt-5 mb-5">
 
 	<h1>친구관리</h1>
+
+
+
 
 
 	<div class="dropdown">
@@ -28,9 +33,7 @@
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<c:forEach var="friend" items="${user.friend_reqList(true)}">
 				<li class="list-group-item">
-					<form action="/chat/go_chatroom">
-						<div>${friend.user.nickname }</div>
-					</form>
+					<div>${friend.user.nickname }</div>
 				</li>
 			</c:forEach>
 		</div>
@@ -42,11 +45,9 @@
 			<c:forEach var="friend" items="${user.friend_reqList(false)}">
 				<c:if test="${friend.friendType == 'REALATIONSHIP' }">
 					<li class="list-group-item">
-						<form action="/chat/go_chatroom">
-							<div>${friend.user.nickname }
-								<button class="add_friend_btn btn btn-primary" value="${friend.user.userno }">${friend.user.userno }친구추가</button>
-							</div>
-						</form>
+						<div>${friend.user.nickname }
+							<button class="add_friend_btn btn btn-primary" value="${friend.user.userno }">${friend.user.userno }친구추가</button>
+						</div>
 					</li>
 				</c:if>
 			</c:forEach>
