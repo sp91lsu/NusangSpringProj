@@ -41,7 +41,15 @@
 
 	<hr>
 	<div class="content">${board.content}</div>
-	<i class="heart_icon far fa-heart"></i> ${board.wishList.size()}
+	<i class="heart_icon far fa-heart"></i>
+	<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0;">${board.wishList.size()} 명이 좋아합니다</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<c:forEach var="wishList" items="${board.wishList}">
+			<li class="list-group-item">
+				<div>${wishList.me.nickname }</div>
+			</li>
+		</c:forEach>
+	</div>
 	<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
 	
 	<%@ include file="reply/reply_read.jsp"%>
