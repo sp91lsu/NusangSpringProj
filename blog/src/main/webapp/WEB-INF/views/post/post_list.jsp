@@ -5,7 +5,7 @@
 </div>
 
 <div class="post_list container">
-	<c:forEach var="board" items="${boards.content}">
+	<c:forEach var="board" items="${myPostList.content}">
 		<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 			<div class="img">
 				<img src="${board.user.picture}" alt="" />

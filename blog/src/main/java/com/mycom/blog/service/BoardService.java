@@ -1,8 +1,10 @@
 package com.mycom.blog.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,6 +23,8 @@ import com.mycom.blog.repository.BoardRepository;
 import com.mycom.blog.repository.ReplyRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.repository.WishRepository;
+import com.mycom.blog.vo.BoardVO;
+import com.mycom.blog.vo.UserVO;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
@@ -34,6 +38,9 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Autowired
 	private WishRepository wishRep;
 
+	@Autowired
+	private BoardRepository boardRep;
+	
 	@Autowired
 	public BoardService(BoardRepository boardRep) {
 		setRepository(boardRep);
@@ -129,6 +136,25 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 		return repository.findAll(pageable);
 	}
 
+	
+	@Transactional(readOnly = true)
+	public Page<BoardVO> getPostList(Pageable pageable) {
+		Page<Board> boards = boardRep.findAll(pageable);
+		List<BoardVO> PostList = new ArrayList<BoardVO>();
+		
+		for (Board board : boards) {
+			BoardVO vo = new BoardVO();
+			UserVO userVo = new UserVO();
+			BeanUtils.copyProperties(board, vo);
+			BeanUtils.copyProperties(board.getUser(), userVo);
+			vo.setUser(userVo);
+			PostList.add(vo);
+		}
+		
+		Page<BoardVO> boardVoPage = new PageImpl<BoardVO>(PostList, pageable, boards.getTotalElements());
+
+		return boardVoPage;
+	}
 	@Transactional(readOnly = true)
 	public Page<Board> getNearBoadList(Pageable pageable) {
 

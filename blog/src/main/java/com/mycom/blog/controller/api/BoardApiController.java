@@ -42,7 +42,7 @@ public class BoardApiController {
 	@GetMapping("/api/paging")
 	public Page<Board> index(Model model,
 			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
-
+		System.out.println("페이징 컨트롤러");
 		System.out.println("page :" + pageable.getPageNumber());
 		Page<Board> pageList = boardService.getBoardList(pageable);
 //		System.out.println("getTotalPages" + pageList.getTotalPages());

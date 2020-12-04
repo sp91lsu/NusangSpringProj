@@ -53,7 +53,7 @@ public class BoardVO {
 	private int count;
 
 	private UserVO user;
-	
+
 	private List<Reply> replyList;
 
 	private Timestamp createDate;
@@ -63,5 +63,15 @@ public class BoardVO {
 	private int heartcnt;
 
 	private List<Wish> wishList = new ArrayList<Wish>();
-	
+
+	public boolean isWishBoard(User user) {
+
+		for (Wish wish : wishList) {
+			if (wish.getMe().getUserno() == ConAssist.getUserno()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
