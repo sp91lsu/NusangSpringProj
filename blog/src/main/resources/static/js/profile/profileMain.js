@@ -27,7 +27,8 @@
 				} else if(res == 2) {
 					alert("중복된 닉네임 입니다. 다시 시도해주세요.\n(2~8글자의 닉네임을 입력해 주세요.)");
 				}
-				location.reload();
+				//location.reload();
+				 top.location.href = '/profile/profileMain';
 			}
 		})
 	}) 
@@ -137,8 +138,8 @@
 		maxHeight = $(document).height();
 		currentScroll = $(window).scrollTop() + $(window).height();
 		
-	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 	   // if (maxHeight <= currentScroll) {
+	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 	      console.log('바로밑이 페이지 로그');
 	      console.log(++page);
 	      

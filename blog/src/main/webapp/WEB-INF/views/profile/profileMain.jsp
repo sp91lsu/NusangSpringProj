@@ -29,26 +29,22 @@
 			<div class="infoSection">
 				<div class="nicknameSection">
 					<form>
-						<span class="nickName" id="nickName">${boardUser.nickname }</span>
+						<span class="nickName" id="nickName"><h3>${boardUser.nickname }</h3></span>
 					</form>
 				</div>
 				<span>성별: ${boardUser.gender.toString() }&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;나이: ${boardUser.age } 세</span>
-				<ul>
-					<li>좋아요글 3</li>
-					<li>나의 캐쉬 40 coin</li>
-				</ul>
 
 				<div class="friendUser">
 					<c:set var="chkFriend" value="${user.chkFriend(boardUser.userno)}"></c:set>
 					<c:choose>
 						<c:when test="${chkFriend eq 0 }">
-							<button onclick="friendReq()">친구추가 하기</button>
+							<button class="frBtn btn btn-dark " onclick="friendReq()">친구추가 하기</button>
 						</c:when>
 						<c:when test="${chkFriend eq 1 }">
-							<span>친구 요청중</span>
+							<button type="button" class="btn btn-outline-info btn-sm" disabled="disabled">친구 요청중</button>
 						</c:when>
 						<c:when test="${chkFriend eq 2 }">
-							<span>이미 친구임</span>
+							<button type="button" class="btn btn-outline-success" disabled="disabled">My Friend</button>
 						</c:when>
 					
 					</c:choose>
@@ -64,19 +60,19 @@
 					<c:if test="${!user.isMyFriend(boardUser)}">
 						<c:choose>
 							<c:when test="${user.whichOfMyGoodsUse() == 1  }">
-								<button id="chatBtn">채팅하기(무료채팅)</button>
+								<button id="chatBtn" class="btn btn-dark ">채팅하기(무료채팅)</button>
 							</c:when>
 							<c:when test="${user.whichOfMyGoodsUse() == 2  }">
-								<button type="button" id="use-coin-btn">채팅하기(코인사용)</button>
+								<button type="button" id="use-coin-btn" class="btn btn-dark ">채팅하기(코인사용)</button>
 							</c:when>
 							<c:otherwise>
-								<button type="button" id="buy-coin-btn">채팅하기(코인구매)</button>
+								<button type="button" id="buy-coin-btn" class="btn btn-dark ">채팅하기(코인구매)</button>
 							</c:otherwise>
 
 						</c:choose>
 					</c:if>
 					<c:if test="${user.isMyFriend(boardUser)}">
-						<button id="chatBtn">채팅하기(내친구)</button>
+						<button id="chatBtn" class="btn btn-dark ">채팅하기(내친구)</button>
 					</c:if>
 				</form>
 				<jsp:include page="../layout/modal.jsp" flush="true">
@@ -89,8 +85,6 @@
 					<jsp:param name="title" value='<%=URLEncoder.encode("코인 소진", "UTF-8")%>' />
 					<jsp:param name="body" value='<%=URLEncoder.encode("코인이 모두 소진되었습니다. 상점으로 이동하시겠습니까? ", "UTF-8")%>' />
 				</jsp:include>
-
-				<button class="modalBtn" class="btn">button</button>
 
 				<script>
 		$('#use-coin-btn').click(function(e) {
@@ -171,16 +165,16 @@ $('#buy-coin-btn').click(function(e) {
 					<input type="file" name="file" id="file" accept=".gif, .jpg, .png" style="display: none">
 					<input type="hidden" id="userno" name="userno"  value="${user.userno }">
 				</form>
-				<button class="picUpdateBtn" id="picUpdateBtn">사진변경</button>
-				<button class="picDeleteBtn" id="picDeleteBtn">기존사진 삭제</button>
+				<button class="picUpdateBtn btn btn-dark btn-sm" id="picUpdateBtn">사진변경</button>
+				<button class="picDeleteBtn btn btn-dark btn-sm" id="picDeleteBtn">기존사진 삭제</button>
 			</div>
 
 			<%-- 닉네임 및 내 정보 --%>
 			<div class="infoSection">
 				<div class="nicknameSection">
 					<form>
-						<input class="nickName" name="nickName" type="text" id="nickName" value=${user.nickname }>
-						<button type="button" id="nicknameChange">닉네임 변경</button>
+						<input class="nickNameIn" name="nickName" type="text" id="nickName" value=${user.nickname }>
+						<button type="button" class="btn btn-dark" id="nicknameChange">닉네임 변경</button>
 					</form>
 				</div>
 				<span> <label for="성별">성별 :</label> <select name="genderSelect" id="genderSelect" onchange="genderSelected()">
@@ -197,7 +191,6 @@ $('#buy-coin-btn').click(function(e) {
 				</select> 세
 				</span>
 				<ul>
-					<li>좋아요글 3</li>
 					<li>나의 코인: <a class="myCoin" href="/shop/shop_view">${user.coin } CM</a></li>
 				</ul>
 
@@ -233,7 +226,7 @@ $('#buy-coin-btn').click(function(e) {
 				</div>
 				<div class="createPost sticky-top">
 					<h4>나의 일상을 공유해 보세요</h4>
-					<button onclick="location.href='/post/post_write'">글쓰기</button>
+					<button class="btn btn-dark btn-sm" onclick="location.href='/post/post_write'">글쓰기</button>
 				</div>
 			</div>
 		</c:otherwise>
