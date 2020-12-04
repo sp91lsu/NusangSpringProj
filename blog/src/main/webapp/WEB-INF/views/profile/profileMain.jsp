@@ -102,7 +102,7 @@
 			let modalY = $('#modal_use_coin #modalY');
 			console.log($(modalY).text())
 			$(modalY).click(function(e) {
-				
+                $("#go_chat_form").submit();
 				$(modal).modal('hide').data('bs.modal', null);
 				
 			});
