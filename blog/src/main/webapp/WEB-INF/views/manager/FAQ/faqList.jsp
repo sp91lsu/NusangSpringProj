@@ -16,12 +16,13 @@
 
 </head>
 <body>
-	<input type="hidden" id="page_owner" value="${user.role == 'ADMIN' ? 'manager' : 'user' }" />
+	<input type="hidden" id="page_owner"
+		value="${user.role == 'ADMIN' ? 'manager' : 'user' }" />
 	<div align="center" class="d-flex">
 		<div class="container1 p-6 ">
 			<c:choose>
 				<c:when test="${user.role == 'ADMIN' }">
-
+					<!-- --------------------------문의 리스트----------------------------------------- -->
 					<br>
 					<br>
 					<h3>문의 리스트</h3>
@@ -37,7 +38,8 @@
 							<tr>
 								<th class="qna_noTh" scope="col">no</th>
 								<th class="qna_conTh" scope="col">내용</th>
-								<th scope="col">날짜</th>
+								<th scope="col">문의날짜</th>
+								<th scope="col">답변여부</th>
 							</tr>
 						</thead>
 						<tbody class="qna_list">
@@ -50,6 +52,14 @@
 									</td>
 									<td><fmt:formatDate value="${qna.regdate}"
 											pattern="yyyy-MM-dd HH:mm:ss" /></td>
+									<c:choose>
+										<c:when test="${qna.answer == null }">
+											<td class="answerChk1" align="center">미답변</td>
+										</c:when>
+										<c:otherwise>
+											<td class="answerChk2" align="center">답변완료</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 								<tr class="contents">
 									<td></td>
@@ -60,7 +70,7 @@
 												placeholder="답변달기">${qna.answer}</textarea>
 											<button type="submit" class="answer btn btn-primary btn-sm">답변달기</button>
 											<input type="hidden" name="no" value="${qna.no }" />
-										
+
 										</form></td>
 								</tr>
 							</c:forEach>
@@ -88,45 +98,54 @@
 							<tr>
 								<th class="qna_noTh" scope="col">no</th>
 								<th class="qna_conTh" scope="col">내용</th>
-								<th scope="col">날짜</th>
+								<th scope="col">문의날짜</th>
+								<th scope="col">답변여부</th>
 							</tr>
 						</thead>
 						<tbody class="qna_list">
 							<c:forEach var="qna" items="${qnaList.toList()}">
-							 <c:choose>
-								<c:when test="${user.userno == qna.me.userno }">
-								<tr>
-									<td align="center">${qna.no }</td>
-									<td>
-										<div class="titleColor">${qna.title }</div>
-									</td>
-									<td><fmt:formatDate value="${qna.regdate}"
-											pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								</tr>
-								<tr class="contents">
-									<td></td>
-									<td colspan="2"><br>${qna.contents }<br>
-										<form action="/manager/QNA/qnaUpdateOk" method="post">
-											<sec:csrfInput />
-											<textarea name="answer" class="textarea" cols="52" rows="7"
-												placeholder="답변달기">${qna.answer}</textarea>
-											<button type="submit" class="answer btn btn-primary btn-sm">답변달기</button>
-											<input type="hidden" name="no" value="${qna.no}" />
-											<input type="hidden" value="${qna.me.userno}" />
-										</form></td>
-								</tr>
-								</c:when>							 
-							 </c:choose> 
+								<c:choose>
+									<c:when test="${user.userno == qna.me.userno }">
+										<tr>
+											<td align="center">${qna.no }</td>
+											<td>
+												<div class="titleColor">${qna.title }</div>
+											</td>
+											<td align="center"><fmt:formatDate
+													value="${qna.regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+											<c:choose>
+												<c:when test="${qna.answer == null }">
+													<td class="answerChk1" align="center">미답변</td>
+												</c:when>
+												<c:otherwise>
+													<td class="answerChk2" align="center">답변완료</td>
+												</c:otherwise>
+											</c:choose>
+										</tr>
+										<tr class="contents">
+											<td></td>
+											<td class = "myContents" colspan="2"><br>${qna.contents }<br>
+												<form action="/manager/QNA/qnaUpdateOk" method="post">
+													<sec:csrfInput />
+													<textarea name="answer" class="textarea" cols="52" rows="7" readonly>${qna.answer}</textarea>
+													<input type="hidden" name="no" value="${qna.no}" /> <input
+														type="hidden" value="${qna.me.userno}" />
+												</form></td>
+										</tr>
+									</c:when>
+								</c:choose>
 							</c:forEach>
 
 						</tbody>
 					</table>
-						
+	
 					<ul class="pagination justify-content-center">
 						<c:forEach var="i" begin="1" end="${qnaList.getTotalPages() }">
 							<a class="ml-2 mr-2 qna_paging">${i}</a>
 						</c:forEach>
 					</ul>
+					<br>
+					<hr>
 					<!-- ----------------------------문의하기---------------------------------------- -->
 					<br>
 					<h3>문의하기</h3>
@@ -138,9 +157,9 @@
 							문의제목&nbsp;&nbsp;&nbsp;<input name="title" class="qnaTitle"
 								type="text" />
 						</div>
-						<textarea class="textarea" name="contents" cols="54" rows="10"
+						<textarea class="textarea2" name="contents" cols="54" rows="10"
 							placeholder="문의내용"></textarea>
-							<input type="hidden" name="userno" value="${user.userno }" />
+						<input type="hidden" name="userno" value="${user.userno }" />
 						<button type="submit" class="btn btn-secondary btn-sm answerBtn">문의하기</button>
 					</form>
 
@@ -232,7 +251,14 @@
 			});
 		});
 	</script>
-	<script src="/js/paging/qnaPage.js"></script>
+	<c:choose>
+		<c:when test="${user.role == 'ADMIN' }">
+			<script src="/js/paging/qnaListPage.js"></script>
+		</c:when>
+		<c:otherwise>
+			<script src="/js/paging/myQNAPage.js"></script>
+		</c:otherwise>
+	</c:choose>
 	<script src="/js/paging/faqPage.js"></script>
 	<%@ include file="../../layout/footer.jsp"%>
 </body>

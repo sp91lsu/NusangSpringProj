@@ -3,13 +3,16 @@
 .container1, .container2{
 	font-family: 'Noto Sans KR', sans-serif;
 	min-height: 900px;
-	width:500px;
+	width:800px;
 	display: inline-block;
+}
+.container2{
+	width: 500px;
 }
 
 .container1{
-	margin-left: 200px;
-	margin-right:150px;
+	margin-left: 70px;
+	margin-right:80px;
 }
 .container2 .writeBtn{
 	float: right;
@@ -24,19 +27,34 @@
 	width: 30px;
 }
 .qna_conTh{
-	width: 280px;
+	width: 500px;
 }
-
+.answerChk1{
+	color: gray;
+}
+.answerChk2{
+	color: blue;
+}
 .qnaTitle{
 	width:300px; 
 	border:1px solid black;
 	border-radius: 5px;
 }
+.myContents{
+	width:600px;
+}
 .textarea{
+	width:630px;
+	background-color: lightgray;
+	margin:20px 0 0 10px;
+	border-radius: 10px;
+}
+.textarea2{
 	background-color: #FFFFD2;
 	margin:20px 0 0 0;
 	border-radius: 10px;
 }
+
 textarea:focus {
     outline: none;
 }
@@ -50,11 +68,11 @@ textarea:focus {
 	height: 300px;
 }
 .titleBox{
-	margin-right: 80px;
+	margin-right: 153px;
 }
 .answerBtn{
-	float: right;
-	margin-right:26px;
+	/* margin-right:26px; */
+	margin-bottom:23px; 
 }
 .btnhidden{
 	float: right;

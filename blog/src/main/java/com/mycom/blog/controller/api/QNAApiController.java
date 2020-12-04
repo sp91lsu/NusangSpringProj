@@ -23,7 +23,7 @@ public class QNAApiController {
 	
 	@GetMapping("/manager/QNA/api/qnaList")
 	public Page index(Model model,
-			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+			@PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
 		Page<QNAVO> qnaList = qnaService.getPageList(pageable);
 		//model.addAttribute("qnaList", qnaList);
 		System.out.println("api 페이지 리스트 탔니??");

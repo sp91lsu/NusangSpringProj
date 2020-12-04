@@ -35,7 +35,7 @@ public class FAQController {
 	@RequestMapping("/manager/FAQ/faqList")
 	public String faqList(Model model,
 			@Qualifier("aa") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable,
-			@Qualifier("bb") @PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable2) {
+			@Qualifier("bb") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable2) {
 		Page<FAQ> faqList = faqService.getPageList(pageable);
 		System.out.println("faqList 출력"+ pageable.getPageSize());
 		//List qnaList = qnaService.findAll();
@@ -61,23 +61,23 @@ public class FAQController {
 		return "/manager/FAQ/faqList";
 	} 
 	
-	@RequestMapping("/manager/FAQfaqWrite")
+	@RequestMapping("/manager/FAQ/faqWrite")
 	public String faqWrite() {
 		return "manager/FAQ/faqWrite";
 	}
 	
-	@RequestMapping(value = "/manager/FAQfaqWriteOk", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/FAQ/faqWriteOk", method = RequestMethod.POST)
 	public void faqWriteOk(FAQ dto, Model model) {
 		dto = faqService.save(dto);
 		int res = dto != null ? 1 : 0;
 		model.addAttribute("res", res);
 	}
-	@RequestMapping(value = "/manager/FAQfaqUpdate")
+	@RequestMapping(value = "/manager/FAQ/faqUpdate")
 	public void faqUpdate(int no, Model model) {
 		FAQ updateDto =faqService.findbyid(no);
 		model.addAttribute("updateDto",updateDto );
 	}
-	@RequestMapping(value = "/manager/FAQfaqUpdateOk", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/FAQ/faqUpdateOk", method = RequestMethod.POST)
 	public void faqUpdateOk(FAQ updateDto,Model model) {
 		int res = faqService.updateOk(updateDto);
 		model.addAttribute("res", res);

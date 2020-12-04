@@ -27,13 +27,19 @@
 						'<td>' +
 						'<div class="titleColor">'+element.title+'</div>'+
 						'</td>' +
-						'<td>'+element.regdate+'</td>' +
+						'<td align = "center">'+element.regdate+'</td>';
+						
+						if(element.answer == ""){
+							post += '<td class = "answerChk1" align = "center">미답변</td>';
+						}else{
+							post += '<td class = "answerChk2" align = "center">답변완료</td>'
+						};
+						post+=
 						'</tr>' +
 						'<tr class = "contents">' +
 						'<td></td>' +
-						'<td  colspan="2"><br>' +element.contents + "<br>" +
-						'<textarea id = "answer" name = "answer" class = "textarea" cols="52" rows="7" placeholder="답변달기">' + element.answer +'</textarea>' +
-						'<button type="submit" class = "answer btn btn-primary btn-sm">답변달기</button>' +
+						'<td class = "myContents"  colspan="2"><br>' +element.contents + "<br>" +
+						'<textarea id = "answer" name = "answer" class = "textarea" cols="52" rows="7" readonly>' + element.answer +'</textarea>' +
 						'<input type="hidden" id="answerno" value="' + element.no + '" />' +
 						'</td>' +
 						'</tr>' 
