@@ -65,7 +65,7 @@ public class PaymentApiController {
 		String status = jsonMap.get("status").toString();
 
 		if (status.equals("paid")) {
-			userService.buyCoin(jsonMap);
+			userService.buyCoinWebHook(jsonMap);
 		}
 	}
 

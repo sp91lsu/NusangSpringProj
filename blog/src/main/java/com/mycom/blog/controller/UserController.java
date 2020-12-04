@@ -43,9 +43,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private KakaoBo kakaoBo;
-
 	@GetMapping("/updateForm")
 	public String updateForm() {
 		System.out.println("updateForm");
@@ -66,13 +63,11 @@ public class UserController {
 
 	@GetMapping("/search_location")
 	public String userSearch_location() {
-		System.out.println("searchLocation");
 		return "/location/search";
 	}
 
 	@GetMapping("/all_userlist")
 	public String allUserList(Model model) {
-		System.out.println("/user/all_userlist");
 		List<User> userlist = userService.findAll();
 		model.addAttribute("allUserList", userlist);
 		return "/user/allUserList";
