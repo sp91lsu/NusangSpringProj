@@ -59,10 +59,10 @@ import lombok.ToString;
 public class User {
 
 	@Id // primarykey
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ_GEN")
 	private int userno; // 시퀀스 auto_increment
-
+	
+	//로그인 타입 카카오,페이스북 등등 
 	@Enumerated(EnumType.STRING)
 	private AuthType authType;
 
@@ -86,6 +86,7 @@ public class User {
 	@Column(nullable = false, length = 50)
 	private String email;
 
+	//권한
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private RoleType role = RoleType.USER; // Enum을 쓰는게 좋다.
@@ -94,39 +95,38 @@ public class User {
 	@CreationTimestamp // 시간이 자동입력
 	private Timestamp createDate;
 
+	//채팅방 가이드 
 	@OneToMany(mappedBy = "me")
 	private List<ChatRoomGuide> chatRoomGuideList;
 
+	//위치 
 	@OneToOne
 	@JoinColumn(name = "locationno")
 	private Location location;
 
-	@Column(nullable = false,columnDefinition = "varchar(255) default '/upload/profileImg.jpg'")
+	@Column(nullable = false, columnDefinition = "varchar(255) default '/upload/profileImg.jpg'")
 	private String picture;
 
-	
 	private int coin = 0;
 
+	//친구목록
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
 
+	//게시글 목록
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Board> boardList = new ArrayList<Board>();
 
+	//좋아요 목록
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Wish> wishList = new ArrayList<Wish>();
 
+	//질문 목록
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<QNA> qnaList = new ArrayList<QNA>();
-	
+
 	@ColumnDefault("3")
 	private Integer availableTalk = 3;
-
-	/*
-	 * @OneToMany(mappedBy = "userno" ,fetch = FetchType.LAZY)
-	 * 
-	 * @JsonIgnoreProperties({"friends"}) private List<User> friends;
-	 */
 
 	public void setPassword(BCryptPasswordEncoder encoder, String password) {
 		setPassword(encoder.encode(password));
@@ -208,13 +208,13 @@ public class User {
 	}
 
 	public boolean availableUseAvailableTalk() {
-		if(availableTalk == null) {
+		if (availableTalk == null) {
 			return false;
 		}
 		return availableTalk > 0;
 	}
 
-	//재화중 어떤것을 사용할 것인지
+	// 재화중 어떤것을 사용할 것인지
 	public int whichOfMyGoodsUse() {
 
 		if (availableUseAvailableTalk()) {
@@ -225,19 +225,28 @@ public class User {
 			return -1;
 		}
 	}
-	
+
 	public int chkFriend(int boardUserno) {
-		
+
 		for (Friend fl : friendList) {
-			if(fl.getUser().getUserno() == boardUserno) {
-				if(fl.getFriendType() == FriendType.REQUEST) {
+			if (fl.getUser().getUserno() == boardUserno) {
+				if (fl.getFriendType() == FriendType.REQUEST) {
 					return 1;
-				} else if(fl.getFriendType() == FriendType.REALATIONSHIP) {
+				} else if (fl.getFriendType() == FriendType.REALATIONSHIP) {
 					return 2;
 				}
 			}
 		}
 		return 0;
+	}
+
+	public boolean isConnectChat(int userno) {
+		for (ChatRoomGuide chatGuide : chatRoomGuideList) {
+			if (chatGuide.getChatRoom().getMatchedUser().getUserno() == userno) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

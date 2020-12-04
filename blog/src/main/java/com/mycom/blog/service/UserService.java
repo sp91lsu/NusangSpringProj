@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,20 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Item;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.PayType;
-import com.mycom.blog.dto.enumtype.RoleType;
 import com.mycom.blog.dto.manager.Payment;
 import com.mycom.blog.model.ProductPayload;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.repository.manager.PaymentRepository;
-import com.mycom.jooq.tables.JUser1;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
 @Service
@@ -49,14 +42,10 @@ public class UserService extends BasicService<UserRepository, User> {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 
-	@Autowired
-	private ChatRoomRepository chatRoomRep;
-
 	@Transactional
 	public int signUp(User user) {
 		try {
 			user.setPassword(pwEncoder, user.getPassword());
-			System.out.println(user.getPicture() + "호이쨔");
 			user = repository.save(user);
 			
 			user.setNickname(user.getNickname() + "_" + user.getUserno());
@@ -107,15 +96,6 @@ public class UserService extends BasicService<UserRepository, User> {
 		System.out.println("searchValue " + searchValue);
 		User findUser = repository.findByNickname(searchValue);
 
-		if (findUser != null) {
-			/*
-			 * ChatRoom room = ChatRoom.builder().user(myUser).chatUser(findUser).build();
-			 * ChatRoom room2 = ChatRoom.builder().user(findUser).chatUser(myUser).build();
-			 */
-			/*
-			 * chatRoomRep.save(room); chatRoomRep.save(room2);
-			 */
-		}
 		return findUser;
 	}
 
@@ -133,13 +113,8 @@ public class UserService extends BasicService<UserRepository, User> {
 		return nearUserList;
 	}
 
-//	@Transactional(readOnly = true) //정합성 유지
-//	public User1 login(User1 user) {
-//		return userRep.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-//	}
-//	
 	@Transactional
-	public int buyCoin(Map<String, Object> jsonMap) {
+	public int buyCoinWebHook(Map<String, Object> jsonMap) {
 
 		try {
 			System.out.println(jsonMap.get("imp_uid"));

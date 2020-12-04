@@ -25,11 +25,17 @@ public class ConAssist {
 
 	@Value("${cos.ip}")
 	public String IP;
-	
+
 	@Value("${cos.useTalk}")
 	public static int useTalkCoin;
 
-	@Autowired private AuthenticationManager authenticationM;
+	@Value("${cos.useTalk}")
+	private void setValue(int useTalkCoin) {
+		this.useTalkCoin = useTalkCoin;
+	}
+
+	@Autowired
+	private AuthenticationManager authenticationM;
 
 	@Autowired
 	private PrincipalDetailService principalService;

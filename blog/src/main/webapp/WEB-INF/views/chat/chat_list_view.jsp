@@ -9,7 +9,7 @@
 
 <%@ include file="../layout/header.jsp"%>
 
-<div class="container">
+<div class="container display-4 mt-5 mb-5">
 
 	<input type="hidden" id="user-nickname" value="${user.nickname }" />
 	<h2>채팅 리스트</h2>

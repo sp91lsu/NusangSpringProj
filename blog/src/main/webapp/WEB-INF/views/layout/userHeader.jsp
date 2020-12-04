@@ -1,10 +1,11 @@
+<%@page import="com.mycom.blog.controller.assist.ConAssist"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/css/header.css" />
 <link rel="stylesheet" href="/css/post/post_list.css" />
 <link rel="stylesheet" href="/css/post/post_read.css" />
 <link rel="stylesheet" href="/css/post/reply/reply_read.css" />
-
+ 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background: #FFF;; border-bottom: 3px solid #333">
 		<a class="navbar-brand" href="/home">홈</a>
