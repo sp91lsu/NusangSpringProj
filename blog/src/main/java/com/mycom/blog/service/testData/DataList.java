@@ -1,14 +1,49 @@
 package com.mycom.blog.service.testData;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Random;
 
+import com.mycom.blog.dto.enumtype.GenderType;
 import com.mycom.blog.dto.enumtype.Price_Coin;
 
 public class DataList {
 	Random r = new Random();
 
+	//스트링 배열에서 스트링 하나 랜덤으로 골라줌
+	String oneOf(String [] strList) {
+		String result = null;
+		int random = r.nextInt(strList.length);
+		result = strList[random];
+		return result;
+	}
+	int oneOf(int [] list) {
+		int result = 0;
+		int random = r.nextInt(list.length);
+		result = list[random];
+		return result;
+	}
+	
+	//10진수 -> 62진수
+	String decTo62(int dec) {
+		String c62 = null;
+		  char[] key= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
+	        int tmp1 = (int)(dec/62);
+	        int tmp2 = dec%62;
+	        c62 = Character.toString(key[tmp2]);
+	        if (tmp1!=0)
+	                c62 = decTo62(tmp1)+c62;
+		return c62;
+	}
+	
 //유저
 //	아이디
 	String engNameList_raw = "Aaliyah," + "Abby," + "Abigail," + "Ada," + "Adalee," + "Adaline," + "Adalyn,"
@@ -132,6 +167,11 @@ public class DataList {
 		String[] result = engNameList_raw.split(",");
 		return result;
 	}
+	String uniqID(int howMany) {
+		String[] nlist = engNameList();
+		int len = nlist.length;
+		return nlist[howMany%len]+decTo62(howMany/len);
+	}
 
 //	성
 	String firstNames = "김,이,박,조,최,정,손,강,임,신,장,윤,오,권,전,유,한,서,안,황,송,홍,양,고,문,배,백,류,허,노,남,심,주,구,하,곽,성,차,민,진,우,엄,나,지,변,방,원,채,천,공";
@@ -157,6 +197,21 @@ public class DataList {
 		String[] result = secondNames_W.split(",");
 		return result;
 	}
+//	성별
+	GenderType randGender() {
+		GenderType gen = null;
+		int one = r.nextInt(2);
+		gen = one==0 ? GenderType.MALE : GenderType.FEMALE;
+		return gen;
+	}
+	
+	// 성,이름,성별 랜덤
+	String randName(GenderType gen) {
+		String name = null;
+		String randSeconN = gen==GenderType.MALE ? oneOf(secondNameList_M()) : oneOf(secondNameList_W());
+		name = oneOf(firstNameList())+randSeconN;
+		return name;
+	}
 
 //	닉네임
 	String nicNames = "아바타,닉네임,우유,커피,모카,초코,브라우니,댕댕이,삐삐,뚠뚠,강냉이,저승사자,잠만보,안드로메다,프라하,고인물,갑분싸,인싸,존잘러,곰스,바운스,뚱이,복서,해충박멸,디스코드,후라이팬,존버,꿀꿀이,나쵸,너구리,아몬드,땅콩,치즈,호떡,만두,대파,부엉이,프로,록맨,호구맨,레이저,고독,저격,달님,더힐,놀고있네,프리미어,메이트,바른마음,백구,잇츠,앗메리카노,고고고고,오렌지피클,땡땡이,라이트,월계수,테슬라,실루엣,시계,레전드,결정,시즌,뉴비,버드,열차,공포,다이,전기,윈디,감옥,빌런,데빌,파이어,워터,바이,호시탐탐,레이븐,세트,순대,물범,레이드,베테랑,팔라딘,극비,다이어트,풀피,레나,야채,푸른점,푸른곰팡이,초록괴물,독수리,시사회,청둥오리,아이스크림,대나무,바이올린,바이올렛,인터스텔라";
@@ -164,6 +219,11 @@ public class DataList {
 	String[] nicNameList() {
 		String[] result = nicNames.split(",");
 		return result;
+	}
+	String uniqNic(int howMany_i) {
+		String[] nlist = nicNameList();
+		int len = nlist.length;
+		return nlist[howMany_i%len]+decTo62(howMany_i/len);
 	}
 
 //	나이 20~40
@@ -179,6 +239,9 @@ public class DataList {
 		Integer[] resultI = (Integer[]) result.toArray(new Integer[result.size()]);
 		return Arrays.stream(resultI).mapToInt(Integer::intValue).toArray();
 	}
+	int randAge() {
+		return oneOf(ageList());
+	}
 
 //  성별 ex) 남 61.7% 여 38.3%
 	String gender(double mPer) {
@@ -191,7 +254,7 @@ public class DataList {
 	}
 
 //	이메일 @ 뒤
-	String email() {
+	String randEmailSub() {
 		String[] emailList = "naver.com,daum.net,nate.com,gmail.com,hotmail.com".split(",");
 		int choice = r.nextInt(emailList.length);
 		return emailList[choice];
@@ -203,14 +266,27 @@ public class DataList {
 		Price_Coin pc = Price_Coin.values()[random];
 		return pc;
 	}
+	
+//	regdate 랜덤
+	Timestamp randTS(int numOfPastDays) {
+		int randDays = r.nextInt(numOfPastDays);
+	    LocalDateTime randDay2 = LocalDateTime.now().minusDays(randDays);
+	    
+	    String randDayStr = randDay2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		int randH = r.nextInt(23)+1;
+		int randM = r.nextInt(59)+1;
+		int randS = r.nextInt(59)+1;
+		
+		return Timestamp.valueOf(randDayStr+" "+randH+":"+randM+":"+randS);
+	}
 
 	public static void main(String[] args) {
 		DataList s = new DataList();
 //		System.out.println(Arrays.toString(s.nicNameList()));
 //		System.out.println(s.nicNameList().length);
-		for (Price_Coin pc : Price_Coin.values()) {
-			System.out.println(pc.getCoin());
-			System.out.println(pc.getPrice());
-		}
+//		for (Price_Coin pc : Price_Coin.values()) {
+//			System.out.println(pc.getCoin());
+//			System.out.println(pc.getPrice());
+//		}
 	}
 }
