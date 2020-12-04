@@ -38,7 +38,7 @@ public class QNAController {
 		return "/manager/QNA/qnaWriteOk";
 	}
 
-	@RequestMapping(value = "qnaUpdateOk", method = RequestMethod.POST)
+	@RequestMapping(value = "/qnaUpdateOk", method = RequestMethod.POST)
 	public String qnaUpdateOk(QNA updateQNA,User user, Model model) {
 		System.out.println("답변달기 탔니????");
 		updateQNA.setMe(user);

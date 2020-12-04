@@ -13,9 +13,10 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
 </head>
 <body>
-
+	<input type="hidden" id="page_owner" value="${user.role == 'ADMIN' ? 'manager' : 'user' }" />
 	<div align="center" class="d-flex">
 		<div class="container1 p-6 ">
 			<c:choose>
@@ -120,7 +121,7 @@
 
 						</tbody>
 					</table>
-
+						
 					<ul class="pagination justify-content-center">
 						<c:forEach var="i" begin="1" end="${qnaList.getTotalPages() }">
 							<a class="ml-2 mr-2 qna_paging">${i}</a>

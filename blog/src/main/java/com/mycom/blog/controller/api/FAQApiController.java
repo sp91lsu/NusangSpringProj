@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycom.blog.service.manager.FAQService;
 @RestController
-@RequestMapping("manager/FAQ")
+@RequestMapping("manager/FAQ/api/")
 public class FAQApiController {
 	@Autowired
 	private FAQService faqService;
 	
-	@GetMapping("api/faqList")
+	@GetMapping("faqList")
 	public Page index(Model model,
 			@PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
 		Page faqList = faqService.getPageList(pageable);

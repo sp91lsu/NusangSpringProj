@@ -1,5 +1,6 @@
 (function() {
 
+	console.log($("#page_owner").val())
 	
 	$(".qna_paging").click(
 			function() {
@@ -8,7 +9,7 @@
 
 				$.ajax({
 
-					url : "/manager/QNA/api/qnaList/?page="
+					url : "/"+ $("#page_owner").val()+ "/QNA/api/qnaList/?page="
 							+ ($(this).html() -1),
 					success : function(res) {
 						

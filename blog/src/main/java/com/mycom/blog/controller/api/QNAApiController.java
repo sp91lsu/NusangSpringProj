@@ -16,12 +16,12 @@ import com.mycom.blog.dto.manager.QNA;
 import com.mycom.blog.service.manager.QNAService;
 import com.mycom.blog.vo.QNAVO;
 @RestController
-@RequestMapping("manager/QNA")
+@RequestMapping("/")
 public class QNAApiController {
 	@Autowired
 	private QNAService qnaService;
 	
-	@GetMapping("api/qnaList")
+	@GetMapping("/manager/QNA/api/qnaList")
 	public Page index(Model model,
 			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
 		Page<QNAVO> qnaList = qnaService.getPageList(pageable);
@@ -29,10 +29,19 @@ public class QNAApiController {
 		System.out.println("api 페이지 리스트 탔니??");
 		return qnaList;
 	}
-	@PostMapping(value = "api/qnaUpdateOk")
+	@PostMapping(value = "/manager/QNA/api/qnaUpdateOk")
 	public int qnaUpdateOk(QNA updateQNA,Model model) {
 		System.out.println("답변달기 탔니????");
 		int res = qnaService.updateOk(updateQNA);
 		return res;
+	}
+	
+	@GetMapping("/user/QNA/api/qnaList")
+	public Page userQNAList(Model model,
+			@PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+		Page<QNAVO> qnaList = qnaService.userQnaList(pageable);
+		//model.addAttribute("qnaList", qnaList);
+		System.out.println("api 페이지 리스트 탔니??");
+		return qnaList;
 	}
 }

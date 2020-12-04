@@ -11,7 +11,7 @@
 		<c:when test="${res == 1 }">
 			<script>
 				alert("문의하신 내용이 관리자에게 전송되었습니다.");
-				location.href = "/manager/FAQ/faqList";
+				location.href = "/user/FAQ/faqList";
 			</script>	
 		</c:when>
 		<c:otherwise>

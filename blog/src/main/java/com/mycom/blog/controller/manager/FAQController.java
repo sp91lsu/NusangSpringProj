@@ -20,7 +20,7 @@ import com.mycom.blog.service.manager.QNAService;
 import com.mycom.blog.vo.QNAVO;
 
 @Controller
-@RequestMapping("/manager/FAQ")
+@RequestMapping("/")
 public class FAQController {
 	@Autowired
 	FAQService faqService;
@@ -32,7 +32,7 @@ public class FAQController {
 //		model.addAttribute("list", faqList);
 //		return "/manager/FAQ/faqList";
 //	}
-	@RequestMapping("/faqList")
+	@RequestMapping("/manager/FAQ/faqList")
 	public String faqList(Model model,
 			@Qualifier("aa") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable,
 			@Qualifier("bb") @PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable2) {
@@ -40,34 +40,51 @@ public class FAQController {
 		System.out.println("faqList 출력"+ pageable.getPageSize());
 		//List qnaList = qnaService.findAll();
 		Page<QNAVO> qnaList = qnaService.getPageList(pageable2);
+		
+		//Page<QNAVO> myQna = QNAService
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("faqList", faqList);
 		return "/manager/FAQ/faqList";
 	}
-	@RequestMapping("faqWrite")
+	
+	@RequestMapping("user/FAQ/faqList")
+	public String userFaqList(Model model,
+			@Qualifier("aa") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable,
+			@Qualifier("cc") @PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable2) {
+		Page<FAQ> faqList = faqService.getPageList(pageable);
+		System.out.println("faqList 출력"+ pageable.getPageSize());
+		
+		Page<QNAVO> qnaList =qnaService.userQnaList(pageable2);
+//		
+		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("faqList", faqList);
+		return "/manager/FAQ/faqList";
+	} 
+	
+	@RequestMapping("/manager/FAQfaqWrite")
 	public String faqWrite() {
 		return "manager/FAQ/faqWrite";
 	}
 	
-	@RequestMapping(value = "faqWriteOk", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/FAQfaqWriteOk", method = RequestMethod.POST)
 	public void faqWriteOk(FAQ dto, Model model) {
 		dto = faqService.save(dto);
 		int res = dto != null ? 1 : 0;
 		model.addAttribute("res", res);
 	}
-	@RequestMapping(value = "faqUpdate")
+	@RequestMapping(value = "/manager/FAQfaqUpdate")
 	public void faqUpdate(int no, Model model) {
 		FAQ updateDto =faqService.findbyid(no);
 		model.addAttribute("updateDto",updateDto );
 	}
-	@RequestMapping(value = "faqUpdateOk", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/FAQfaqUpdateOk", method = RequestMethod.POST)
 	public void faqUpdateOk(FAQ updateDto,Model model) {
 		int res = faqService.updateOk(updateDto);
 		model.addAttribute("res", res);
 	}
 	
 	
-	@RequestMapping(value = "/faqDeleteOk", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/FAQ/faqDeleteOk", method = RequestMethod.POST)
 	public void faqDeleteOk(int no, Model model) {
 		System.out.println("no : " + no);
 		int res = faqService.deleteById(no);
@@ -75,5 +92,6 @@ public class FAQController {
 		
 	}
 	 
+	
 	
 }

@@ -13,10 +13,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.manager.FAQ;
 import com.mycom.blog.dto.manager.QNA;
+import com.mycom.blog.handler.QNATransfer;
 import com.mycom.blog.repository.manager.FAQRepository;
 import com.mycom.blog.repository.manager.QNARepository;
+import com.mycom.blog.service.UserService;
 import com.mycom.blog.vo.QNAVO;
 import com.mycom.blog.vo.UserVO;
 
@@ -24,24 +27,27 @@ import com.mycom.blog.vo.UserVO;
 public class QNAService {
 	@Autowired
 	private QNARepository qnaRepository;
+
 	
 	@Transactional
-	public List findAll(){
+	public List findAll() {
 		List faqList = qnaRepository.findAll();
 		return faqList;
 	}
+
 	@Transactional
 	public QNA save(QNA dto) {
 		QNA qna = qnaRepository.save(dto);
-		 return qna;
-	}
-	@Transactional
-	public QNA findbyid(int id) {
-		
-		QNA qna =qnaRepository.findById(id).get();
 		return qna;
 	}
-	
+
+	@Transactional
+	public QNA findbyid(int id) {
+
+		QNA qna = qnaRepository.findById(id).get();
+		return qna;
+	}
+
 	@Transactional
 	public int updateOk(QNA updateQNA) {
 		try {
@@ -50,41 +56,37 @@ public class QNAService {
 			qna.setAnswer(updateQNA.getAnswer());
 			System.out.println("qna.getAnswer : " + qna.getAnswer());
 			return 1;
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
+
 	@Transactional
 	public int deleteById(int no) {
 		try {
 			qnaRepository.deleteById(no);
 			return 1;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
-		
+
 	}
-	
+
 	@Transactional()
 	public Page<QNAVO> getPageList(Pageable pageable) {
-		
+
 		Page<QNA> qnaList = qnaRepository.findAll(pageable);
-		List<QNAVO> voList = new ArrayList<QNAVO>();
+
+		return QNATransfer.listToPage(pageable, qnaList);
+	}
+
+	@Transactional
+	public Page<QNAVO> userQnaList(Pageable pageable) {
 		
-		for (QNA qna : qnaList) {
-			QNAVO qnaVo = new QNAVO();
-			UserVO userVo = new UserVO();
-		
-			BeanUtils.copyProperties(qna, qnaVo); // no title contents answer regdate 
-			BeanUtils.copyProperties(qna.getMe(),userVo); // user 
-			
-			qnaVo.setMe(userVo);
-			voList.add(qnaVo);
-		}
-		System.out.println("qnavo 사이즈 : " + qnaList.getTotalElements());		
-		return  new PageImpl<QNAVO>(voList, pageable, qnaList.getTotalElements());
+		Page<QNA> qnaList = qnaRepository.findByMe(ConAssist.getUser(),pageable);
+		return QNATransfer.listToPage(pageable, qnaList);
 	}
 }

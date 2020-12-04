@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,8 @@ import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.PayType;
 import com.mycom.blog.dto.manager.Payment;
+import com.mycom.blog.dto.manager.QNA;
+import com.mycom.blog.handler.QNATransfer;
 import com.mycom.blog.model.ProductPayload;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.ItemRepository;
@@ -189,4 +194,6 @@ public class UserService extends BasicService<UserRepository, User> {
 
 		return findUser;
 	}
+	
+	
 }

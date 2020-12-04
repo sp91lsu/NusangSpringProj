@@ -31,7 +31,7 @@
 
 						<li class="nav-item"><a class="nav-link" href="/shop/shop_view"><i class="fas fa-shopping-cart fa-2x"></i> 아이템샵</a></li>
 						<li class="nav-item"><a class="nav-link" href="/manager/notice/noticeList"><i class="fas fa-exclamation-triangle fa-2x"></i> 공지사항</a></li>
-						<li class="nav-item"><a class="nav-link" href="/manager/FAQ/faqList"><i class="far fa-question-circle fa-2x"></i> FAQ</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/FAQ/faqList"><i class="far fa-question-circle fa-2x"></i> FAQ</a></li>
 						<li class="nav-item">
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%"></div>
