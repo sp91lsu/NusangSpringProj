@@ -69,7 +69,6 @@ public class ProviderUserService {
 		String signature = username + (String) attributes.get("id");
 		return User.builder().nickname(username).userid(signature).username(username)
 				.email((String) attributes.get("email")).authType(AuthType.NAVER)
-
 				.build();
 	}
 
@@ -79,13 +78,14 @@ public class ProviderUserService {
 		Integer id = (Integer) attributes.get("id"); 
 		Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
 		Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
+		String picture = (String) profile.get("profile_image_url");
 		String name = (String) profile.get("nickname");
 		String email = (String) kakao_account.get("email");
 				
 		String signiture = name + "_" + id;
 		
 		return User.builder().nickname(name).userid(signiture).username(name)
-				.email(email).authType(AuthType.KAKAO)
+				.picture(picture).email(email).authType(AuthType.KAKAO)
 
 				.build();
 	}
