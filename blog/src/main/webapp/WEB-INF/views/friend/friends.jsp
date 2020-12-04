@@ -43,7 +43,7 @@
 		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">나에게 온 요청리스트</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<c:forEach var="friend" items="${user.friend_reqList(false)}">
-				<c:if test="${friend.friendType == 'REALATIONSHIP' }">
+				<c:if test="${friend.friendType == 'REQUEST' }">
 					<li class="list-group-item">
 						<div>${friend.user.nickname }
 							<button class="add_friend_btn btn btn-primary" value="${friend.user.userno }">${friend.user.userno }친구추가</button>

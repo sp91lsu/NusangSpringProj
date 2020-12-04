@@ -42,7 +42,7 @@
 					<c:set var="chkFriend" value="${user.chkFriend(boardUser.userno)}"></c:set>
 					<c:choose>
 						<c:when test="${chkFriend eq 0 }">
-							<button>친구추가 하기</button>
+							<button onclick="friendReq()">친구추가 하기</button>
 						</c:when>
 						<c:when test="${chkFriend eq 1 }">
 							<span>친구 요청중</span>

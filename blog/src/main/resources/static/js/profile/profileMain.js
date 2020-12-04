@@ -8,6 +8,7 @@
 		
 	};
 	
+	// 닉네임 변경
  	$('#nicknameChange').click(function(){
 		var nickName = $('#nickName').val();
 		
@@ -31,6 +32,7 @@
 		})
 	}) 
 	
+	// 사진 삭제(기본 이미지로)
 	$('#picDeleteBtn').click(function(){
 		$.ajax({
 			url : "/api/profile/deletePicture" ,
@@ -47,6 +49,7 @@
 		})
 	})
 	
+	//성별 변경
 	function genderSelected(){
  		var gender = $('#genderSelect option:selected').val();
  		if(gender == "남"){
@@ -75,6 +78,7 @@
  		})
  	}
  	
+ 	// 나이 변경
  	function ageSelected(){
  		var age = $('#ageSelect option:selected').val();
  		
@@ -95,7 +99,36 @@
 			}
  		})
  	}
-	
+ 	
+ 	
+ 	// 친구추가 요청
+ 	function friendReq(){
+ 		var friendno = $('#userno').val()
+ 		
+ 		$.ajax({
+ 			url: "/friend/add_friend_req",
+ 			type: "POST",
+ 			"headers" : headers,
+ 			data: {
+ 				"friendno" : friendno,
+ 			},
+ 			success : function(res) {
+ 				if(res == 1){
+					alert("친구추가 요청을 완료했습니다.") 				
+ 				} else{
+ 					alert("친구추가 요청에 실패했습니다 \n 다시 시도해주세요") 				
+ 				}
+ 				location.reload();
+ 			}
+ 		
+ 		
+ 		})
+ 	
+ 	
+ 	}
+ 	
+ 	
+	//페이징(무한 스크롤) 함수
  	var page = 0;
 	var userno = $('#userno').val();
 
