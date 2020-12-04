@@ -61,71 +61,71 @@ public class KakaoBo extends BasicBO {
 		reqUserInfoURL = "https://kapi.kakao.com/v2/user/me";
 	}
 
-	public User login(String code) {
-		System.out.println(code);
-
-		reqAuthToken(code);
-
-		// 사용자 정보요청
-
-		RestTemplate rt = new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "Bearer " + oAuthToken.getAccess_token());
-		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
-		HttpEntity<MultiValueMap<String, String>> kakaoUserReq = new HttpEntity<>(headers);
-
-		ResponseEntity<String> response = rt.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST,
-				kakaoUserReq, String.class);
-
-		KakaoProfile kProfile = null;
-
-		System.out.println("바디바디 :" + response.getBody());
-		boolean agreeMentChk = response.getBody().contains("needs_agreement\":true");
-		
-		
-		if(agreeMentChk)
-		{
-			reqUnlink();
-			return null;
-		}
-		
-		try {
-			
-			kProfile = m.readValue(response.getBody(), KakaoProfile.class);
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		System.out.println(kProfile.getId());
-		System.out.println(kProfile.getKakao_account().getEmail());
-
-		kProfile.getKakao_account().getBirthday();
-		
-		User user = User.builder().userid(kProfile.getKakao_account().getEmail() + "_" + kProfile.getId())
-				.username(kProfile.getProperties().getNickname()).nickname(kProfile.getProperties().getNickname())
-				.email(kProfile.getKakao_account().getEmail()).password(cosKey)// UUID.randomUUID().toString()
-				.build();
-		
-		// 회원가입
-		System.out.println("유저 이름이 뭔데 : " + user.getUsername());
-		System.out.println("유저 이름이 뭔데 : " + user.getPassword());
-		System.out.println("유저 이름이 뭔데 : " + user.getEmail());
-
-		if (!userService.isExsistUserName(user.getUsername())) {
-			System.out.println("아이디가 존재 하지 않군요 가입해야겠어요");
-			userService.signUp(user);
-		}
-		
-		
-		conAssist.setSessionUser(user);
-		
-		return user;
-	}
+//	public User login(String code) {
+//		System.out.println(code);
+//
+//		reqAuthToken(code);
+//
+//		// 사용자 정보요청
+//
+//		RestTemplate rt = new RestTemplate();
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("Authorization", "Bearer " + oAuthToken.getAccess_token());
+//		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+//
+//		HttpEntity<MultiValueMap<String, String>> kakaoUserReq = new HttpEntity<>(headers);
+//
+//		ResponseEntity<String> response = rt.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST,
+//				kakaoUserReq, String.class);
+//
+//		KakaoProfile kProfile = null;
+//
+//		System.out.println("바디바디 :" + response.getBody());
+//		boolean agreeMentChk = response.getBody().contains("needs_agreement\":true");
+//		
+//		
+//		if(agreeMentChk)
+//		{
+//			reqUnlink();
+//			return null;
+//		}
+//		
+//		try {
+//			
+//			kProfile = m.readValue(response.getBody(), KakaoProfile.class);
+//		} catch (JsonMappingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		System.out.println(kProfile.getId());
+//		System.out.println(kProfile.getKakao_account().getEmail());
+//
+//		kProfile.getKakao_account().getBirthday();
+//		
+//		User user = User.builder().userid(kProfile.getKakao_account().getEmail() + "_" + kProfile.getId())
+//				.username(kProfile.getProperties().getNickname()).nickname(kProfile.getProperties().getNickname())
+//				.email(kProfile.getKakao_account().getEmail()).password(cosKey)// UUID.randomUUID().toString()
+//				.build();
+//		
+//		// 회원가입
+//		System.out.println("유저 이름이 뭔데 : " + user.getUsername());
+//		System.out.println("유저 이름이 뭔데 : " + user.getPassword());
+//		System.out.println("유저 이름이 뭔데 : " + user.getEmail());
+//
+//		if (!userService.isExsistUserName(user.getUsername())) {
+//			System.out.println("아이디가 존재 하지 않군요 가입해야겠어요");
+//			userService.signUp(user);
+//		}
+//		
+//		
+//		conAssist.setSessionUser(user);
+//		
+//		return user;
+//	}
 
 	@Override
 	public void reqAuthToken(String... code) {

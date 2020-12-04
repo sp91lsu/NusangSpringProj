@@ -54,7 +54,7 @@
 				nickname : nickname,
 				matchUser : matchUserNickname
 			};
-			
+
 			stompClient.send("/app/chat.sendMessage", {}, JSON
 					.stringify(chatMessage));
 
@@ -77,7 +77,6 @@
 
 	function onMessageReceived(payload) {
 		console.log("메세지 들어와땅 " + payload.body)
-		var message = JSON.parse(payload.body);
 
 		$.ajax({
 
@@ -85,28 +84,46 @@
 			type : "POST",
 			headers : headers,
 			data : {
-				topic : message.topic
+				topic : payload.body
 			},
 			success : function(res) {
 
-				if (res == 1) {
-					var messageElement = document.createElement('li');
+				console.log(res);
+				if (res.status == 200) {
 
-					if (message.userno == $("#userno").val()) {
-						messageElement = '<li class="chat-message-li me">'
-								+ '<div class="chat-message"><p>'
-								+ message.text + '</p></div>'
-								+ message.createDate + '</li>';
-					} else {
-						messageElement = '<li class="chat-message-li"><span>'
-								+ message.nickname + '</span>'
-								+ '<div class="chat-message ">' + '<p>'
-								+ message.text + '</p>' + '</div>'
-								+ message.createDate + '</li>';
-					}
-
-					$(messageArea).append(messageElement);
-					messageArea.scrollTop = messageArea.scrollHeight;
+					$(messageArea).empty();
+					 var beforeTop = messageArea.scrollTop;
+					 
+					 
+					$.each(res.data, function(key, value) {
+												
+						 var messageElement = document.createElement('li');
+						 if (value.user.userno == $("#userno").val()) {
+						 messageElement = '<li class="chat-message-li me">'
+						 + '<div class="chat-message"><p>'
+						 + value.text + '</p></div>'
+						 + value.createDate + '</li>';
+						 } else {
+						 messageElement = '<li class="chat-message-li"><span>'
+						 + value.user.nickname + '</span>'
+						 + '<div class="chat-message ">' + '<p>'
+						 + value.text + '</p>' + '</div>'
+						 + value.createDate + '</li>';
+						 }
+						 messageElement += value.view_cnt;
+						
+						
+						
+						 $(messageArea).append(messageElement);
+						
+													
+					})
+					
+					 console.log("af scrollTop" + messageArea.scrollTop);
+							console.log(messageArea.scrollHeight);
+						// if (messageArea.scrollTop == beforeHeight) {
+						 messageArea.scrollTop = messageArea.scrollHeight;
+						// }
 				}
 			}
 		})

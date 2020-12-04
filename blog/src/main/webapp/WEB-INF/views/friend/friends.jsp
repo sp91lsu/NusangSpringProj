@@ -12,14 +12,14 @@
 
 
 	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내 친구 목록</button>
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내 친구 목록 [${user.myFriendList().size()}]</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<c:forEach var="friend" items="${user.friendList}">
 				<c:if test="${friend.friendType == 'REALATIONSHIP' }">
 					<li class="list-group-item dropdown-item">
 						<form action="/chat/go_chatroom">
 							<div>${friend.user.nickname }
-								<button name="chat_userno" class="btn-chat btn btn-primary" value="${friend.user.userno }">${friend.user.userno }채팅하기</button>
+								<button name="chat_userno" class="btn-chat btn btn-primary" value="${friend.user.userno }">채팅하기</button>
 							</div>
 						</form>
 					</li>
@@ -29,7 +29,7 @@
 	</div>
 
 	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내 신청 리스트</button>
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">내 신청 리스트[${user.friend_reqList(true).size()}]</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<c:forEach var="friend" items="${user.friend_reqList(true)}">
 				<li class="list-group-item">
@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">나에게 온 요청리스트</button>
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">나에게 온 요청리스트[${user.friend_reqList(false).size()}]</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<c:forEach var="friend" items="${user.friend_reqList(false)}">
 				<c:if test="${friend.friendType == 'REQUEST' }">

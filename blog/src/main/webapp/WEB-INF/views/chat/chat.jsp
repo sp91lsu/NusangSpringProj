@@ -18,7 +18,7 @@
 			<div class="connecting">연결중...</div>
 			<ul id="messageArea" style="background-color: #B2C7D9">
 				<c:forEach var="message" items="${ chatRoom.messageList}">
-
+						${ message.view_cnt}
 					<c:choose>
 						<c:when test="${ message.user.userno != user.userno}">
 							<li class="chat-message-li"><span>${ message.user.nickname}</span>

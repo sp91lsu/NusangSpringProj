@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.mycom.blog.auth.PrincipalDetail;
 import com.mycom.blog.controller.assist.ConAssist;
+import com.mycom.blog.dto.ChatMessage;
 import com.mycom.blog.dto.ChatRoom;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
@@ -58,26 +59,25 @@ public class ChatApiController {
 //	HttpSession session;
 
 	@PostMapping("/update_read_message")
-	public int update_read_message(String topic) {
+	public Response<List<ChatMessage>> update_read_message(String topic) {
 
 		System.out.println("update_read_message : save ");
 
-		ChatRoom chatRoom = chatRoomService.updateRoom(topic);
+		ChatRoom chatRoom = chatRoomService.updateRoomByTopic(topic);
 
 		if (chatRoom != null) {
-			return 1;
+			return new Response<List<ChatMessage>>(200,chatRoom.getMessageList());
 		} else {
-			return -1;
+			return new Response<List<ChatMessage>>(-1,null);
 		}
 	}
 
 	@GetMapping("/updat_list_view")
 	public List<ChatRoomVO> updat_list_view(String topic) throws JsonMappingException, JsonProcessingException {
-		
+
 		List<ChatRoomVO> chatRoomVOList = chatRoomService.getUserChatRoomList();
-		
-		
+
 		return chatRoomVOList;
 	}
-	
+
 }

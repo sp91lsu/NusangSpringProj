@@ -1,12 +1,14 @@
 package com.mycom.blog.service;
 
 import java.math.BigDecimal;
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.jooq.DSLContext;
+import org.jooq.TableField;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -30,6 +32,8 @@ import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.UserRepository;
 import com.mycom.blog.vo.ChatMessageVO;
 import com.mycom.blog.vo.ChatRoomVO;
+import com.mycom.jooq.tables.JChatRoomGuide;
+import com.mycom.jooq.tables.records.JChatRoomGuideRecord;
 
 @Service
 public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> {
@@ -42,6 +46,8 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	private SimpMessagingTemplate simpMessagingTemplate;
 	@Autowired
 	private UserService userService;
+
+	private JChatRoomGuide jChatRoomGuide = new JChatRoomGuide();
 
 	@Autowired
 	public ChatRoomService(ChatRoomRepository chatRoomRep) {
@@ -95,25 +101,24 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	}
 
 	@Transactional
-	public ChatRoom getChatRoom(int friendno, User me) {
+	public ChatRoom enterTheChatRoom(int friendno, User me) {
 
 		User friend = userService.findById(friendno);
 
 		String topic = conAssist.createTopic(me, friend);
-
-		ChatRoom chatRoom = updateRoom(topic);
+		ChatRoom chatRoom = updateRoomByTopic(topic);
 
 		System.out.println(chatRoom);
-
 		return chatRoom;
 	}
 
+	//메세지 보내고 채팅 정보 갱신 
 	@Transactional
 	public int saveMessage(ChatMessageVO mObj) {
 
 		try {
 			ChatRoom chatRoom = repository.findByTopic(mObj.getTopic());
-
+			chatRoom.setUpdateDate(new Date());
 			User user = userService.findById(mObj.getUserno());
 
 			ChatMessage message = ChatMessage.builder().chatRoom(chatRoom).text(mObj.getText()).user(user)
@@ -135,27 +140,32 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 
 		List<ChatRoomVO> chatRoomVOList = new ArrayList<ChatRoomVO>();
 		for (ChatRoom chatRoom : chatRoomList) {
-			ChatRoomVO vo =  new ChatRoomVO();
-			BeanUtils.copyProperties(chatRoom, vo);
-			System.out.println(vo.getRemainSawCnt());
-			chatRoomVOList.add(vo);
+			if (chatRoom.getMessageList().size() > 0) {
+				ChatRoomVO vo = new ChatRoomVO();
+				BeanUtils.copyProperties(chatRoom, vo);
+				System.out.println(vo.getRemainSawCnt());
+				chatRoomVOList.add(vo);
+			}
 		}
-		
+
 		return chatRoomVOList;
 	}
 
 	@Transactional
-	public ChatRoom updateRoom(String topic) {
+	public ChatRoom updateRoomByTopic(String topic) {
 
 		try {
 			ChatRoom chatRoom = repository.findByTopic(topic);
-			chatRoom.setUpdateDate(new Date());
+			Date update = new Date();
+			chatRoom.setUpdateDate(update);
+			chatRoom.getRoomGuideList();
+			chatRoom.getMyGuide().setUpdateDate(update);
 			chatRoom.getMyGuide().setSawMessageCnt(chatRoom.getMessageList().size());
+			chatRoom.chkMessageCnt();
 			return chatRoom;
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
-
+	
 }

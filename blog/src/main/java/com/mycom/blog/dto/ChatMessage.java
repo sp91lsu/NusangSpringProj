@@ -21,6 +21,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -41,21 +42,21 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@SequenceGenerator(name = "CHAT_MESSAGE_ROOM_SEQ_GEN", // 시퀀스 제너레이터 이름
-		sequenceName = "CHAT_MESSAGE_ROOM_SEQ", // 시퀀스 이름
+@SequenceGenerator(name = "CHAT_MESSAGE_SEQ_GEN", // 시퀀스 제너레이터 이름
+		sequenceName = "CHAT_MESSAGE_SEQ", // 시퀀스 이름
 		initialValue = 1, // 시작값
 		allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 )
 @Builder
-@Table(name = "CHAT_MESSAGE_ROOM")
+@Table(name = "CHAT_MESSAGE")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성s
 @ToString(exclude = {"chatRoom","user"}) 
-@JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class ChatMessage {
 
 	@Id // primarykey
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHAT_MESSAGE_ROOM_SEQ_GEN")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHAT_MESSAGE_SEQ_GEN")
 	private int messageno; // 시퀀스 auto_increment
 
 	@ManyToOne
@@ -68,10 +69,11 @@ public class ChatMessage {
 	@JoinColumn(name = "userno")
 	private User user;
 	
-	@Temporal(value = TemporalType.DATE)
 	@CreationTimestamp
 	private Date createDate;
 	
+	@Transient
+	private int view_cnt ;
 	
 	public String getFormatStr() {
 		SimpleDateFormat format = new SimpleDateFormat ( "HH:mm");

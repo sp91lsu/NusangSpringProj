@@ -93,7 +93,7 @@ public class ChatRoom {
 		if (roomGuideList == null)
 			return null;
 		for (ChatRoomGuide guid : roomGuideList) {
-
+			System.out.println(guid.getMe().getUserno());
 			if (guid.getMe().getUserno() == ConAssist.getUserno()) {
 				return guid;
 			}
@@ -116,4 +116,14 @@ public class ChatRoom {
 		return "알수없는 사용자";
 	}
 
+	public void chkMessageCnt() {
+		for (ChatRoomGuide guide : roomGuideList) {
+			for (ChatMessage chatMessage : messageList) {
+				if(guide.getUpdateDate().getTime() <= chatMessage.getCreateDate().getTime())
+				{
+					chatMessage.setView_cnt(chatMessage.getView_cnt() +1);
+				}
+			}
+		}
+	}
 }

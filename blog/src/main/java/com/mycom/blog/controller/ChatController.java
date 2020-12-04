@@ -1,5 +1,7 @@
 package com.mycom.blog.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,39 +48,39 @@ public class ChatController {
 
 		int result = chatRoomService.saveMessage(messageVO);
 
-		if (result != 1) {
-			messageVO.setText("네트워크 상태가 원활하지 않습니다.");
+		if (result == 1) {
+			simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO.getTopic());
+			simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getMatchUser(), messageVO);
 		}
-		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO);
-		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getMatchUser(), messageVO);
-		System.out.println("성공?");
 	}
 
 	@MessageMapping("/chat.updateTopicUser")
 	public void updateTopicUser(@Payload ChatMessageVO messageVO) {
 		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO);
 	}
-	
-	@MessageMapping("/chat.addUser")
-	public MessageObject addUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-		Map<String, Object> map = headerAccessor.getSessionAttributes();
-		map.put("username", chatMessage.getSender());
-		return chatMessage;
-	}
 
-	@MessageMapping("/app/chat.leave")
-	@SendTo("/topic/public")
-	public MessageObject leaveUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-		headerAccessor.getSessionAttributes().remove("username");
-		return chatMessage;
-	}
+//	@MessageMapping("/chat.addUser")
+//	public MessageObject addUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+//		Map<String, Object> map = headerAccessor.getSessionAttributes();
+//		map.put("username", chatMessage.getSender());
+//		return chatMessage;
+//	}
+//
+//	@MessageMapping("/app/chat.leave")
+//	@SendTo("/topic/public")
+//	public MessageObject leaveUser(@Payload MessageObject chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+//		headerAccessor.getSessionAttributes().remove("username");
+//		return chatMessage;
+//	}
 
 	@GetMapping("/chat/chatpage")
 	public String moveChatPage(int chat_userno, Model model) {
 		System.out.println("chat : " + chat_userno);
 
-		ChatRoom chatRoom = chatRoomService.getChatRoom(chat_userno, conAssist.getUser());
+		ChatRoom chatRoom = chatRoomService.enterTheChatRoom(chat_userno, conAssist.getUser());
+		simpMessagingTemplate.convertAndSend("/topic/" + chatRoom.getTopic(), chatRoom.getTopic());
 		model.addAttribute("chatRoom", chatRoom);
+
 		return "/chat/chat";
 	}
 

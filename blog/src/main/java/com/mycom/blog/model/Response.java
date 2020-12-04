@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class Response<T> {
 
 	int status;
-	Object data;
+	T data;
 	
 }

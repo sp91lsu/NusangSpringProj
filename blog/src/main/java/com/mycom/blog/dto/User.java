@@ -43,7 +43,6 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @SequenceGenerator(name = "USER_SEQ_GEN", // 시퀀스 제너레이터 이름
 		sequenceName = "USER_SEQ", // 시퀀스 이름
 		initialValue = 1, // 시작값
@@ -55,14 +54,13 @@ import lombok.ToString;
 @DynamicInsert(value = true)
 @DynamicUpdate
 @ToString(exclude = "location")
-@JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class User {
 
 	@Id // primarykey
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ_GEN")
 	private int userno; // 시퀀스 auto_increment
-	
-	//로그인 타입 카카오,페이스북 등등 
+
+	// 로그인 타입 카카오,페이스북 등등
 	@Enumerated(EnumType.STRING)
 	private AuthType authType;
 
@@ -86,7 +84,7 @@ public class User {
 	@Column(nullable = false, length = 50)
 	private String email;
 
-	//권한
+	// 권한
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private RoleType role = RoleType.USER; // Enum을 쓰는게 좋다.
@@ -95,11 +93,11 @@ public class User {
 	@CreationTimestamp // 시간이 자동입력
 	private Timestamp createDate;
 
-	//채팅방 가이드 
+	// 채팅방 가이드
 	@OneToMany(mappedBy = "me")
 	private List<ChatRoomGuide> chatRoomGuideList;
 
-	//위치 
+	// 위치
 	@OneToOne
 	@JoinColumn(name = "locationno")
 	private Location location;
@@ -109,19 +107,19 @@ public class User {
 
 	private int coin = 0;
 
-	//친구목록
+	// 친구목록
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Friend> friendList = new ArrayList<Friend>();
 
-	//게시글 목록
+	// 게시글 목록
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Board> boardList = new ArrayList<Board>();
 
-	//좋아요 목록
+	// 좋아요 목록
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Wish> wishList = new ArrayList<Wish>();
 
-	//질문 목록
+	// 질문 목록
 	@OneToMany(mappedBy = "me", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<QNA> qnaList = new ArrayList<QNA>();
 
@@ -247,6 +245,18 @@ public class User {
 			}
 		}
 		return false;
+	}
+
+	public List<Friend> myFriendList() {
+
+		List<Friend> list = new ArrayList<Friend>();
+
+		for (Friend addFriend : friendList) {
+			if (addFriend.getFriendType() == FriendType.REALATIONSHIP) {
+				list.add(addFriend);
+			}
+		}
+		return list;
 	}
 
 }

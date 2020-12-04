@@ -11,4 +11,5 @@ public class ChatMessageVO {
 	String nickname;
 	String  createDate;
 	String matchUser;
+	String view_cnt;
 }
