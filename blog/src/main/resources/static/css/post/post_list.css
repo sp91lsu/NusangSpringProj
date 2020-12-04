@@ -18,6 +18,7 @@
 	display: inline-block;
 	margin: 20px 105px 20px 105px;
 }
+
 .btn_write>button {
 	float: right;
 	font-size: 25px;
@@ -29,9 +30,9 @@
 	height: 160px;
 	display: inline-block;
 	border: 1px solid lightgray;
-	border-radius : 15px 15px 15px 15px;
-	box-shadow : 5px 7px 5px lightgray;
-	overflow:hidden;
+	border-radius: 15px 15px 15px 15px;
+	box-shadow: 5px 7px 5px lightgray;
+	overflow: hidden;
 	box-sizing: border-box;
 	margin-bottom: 20px;
 }
@@ -52,19 +53,37 @@
 }
 
 .post_list>.post>.txt {
+	width: 680px;
+	height: 158px;
 	float: left;
 	margin: 5px 0px 0px 15px;
 }
 
-.txt>.writer {
+.txt>.top {
+	width: 680px;
+	height: 30px;
+}
+
+.txt>.top>.writer {
+	height: 30px;
+	width: 180px;
 	color: blue;
 	font-weight: bold;
 	font-size: 20px;
+	float: left;
+}
+
+.txt>.top>.post_title {
+	min-width: 50px;
+	height: 30px;
+	line-height: 35px;
+	margin-left: 20px;
+	float: left;
 }
 
 .txt>.comment {
-	min-height: 90px;
-	margin-top: 5px;
+	min-height: 85px;
+	margin-top: 10px;
 }
 
 .txt>.view {

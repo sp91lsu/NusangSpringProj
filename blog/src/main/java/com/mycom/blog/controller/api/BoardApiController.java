@@ -55,42 +55,4 @@ public class BoardApiController {
 
 		return pageList;
 	}
-
-	@PostMapping("/api/board")
-	public Response<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {
-		boardService.writeBoard(board, principal.getUser());
-		return new Response<Integer>(HttpStatus.OK.value(), 1);
-	}
-
-	@DeleteMapping("/api/board/{id}")
-	public Response<Integer> delete(@PathVariable int id) {
-		System.out.println("게시글 삭제");
-		System.out.println("id : " + id);
-		boardService.deleteBoad(id);
-
-		return new Response<Integer>(HttpStatus.OK.value(), 1);
-	}
-
-	@PutMapping("/api/board/update")
-	public Response<Integer> update(@RequestBody Board board) {
-
-		System.out.println("update : " + board.getId());
-		System.out.println("update : " + board.getContent());
-		System.out.println("update : " + board.getTitle());
-		boardService.updateBoard(board);
-
-		return new Response<Integer>(HttpStatus.OK.value(), 1);
-	}
-
-	@PostMapping("/api/board/replysave")
-	public Response<Integer> saveReply(@RequestBody ReplySaveReq dto) {
-		int result = boardService.saveReply(dto);
-		return new Response<Integer>(HttpStatus.OK.value(), result);
-	}
-
-	@DeleteMapping("/api/board/reply/{id}")
-	public Response<Integer> deleteReply(@PathVariable int id) {
-		boardService.deleteReply(id);
-		return new Response<Integer>(HttpStatus.OK.value(), 1);
-	}
 }
