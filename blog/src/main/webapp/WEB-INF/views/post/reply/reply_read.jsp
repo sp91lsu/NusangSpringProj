@@ -79,3 +79,5 @@
 	</div>
 	
 </div>
+
+<link rel="stylesheet" href="/css/post/reply/reply_read.css" />

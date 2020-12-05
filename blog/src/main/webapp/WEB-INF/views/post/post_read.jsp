@@ -63,6 +63,7 @@
 <%@ include file="../layout/footer.jsp"%>
 
 <script src="/js/post/post.js"></script>
+<link rel="stylesheet" href="/css/post/post_read.css" />
 <script src="/js/post/reply.js"></script>
 <script src="/js/post/wish.js"></script>
 </body>
