@@ -27,8 +27,7 @@
 				} else if(res == 2) {
 					alert("중복된 닉네임 입니다. 다시 시도해주세요.\n(2~8글자의 닉네임을 입력해 주세요.)");
 				}
-				//location.reload();
-				 top.location.href = '/profile/profileMain';
+				location.reload();
 			}
 		})
 	}) 
@@ -149,6 +148,7 @@
 		success : function(res) {
 			console.log(res)
 	 		res.content.forEach(element => {
+	 			var user = $('#user').val()
 	 			var postPath = "'/post/post_read/"+element.id+"'"
 				var post =
 				
@@ -158,10 +158,14 @@
 					'</div>'+
 
 					'<div class="txt">'+
-						'<div class="writer">'+element.title+'</div>'+
+						'<div class="top">'+
+							'<div class="writer">'+element.user.nickname+'</div>'+
+							'<div class="post_title">'+element.title+'</div>'+
+						'</div>'+
 						'<div class="comment">'+element.content+'</div>'+
 						'<div class="view">'+
-							'<span>추천수0</span><span>조회수:0</span>'+
+							'<span><i class="heart_icon far fa-heart"></i> '+element.wishList.length+'</span><span>조회수:0</span>'+
+							//'<input type="hidden" class="isWatchPost" value="'+element.isWishBoard(user)+'">'+
 						'</div>'+
 					'</div>'+
 				'</div>'
@@ -173,4 +177,6 @@
 	      })
 	    }
 	});
+	
+	
  	

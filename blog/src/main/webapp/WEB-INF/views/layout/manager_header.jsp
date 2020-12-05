@@ -36,7 +36,7 @@
 							</div></li>
 						<li class="nav-item subnav"><a class="nav-link subnav-li" href="">매출분석</a>
 							<div class="subnav-content">
-								<a href="#bring">매출통계</a> <a href="#deliver">지역별 매출통계</a>
+								<a href="/sales/">매출통계</a> <a href="#deliver">지역별 매출통계</a>
 							</div></li>
 						<li class="nav-item subnav"><a class="nav-link subnav-li" href="">게시판관리</a>
 							<div class="subnav-content">

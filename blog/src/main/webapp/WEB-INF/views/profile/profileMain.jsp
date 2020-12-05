@@ -117,7 +117,7 @@ $('#buy-coin-btn').click(function(e) {
 		});
 	</script>
 			</div>
-			<hr>
+			<hr><br>
 
 			<%-- 내 글 보기 --%>
 			<div class="postSection row">
@@ -129,10 +129,14 @@ $('#buy-coin-btn').click(function(e) {
 							</div>
 
 							<div class="txt">
-								<div class="writer">${board.title}</div>
+								<div class="top">
+									<div class="writer">${board.user.nickname}</div>
+									<div class="post_title">${board.title}</div>
+								</div>
 								<div class="comment">${board.content}</div>
 								<div class="view">
-									<span>추천수0</span><span>조회수:0</span>
+									<span><i class="heart_icon far fa-heart"></i>  ${board.wishList.size()}</span><span>조회수:0</span>
+									<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
 								</div>
 							</div>
 						</div>
@@ -170,7 +174,7 @@ $('#buy-coin-btn').click(function(e) {
 			</div>
 
 			<%-- 닉네임 및 내 정보 --%>
-			<div class="infoSection">
+			<div class="infoSection myInfoSection">
 				<div class="nicknameSection">
 					<form>
 						<input class="nickNameIn" name="nickName" type="text" id="nickName" value=${user.nickname }>
@@ -195,8 +199,8 @@ $('#buy-coin-btn').click(function(e) {
 				</ul>
 
 			</div>
-			<br><br>
-			<hr>
+			<br><br><br>
+			<hr><br>
 
 			<%-- 내 글 보기 --%>
 			<div class="postSection row">
@@ -213,10 +217,14 @@ $('#buy-coin-btn').click(function(e) {
 									</div>
 		
 									<div class="txt">
-										<div class="writer">${board.title}</div>
+										<div class="top">
+											<div class="writer">${board.user.nickname}</div>
+											<div class="post_title">${board.title}</div>
+										</div>
 										<div class="comment">${board.content}</div>
 										<div class="view">
-											<span>추천수0</span><span>조회수:0</span>
+											<span><i class="heart_icon far fa-heart"></i>  ${board.wishList.size()}</span><span>조회수:0</span>
+											<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
 										</div>
 									</div>
 								</div>
@@ -231,6 +239,8 @@ $('#buy-coin-btn').click(function(e) {
 			</div>
 		</c:otherwise>
 	</c:choose>
+	
+	<input type="hidden" id="user" value="${user }">
 
 </div>
 
