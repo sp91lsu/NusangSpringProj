@@ -63,6 +63,13 @@
 .post_read>.user_info>.txt>.txt_down {
 	height: 30px;
 	font-size: 16px;
+	float: left;
+}
+
+.post_read>.user_info>.txt>.txt_down2 {
+	margin-left: 15px;
+	min-width: 70px;
+	float: left;
 }
 
 .post_read>.user_info>.update_delete {

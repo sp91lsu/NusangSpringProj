@@ -20,6 +20,10 @@
 			<div class="txt_down">
 				<fmt:formatDate value="${board.createDate}" pattern="yyyy.MM.dd '&nbsp;'HH:mm"/>
 			</div>
+			
+			<div class="txt_down2">
+				조회수${board.viewcnt}
+			</div>
 		</div>
 		
 		<div class="update_delete">

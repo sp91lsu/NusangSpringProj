@@ -26,4 +26,6 @@
 	</c:forEach>
 </div>
 
+
+<link rel="stylesheet" href="/css/post/post_list.css" />
 <script src="/js/post/wish.js"></script>
