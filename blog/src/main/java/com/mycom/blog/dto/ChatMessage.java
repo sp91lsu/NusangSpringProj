@@ -28,6 +28,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
@@ -70,6 +71,7 @@ public class ChatMessage {
 	private User user;
 	
 	@CreationTimestamp
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm", timezone="Asia/Seoul")
 	private Date createDate;
 	
 	@Transient

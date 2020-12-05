@@ -86,14 +86,13 @@ public class ChatRoom {
 		}
 		return null;
 	}
-	
-	//나
+
+	// 나
 	public ChatRoomGuide getMyGuide() {
 
 		if (roomGuideList == null)
 			return null;
 		for (ChatRoomGuide guid : roomGuideList) {
-			System.out.println(guid.getMe().getUserno());
 			if (guid.getMe().getUserno() == ConAssist.getUserno()) {
 				return guid;
 			}
@@ -101,7 +100,17 @@ public class ChatRoom {
 		return null;
 	}
 
-	
+	public ChatRoomGuide findUserGuide(int userno) {
+
+		if (roomGuideList == null)
+			return null;
+		for (ChatRoomGuide guid : roomGuideList) {
+			if (guid.getMe().getUserno() == userno) {
+				return guid;
+			}
+		}
+		return null;
+	}
 
 	public String getMatchedUserName() {
 
@@ -117,11 +126,14 @@ public class ChatRoom {
 	}
 
 	public void chkMessageCnt() {
+		
+		System.out.println("총 메세지 갯수 : " + messageList.size());
 		for (ChatRoomGuide guide : roomGuideList) {
-			for (ChatMessage chatMessage : messageList) {
-				if(guide.getUpdateDate().getTime() <= chatMessage.getCreateDate().getTime())
-				{
-					chatMessage.setView_cnt(chatMessage.getView_cnt() +1);
+
+			for (int i = 0; i < messageList.size(); i++) {
+				if (guide.getSawMessageCnt() < i + 1) {
+					ChatMessage chatMessage = messageList.get(i);
+					chatMessage.setView_cnt(chatMessage.getView_cnt() + 1);
 				}
 			}
 		}

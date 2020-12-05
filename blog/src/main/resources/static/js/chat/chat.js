@@ -29,13 +29,16 @@
 		}
 	}
 	connect();
-
+	
+	//메세지 전달 ㅎ
+	var updateReqTopic = '/topic/' + chatRoomTopic + ".update_req."+ nickname;
+	var updateAckTopic = '/topic/' + chatRoomTopic + ".update_ack."+ nickname;
+	
 	function onConnected() {
 		// Subscribe to the Public Topic
 		stompClient.subscribe('/topic/' + chatRoomTopic, onMessageReceived);
-
-		// Tell your username to the server
-
+		stompClient.subscribe(updateReqTopic, onMessageUpdateReqReceived);
+		stompClient.subscribe(updateAckTopic, onMessageUpdateAckReceived);
 		connectingElement.classList.add('hidden');
 	}
 
@@ -52,7 +55,8 @@
 				topic : chatRoomTopic,
 				userno : userno,
 				nickname : nickname,
-				matchUser : matchUserNickname
+				matchUser : matchUserNickname,
+				updateAckTopic : updateAckTopic
 			};
 
 			stompClient.send("/app/chat.sendMessage", {}, JSON
@@ -63,82 +67,110 @@
 		event.preventDefault();
 	}
 
-	function leave(event) {
-		if (messageContent && stompClient) {
-			var leave = {
-				sender : nickname,
-				type : 'LEAVE'
-			};
-			stompClient.send("/app/chat.leave", {}, JSON.stringify(leave));
-			messageInput.value = '';
-		}
-		event.preventDefault();
-	}
-
-	function onMessageReceived(payload) {
-		console.log("메세지 들어와땅 " + payload.body)
-
+	//메세지 업데이트 요청이 들어오면 메세지를 읽고 다시 상대방한데 업데이트 ack를 날린다. 
+	function onMessageUpdateReqReceived(payload) {
+		console.log("onMessageUpdateReqReceived " + payload.body)
 		$.ajax({
 
 			url : "/api/chat/update_read_message",
 			type : "POST",
 			headers : headers,
 			data : {
-				topic : payload.body
+				topic : payload.body,
+				update_req : 1
 			},
 			success : function(res) {
+				var chatMessage = {
+						topic : '/topic/' + chatRoomTopic + ".update_ack."+ matchUserNickname
+					};
 
-				console.log(res);
-				if (res.status == 200) {
-
-					$(messageArea).empty();
-					 var beforeTop = messageArea.scrollTop;
-					 
-					 
-					$.each(res.data, function(key, value) {
-												
-						 var messageElement = document.createElement('li');
-						 if (value.user.userno == $("#userno").val()) {
-						 messageElement = '<li class="chat-message-li me">'
-						 + '<div class="chat-message"><p>'
-						 + value.text + '</p></div>'
-						 + value.createDate + '</li>';
-						 } else {
-						 messageElement = '<li class="chat-message-li"><span>'
-						 + value.user.nickname + '</span>'
-						 + '<div class="chat-message ">' + '<p>'
-						 + value.text + '</p>' + '</div>'
-						 + value.createDate + '</li>';
-						 }
-						 messageElement += value.view_cnt;
-						
-						
-						
-						 $(messageArea).append(messageElement);
-						
-													
-					})
-					
-					 console.log("af scrollTop" + messageArea.scrollTop);
-							console.log(messageArea.scrollHeight);
-						// if (messageArea.scrollTop == beforeHeight) {
-						 messageArea.scrollTop = messageArea.scrollHeight;
-						// }
-				}
+				createElements(res)
+				
+				stompClient.send("/app/send_topic", {}, JSON
+						.stringify(chatMessage));
 			}
 		})
-
 	}
 
-	function getAvatarColor(messageSender) {
-		var hash = 0;
-		for (var i = 0; i < messageSender.length; i++) {
-			hash = 31 * hash + messageSender.charCodeAt(i);
+	function onMessageUpdateAckReceived(payload) {
+		console.log("onMessageUpdateAckReceived " + payload.body)
+		updateReadMessage(chatRoomTopic);
+	}
+	
+	function onMessageReceived(payload) {
+		console.log("onMessageReceived " + payload.body)
+		updateReadMessage(payload.body);
+	}
+
+
+	function updateReadMessage(topic) {
+		$
+				.ajax({
+
+					url : "/api/chat/update_read_message",
+					type : "POST",
+					headers : headers,
+					data : {
+						topic : topic,
+						update_req : 0
+					},
+					success : function(res) {
+
+						createElements(res)
+					}
+				})
+	}
+
+	
+	function createElements(res){
+		
+		console.log(res);
+		if (res.status == 200) {
+
+			$(messageArea).empty();
+			var beforeTop = messageArea.scrollTop;
+
+			$
+					.each(
+							res.data,
+							function(key, value) {
+
+								var messageElement = document
+										.createElement('li');
+								if (value.user.userno == $(
+										"#userno").val()) {
+									messageElement = '<li class="chat-message-li me">'
+											+ '<div class="chat-message"><p>'
+											+ value.text
+											+ '</p></div>'
+											+ value.createDate
+											+ '</li>';
+								} else {
+									messageElement = '<li class="chat-message-li"><span>'
+											+ value.user.nickname
+											+ '</span>'
+											+ '<div class="chat-message ">'
+											+ '<p>'
+											+ value.text
+											+ '</p>'
+											+ '</div>'
+											+ value.createDate
+											+ '</li>';
+								}
+								messageElement += value.view_cnt;
+
+								$(messageArea).append(
+										messageElement);
+
+							})
+
+			console.log("af scrollTop" + messageArea.scrollTop);
+			console.log(messageArea.scrollHeight);
+			// if (messageArea.scrollTop == beforeHeight) {
+			messageArea.scrollTop = messageArea.scrollHeight;
+			// }
 		}
-		var index = Math.abs(hash % colors.length);
-		return colors[index];
 	}
-
+	
 	messageForm.addEventListener('submit', sendMessage, true)
-	leaveForm.addEventListener('submit', leave, true)
 })()

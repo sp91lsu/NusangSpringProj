@@ -47,16 +47,30 @@ public class ChatController {
 	public void sendMessage(@Payload ChatMessageVO messageVO) {
 
 		int result = chatRoomService.saveMessage(messageVO);
-
+		System.out.println("메세지 저장");
 		if (result == 1) {
+
+			// 상대방에게 업데이트 요청
+			simpMessagingTemplate.convertAndSend(
+					"/topic/" + messageVO.getTopic() + ".update_req." + messageVO.getMatchUser(), messageVO.getTopic());
+
 			simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO.getTopic());
-			simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getMatchUser(), messageVO);
+
+			// 채팅 목록에 있는 유저에게 send
+			// simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getMatchUser(),
+			// messageVO);
 		}
 	}
 
-	@MessageMapping("/chat.updateTopicUser")
+	@MessageMapping("/send_topic")
+	public void chatBroadCast(@Payload ChatMessageVO messageVO) {
+
+		simpMessagingTemplate.convertAndSend(messageVO.getTopic(), messageVO.getTopic());
+	}
+
+	@MessageMapping("/chat.updateMatchUser")
 	public void updateTopicUser(@Payload ChatMessageVO messageVO) {
-		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getTopic(), messageVO);
+		simpMessagingTemplate.convertAndSend("/topic/" + messageVO.getMatchUser(), messageVO.getTopic());
 	}
 
 //	@MessageMapping("/chat.addUser")

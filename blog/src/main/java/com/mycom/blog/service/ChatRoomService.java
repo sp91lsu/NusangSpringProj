@@ -106,26 +106,28 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 		User friend = userService.findById(friendno);
 
 		String topic = conAssist.createTopic(me, friend);
-		ChatRoom chatRoom = updateRoomByTopic(topic);
+		ChatRoom chatRoom = updateRoomByTopic(topic,me);
 
 		System.out.println(chatRoom);
 		return chatRoom;
 	}
 
-	//메세지 보내고 채팅 정보 갱신 
+	// 메세지 보내고 채팅 정보 갱신
 	@Transactional
 	public int saveMessage(ChatMessageVO mObj) {
 
+		Date current = new Date();
 		try {
 			ChatRoom chatRoom = repository.findByTopic(mObj.getTopic());
-			chatRoom.setUpdateDate(new Date());
+			chatRoom.setUpdateDate(current);
+			chatRoom.getRoomGuideList();
 			User user = userService.findById(mObj.getUserno());
-
+			chatRoom.findUserGuide(user.getUserno()).setUpdateDate(current);
 			ChatMessage message = ChatMessage.builder().chatRoom(chatRoom).text(mObj.getText()).user(user)
-					.createDate(new Date()).build();
-
+					.createDate(current).build();
 			mObj.setCreateDate(message.getFormatStr());
 			messageRep.save(message);
+			updateRoomByTopic(chatRoom.getTopic(),user);
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -143,7 +145,6 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 			if (chatRoom.getMessageList().size() > 0) {
 				ChatRoomVO vo = new ChatRoomVO();
 				BeanUtils.copyProperties(chatRoom, vo);
-				System.out.println(vo.getRemainSawCnt());
 				chatRoomVOList.add(vo);
 			}
 		}
@@ -152,20 +153,20 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	}
 
 	@Transactional
-	public ChatRoom updateRoomByTopic(String topic) {
+	public ChatRoom updateRoomByTopic(String topic,User user) {
 
 		try {
 			ChatRoom chatRoom = repository.findByTopic(topic);
 			Date update = new Date();
 			chatRoom.setUpdateDate(update);
 			chatRoom.getRoomGuideList();
-			chatRoom.getMyGuide().setUpdateDate(update);
-			chatRoom.getMyGuide().setSawMessageCnt(chatRoom.getMessageList().size());
+			chatRoom.findUserGuide(user.getUserno()).setUpdateDate(update);
+			chatRoom.findUserGuide(user.getUserno()).setSawMessageCnt(chatRoom.getMessageList().size());
 			chatRoom.chkMessageCnt();
 			return chatRoom;
 		} catch (Exception e) {
 			return null;
 		}
 	}
-	
+
 }

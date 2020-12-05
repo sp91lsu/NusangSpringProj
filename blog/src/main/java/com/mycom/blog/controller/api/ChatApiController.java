@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -54,21 +55,24 @@ public class ChatApiController {
 	private ChatRoomService chatRoomService;
 
 	@Autowired
+	private SimpMessagingTemplate simpMessagingTemplate;
+
+	@Autowired
 	private ConAssist conAssist;
 //	@Autowired
 //	HttpSession session;
 
 	@PostMapping("/update_read_message")
-	public Response<List<ChatMessage>> update_read_message(String topic) {
+	public Response<List<ChatMessage>> update_read_message(String topic, int update_req) {
 
-		System.out.println("update_read_message : save ");
+		System.out.println(conAssist.getUser().getNickname() + " 메세지 확인 ");
 
-		ChatRoom chatRoom = chatRoomService.updateRoomByTopic(topic);
-
+		ChatRoom chatRoom = chatRoomService.updateRoomByTopic(topic, conAssist.getUser());
+		simpMessagingTemplate.convertAndSend("/topic/" + chatRoom.getMatchedUserName(), topic);
 		if (chatRoom != null) {
-			return new Response<List<ChatMessage>>(200,chatRoom.getMessageList());
+			return new Response<List<ChatMessage>>(200, chatRoom.getMessageList());
 		} else {
-			return new Response<List<ChatMessage>>(-1,null);
+			return new Response<List<ChatMessage>>(-1, null);
 		}
 	}
 
