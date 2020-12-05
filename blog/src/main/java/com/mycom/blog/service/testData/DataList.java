@@ -233,7 +233,7 @@ public class DataList {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		for (int i = 0; i < ageCurve.length; i++) {
 			for (int j = 0; j < ageCurve[i]; j++) {
-				result.add(i);
+				result.add(i+20);
 			}
 		}
 		Integer[] resultI = (Integer[]) result.toArray(new Integer[result.size()]);
@@ -288,5 +288,8 @@ public class DataList {
 //			System.out.println(pc.getCoin());
 //			System.out.println(pc.getPrice());
 //		}
+		for (int i = 0; i < 100; i++) {
+			System.out.println(s.randTS(200));
+		}
 	}
 }
