@@ -13,7 +13,17 @@
 	현재 페이지 글 갯수 : ${myPostList.toList().size()}<br>
 	<ul class="pagination justify-content-center">
 		<c:forEach var="i" begin="1" end="${myPostList.getTotalPages()}">
-			<a class="ml-2 mr-2 paging_num">${i}</a>
+		
+			<c:choose>
+				<c:when test="${myPostList.getNumber()+1 eq i}">
+					${i}
+				</c:when>
+				
+				<c:otherwise>
+					<a class="ml-2 mr-2 paging_num">${i}</a>
+				</c:otherwise>
+			</c:choose>
+			
 		</c:forEach>
 	</ul>
 </div>

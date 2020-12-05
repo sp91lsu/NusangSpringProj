@@ -93,3 +93,7 @@
 .txt>.view>span {
 	margin-right: 15px;
 }
+
+.pagination>.paging_num {
+	cursor: pointer;	
+}

@@ -1,5 +1,9 @@
 package com.mycom.blog.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,10 +27,12 @@ public class PostController {
 	}
 
 	@GetMapping(value = "/post_read/{id}") // 글 읽기
-	public String read(Board board, Model model) {
+	public String read(Board board, Model model, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(board.getId() + "번 글읽기 이동");
-		Board post_no = boardService.findById(board.getId());
-		model.addAttribute("board", post_no);
+		Board post = boardService.readPost(board.getId(), request, response);
+
+		model.addAttribute("board", post);
+
 		return "post/post_read";
 	}
 
@@ -37,5 +43,5 @@ public class PostController {
 		model.addAttribute("board", post_no);
 		return "post/post_update";
 	}
-		
+
 }

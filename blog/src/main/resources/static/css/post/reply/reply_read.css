@@ -48,6 +48,7 @@
 }
 
 .reply>.reply_list>.reply>.txt>.top {
+	width: 840px;
 	height: 35px;
 }
 
@@ -146,7 +147,7 @@
 	background: lightgray;
 }
 /*******************댓글 수정****************/
-.reply textarea{
+.reply textarea {
 	resize: none;
 	border-radius: 5px;
 }

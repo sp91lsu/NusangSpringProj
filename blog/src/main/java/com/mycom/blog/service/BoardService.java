@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +45,7 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 
 	@Autowired
 	private BoardRepository boardRep;
-	
+
 	@Autowired
 	public BoardService(BoardRepository boardRep) {
 		setRepository(boardRep);
@@ -49,10 +54,10 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int writeBoard(Board board, User user) {
 		try {
-			System.out.println("글쓰기 완료");
 			board.setUser(user);
 			board.setCount(0);
 			repository.save(board);
+			System.out.println("글쓰기 완료");
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,8 +68,8 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int deleteBoad(int id) {
 		try {
-			System.out.println(id + "번 글삭제 완료");
 			repository.deleteById(id);
+			System.out.println(id + "번 글삭제 완료");
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,10 +80,10 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int updateBoard(Board board) {
 		try {
-			System.out.println(board.getId() + "번 글수정 완료");
 			Board findBoard = repository.findById(board.getId()).get();
 			findBoard.setContent(board.getContent());
 			findBoard.setTitle(board.getTitle());
+			System.out.println(board.getId() + "번 글수정 완료");
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,12 +98,13 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 		System.out.println("내용:" + dto.getContent());
 
 		try {
-			System.out.println("댓글쓰기 완료");
 			Board board = repository.findById(dto.getBoardId()).get();
 			User user = userRep.findById(dto.getUserId()).get();
-			Reply reply = Reply.builder().board(board).content(dto.getContent()).user(user).secretmode(dto.getSecretmode()).build();
+			Reply reply = Reply.builder().board(board).content(dto.getContent()).user(user)
+					.secretmode(dto.getSecretmode()).build();
 
 			replyRep.save(reply);
+			System.out.println("댓글쓰기 완료");
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,8 +115,8 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int deleteReply(int id) {
 		try {
-			System.out.println(id + "번 댓글 삭제 완료");
 			replyRep.deleteById(id);
+			System.out.println(id + "번 댓글 삭제 완료");
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,9 +127,9 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 	@Transactional
 	public int updateReply(int id, String comment) {
 		try {
-			System.out.println(id + "번 댓글 수정 완료");
 			Reply reply = replyRep.findById(id).get();
 			reply.setContent(comment);
+			System.out.println(id + "번 댓글 수정 완료");
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,12 +142,11 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 		return repository.findAll(pageable);
 	}
 
-	
 	@Transactional(readOnly = true)
 	public Page<BoardVO> getPostList(Pageable pageable) {
 		Page<Board> boards = boardRep.findAll(pageable);
 		List<BoardVO> PostList = new ArrayList<BoardVO>();
-		
+
 		for (Board board : boards) {
 			BoardVO vo = new BoardVO();
 			UserVO userVo = new UserVO();
@@ -150,11 +155,12 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 			vo.setUser(userVo);
 			PostList.add(vo);
 		}
-		
+
 		Page<BoardVO> boardVoPage = new PageImpl<BoardVO>(PostList, pageable, boards.getTotalElements());
 
 		return boardVoPage;
 	}
+
 	@Transactional(readOnly = true)
 	public Page<Board> getNearBoadList(Pageable pageable) {
 
@@ -190,7 +196,6 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 
 	@Transactional
 	public int addWish(int boardno) {
-
 		try {
 			Board board = repository.findById(boardno).get();
 			Wish wish = Wish.builder().board(board).me(ConAssist.getUser()).build();
@@ -204,7 +209,6 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 
 	@Transactional
 	public int deleteWish(int boardno) {
-
 		try {
 			Board board = repository.findById(boardno).get();
 			wishRep.deleteByBoardAndMe(board, ConAssist.getUser());
@@ -215,4 +219,41 @@ public class BoardService extends BasicService<BoardRepository, Board> {
 		}
 	}
 
+	@Transactional
+	public Board readPost(int boardno, HttpServletRequest request, HttpServletResponse response) {
+		Board post = repository.findById(boardno).get();
+		int viewCnt = post.getViewcnt();
+
+		if (post != null) {// 글이 존재하면
+			Cookie[] cookies = request.getCookies();
+			Cookie viewCookie = null;
+
+			if (cookies != null && cookies.length > 0) {
+				for (int i = 0; i < cookies.length; i++) {
+					if (cookies[i].getName().equals("VIEWCOOKIE")) { // Cookie의 name이 VIEWCOOKIE와 일치하는 쿠키를
+																		// viewCookie에넣어준다.
+						viewCookie = cookies[i];
+					}
+				}
+			}
+
+			// 만일 viewCookie없다면
+			if (viewCookie == null) {
+				Cookie newCookie = new Cookie("VIEWCOOKIE", "|" + post.getId() + "|");
+				response.addCookie(newCookie);
+				post.setViewcnt(viewCnt + 1);
+			} else {
+				String value = viewCookie.getValue();
+
+				if (value.indexOf("|" + post.getId() + "|") < 0) { // 입력한 번화와 일치하는 번호가 없으면 추가한다.
+					value = value + "|" + post.getId() + "|";
+					viewCookie.setValue(value);
+					viewCookie.setMaxAge(60 * 60 * 12);
+					response.addCookie(viewCookie);
+					post.setViewcnt(viewCnt + 1);
+				}
+			}
+		}
+		return post;
+	}
 }

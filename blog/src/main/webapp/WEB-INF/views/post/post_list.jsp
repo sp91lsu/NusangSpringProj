@@ -14,11 +14,11 @@
 			<div class="txt">
 				<div class="top">
 					<div class="writer">${board.user.nickname}</div>
-					<div class="post_title">글제목</div>
+					<div class="post_title">${board.title}</div>
 				</div>
 				<div class="comment">${board.content}</div>
 				<div class="view">
-					<span><i class="heart_icon far fa-heart"></i>  ${board.wishList.size()}</span><span>조회수:0</span>
+					<span><i class="heart_icon far fa-heart"></i>  ${board.wishList.size()}</span><span>조회수:${board.viewcnt}</span>
 					<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
 				</div>
 			</div>
