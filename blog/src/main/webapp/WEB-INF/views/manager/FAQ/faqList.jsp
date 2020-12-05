@@ -37,9 +37,10 @@
 						<thead class="thead-dark" align="center">
 							<tr>
 								<th class="qna_noTh" scope="col">no</th>
-								<th class="qna_conTh" scope="col">내용</th>
-								<th scope="col">문의날짜</th>
-								<th scope="col">답변여부</th>
+								<th class="qna_conTh2" scope="col">내용</th>
+								<th class="qna_nickname" scope="col">닉네임</th>
+								<th class="qna_date" scope="col">문의날짜</th>
+								<th class="qna_ans" scope="col">답변여부</th>
 							</tr>
 						</thead>
 						<tbody class="qna_list">
@@ -50,8 +51,9 @@
 									<td>
 										<div class="titleColor">${qna.title }</div>
 									</td>
-									<td><fmt:formatDate value="${qna.regdate}"
-											pattern="yyyy-MM-dd HH:mm:ss" /></td>
+									<td align = "center" >${qna.me.nickname }</td>
+									<td align = "center" ><fmt:formatDate value="${qna.regdate}"
+											pattern="yy-MM-dd HH:mm" /></td>
 									<c:choose>
 										<c:when test="${qna.answer == null }">
 											<td class="answerChk1" align="center">미답변</td>
@@ -63,7 +65,7 @@
 								</tr>
 								<tr class="contents">
 									<td></td>
-									<td colspan="2"><br>${qna.contents }<br>
+									<td class = "allContents" colspan="3"><br>${qna.contents }<br>
 										<form action="/manager/QNA/qnaUpdateOk" method="post">
 											<sec:csrfInput />
 											<textarea name="answer" class="textarea" cols="52" rows="7"
@@ -112,7 +114,7 @@
 												<div class="titleColor">${qna.title }</div>
 											</td>
 											<td align="center"><fmt:formatDate
-													value="${qna.regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+													value="${qna.regdate}" pattern="yy-MM-dd HH:mm" /></td>
 											<c:choose>
 												<c:when test="${qna.answer == null }">
 													<td class="answerChk1" align="center">미답변</td>
@@ -127,7 +129,15 @@
 											<td class = "myContents" colspan="2"><br>${qna.contents }<br>
 												<form action="/manager/QNA/qnaUpdateOk" method="post">
 													<sec:csrfInput />
+													<c:choose>
+														<c:when test="${qna.answer == null }">
+														<textarea style = "color: #ABABAB;" name="answer" class="textarea" cols="52" rows="7" readonly>아직 답변이 달리지 않았습니다.</textarea>
+														</c:when>
+														<c:otherwise>
+														
 													<textarea name="answer" class="textarea" cols="52" rows="7" readonly>${qna.answer}</textarea>
+														</c:otherwise>
+													</c:choose>
 													<input type="hidden" name="no" value="${qna.no}" /> <input
 														type="hidden" value="${qna.me.userno}" />
 												</form></td>

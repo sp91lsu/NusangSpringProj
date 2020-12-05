@@ -29,6 +29,15 @@
 .qna_conTh{
 	width: 500px;
 }
+.qna_conTh2{
+	width: 350px;
+}
+.qna_date{
+	width: 135px;
+}
+.qna_ans{
+	width: 100px;
+}
 .answerChk1{
 	color: gray;
 }
@@ -43,10 +52,14 @@
 .myContents{
 	width:600px;
 }
+
+.allContents{
+	width:600px;
+}
 .textarea{
-	width:630px;
+	width:640px;
 	background-color: lightgray;
-	margin:20px 0 0 10px;
+	margin:20px 0 0 0;
 	border-radius: 10px;
 }
 .textarea2{
@@ -88,9 +101,10 @@ textarea:focus {
 .faq_paging{
 	cursor: pointer;
 }
-.answer{
-	float: right;
-}
+/* .answer{
+	margin-right: -300px;
+	margin-top : -23px;
+} */
 .contents{
 	display:none;
 	word-break: break-all;

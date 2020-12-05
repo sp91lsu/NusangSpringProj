@@ -38,8 +38,15 @@
 						'</tr>' +
 						'<tr class = "contents">' +
 						'<td></td>' +
-						'<td class = "myContents"  colspan="2"><br>' +element.contents + "<br>" +
-						'<textarea id = "answer" name = "answer" class = "textarea" cols="52" rows="7" readonly>' + element.answer +'</textarea>' +
+						'<td class = "myContents"  colspan="2"><br>' +element.contents + "<br>";
+						
+						if(element.answer == ""){
+							post += '<textarea style = "color: #ABABAB;" name="answer" class="textarea" cols="52" rows="7" readonly>아직 답변이 달리지 않았습니다.</textarea>';
+						}else{
+							post += '<textarea id = "answer" name = "answer" class = "textarea" cols="52" rows="7" readonly>' + element.answer +'</textarea>';
+								
+						}
+						post +=
 						'<input type="hidden" id="answerno" value="' + element.no + '" />' +
 						'</td>' +
 						'</tr>' 

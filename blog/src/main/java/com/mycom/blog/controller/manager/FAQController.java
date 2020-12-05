@@ -35,7 +35,7 @@ public class FAQController {
 	@RequestMapping("/manager/FAQ/faqList")
 	public String faqList(Model model,
 			@Qualifier("aa") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable,
-			@Qualifier("bb") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable2) {
+			@Qualifier("bb") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable2) {
 		Page<FAQ> faqList = faqService.getPageList(pageable);
 		System.out.println("faqList 출력"+ pageable.getPageSize());
 		//List qnaList = qnaService.findAll();
@@ -50,7 +50,7 @@ public class FAQController {
 	@RequestMapping("user/FAQ/faqList")
 	public String userFaqList(Model model,
 			@Qualifier("aa") @PageableDefault(size = 10, sort = "no", direction = Sort.Direction.ASC) Pageable pageable,
-			@Qualifier("cc") @PageableDefault(size = 3, sort = "no", direction = Sort.Direction.ASC) Pageable pageable2) {
+			@Qualifier("cc") @PageableDefault(size = 3, sort = "no", direction = Sort.Direction.DESC) Pageable pageable2) {
 		Page<FAQ> faqList = faqService.getPageList(pageable);
 		System.out.println("faqList 출력"+ pageable.getPageSize());
 		

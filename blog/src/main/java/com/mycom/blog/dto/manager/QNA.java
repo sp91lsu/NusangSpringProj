@@ -57,7 +57,7 @@ public class QNA {
 	private String contents;
 	private String answer;
 	@CreationTimestamp
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yy-MM-dd HH:mm", timezone="Asia/Seoul")
 	//private LocalDateTime regdate;
 	private Date regdate;
 	

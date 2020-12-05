@@ -27,6 +27,7 @@
 						'<td>' +
 						'<div class="titleColor">'+element.title+'</div>'+
 						'</td>' +
+						'<td align = "center" >'+element.me.nickname +'</td>'+
 						'<td align = "center">'+element.regdate+'</td>';
 						
 						if(element.answer == ""){
@@ -38,7 +39,7 @@
 						'</tr>' +
 						'<tr class = "contents">' +
 						'<td></td>' +
-						'<td  colspan="2"><br>' +element.contents + "<br>" +
+						'<td class = "allContents" colspan="3"><br>' +element.contents + "<br>" +
 						'<textarea id = "answer" name = "answer" class = "textarea" cols="52" rows="7" placeholder="답변달기">' + element.answer +'</textarea>' +
 						'<button type="submit" class = "answer btn btn-primary btn-sm">답변달기</button>' +
 						'<input type="hidden" id="answerno" value="' + element.no + '" />' +
