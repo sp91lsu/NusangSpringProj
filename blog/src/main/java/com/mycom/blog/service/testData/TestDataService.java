@@ -70,6 +70,7 @@ public class TestDataService extends BasicService<UserRepository, User> {
 				Price_Coin pc = dl.randPrice_Coin();
 				pay.setPay(pc.getPrice());
 				randUser.setCoin(randUser.getCoin()+pc.getCoin());
+				randUser.setTotalPay(randUser.getTotalPay()+pc.getPrice());
 				
 				pay.setPaytype(PayType.BUY);
 				pay.setUser(randUser);

@@ -1,6 +1,7 @@
 package com.mycom.blog.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,11 +24,14 @@ import com.mycom.blog.dto.enumtype.AuthType;
 import com.mycom.blog.dto.enumtype.PayType;
 import com.mycom.blog.dto.manager.Payment;
 import com.mycom.blog.dto.manager.QNA;
+import com.mycom.blog.dto.manager.SearchVal;
 import com.mycom.blog.handler.QNATransfer;
 import com.mycom.blog.model.ProductPayload;
 import com.mycom.blog.repository.ChatRoomRepository;
 import com.mycom.blog.repository.ItemRepository;
 import com.mycom.blog.repository.UserRepository;
+import com.mycom.blog.repository.UserSpecs;
+import com.mycom.blog.repository.UserSpecs.SearchKey;
 import com.mycom.blog.repository.manager.PaymentRepository;
 
 //스프링이 컴포넌트 스캔을 통해서 bean에 등록해줌 ioc 
@@ -47,6 +52,49 @@ public class UserService extends BasicService<UserRepository, User> {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 
+	@Transactional
+	public List<User> findAll_ASCUserno() {
+
+		List<User> list = new ArrayList<User>();
+		try {
+			list = repository.findAllSortByUserno();
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return list;
+	}
+	
+	@Transactional
+	public List<User> findBySearchValues(SearchVal sv) {
+
+		List<User> list = new ArrayList<User>();
+		try {
+//			list = repository.findBySearchValues(sv);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return list;
+	}
+	
+	@Transactional
+	public List<User> searchedList(Map<String, Object> searchRequest) {
+		System.out.println("서치드리스트");
+		List<User> list = new ArrayList<User>();
+		try {
+			Map<SearchKey, Object> searchKeys = new HashMap<>();
+		    for (String key : searchRequest.keySet()) {
+		    	System.out.println("mapkey(form-name):"+key+" /mapVal(keyword):"+searchRequest.get(key)+" /enum키:"+SearchKey.valueOf(key.toUpperCase()));
+		        searchKeys.put(SearchKey.valueOf(key.toUpperCase()), searchRequest.get(key));
+		    }
+		    list = searchKeys.isEmpty()
+		            ? repository.findAll()
+		            : repository.findAll(UserSpecs.searchWith(searchKeys));
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return list;
+	}
+	
 	@Transactional
 	public int signUp(User user) {
 		try {

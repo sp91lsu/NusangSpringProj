@@ -84,6 +84,9 @@ public class User {
 	@Column(nullable = false, length = 50)
 	private String email;
 
+	// 총결제금액
+	private int totalPay;
+	
 	// 권한
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)

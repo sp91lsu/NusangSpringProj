@@ -76,3 +76,8 @@
 #searchBody td{
 	padding: 3px 3px;
 }
+
+#searchBody tbody td:nth-child(4){
+	word-break: break-all;
+}
+

@@ -1,9 +1,14 @@
 package com.mycom.blog.repository;
 
 import java.util.List;
+
 import java.util.Optional;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +19,7 @@ import com.mycom.blog.dto.User;
 //DAO 
 //자동으로 빈등록 가능 
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer>,JpaSpecificationExecutor<User> {
 
 	Optional<User> findByUsername(String username);
 
@@ -23,6 +28,13 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	User findByNickname(String nickname);
 
 	User findByEmail(String email);
+	
+	//검색조건 조합해서 검색
+	List<User> findAll(Specification<User> spec);
+	
+	@Query(value = "SELECT * FROM USER1 ORDER BY USERNO", nativeQuery = true)
+	List<User> findAllSortByUserno();
+	
 
 	@Transactional
 	@Modifying

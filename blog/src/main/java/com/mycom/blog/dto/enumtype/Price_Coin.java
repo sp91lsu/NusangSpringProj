@@ -1,7 +1,7 @@
 package com.mycom.blog.dto.enumtype;
 
 public enum Price_Coin {
-	A(1000,100),B(5000,550),C(10000,1200),D(50000,51500);
+	A(1000,100),B(5000,550),C(10000,1200),D(50000,5150);
 
 	int price,coin;
 
