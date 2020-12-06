@@ -32,8 +32,25 @@ function submitChk(){
 	$("#valForm").submit();
 }
 
+// 캐럿 위아래 스위치
+
 $(function(){
 	setH();
+	
+	$('.caretBox').each(function(){
+		$(this).click(function(){
+			var th = $(this);
+			var cd = th.children('i:first');
+			var cu = cd.next();
+			if(cu.css("display")=="none"){
+				cd.css("display","none");
+				cu.css("display","inline-block");
+			}else{
+				cd.css("display","inline-block");
+				cu.css("display","none");
+			}
+		});
+	});
 	
 	//검색버튼에 서브밋 유효성검사 함수 내장
 	$("#searchBtn").click(function(){        

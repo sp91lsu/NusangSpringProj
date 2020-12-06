@@ -30,7 +30,7 @@ public interface UserRepository extends JpaRepository<User, Integer>,JpaSpecific
 	User findByEmail(String email);
 	
 	//검색조건 조합해서 검색
-	List<User> findAll(Specification<User> spec);
+	List<User> findAll(Specification<User> spec,Sort sort);
 	
 	@Query(value = "SELECT * FROM USER1 ORDER BY USERNO", nativeQuery = true)
 	List<User> findAllSortByUserno();

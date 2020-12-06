@@ -4,6 +4,7 @@
 <body>
 	<div class="myContainer">
 		<div class="d-flex">
+			<!-- <div id="sortDiv" class="d-flex">정렬순서: &nbsp;<div id="sortOrder">아아</div></div> -->
 			<button id="searchBtn" class="ml-auto btn btn-success" >검색</button>
 		</div>
 		<div id="searchBody">
@@ -29,18 +30,18 @@
 				</thead>
 				<thead>
 					<tr>
-						<th>회원번호</th>
-						<th>이름</th>
-						<th>아이디</th>
-						<th>비밀번호</th>
-						<th>닉네임</th>
-						<th>나이</th>
-						<th>성별</th>
-						<th>이메일</th>
-						<th>코인</th>
-						<th>총결제금액</th>
-						<th>이용가능토크</th>
-						<th>회원가입일</th>
+						<th><span>회원번호</span><div id="dd" class="caretBox"><i id="s2" class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>이름</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>아이디</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>비밀번호</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>닉네임</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>나이</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>성별</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>이메일</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>코인</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>총결제금액</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>이용가능토크</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>회원가입일</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -63,6 +64,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div id="ccc">하하하하</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="/js/manager/search.js"></script>

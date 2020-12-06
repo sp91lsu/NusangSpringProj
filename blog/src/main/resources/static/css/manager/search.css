@@ -35,6 +35,10 @@
   }
 }
 
+/* 정렬순서 표시 */
+#sortDiv{
+	
+}
 
 #searchBody{
 	overflow: scroll;
@@ -61,11 +65,15 @@
 }
 
 #searchBody thead:nth-child(2) th {
-  	padding: 7px 10px;
     position: sticky;
     top: 100px;
     background-color: #333;
     color: #eee;
+    align-content: center;
+    padding: 4px 0px;
+}
+#searchBody thead:nth-child(2) span {
+	margin: 7px 0px 7px 10px;
 }
 
 #searchBody th{
@@ -81,3 +89,29 @@
 	word-break: break-all;
 }
 
+/* 캐럿박스 */
+#searchBody thead:nth-child(2) .caretBox{
+	width:20px;
+	height:auto;
+	float:right;
+	margin:0;
+	cursor: pointer;
+	padding: 4px;
+}
+	/* 위아래 캐럿 공통 */
+#searchBody thead:nth-child(2) i{
+	float: right;
+	margin-right: 3px;
+	color: #bbb;
+}
+	/* 위아래 캐럿 공통 호버 */
+#searchBody thead:nth-child(2) .caretBox:hover i{
+	color: #fff;
+}
+	/* 아래 캐럿 */
+#searchBody thead:nth-child(2) .caretdown{
+}
+	/* 위 캐럿 */
+#searchBody thead:nth-child(2) .caretup{
+	display: none;
+}

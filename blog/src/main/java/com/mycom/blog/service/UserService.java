@@ -9,6 +9,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -80,6 +81,10 @@ public class UserService extends BasicService<UserRepository, User> {
 	public List<User> searchedList(Map<String, Object> searchRequest) {
 		System.out.println("서치드리스트");
 		List<User> list = new ArrayList<User>();
+		Sort sort = Sort.by("age").descending()
+				  .and(Sort.by("gender").descending())
+				  .and(Sort.by("username").ascending())
+				  ;
 		try {
 			Map<SearchKey, Object> searchKeys = new HashMap<>();
 		    for (String key : searchRequest.keySet()) {
@@ -88,7 +93,7 @@ public class UserService extends BasicService<UserRepository, User> {
 		    }
 		    list = searchKeys.isEmpty()
 		            ? repository.findAll()
-		            : repository.findAll(UserSpecs.searchWith(searchKeys));
+		            : repository.findAll(UserSpecs.searchWith(searchKeys),sort);
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
