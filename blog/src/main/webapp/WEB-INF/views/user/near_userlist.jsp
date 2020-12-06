@@ -14,11 +14,11 @@
 				<div class="textBox" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 5px;">
 					<h5 class="productname" style="margin-top: 10px;">${user_i.nickname }
 						<c:if test="${user_i.isMe(user_i) }">
-			      나
+			    (me)  
 			</c:if>
 					</h5>
 				</div>
-				<button class="move btn btn-warning">프로필 보러가기</button>
+				<button onclick="location.href='/profile/profileMain/${user_i.userno}'" class="move btn btn-warning">프로필 보러가기</button>
 			</div>
 		</div>
 	</c:forEach>

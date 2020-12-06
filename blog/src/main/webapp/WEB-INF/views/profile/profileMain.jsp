@@ -64,10 +64,13 @@
 					<sec:csrfInput />
 					<input type="hidden" name="chat_userno"
 						value="${boardUser.userno  }" />
-					<c:if test="${!user.isMyFriend(boardUser)}">
+						<c:set var="isMychatUser" value="${user.isMyChatUser(boardUser.userno) }"></c:set>
+				
+					<c:if test="${!user.isMyFriend(boardUser) && isMychatUser ==0}">
 						<c:choose>
+						
 							<c:when test="${user.whichOfMyGoodsUse() == 1  }">
-								<button id="chatBtn" class="btn btn-dark ">채팅하기(무료채팅)</button>
+								<button id="chatBtn" class="btn btn-dark ">채팅하기(무료채팅 : ${ user.availableTalk} 회남음 )</button>
 							</c:when>
 							<c:when test="${user.whichOfMyGoodsUse() == 2  }">
 								<button type="button" id="use-coin-btn" class="btn btn-dark ">채팅하기(코인사용)</button>
@@ -78,9 +81,10 @@
 
 						</c:choose>
 					</c:if>
-					<c:if test="${user.isMyFriend(boardUser)}">
-						<button id="chatBtn" class="btn btn-dark ">채팅하기(내친구)</button>
+					<c:if test="${user.isMyFriend(boardUser) || isMychatUser == 1 }">
+						<button id="chatBtn" class="btn btn-dark ">채팅하기</button>
 					</c:if>
+					
 				</form>
 				<jsp:include page="../layout/modal.jsp" flush="true">
 					<jsp:param name="modalId"

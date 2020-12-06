@@ -261,5 +261,15 @@ public class User {
 		}
 		return list;
 	}
+	
+	public int isMyChatUser(int userno) {
+		for (ChatRoomGuide guide : chatRoomGuideList) {
+			if(guide.getChatRoom().getMatchedUser().getUserno() == userno) {
+				return 1;
+			}
+		}
+		
+		return 0;
+	}
 
 }

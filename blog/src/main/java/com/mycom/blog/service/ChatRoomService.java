@@ -85,6 +85,7 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 
 				chatRoom = ChatRoom.builder().build();
 				chatRoom.setTopic(topic);
+				chatRoom.setFromWho(ConAssist.getUser());
 				chatRoom = save(chatRoom);
 				ChatRoomGuide roomGuide1 = ChatRoomGuide.builder().me(ConAssist.getUser()).chatRoom(chatRoom).build();
 				ChatRoomGuide roomGuide2 = ChatRoomGuide.builder().me(friend).chatRoom(chatRoom).build();
@@ -139,11 +140,11 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 	@Transactional
 	public List<ChatRoomVO> getUserChatRoomList() throws JsonProcessingException {
 
-		List<ChatRoom> chatRoomList = repository.getUserChatRoomList(conAssist.getUserno());
+		List<ChatRoom> chatRoomList = repository.getUserChatRoomList(ConAssist.getUserno());
 
 		List<ChatRoomVO> chatRoomVOList = new ArrayList<ChatRoomVO>();
 		for (ChatRoom chatRoom : chatRoomList) {
-			if (chatRoom.getMessageList().size() > 0) {
+			if (chatRoom.getMessageList().size() > 0 || chatRoom.getFromWho().getUserno() == ConAssist.getUserno()) {
 				ChatRoomVO vo = new ChatRoomVO();
 				UserVO userVo = new UserVO();
 				BeanUtils.copyProperties(chatRoom, vo);

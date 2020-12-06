@@ -60,10 +60,14 @@
 												+ '</span></h3></div>'
 									}
 									var lastMessage = value.lastMessage;
-									
+									var updateDate = "";
 									if(lastMessage.length > 7){
 										lastMessage = lastMessage.substring(0, 7) + " ...";
 									}
+									if(lastMessage != "")
+										{
+										updateDate = '<h3>'+ value.updateDate +'</h3>'
+										}
 									var element = '<input type="hidden" class="room_topic" value="'
 											+ value.topic
 											+ '" />'
@@ -79,7 +83,7 @@
 											+ '<h3>'+lastMessage+'</h3></div>'
 											+ '</div>'
 											+ '<div>'
-											+ '<h3>'+ value.updateDate +'</h3>'
+											+ updateDate
 											+ cntElement + '</div></li>';
 
 									

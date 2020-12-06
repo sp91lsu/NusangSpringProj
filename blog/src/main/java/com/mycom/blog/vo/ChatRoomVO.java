@@ -58,7 +58,7 @@ public class ChatRoomVO {
 
 	private Timestamp createDate;
 
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "Asia/Seoul")
 	private Date updateDate;
 
 	public int getMatchedUserNo() {
@@ -110,11 +110,14 @@ public class ChatRoomVO {
 		}
 
 	}
-	
+
 	public String getLastMessage() {
 
-		return messageList.get(messageList.size() -1).getText();
-
+		if (messageList.size() > 0) {
+			return messageList.get(messageList.size() - 1).getText();
+		} else {
+			return "";
+		}
 	}
 
 }
