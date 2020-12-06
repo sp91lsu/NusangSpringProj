@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../layout/header.jsp"%>
 
@@ -44,18 +42,23 @@
 	</div>
 
 	<hr>
+	<!--글 내용-->
 	<div class="content">${board.content}</div>
+	
+	<!--좋아요-->
 	<i class="heart_icon far fa-heart"></i>
 	<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0;">${board.wishList.size()} 명이 좋아합니다</button>
 	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 		<c:forEach var="wishList" items="${board.wishList}">
-			<li class="list-group-item">
-				<div>${wishList.me.nickname }</div>
+			<li class="wish" onclick="location.href='/profile/profileMain/${wishList.me.userno}'">
+				<img src="${wishList.me.picture}">
+				<input type="hidden" value="${wishList.me.userno}">
+				${wishList.me.nickname }
 			</li>
 		</c:forEach>
 	</div>
 	<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
-	
+	<!--댓글-->
 	<%@ include file="reply/reply_read.jsp"%>
 </div>
 

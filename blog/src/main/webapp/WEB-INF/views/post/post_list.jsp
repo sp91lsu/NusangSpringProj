@@ -18,7 +18,9 @@
 				</div>
 				<div class="comment">${board.content}</div>
 				<div class="view">
-					<span><i class="heart_icon far fa-heart"></i>  ${board.wishList.size()}</span><span>조회수:${board.viewcnt}</span>
+					<span><i class="heart_icon far fa-heart"></i>  ${board.wishList.size()}</span>
+					<span>조회수${board.viewcnt}</span>
+					<span>댓글${board.replyList.size()}</span>
 					<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
 				</div>
 			</div>
