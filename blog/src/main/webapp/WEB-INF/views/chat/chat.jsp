@@ -18,19 +18,39 @@
 			<div class="connecting">연결중...</div>
 			<ul id="messageArea" style="background-color: #B2C7D9">
 				<c:forEach var="message" items="${ chatRoom.messageList}">
-						${ message.view_cnt}
+				
+					<c:set var="view_cnt" value="${message.view_cnt > 0 ? message.view_cnt : '' }"></c:set>
 					<c:choose>
 						<c:when test="${ message.user.userno != user.userno}">
 							<li class="chat-message-li"><span>${ message.user.nickname}</span>
-								<div class="chat-message ">
-									<p>${message.text }</p>
-								</div>${ message.getFormatStr()}</li>
+								<div>
+									<div class="chat-message">
+										<p class="message-text">${message.text }</p>
+									</div>
+									<ul class="message-info-ul">
+										<li><span class="view_cnt">${ view_cnt }</span></li>
+										<li><span class="view_date"> ${ message.getFormatStr()}</span></li>
+									</ul>
+								</div></li>
+
 						</c:when>
 						<c:otherwise>
 							<li class="chat-message-li me">
-								<div class="chat-message">
-									<p>${message.text }</p>
-								</div>${ message.getFormatStr()}</li>
+								<div>
+									<div class="chat-message">
+										<p class="message-text">${message.text }</p>
+									</div>
+
+									<ul class="message-info-ul">
+										<li><span class="view_cnt">${ view_cnt }</span></li>
+										<li><span class="view_date"> ${ message.getFormatStr()}</span></li>
+									</ul>
+									
+									
+								</div>
+
+							</li>
+
 						</c:otherwise>
 					</c:choose>
 
