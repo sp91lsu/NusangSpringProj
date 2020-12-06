@@ -4,16 +4,16 @@
 <br>
 <div class="container">
 
-	<form action="/manager/FAQ/faqUpdateOk" method="post">
+	<form id = "updateForm" action="/manager/FAQ/faqUpdateOk" method="post">
 	<sec:csrfInput />
 		<div class="form-group">
 			<input type="hidden" name="no" value="${updateDto.no }"> <input name="title" type="text" class="form-control" placeholder="Enter title" id="title" value="${updateDto.title }">
 		</div>
 		<div class="form-group">
-			<textarea name="contents" class="summernote" id="content">${updateDto.contents }</textarea>
+			<textarea name="contents" class="summernote" id="contents">${updateDto.contents }</textarea>
 		</div>
 		<div align = "center">
-		<button type="submit" id="btn-save" class="btn btn-primary">수정 완료</button>
+		<button type="button" id="btn-save" class="btn btn-primary">수정 완료</button>
 		<input type="button" class="btn btn-secondary" onclick="history.back()" value="취소"></input>
 		</div>
 	</form>
@@ -38,7 +38,7 @@
 		if((title == "") || (contents == "")){
 			alert("제목과 내용을 모두 작성해주세요");
 		}else{
-			${"writeform"}.submit();
+			$("#updateForm").submit();
 		}
 	})
 </script>

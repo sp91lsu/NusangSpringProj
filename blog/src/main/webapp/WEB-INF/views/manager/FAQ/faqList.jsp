@@ -66,11 +66,11 @@
 								<tr class="contents">
 									<td></td>
 									<td class = "allContents" colspan="3"><br>${qna.contents }<br>
-										<form action="/manager/QNA/qnaUpdateOk" method="post">
+										<form class = "answerForm" action="/manager/QNA/qnaUpdateOk" method="post">
 											<sec:csrfInput />
-											<textarea name="answer" class="textarea" cols="52" rows="7"
+											<textarea name="answer" class="textarea answerText" cols="52" rows="7"
 												placeholder="답변달기">${qna.answer}</textarea>
-											<button type="submit" class="answer btn btn-primary btn-sm">답변달기</button>
+											<button type="submit" class="answer btn btn-primary btn-sm answerBtn">답변달기</button>
 											<input type="hidden" name="no" value="${qna.no }" />
 
 										</form></td>
@@ -161,7 +161,7 @@
 					<h3>문의하기</h3>
 
 					<br>
-					<form name="qnaWrite" action="/manager/QNA/qnaWriteOk" method="post">
+					<form id="qnaWrite" action="/manager/QNA/qnaWriteOk" method="post">
 						<sec:csrfInput />
 						<div class="titleBox">
 							문의제목&nbsp;&nbsp;&nbsp;<input id = "qnaTitle" name="title" class="qnaTitle"
@@ -232,6 +232,14 @@
 		</div>
 	</div>
 	<script>
+/* 	$(".answerBtn").click(function(){
+		var answerText = $(this).parent(".answerForm").children(".answerText").val().trim();
+		if(answerText == ""){
+			alert("작성하신 답변 내용이 없습니다.");
+		}else{
+			$(".answerForm").submit();
+		}
+	}) */
 	
 	$("#qnaBtn").click(function(){
 		var qnaTitle = $("#qnaTitle").val().trim();
@@ -245,7 +253,7 @@
 		if((qnaTitle == "") || (qnaContents == "")){
 			alert("제목과 내용을 모두 작성해주세요");
 		}else{
-			${"qnaWrite"}.submit();
+			$("#qnaWrite").submit();
 		}
 	})
 		// html dom 이 다 로딩된 후 실행된다.
