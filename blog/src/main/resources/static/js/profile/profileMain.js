@@ -148,7 +148,6 @@
 		success : function(res) {
 			console.log(res)
 	 		res.content.forEach(element => {
-	 			var user = $('#user').val()
 	 			var postPath = "'/post/post_read/"+element.id+"'"
 				var post =
 				
@@ -164,8 +163,9 @@
 						'</div>'+
 						'<div class="comment">'+element.content+'</div>'+
 						'<div class="view">'+
-							'<span><i class="heart_icon far fa-heart"></i> '+element.wishList.length+'</span><span>조회수:0</span>'+
-							//'<input type="hidden" class="isWatchPost" value="'+element.isWishBoard(user)+'">'+
+							'<span><i class="heart_icon far fa-heart"></i> '+element.wishList.length+'</span>'+
+							'<span>조회수'+element.viewcnt+'</span>'+
+							'<span>댓글'+element.replyList.length+'</span>'+
 						'</div>'+
 					'</div>'+
 				'</div>'
@@ -173,7 +173,7 @@
 				$(".community_list").append(post)
 				console.log(element)
 				}); 
-		}
+			}
 	      })
 	    }
 	});
