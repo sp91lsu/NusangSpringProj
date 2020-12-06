@@ -82,8 +82,11 @@
 }
 
 .txt>.comment {
-	min-height: 85px;
+	height: 85px;
 	margin-top: 10px;
+	font-size:18px;
+	word-break: break-all;
+	overflow: hidden;
 }
 
 .txt>.view {
