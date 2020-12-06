@@ -250,9 +250,25 @@ button.accent {
 
 }
 
+#chat_btn_common{
+	font-size: 0.8em;
+	background-color: #fff130;
+	color : black;
+}
+
 .view_date {
 	font-size: 0.9em;
 	color: dark-grey;
-margin: 0px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
+	text-align: right;
 }
 
+.user_img{
+	width: 50px;
+	float: left;
+	border-radius:10px; 
+}
+
+.oponent_user_chat_box{
+	margin-left: 55px; 
+}

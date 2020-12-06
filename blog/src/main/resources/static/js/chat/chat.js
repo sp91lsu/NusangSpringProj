@@ -146,7 +146,10 @@
 								
 								if (value.user.userno != $(
 										"#userno").val()) {
-									messageElement = '<li class="chat-message-li"><span>'+value.user.nickname+'</span>'+
+									messageElement = '<li class="chat-message-li">' +
+										'<img class="user_img" src="'+value.user.picture+'" alt="" />'+
+										'<div class="oponent_user_chat_box">' +
+										'<span>'+value.user.nickname+'</span>'+
 									'<div>'+
 									'<div class="chat-message">'+
 										'<p class="message-text">'+ value.text+'</p>'+
@@ -155,7 +158,9 @@
 										'<li><span class="view_cnt">'+view_cnt+'</span></li>'+
 									'<li><span class="view_date"> '+value.createDate+'</span></li>'+
 									'</ul>'+
-								'</div></li>';
+								'</div>'+
+									'</div>'+
+									'</li>';
 										
 								} else {
 									messageElement = '<li class="chat-message-li me">'+
