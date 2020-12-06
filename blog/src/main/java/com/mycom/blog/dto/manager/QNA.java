@@ -55,6 +55,7 @@ public class QNA {
 	private String title;
 	@Lob
 	private String contents;
+	@Lob
 	private String answer;
 	@CreationTimestamp
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yy-MM-dd HH:mm", timezone="Asia/Seoul")
