@@ -1,0 +1,9 @@
+
+.user_img{
+	width: 80px;
+	border-radius:10px; 
+}
+
+.user-nickname{
+	font-weight: bold;
+}

@@ -27,6 +27,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -49,28 +50,31 @@ public class ChatRoomVO {
 
 	private String topic;
 
+	private UserVO user;
+
 	private List<ChatRoomGuide> roomGuideList;
 
 	private List<ChatMessage> messageList = new ArrayList<ChatMessage>();
 
 	private Timestamp createDate;
 
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm", timezone="Asia/Seoul")
 	private Date updateDate;
 
 	public int getMatchedUserNo() {
-		
+
 		User user = getMatchUserGuide().getMe();
 		System.out.println("매칭된 유저 : " + user.getUserno());
-		return  user.getUserno();
+		return user.getUserno();
 	}
-	
+
 	public int getRemainSawCnt() {
 		System.out.println(getMatchUserGuide().getSawMessageCnt() + "-" + getMyGuide().getSawMessageCnt());
-		return getMatchUserGuide().getSawMessageCnt() -  getMyGuide().getSawMessageCnt();
-	
+		return getMatchUserGuide().getSawMessageCnt() - getMyGuide().getSawMessageCnt();
+
 	}
-	
-	//나
+
+	// 나
 	public ChatRoomGuide getMyGuide() {
 
 		if (roomGuideList == null)
@@ -96,17 +100,21 @@ public class ChatRoomVO {
 		}
 		return null;
 	}
-	
 
 	public String getMatchedUserName() {
 
 		try {
 			return getMatchUserGuide().getMe().getNickname();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return "알수없는 사용자";
 		}
-		
-		
+
+	}
+	
+	public String getLastMessage() {
+
+		return messageList.get(messageList.size() -1).getText();
+
 	}
 
 }
