@@ -161,22 +161,23 @@
 					<h3>문의하기</h3>
 
 					<br>
-					<form action="/manager/QNA/qnaWriteOk" method="post">
+					<form name="qnaWrite" action="/manager/QNA/qnaWriteOk" method="post">
 						<sec:csrfInput />
 						<div class="titleBox">
-							문의제목&nbsp;&nbsp;&nbsp;<input name="title" class="qnaTitle"
+							문의제목&nbsp;&nbsp;&nbsp;<input id = "qnaTitle" name="title" class="qnaTitle"
 								type="text" />
 						</div>
-						<textarea class="textarea2" name="contents" cols="54" rows="10"
+						<textarea id = "qnaContents" class="textarea2" name="contents" cols="54" rows="10"
 							placeholder="문의내용"></textarea>
 						<input type="hidden" name="userno" value="${user.userno }" />
-						<button type="submit" class="btn btn-secondary btn-sm answerBtn">문의하기</button>
+						<button id = "qnaBtn" type="button" class="btn btn-secondary btn-sm qnaBtn">문의하기</button>
 					</form>
 
 
 				</c:otherwise>
 			</c:choose>
 
+	<!-- ----------------------------FAQ----------------------------------------- -->
 		</div>
 		<div class="container2 p-6">
 			<br> <br>
@@ -231,6 +232,22 @@
 		</div>
 	</div>
 	<script>
+	
+	$("#qnaBtn").click(function(){
+		var qnaTitle = $("#qnaTitle").val().trim();
+		var qnaContents = $("#qnaContents").val();
+		qnaContents = qnaContents.replace(/<p>/g,'');
+		qnaContents = qnaContents.replace(/<\/p>/g,'');
+		qnaContents = qnaContents.replace(/<br>/g,'');
+		qnaContents = qnaContents.replace(/&nbsp;/g,'');
+		qnaContents = qnaContents.trim(); 
+		//alert("내용 : " + contents);
+		if((qnaTitle == "") || (qnaContents == "")){
+			alert("제목과 내용을 모두 작성해주세요");
+		}else{
+			${"qnaWrite"}.submit();
+		}
+	})
 		// html dom 이 다 로딩된 후 실행된다.
 		$(document).ready(function() {
 			// menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
@@ -272,5 +289,7 @@
 	<script src="/js/paging/faqPage.js"></script>
 	<%@ include file="../../layout/footer.jsp"%>
 </body>
+
+<script src="/js/manager/faqList.js"></script>
 <script src="/js/paging/noticePage.js"></script>
 </html>

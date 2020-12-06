@@ -40,6 +40,7 @@
 		}
 	})
 </script>
+<script src="js/manager/faqWrite.js"></script>
 <%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>
