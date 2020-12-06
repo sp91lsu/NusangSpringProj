@@ -59,7 +59,11 @@
 												+ value.remainSawCnt
 												+ '</span></h3></div>'
 									}
-
+									var lastMessage = value.lastMessage;
+									
+									if(lastMessage.length > 7){
+										lastMessage = lastMessage.substring(0, 7) + " ...";
+									}
 									var element = '<input type="hidden" class="room_topic" value="'
 											+ value.topic
 											+ '" />'
@@ -67,10 +71,12 @@
 											+ value.matchedUserNo
 											+ '\'" class="list-group-item d-flex justify-content-between align-items-center">'
 											+ '<img class="user_img" src="'+value.user.picture+'" alt="" />'
+											+ '<div class="middle-area">'
 											+ '<div>'
 											+ '<h3 class="user-nickname">'+value.matchedUserName+'</h3>'
+											+ '</div>'
 											+ '<div>'
-											+ '<h3>'+value.lastMessage+'</h3></div>'
+											+ '<h3>'+lastMessage+'</h3></div>'
 											+ '</div>'
 											+ '<div>'
 											+ '<h3>'+ value.updateDate +'</h3>'

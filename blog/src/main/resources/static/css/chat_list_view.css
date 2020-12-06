@@ -6,4 +6,11 @@
 
 .user-nickname{
 	font-weight: bold;
+	text-align: left;
+}
+
+.middle-area{
+	overflow: hidden;
+	width: 30%;	
+	
 }
