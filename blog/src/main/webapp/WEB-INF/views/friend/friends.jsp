@@ -5,7 +5,7 @@
 
 <div class="container display-4 mt-5 mb-5">
 
-	<h1>친구관리</h1>
+	<h1>친구</h1>
 
 
 
