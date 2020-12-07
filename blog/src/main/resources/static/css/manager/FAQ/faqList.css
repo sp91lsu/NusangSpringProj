@@ -3,7 +3,7 @@
 .container1, .container2{
 	font-family: 'Noto Sans KR', sans-serif;
 	min-height: 900px;
-	width:800px;
+	width:810px;
 	display: inline-block;
 }
 .container2{
@@ -95,10 +95,7 @@ textarea:focus {
 	overflow: hidden;
 	cursor: default;
 }
-.qna_paging{
-	cursor: pointer;
-}
-.faq_paging{
+.qna_paging, .faq_paging{
 	cursor: pointer;
 }
 /* .answer{

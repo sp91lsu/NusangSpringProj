@@ -64,7 +64,9 @@
 									</c:choose>
 								</tr>
 								<tr class="contents">
+									
 									<td></td>
+									
 									<td class = "allContents" colspan="3"><br>${qna.contents }<br>
 										<form class = "answerForm" action="/manager/QNA/qnaUpdateOk" method="post">
 											<sec:csrfInput />
@@ -73,7 +75,8 @@
 											<button type="button" class="answer btn btn-primary btn-sm answerBtn">답변달기</button>
 											<input type="hidden" name="no" value="${qna.no }" />
 
-										</form></td>
+										</form>
+										</td>
 								</tr>
 							</c:forEach>
 
@@ -245,14 +248,12 @@
 	$("#qnaBtn").click(function(){
 		var qnaTitle = $("#qnaTitle").val().trim();
 		var qnaContents = $("#qnaContents").val();
-		qnaContents = qnaContents.replace(/<p>/g,'');
-		qnaContents = qnaContents.replace(/<\/p>/g,'');
-		qnaContents = qnaContents.replace(/<br>/g,'');
-		qnaContents = qnaContents.replace(/&nbsp;/g,'');
-		qnaContents = qnaContents.trim(); 
+		
 		//alert("내용 : " + contents);
 		if((qnaTitle == "") || (qnaContents == "")){
 			alert("제목과 내용을 모두 작성해주세요");
+		}else if(qnaTitle.length > 20){
+			alert("제목은 20자이하로 간략하게 작성해주세요.");
 		}else{
 			$("#qnaWrite").submit();
 		}
@@ -264,11 +265,12 @@
 				var submenu = $(this).parent().parent().next("tr");
 
 				// submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-				if (submenu.is(":visible")) {
+				submenu.toggle();
+				/*  if (submenu.is(":visible")) {
 					submenu.slideUp();
 				} else {
 					submenu.slideDown();
-				}
+				}  */
 			});
 		});
 
