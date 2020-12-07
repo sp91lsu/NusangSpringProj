@@ -22,7 +22,6 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/user/all_userlist">모든 유저</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/near_userlist"> <i class="fas fa-street-view fa-2x"> </i> 내 근처회원
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="/friend/friends_view"> <i class="fas fa-user-friends fa-2x"></i> 친구관리
