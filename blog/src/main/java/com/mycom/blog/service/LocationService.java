@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mycom.blog.controller.assist.ConAssist;
 import com.mycom.blog.dto.Location;
 import com.mycom.blog.dto.User;
 import com.mycom.blog.dto.enumtype.AuthType;
@@ -39,14 +40,13 @@ public class LocationService extends BasicService<LocationRepository,Location> {
 		Location location = null;
 		try {
 			location = kakaoBo.reqLocation(searchValue);
-			location.setUser(conAssist.getUser());
-			User user = userRep.findById(conAssist.getUserno()).get();
-			
-			if (conAssist.getUser().getLocation() == null) {
+			User user = userRep.findById(ConAssist.getUserno()).get();
+			location.setUser(user);
+			if (user.getLocation() == null) {
 				repository.save(location);
 				user.setLocation(location);
 			} else {
-				Location locationEntity = repository.findByUser(location.getUser());
+				Location locationEntity = repository.findByUser(user);
 				locationEntity.setLatitude(location.getLatitude());
 				locationEntity.setLongtitude(location.getLongtitude());
 				locationEntity.setName1(location.getName1());

@@ -52,7 +52,7 @@ import lombok.ToString;
 @Table(name = "CHAT_ROOM")
 @DynamicInsert // insert 시에 null인 필드 는 제외시킴
 @Entity // user클래스가 자동으로 테이블을 생성s
-@ToString(exclude = { "roomGuideList","fromWho" })
+@ToString(exclude = { "roomGuideList", "fromWho" })
 @JsonIdentityInfo(generator = IntSequenceGenerator.class, property = "id")
 public class ChatRoom {
 
@@ -64,7 +64,7 @@ public class ChatRoom {
 
 	@OneToOne
 	private User fromWho;
-	
+
 	@OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY)
 	private List<ChatRoomGuide> roomGuideList;
 
@@ -129,7 +129,7 @@ public class ChatRoom {
 	}
 
 	public void chkMessageCnt() {
-		
+
 		System.out.println("총 메세지 갯수 : " + messageList.size());
 		for (ChatRoomGuide guide : roomGuideList) {
 

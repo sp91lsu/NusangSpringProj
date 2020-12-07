@@ -101,8 +101,7 @@ public class User {
 	private List<ChatRoomGuide> chatRoomGuideList;
 
 	// 위치
-	@OneToOne
-	@JoinColumn(name = "locationno")
+	@OneToOne(mappedBy = "user")
 	private Location location;
 
 	@Column(nullable = false, columnDefinition = "varchar(255) default '/upload/profileImg.jpg'")

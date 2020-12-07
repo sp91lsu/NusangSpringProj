@@ -42,8 +42,9 @@ public interface UserRepository extends JpaRepository<User, Integer>,JpaSpecific
 	int updateAvailableTalk();
 
 	@Modifying
-	@Query(value = "SELECT * FROM USER1 WHERE locationno IN"
-			+ "  (SELECT loc.locationno FROM location loc WHERE"
+	@Query(value = "SELECT * FROM USER1 WHERE userno IN"
+			+ "  (SELECT loc.userno FROM location loc WHERE"
 			+ "  calc_distance(?1, ?2,loc.latitude, loc.longtitude ) <= ?3 )", nativeQuery = true)
 	List<User> getNearUserList(double latitude, double longtitude, int distance);
+
 }

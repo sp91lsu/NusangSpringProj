@@ -233,7 +233,7 @@
 				</select> 세
 				</span>
 				<ul>
-					<li>나의 코인: <a class="myCoin" href="/shop/shop_view">${user.coin }
+					<li style="width: 200px;">나의 코인: <a class="myCoin" href="/shop/shop_view" style="min-width: 25px;">${user.coin }
 							CM</a></li>
 				</ul>
 
