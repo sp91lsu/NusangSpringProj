@@ -12,6 +12,7 @@
 	<input type="hidden" id="mylatitude" value="${user.location.latitude }" />
 	<br>
 	<c:forEach var="user_i" items="${nearUserList}">
+	<c:if test="${!user_i.isMe(user_i) }">
 		<div class="watchBox mr-5" style="float: left;">
 			<div class="watch">
 				<div class="user_img_wrapper">
@@ -19,9 +20,8 @@
 				</div>
 				<div class="textBox" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 5px;">
 					<h5 class="productname" style="margin-top: 10px;">${user_i.nickname }
-						<c:if test="${user_i.isMe(user_i) }">
-			    (me)  
-			</c:if>
+						
+			
 					</h5>
 						
 						<input type="hidden" id="longtitude" value="${user_i.location.longtitude }" />
@@ -31,6 +31,7 @@
 				<button onclick="location.href='/profile/profileMain/${user_i.userno}'" class="move btn btn-warning">프로필 보러가기</button>
 			</div>
 		</div>
+		</c:if>
 	</c:forEach>
 
 </div>
