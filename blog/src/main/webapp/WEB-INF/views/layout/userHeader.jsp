@@ -22,22 +22,22 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/user/near_userlist"> <i class="fas fa-street-view fa-2x"> </i> 내 근처회원
+						<li class="nav-item" style="margin-left: 60px;"><a class="nav-link" href="/user/near_userlist"> <i class="fas fa-street-view fa-2x"> </i> 내 근처회원
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/friend/friends_view"> <i class="fas fa-user-friends fa-2x"></i> 친구관리
+						<li class="nav-item" style="margin-left: 10px;"><a class="nav-link" href="/friend/friends_view"> <i class="fas fa-user-friends fa-2x"></i> 친구관리
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/chat/chat_list_view"><i class="far fa-comment-dots fa-2x"></i> 채팅</a></li>
+						<li class="nav-item" style="margin-left: 10px;"><a class="nav-link" href="/chat/chat_list_view"><i class="far fa-comment-dots fa-2x"></i> 채팅</a></li>
 
-						<li class="nav-item"><a class="nav-link" href="/shop/shop_view"><i class="fas fa-shopping-cart fa-2x"></i> 아이템샵</a></li>
-						<li class="nav-item"><a class="nav-link" href="/manager/notice/noticeList"><i class="fas fa-exclamation-triangle fa-2x"></i> 공지사항</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/FAQ/faqList"><i class="far fa-question-circle fa-2x"></i> FAQ</a></li>
+						<li class="nav-item" style="margin-left: 10px;"><a class="nav-link" href="/shop/shop_view"><i class="fas fa-shopping-cart fa-2x"></i> 아이템샵</a></li>
+						<li class="nav-item" style="margin-left: 10px;"><a class="nav-link" href="/manager/notice/noticeList"><i class="fas fa-exclamation-triangle fa-2x"></i> 공지사항</a></li>
+						<li class="nav-item" style="margin-left: 10px;"><a class="nav-link" href="/user/FAQ/faqList"><i class="far fa-question-circle fa-2x"></i> FAQ</a></li>
 						<li class="nav-item">
 							<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: 'Noto Sans KR', sans-serif;">
 								<div class="navbar-nav pull-right" style="margin-left: -10%"></div>
 							</div>
 						</li>
 
-						<li class="nav-item"><a class="nav-link" href="/profile/profileMain/${user.userno }" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
+						<li class="nav-item" style="margin-left: 30px;"><a class="nav-link" href="/profile/profileMain/${user.userno }" style="color: #22741C">${user.nickname} <span style="color: black">님</span>
 						</a></li>
 						<li class="nav-item">
 							<form action="/logout" method="post">
