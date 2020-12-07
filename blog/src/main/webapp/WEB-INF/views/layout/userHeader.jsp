@@ -8,11 +8,12 @@
  
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background: #FFF;; border-bottom: 3px solid #333">
-		<a class="navbar-brand" href="/home">홈</a>
+		<a class="navbar-brand" href="/home"><img src="/image/키로미톡.PNG" width="50px" alt="" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			
 			<c:choose>
 				<c:when test="${empty principal}">
 					<ul class="navbar-nav">

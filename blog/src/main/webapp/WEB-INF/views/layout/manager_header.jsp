@@ -14,7 +14,7 @@
 	</div>
 
 	<nav id="bar" class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-		<a class="navbar-brand" href="/home">홈</a>
+		<a class="navbar-brand" href="/home"><img src="/image/키로미톡.PNG" width="50px" alt="" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
