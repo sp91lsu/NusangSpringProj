@@ -2,7 +2,10 @@
 <%@ include file="../../layout/header.jsp"%>
 <br>
 <br>
-<div class="container">
+<h2 style = "margin-left:205px;">FAQ 수정</h2>
+<br>
+<br>
+<div class="container" style = "min-height:600px;">
 
 	<form id = "updateForm" action="/manager/FAQ/faqUpdateOk" method="post">
 	<sec:csrfInput />
@@ -42,7 +45,7 @@
 		}
 	})
 </script>
-<%@ include file="../../layout/footer.jsp"%>
+<%-- <%@ include file="../../layout/footer.jsp"%> --%>
 </body>
 </html>
 

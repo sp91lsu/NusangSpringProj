@@ -3,7 +3,10 @@
 <%@ include file="../../layout/header.jsp"%>
 <br>
 <br>
-<div class="container">
+<h2 style = "margin-left:205px;">FAQ 작성</h2>
+<br>
+<br>
+<div class="container" style = "min-height:600px;">
 
 	<form name = "writeform" action="/manager/FAQ/faqWriteOk" method="post">
 	<sec:csrfInput />
@@ -13,7 +16,10 @@
 		<div class="form-group">
 			<textarea name = "contents" class="summernote" id="contents"></textarea>
 		</div>
-		<button type = "button" id="btn-save" class="btn btn-primary">글쓰기 완료</button>
+		<div align = "center">
+		<button type = "button" id="btn-save" class="btn btn-primary">작성 완료</button>
+		<input type="button" class="btn btn-secondary" onclick="history.back()" value="취소"></input>
+		</div>
 	</form>
 </div>
 
@@ -35,13 +41,15 @@
 		//alert("내용 : " + contents);
 		if((title == "") || (contents == "")){
 			alert("제목과 내용을 모두 작성해주세요");
+		}else if(title.length > 28){
+			alert("제목은 간략하게 작성하세요.")
 		}else{
 			${"writeform"}.submit();
 		}
 	})
 </script>
 <script src="js/manager/faqWrite.js"></script>
-<%@ include file="../../layout/footer.jsp"%>
+<%-- <%@ include file="../../layout/footer.jsp"%> --%>
 </body>
 </html>
 

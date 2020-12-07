@@ -1,4 +1,4 @@
-package com.mycom.blog.model;
+package com.mycom.blog.model.payment;
 
 import java.math.BigDecimal;
 

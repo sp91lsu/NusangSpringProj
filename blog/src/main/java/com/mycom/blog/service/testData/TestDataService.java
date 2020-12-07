@@ -54,7 +54,7 @@ public class TestDataService extends BasicService<UserRepository, User> {
 			
 			List<User> userList = repository.findAll();
 			for (User user : userList) {
-				user.setCreateDate(dl.randTS(365));
+				user.setCreateDate(dl.randTS(1100));
 			}
 			System.out.println("userList setRegtime 완료");
 			
@@ -79,7 +79,7 @@ public class TestDataService extends BasicService<UserRepository, User> {
 			System.out.println("PAYMENT Datas Insert 완료");
 			List<Payment> payList = paymentRep.findAll();
 			for (Payment payment : payList) {
-				payment.setRegtime(dl.randTS(200));
+				payment.setRegtime(dl.randTS(1100));
 			}
 			System.out.println("PAYMENT setRegtime 완료");
 			return 1;
