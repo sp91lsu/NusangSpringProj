@@ -102,6 +102,9 @@ textarea:focus {
 	margin-right: -300px;
 	margin-top : -23px;
 } */
+.answerBtn{
+	float:right;
+}
 .contents{
 	display:none;
 	word-break: break-all;

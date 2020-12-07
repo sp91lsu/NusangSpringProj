@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="btn_write">
-	<button class="btn btn-primary" onclick="location.href='/post/post_write'">글쓰기</button>
+	<button class="btn btn-dark" onclick="location.href='/post/post_write'">글쓰기</button>
 </div>
 
 <div class="post_list container">
