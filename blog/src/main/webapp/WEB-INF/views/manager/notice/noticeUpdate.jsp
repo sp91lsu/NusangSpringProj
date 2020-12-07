@@ -2,6 +2,9 @@
 <%@ include file="../../layout/header.jsp"%>
 <br>
 <br>
+<h2 style = "margin-left:205px;">공지사항 수정</h2>
+<br>
+<br>
 <div class="container">
 
 	<form action="/manager/notice/noticeUpdateOk" method="post">

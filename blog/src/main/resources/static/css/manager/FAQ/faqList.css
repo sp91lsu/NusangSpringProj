@@ -12,7 +12,7 @@
 
 .container1{
 	margin-left: 70px;
-	margin-right:80px;
+	margin-right:70px;
 }
 .container2 .writeBtn{
 	float: right;
@@ -108,4 +108,11 @@ textarea:focus {
 .contents{
 	display:none;
 	word-break: break-all;
+}
+.updateBtn{
+	float:right;
+}
+.deleteBtn{
+	float:right;
+	margin-right: 3px;
 }

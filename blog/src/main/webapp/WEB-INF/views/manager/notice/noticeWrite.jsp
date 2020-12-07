@@ -3,7 +3,10 @@
 <%@ include file="../../layout/header.jsp"%>
 <br>
 <br>
-<div class="container">
+<h2 style = "margin-left:205px;">공지사항 작성</h2>
+<br>
+<br>
+<div class="container" style = "min-height:600px;">
 
 	<form name = "writeform" action="/manager/notice/noticeWriteOk" method="post">
 	<sec:csrfInput />
@@ -13,7 +16,10 @@
 		<div class="form-group">
 			<textarea name = "contents" class="summernote" id="contents"></textarea>
 		</div>
-		<button type = "button" id="btn-save" class="btn btn-primary">글쓰기 완료</button>
+		<div align = "center">
+		<button type = "button" id="btn-save" class="btn btn-primary">작성 완료</button>
+		<input type="button" class="btn btn-secondary" onclick="history.back()" value="취소"></input>
+		</div>
 	</form>
 </div>
 
@@ -40,7 +46,7 @@
 		}
 	})
 </script>
-<%@ include file="../../layout/footer.jsp"%>
+<%-- <%@ include file="../../layout/footer.jsp"%> --%>
 </body>
 </html>
 
