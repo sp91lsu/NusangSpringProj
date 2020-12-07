@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.tabcontent img{
+	width: 20px;
+	height: 20px;
+}
+
+
+/* 컨테이너 */
+.myContainer{
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 15px;
+	width: 100%;
+}
+
+@media (min-width: 576px) {
+  .myContainer {
+    width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .myContainer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .myContainer {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .myContainer {
+    width: 1170px;
+  }
+}
+@media (min-width: 1400px) {
+  .myContainer {
+    width: 90%;
+  }
+}
+
+/* 차트 관련 */
+.chartzone{
+}
+.one{
+width:65%;
+}
+.two{
+width:35%;
+}
+
+#date{
+	height:30px;
+}

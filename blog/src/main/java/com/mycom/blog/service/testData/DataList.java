@@ -273,9 +273,9 @@ public class DataList {
 	    LocalDateTime randDay2 = LocalDateTime.now().minusDays(randDays);
 	    
 	    String randDayStr = randDay2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		int randH = r.nextInt(23)+1;
-		int randM = r.nextInt(59)+1;
-		int randS = r.nextInt(59)+1;
+		int randH = r.nextInt(24);
+		int randM = r.nextInt(60);
+		int randS = r.nextInt(60);
 		
 		return Timestamp.valueOf(randDayStr+" "+randH+":"+randM+":"+randS);
 	}
