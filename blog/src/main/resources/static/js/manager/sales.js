@@ -1,7 +1,3 @@
-$(function(){
-	/*$(".tablinks").first().trigger("click");*/
-});
-
 
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;

@@ -1,3 +1,4 @@
+<%@page import="com.mycom.blog.controller.assist.ConAssist"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/manager/header_subnav.css" />
 
@@ -6,15 +7,12 @@
 <body>
 	<div id="welcome" class="container-fluid">
 		<br>
-		<h3>___관리자님 환영합니다!</h3>
-		<p>A sticky navigation bar stays fixed at the top of the page when you scroll past it.</p>
-		<p>
-			Scroll this page to see the effect. <strong>Note:</strong> sticky-top does not work in IE11 and earlier.
-		</p>
+		<img src="/image/키로미톡.PNG" width="50px" alt="logo" />
+		<h3><%= ConAssist.getUser().getUsername() %> 관리자님 환영합니다!</h3>
 	</div>
 
 	<nav id="bar" class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-		<a class="navbar-brand" href="/home"><img src="/image/키로미톡.PNG" width="50px" alt="" /></a>
+		<a class="navbar-brand" href="/home"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>

@@ -64,7 +64,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div id="ccc">하하하하</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="/js/manager/search.js"></script>
