@@ -49,7 +49,7 @@ public class FriendController_API {
 	public int nagative_friend(int friendno) {
 
 		System.out.println("friendno : " + friendno);
-		int result = friendService.deleteById(friendno);
+		int result = friendService.breakFriend(friendno);
 		return result;
 	}
 	
@@ -58,7 +58,7 @@ public class FriendController_API {
 	public int delete_friend(int friendno) {
 
 		System.out.println("friendno : " + friendno);
-		int result = friendService.deleteById(friendno);
+		int result = friendService.breakFriend(friendno);
 		return result;
 	}
 	

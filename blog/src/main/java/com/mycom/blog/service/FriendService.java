@@ -85,4 +85,11 @@ public class FriendService extends BasicService<FriendRepository, Friend> {
 
 	}
 
+	@Transactional
+	public int breakFriend(int userno) {
+		int result = repository.breakFriend(ConAssist.getUserno(), userno);
+		
+		return result;
+	}
+
 }

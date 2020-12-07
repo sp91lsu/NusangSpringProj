@@ -23,7 +23,7 @@
 								
 								<button type="button"  class="btn-chat btn btn-warning" onclick="location.href='/profile/profileMain/${friend.user.userno}'">프로필</button>
 								<button name="chat_userno" class="btn-chat btn btn-primary" value="${friend.user.userno }">채팅하기</button>
-								<button type="button" class="delete_friend_btn btn btn-danger" value="${friend.friend_no }">삭제</button>
+								<button type="button" class="delete_friend_btn btn btn-danger" value="${friend.user.userno }">삭제</button>
 							</div>
 						</form>
 					</li>
@@ -38,7 +38,8 @@
 			<c:forEach var="friend" items="${user.friend_reqList(true)}">
 				<li class="list-group-item">
 				<img style="width: 50px; border-radius: 20px;" src="${friend.user.picture }" alt="" />
-					<div>${friend.user.nickname } <button type="button" class="cancel_friend_btn btn btn-danger" value="${friend.friend_no }">신청 취소</button></div>
+				<button type="button"  class="btn-chat btn btn-warning" onclick="location.href='/profile/profileMain/${friend.user.userno}'">프로필</button>
+					<div>${friend.user.nickname } <button type="button" class="cancel_friend_btn btn btn-danger" value="${friend.user.userno }">신청 취소</button></div>
 				</li>
 				
 			</c:forEach>
@@ -53,8 +54,9 @@
 					<li class="list-group-item">
 					<img style="width: 50px; border-radius: 20px;" src="${friend.user.picture }" alt="" />
 						<div>${friend.user.nickname }
+						<button type="button"  class="btn-chat btn btn-warning" onclick="location.href='/profile/profileMain/${friend.user.userno}'">프로필</button>
 							<button class="add_friend_btn btn btn-primary" value="${friend.user.userno }">친구추가</button>
-							<button class="nagative_friend_btn btn btn-danger" value="${friend.friend_no }">거절</button>
+							<button class="nagative_friend_btn btn btn-danger" value="${friend.user.userno }">거절</button>
 						</div>
 					</li>
 				</c:if>

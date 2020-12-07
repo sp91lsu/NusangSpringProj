@@ -14,7 +14,7 @@
 			headers:headers,
 			success : function(res) {
 				console.log(res);
-				if (res == 1) {
+				if (res > 0) {
 					alert("신청 취소 완료.");
 					location.reload();
 				}else{
@@ -34,7 +34,7 @@
 			headers:headers,
 			success : function(res) {
 				console.log(res);
-				if (res == 1) {
+				if (res > 0) {
 					alert("요청을 거절하였습니다.");
 					location.reload();
 				}else{
@@ -54,7 +54,7 @@
 			headers:headers,
 			success : function(res) {
 				console.log(res);
-				if (res == 1) {
+				if (res > 0) {
 					alert("친구 삭제 완료.");
 					location.reload();
 				}else{
