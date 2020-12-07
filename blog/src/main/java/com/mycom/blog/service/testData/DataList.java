@@ -268,8 +268,8 @@ public class DataList {
 	}
 	
 //	regdate 랜덤
-	Timestamp randTS(int numOfPastDays) {
-		int randDays = r.nextInt(numOfPastDays);
+	Timestamp randTS(int rangeOfPastDays) {
+		int randDays = r.nextInt(rangeOfPastDays);
 	    LocalDateTime randDay2 = LocalDateTime.now().minusDays(randDays);
 	    
 	    String randDayStr = randDay2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

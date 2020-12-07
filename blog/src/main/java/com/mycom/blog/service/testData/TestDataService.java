@@ -31,11 +31,11 @@ public class TestDataService extends BasicService<UserRepository, User> {
 	}
 
 	@Transactional
-	public int mkBigData(int howMany) {
+	public int mkBigData(int uRowCnt,int pRowCnt,int uDateRange,int pDateRange) {
 		try {
 			DataList dl = new DataList();
 			//USER bigdata
-			for (int i = 0; i < howMany; i++) {
+			for (int i = 0; i < uRowCnt; i++) {
 				//DataList의 샘플데이터 메소드들과 랜덤함수를 활용하여 데이터 다양화.
 				User user = new User();
 				GenderType gen = dl.randGender();
@@ -54,12 +54,12 @@ public class TestDataService extends BasicService<UserRepository, User> {
 			
 			List<User> userList = repository.findAll();
 			for (User user : userList) {
-				user.setCreateDate(dl.randTS(1100));
+				user.setCreateDate(dl.randTS(uDateRange));
 			}
 			System.out.println("userList setRegtime 완료");
 			
 			//PAYMENT bigdata
-			for (int i = 0; i < howMany*1.4; i++) {
+			for (int i = 0; i < pRowCnt; i++) {
 				Payment pay = new Payment();
 				//유저 랜덤픽
 				Random r = new Random();
@@ -79,7 +79,7 @@ public class TestDataService extends BasicService<UserRepository, User> {
 			System.out.println("PAYMENT Datas Insert 완료");
 			List<Payment> payList = paymentRep.findAll();
 			for (Payment payment : payList) {
-				payment.setRegtime(dl.randTS(1100));
+				payment.setRegtime(dl.randTS(pDateRange));
 			}
 			System.out.println("PAYMENT setRegtime 완료");
 			return 1;

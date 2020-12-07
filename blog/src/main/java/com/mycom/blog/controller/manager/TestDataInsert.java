@@ -17,9 +17,17 @@ public class TestDataInsert {
 	private TestDataService testDataService;
 	
 	@GetMapping("insert")
-	public void big(@RequestParam("howmany") String howMany,Model model) {
-		int c = Integer.parseInt(howMany);
-		int result = testDataService.mkBigData(c);
+	public void big(
+			@RequestParam("uRowCnt") String uRowCnt,
+			@RequestParam("pRowCnt") String pRowCnt,
+			@RequestParam("uDateRange") String uDateRange,
+			@RequestParam("pDateRange") String pDateRange,
+			Model model) {
+		int a = Integer.parseInt(uRowCnt);
+		int b = Integer.parseInt(pRowCnt);
+		int c = Integer.parseInt(uDateRange);
+		int d = Integer.parseInt(pDateRange);
+		int result = testDataService.mkBigData(a,b,c,d);
 		model.addAttribute("result",result);
 	}
 }
