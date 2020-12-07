@@ -71,9 +71,10 @@ public class ProfileService {
 			User user = userRepository.findById(conAssist.getUserno()).get();
 
 			// 이전 사진파일 지우기
-			File f = new File(savePath + user.getPicture());
-			if (f.exists() && !user.getPicture().equals("profileImg.jpg")) {
-				f.delete();
+			
+			File preFP = new File(savePath +"/" + user.getPicture().split("/")[2]);
+			if (preFP.exists() && !user.getPicture().equals("/upload/profileImg.jpg")) {
+				preFP.delete();
 			}
 
 			File newFile = new File(savePath + fileName);
@@ -103,9 +104,9 @@ public class ProfileService {
 		try {
 			User user = userRepository.findById(conAssist.getUserno()).get();
 
-			File f = new File(savePath + user.getPicture());
-			if (f.exists() && !user.getPicture().equals("profileImg.jpg")) {
-				f.delete();
+			File preFP = new File(savePath +"/" + user.getPicture().split("/")[2]);
+			if (preFP.exists() && !user.getPicture().equals("/upload/profileImg.jpg")) {
+				preFP.delete();
 			}
 
 			user.setPicture("/upload/profileImg.jpg");

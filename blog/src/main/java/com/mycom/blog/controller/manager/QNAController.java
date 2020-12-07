@@ -43,6 +43,7 @@ public class QNAController {
 		System.out.println("답변달기 탔니????");
 		updateQNA.setMe(user);
 		int res = qnaService.updateOk(updateQNA);
+		System.out.println("내용:"+updateQNA.getAnswer());
 		model.addAttribute("res", res);
 		return "manager/QNA/qnaUpdateOk";
 	}

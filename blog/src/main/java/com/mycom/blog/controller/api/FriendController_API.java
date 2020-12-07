@@ -44,5 +44,24 @@ public class FriendController_API {
 		int result = friendService.addFriend_request(friendno);
 		return result;
 	}
+	
+	@PostMapping("/friend/nagative_friend")
+	public int nagative_friend(int friendno) {
+
+		System.out.println("friendno : " + friendno);
+		int result = friendService.deleteById(friendno);
+		return result;
+	}
+	
+	
+	@PostMapping("/friend/delete_friend")
+	public int delete_friend(int friendno) {
+
+		System.out.println("friendno : " + friendno);
+		int result = friendService.deleteById(friendno);
+		return result;
+	}
+	
+	
 
 }

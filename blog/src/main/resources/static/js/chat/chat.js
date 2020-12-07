@@ -137,27 +137,43 @@
 
 								var messageElement = document
 										.createElement('li');
-								if (value.user.userno == $(
-										"#userno").val()) {
-									messageElement = '<li class="chat-message-li me">'
-											+ '<div class="chat-message"><p>'
-											+ value.text
-											+ '</p></div>'
-											+ value.createDate
-											+ '</li>';
-								} else {
-									messageElement = '<li class="chat-message-li"><span>'
-											+ value.user.nickname
-											+ '</span>'
-											+ '<div class="chat-message ">'
-											+ '<p>'
-											+ value.text
-											+ '</p>'
-											+ '</div>'
-											+ value.createDate
-											+ '</li>';
+								
+								var view_cnt = "";
+								
+								if(value.view_cnt > 0){
+									view_cnt = value.view_cnt;
 								}
-								messageElement += value.view_cnt;
+								
+								if (value.user.userno != $(
+										"#userno").val()) {
+									messageElement = '<li class="chat-message-li">' +
+										'<img class="user_img" src="'+value.user.picture+'" alt="" />'+
+										'<div class="oponent_user_chat_box">' +
+										'<span>'+value.user.nickname+'</span>'+
+									'<div>'+
+									'<div class="chat-message">'+
+										'<p class="message-text">'+ value.text+'</p>'+
+									'</div>'+
+									'<ul class="message-info-ul">'+
+										'<li><span class="view_cnt">'+view_cnt+'</span></li>'+
+									'<li><span class="view_date"> '+value.createDate+'</span></li>'+
+									'</ul>'+
+								'</div>'+
+									'</div>'+
+									'</li>';
+										
+								} else {
+									messageElement = '<li class="chat-message-li me">'+
+									'<div>'+
+										'<div class="chat-message">'+
+											'<p class="message-text">'+ value.text+'</p>'+
+										'</div>'+
+										'<ul class="message-info-ul">'+
+											'<li><span class="view_cnt">'+view_cnt+'</span></li>'+
+										'<li><span class="view_date"> '+value.createDate+'</span></li>'+
+										'</ul>'+
+									'</div></li>';
+								}
 
 								$(messageArea).append(
 										messageElement);
@@ -173,4 +189,6 @@
 	}
 	
 	messageForm.addEventListener('submit', sendMessage, true)
+	
+	
 })()
