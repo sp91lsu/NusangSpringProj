@@ -25,6 +25,7 @@
 					<!-- --------------------------문의 리스트----------------------------------------- -->
 					<br>
 					<br>
+					<br>
 					<h3>문의 리스트</h3>
 					<%-- <c:choose>
 			<c:when test="${user.role == 'ADMIN' }"> --%>
@@ -93,6 +94,7 @@
 
 				<c:otherwise>
 					<!-- ----------------------------내 문의 내역---------------------------------------- -->
+					<br>
 					<br>
 					<br>
 					<h3>내 문의내역</h3>
@@ -170,10 +172,10 @@
 							문의제목&nbsp;&nbsp;&nbsp;<input id = "qnaTitle" name="title" class="qnaTitle"
 								type="text" />
 						</div>
-						<textarea id = "qnaContents" class="textarea2" name="contents" cols="54" rows="10"
+						<textarea id = "qnaContents" class="textarea2" name="contents" cols="54" rows="6"
 							placeholder="문의내용"></textarea>
 						<input type="hidden" name="userno" value="${user.userno }" />
-						<button id = "qnaBtn" type="button" class="btn btn-secondary btn-sm qnaBtn">문의하기</button>
+						<button id = "qnaBtn" type="button" class="btn btn-dark btn-sm qnaBtn">문의하기</button>
 					</form>
 
 
@@ -183,7 +185,7 @@
 	<!-- ----------------------------FAQ----------------------------------------- -->
 		</div>
 		<div class="container2 p-6">
-			<br> <br>
+			<br> <br><br>
 			<h3>FAQ</h3>
 			<c:choose>
 				<c:when test="${user.role == 'ADMIN' }">
@@ -213,10 +215,10 @@
 										<br>${dto.contents }<br>
 										<c:choose>
 											<c:when test="${user.role == 'ADMIN' }">
-												<button type="button" class="btn btn-primary btn-sm"
-													onclick="location.href = '/manager/FAQ/faqUpdate?no=${dto.no}'">수정</button>
 												<input type="hidden" name="no" value="${dto.no }" />
-												<button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+												<button type="submit" class="btn btn-secondary btn-sm updateBtn">삭제</button>
+												<button type="button" class="btn btn-primary btn-sm deleteBtn"
+													onclick="location.href = '/manager/FAQ/faqUpdate?no=${dto.no}'">수정</button>
 											</c:when>
 										</c:choose>
 									</div>
@@ -253,7 +255,7 @@
 		if((qnaTitle == "") || (qnaContents == "")){
 			alert("제목과 내용을 모두 작성해주세요");
 		}else if(qnaTitle.length > 20){
-			alert("제목은 20자이하로 간략하게 작성해주세요.");
+			alert("제목은 간략하게 작성해주세요.");
 		}else{
 			$("#qnaWrite").submit();
 		}
