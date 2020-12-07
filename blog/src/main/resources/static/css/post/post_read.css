@@ -88,7 +88,7 @@
 .post_read>.content {
 	width: 960px;
 	margin-left: 10px;
-	word-break: break-all;
+	word-wrap: break-word;
 }
 
 .post_read>.heart_icon {
