@@ -12,3 +12,13 @@ body > .container{
 	width: 80px;
 	float: left;
 }
+
+.card-img-top:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+
+.chatchat:hover{
+	cursor: pointer;
+	background-color: #eee;
+}

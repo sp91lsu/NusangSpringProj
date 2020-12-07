@@ -12,7 +12,7 @@
 			<textarea   class="summernote" id="content">${board.content}</textarea>
 		</div>
 	</form>
-	<button id="btn_update" class="btn btn-primary">수정 완료</button>
+	<button id="btn_update" class="btn btn-dark">수정 완료</button>
 	<input type="hidden" id="id" value="${board.id}">
 </div>
 	

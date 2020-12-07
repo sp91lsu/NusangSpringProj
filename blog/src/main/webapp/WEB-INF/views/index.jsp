@@ -7,10 +7,10 @@
 
 	<%@ include file="post/post_list.jsp"%>
 	
-	총 페이지: ${myPostList.getTotalPages()}<br>
+	<%-- 총 페이지: ${myPostList.getTotalPages()}<br>
 	현재 페이지 : ${myPostList.getNumber()+1}<br>
 	총 글 갯수 : ${myPostList.getTotalElements()}<br>
-	현재 페이지 글 갯수 : ${myPostList.toList().size()}<br>
+	현재 페이지 글 갯수 : ${myPostList.toList().size()}<br> --%>
 	<ul class="pagination justify-content-center">
 		<c:forEach var="i" begin="1" end="${myPostList.getTotalPages()}">
 		
