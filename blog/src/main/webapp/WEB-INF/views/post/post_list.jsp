@@ -6,6 +6,7 @@
 
 <div class="post_list container">
 	<c:forEach var="board" items="${myPostList.content}">
+	
 		<div class="post" onclick="location.href='/post/post_read/${board.id}'">
 			<div class="img">
 				<img src="${board.user.picture}" alt="" />
@@ -21,6 +22,7 @@
 					<span><i class="heart_icon far fa-heart"></i>  ${board.wishList.size()}</span>
 					<span>조회수${board.viewcnt}</span>
 					<span>댓글${board.replyList.size()}</span>
+					<input type="hidden" class="board_no" value="${board.id}">
 					<input type="hidden" class="isWatchPost" value="${board.isWishBoard(user)}">
 				</div>
 			</div>
@@ -30,4 +32,4 @@
 
 
 <link rel="stylesheet" href="/css/post/post_list.css" />
-<script src="/js/post/wish.js"></script>
+<script src="/js/post/post_ilst_wish.js"></script>

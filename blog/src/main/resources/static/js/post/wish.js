@@ -18,7 +18,7 @@
 			toggleWatch = false;
 		}
 	}
-
+	
 	toggleWatchList($(".isWatchPost").val() == "true");
 	$(".heart_icon").click(function() {
 
