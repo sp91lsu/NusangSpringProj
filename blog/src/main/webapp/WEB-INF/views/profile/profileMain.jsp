@@ -140,26 +140,32 @@
 			<%-- 내 글 보기 --%>
 			<div class="postSection row">
 				<div class="community_list">
-					<c:forEach var="board" items="${myBoardList.toList()}">
-						<div class="post"
-							onclick="location.href='/post/post_read/${board.id}'">
-							<div class="img">
-								<img src="${board.user.picture }">
-							</div>
-
-							<div class="txt">
-								<div class="top">
-									<div class="writer">${board.user.nickname}</div>
-									<div class="post_title">${board.title}</div>
+					<c:choose>
+						<c:when test="${empty myBoardList.toList()}">
+							<div class="emptyPost">등록된 일상이 없습니다.</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="board" items="${myBoardList.toList()}">
+								<div class="post"
+									onclick="location.href='/post/post_read/${board.id}'">
+									<div class="img">
+										<img src="${board.user.picture }">
+									</div>
+		
+									<div class="txt">
+										<div class="top">
+											<div class="writer">${board.user.nickname}</div>
+											<div class="post_title">${board.title}</div>
+										</div>
+										<div class="comment">${board.content}</div>
+										<div class="view">
+											<span><i class="heart_icon far fa-heart"></i>
+												${board.wishList.size()}</span> <span>조회수${board.viewcnt}</span> <span>댓글${board.replyList.size()}</span>
+										</div>
+									</div>
 								</div>
-								<div class="comment">${board.content}</div>
-								<div class="view">
-									<span><i class="heart_icon far fa-heart"></i>
-										${board.wishList.size()}</span> <span>조회수${board.viewcnt}</span> <span>댓글${board.replyList.size()}</span>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
+					</c:otherwise>
 				</div>
 				<div class="createPost sticky-top">
 					<h4>${boardUser.nickname}
