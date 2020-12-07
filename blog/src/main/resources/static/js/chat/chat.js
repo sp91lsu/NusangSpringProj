@@ -30,7 +30,7 @@
 	}
 	connect();
 	
-	//메세지 전달 ㅎ
+	// 메세지 전달 ㅎ
 	var updateReqTopic = '/topic/' + chatRoomTopic + ".update_req."+ nickname;
 	var updateAckTopic = '/topic/' + chatRoomTopic + ".update_ack."+ nickname;
 	
@@ -67,7 +67,7 @@
 		event.preventDefault();
 	}
 
-	//메세지 업데이트 요청이 들어오면 메세지를 읽고 다시 상대방한데 업데이트 ack를 날린다. 
+	// 메세지 업데이트 요청이 들어오면 메세지를 읽고 다시 상대방한데 업데이트 ack를 날린다.
 	function onMessageUpdateReqReceived(payload) {
 		console.log("onMessageUpdateReqReceived " + payload.body)
 		$.ajax({
@@ -127,15 +127,19 @@
 		console.log(res);
 		if (res.status == 200) {
 
-			$(messageArea).empty();
+			// $(messageArea).empty();
+			var message_elements = "";
 			var beforeTop = messageArea.scrollTop;
 
 			$
 					.each(
 							res.data,
 							function(key, value) {
-
-								var messageElement = document
+								
+								// if(key >= messageArea.childElementCount)
+								// {
+									var messageElement = document
+								
 										.createElement('li');
 								
 								var view_cnt = "";
@@ -176,12 +180,13 @@
 										'</ul>'+
 									'</div></li>';
 								}
-
-								$(messageArea).append(
-										messageElement);
-
-							})
-
+								
+								message_elements += messageElement;
+								
+								
+							// }
+								})
+								$(messageArea).empty().append(message_elements);
 			console.log("af scrollTop" + messageArea.scrollTop);
 			console.log(messageArea.scrollHeight);
 			// if (messageArea.scrollTop == beforeHeight) {

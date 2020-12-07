@@ -168,6 +168,13 @@ public class ChatRoomService extends BasicService<ChatRoomRepository, ChatRoom> 
 			chatRoom.findUserGuide(user.getUserno()).setUpdateDate(update);
 			chatRoom.findUserGuide(user.getUserno()).setSawMessageCnt(chatRoom.getMessageList().size());
 			chatRoom.chkMessageCnt();
+			List mList = chatRoom.getMessageList();
+			int size = mList.size();
+			if (size > 200) {
+				chatRoom.setMessageList(mList.subList(size - 199, size));
+			}
+			
+			
 			return chatRoom;
 		} catch (Exception e) {
 			return null;
