@@ -147,7 +147,9 @@
 								if (value.user.userno != $(
 										"#userno").val()) {
 									messageElement = '<li class="chat-message-li">' +
+									'<div class="user_img_wrapper">' +
 										'<img class="user_img" src="'+value.user.picture+'" alt="" />'+
+										'</div>'+
 										'<div class="oponent_user_chat_box">' +
 										'<span>'+value.user.nickname+'</span>'+
 									'<div>'+

@@ -2,3 +2,13 @@ body > .container{
 	
 	min-height: 600px;
 }
+
+.user_img_wrapper {
+	display: flex;
+	height: 80px;
+	overflow: hidden;
+	border-radius: 10px;
+	align-items: center;
+	width: 80px;
+	float: left;
+}

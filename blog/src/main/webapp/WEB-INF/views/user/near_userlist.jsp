@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp"%>
+
+	<link rel="stylesheet" href="/css/near_userlist.css" />
 <div class="container display-4 mt-5 mb-5">
 
 	<h1>근처 회원</h1>
@@ -9,8 +11,9 @@
 	<c:forEach var="user_i" items="${nearUserList}">
 		<div class="watchBox mr-5" style="float: left; ">
 			<div class="watch">
-
+				<div class="user_img_wrapper">
 				<img id="card_img" width="150px" src="${user_i.picture }" class="rounded-bottom">
+				</div>
 				<div class="textBox" style="font-family: 'Noto Sans KR', sans-serif; margin-left: 5px;">
 					<h5 class="productname" style="margin-top: 10px;">${user_i.nickname }
 						<c:if test="${user_i.isMe(user_i) }">

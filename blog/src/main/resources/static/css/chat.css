@@ -265,9 +265,15 @@ button.accent {
 }
 
 .user_img{
-	width: 50px;
+	width: 60px;
 	float: left;
 	border-radius:10px; 
+}
+
+.user_img_wrapper {
+	height: 60px;
+	width: 60px;
+	margin-right: 5px;
 }
 
 .oponent_user_chat_box{

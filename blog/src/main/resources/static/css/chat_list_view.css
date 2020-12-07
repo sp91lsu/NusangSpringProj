@@ -1,16 +1,14 @@
-
-.user_img{
+.user_img {
 	width: 80px;
-	border-radius:10px; 
 }
 
-.user-nickname{
+
+.user-nickname {
 	font-weight: bold;
 	text-align: left;
 }
 
-.middle-area{
+.middle-area {
 	overflow: hidden;
-	width: 30%;	
-	
+	width: 30%;
 }

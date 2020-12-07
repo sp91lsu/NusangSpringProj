@@ -74,7 +74,9 @@
 											+ '<li onclick="location.href=\'/chat/chatpage?chat_userno='
 											+ value.matchedUserNo
 											+ '\'" class="list-group-item d-flex justify-content-between align-items-center">'
+											+ '<div class="user_img_wrapper">'
 											+ '<img class="user_img" src="'+value.user.picture+'" alt="" />'
+											+ '</div>'
 											+ '<div class="middle-area">'
 											+ '<div>'
 											+ '<h3 class="user-nickname">'+value.matchedUserName+'</h3>'
