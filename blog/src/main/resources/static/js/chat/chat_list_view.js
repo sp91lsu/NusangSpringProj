@@ -73,7 +73,7 @@
 											+ '" />'
 											+ '<li onclick="location.href=\'/chat/chatpage?chat_userno='
 											+ value.matchedUserNo
-											+ '\'" class="list-group-item d-flex justify-content-between align-items-center">'
+											+ '\'" class="list-group-item d-flex justify-content-between align-items-center chatchat">'
 											+ '<div class="user_img_wrapper">'
 											+ '<img class="user_img" src="'+value.user.picture+'" alt="" />'
 											+ '</div>'

@@ -43,8 +43,7 @@
 	<jsp:param name="body" value='<%=URLEncoder.encode("결제가 완료되었습니다.", "UTF-8")%>' />
 </jsp:include>
 
-<button class="modalBtn" class="btn">button</button>
-
+<br><br><br><br><br>
 <%@ include file="../layout/footer.jsp"%>
 </body>
 <script type="text/javascript" src="/js/payment/shop.js">
