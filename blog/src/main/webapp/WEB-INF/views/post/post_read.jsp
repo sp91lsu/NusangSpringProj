@@ -27,9 +27,9 @@
 		<div class="update_delete">
 			<c:choose>
 				<c:when test="${user.userno == board.user.userno}">
-					<button class="btn btn-primary"
+					<button class="btn btn-secondary"
 						onclick="location.href='/post/post_update/${board.id}'">수정</button>
-					<button id="btn_delete" class="btn btn-primary">삭제</button>
+					<button id="btn_delete" class="btn btn-danger">삭제</button>
 				</c:when>
 
 				<c:otherwise>
