@@ -164,8 +164,9 @@
 										</div>
 									</div>
 								</div>
-						</c:forEach>
-					</c:otherwise>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="createPost sticky-top">
 					<h4>${boardUser.nickname}
