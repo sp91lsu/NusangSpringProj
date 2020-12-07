@@ -70,7 +70,7 @@
 											<sec:csrfInput />
 											<textarea name="answer" class="textarea answerText" cols="52" rows="7"
 												placeholder="답변달기">${qna.answer}</textarea>
-											<button type="submit" class="answer btn btn-primary btn-sm answerBtn">답변달기</button>
+											<button type="button" class="answer btn btn-primary btn-sm answerBtn">답변달기</button>
 											<input type="hidden" name="no" value="${qna.no }" />
 
 										</form></td>
@@ -232,14 +232,15 @@
 		</div>
 	</div>
 	<script>
-/* 	$(".answerBtn").click(function(){
+	$(".answerBtn").click(function(){
 		var answerText = $(this).parent(".answerForm").children(".answerText").val().trim();
 		if(answerText == ""){
 			alert("작성하신 답변 내용이 없습니다.");
 		}else{
-			$(".answerForm").submit();
+			//$(".answerForm").submit();
+			$(this).parent(".answerForm").submit();
 		}
-	}) */
+	})
 	
 	$("#qnaBtn").click(function(){
 		var qnaTitle = $("#qnaTitle").val().trim();
