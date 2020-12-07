@@ -229,6 +229,7 @@ button.accent {
 	float: left;
 	min-height: 40px;
 	max-width: 80%;
+	word-wrap:break-word;
 }
 
 .me {
