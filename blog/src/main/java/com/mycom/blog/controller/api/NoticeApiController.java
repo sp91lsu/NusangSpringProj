@@ -24,7 +24,7 @@ public class NoticeApiController {
 	
 	@GetMapping("api/noticeList")
 	public Page<Notice> index(Model model,
-			@PageableDefault(size = 5, sort = "no", direction = Sort.Direction.ASC) Pageable pageable) {
+			@PageableDefault(size = 10, sort = "no", direction = Sort.Direction.DESC) Pageable pageable) {
 		Page<Notice> pageList = noticeService.getPageList(pageable);
 		model.addAttribute("noticeList", pageList);
 
