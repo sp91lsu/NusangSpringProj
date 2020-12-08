@@ -17,7 +17,7 @@ public class TestDataInsert {
 	private TestDataService testDataService;
 	
 	@GetMapping("insert")
-	public void big(
+	public String big(
 			@RequestParam("uRowCnt") String uRowCnt,
 			@RequestParam("pRowCnt") String pRowCnt,
 			@RequestParam("uDateRange") String uDateRange,
@@ -29,5 +29,7 @@ public class TestDataInsert {
 		int d = Integer.parseInt(pDateRange);
 		int result = testDataService.mkBigData(a,b,c,d);
 		model.addAttribute("result",result);
+		model.addAttribute("result2","test");
+		return "/manager/testDataOk";
 	}
 }

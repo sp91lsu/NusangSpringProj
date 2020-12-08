@@ -85,7 +85,7 @@ public class TestDataService extends BasicService<UserRepository, User> {
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return -1;
+			return 0;
 		}
 	}
 	

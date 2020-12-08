@@ -91,6 +91,7 @@
 
 /* 캐럿박스 */
 #searchBody thead:nth-child(2) .caretBox{
+	display:none;
 	width:20px;
 	height:auto;
 	float:right;
