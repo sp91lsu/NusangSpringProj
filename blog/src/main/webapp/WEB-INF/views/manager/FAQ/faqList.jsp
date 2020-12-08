@@ -254,7 +254,7 @@
 		//alert("내용 : " + contents);
 		if((qnaTitle == "") || (qnaContents == "")){
 			alert("제목과 내용을 모두 작성해주세요");
-		}else if(qnaTitle.length > 20){
+		}else if(qnaTitle.length > 28){
 			alert("제목은 간략하게 작성해주세요.");
 		}else{
 			$("#qnaWrite").submit();
