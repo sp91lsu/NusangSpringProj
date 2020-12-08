@@ -54,11 +54,11 @@ public class UserService extends BasicService<UserRepository, User> {
 	private BCryptPasswordEncoder pwEncoder;
 
 	@Transactional
-	public List<User> findAll_ASCUserno() {
+	public Page<User> findAll_ASCUserno(Pageable pageable) {
 
-		List<User> list = new ArrayList<User>();
+		Page<User> list = null;
 		try {
-			list = repository.findAllSortByUserno();
+			list = repository.findAllSortByUserno(pageable);
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -79,21 +79,22 @@ public class UserService extends BasicService<UserRepository, User> {
 	
 	@Transactional
 	public List<User> searchedList(Map<String, Object> searchRequest) {
-		System.out.println("서치드리스트");
-		List<User> list = new ArrayList<User>();
+		//정렬정보 객체
 		Sort sort = Sort.by("age").descending()
 				  .and(Sort.by("gender").descending())
 				  .and(Sort.by("username").ascending())
 				  ;
+		//서치 조건들을 쿼리문에 적용해서 리스트 받아오기
+		List<User> list = null;
 		try {
-			Map<SearchKey, Object> searchKeys = new HashMap<>();
+			Map<SearchKey, Object> searchKeyMap = new HashMap<>();
 		    for (String key : searchRequest.keySet()) {
 		    	System.out.println("mapkey(form-name):"+key+" /mapVal(keyword):"+searchRequest.get(key)+" /enum키:"+SearchKey.valueOf(key.toUpperCase()));
-		        searchKeys.put(SearchKey.valueOf(key.toUpperCase()), searchRequest.get(key));
+		        searchKeyMap.put(SearchKey.valueOf(key.toUpperCase()), searchRequest.get(key));
 		    }
-		    list = searchKeys.isEmpty()
+		    list = searchKeyMap.isEmpty()
 		            ? repository.findAll()
-		            : repository.findAll(UserSpecs.searchWith(searchKeys),sort);
+		            : repository.findAll(UserSpecs.searchWith(searchKeyMap));
 		} catch (Exception e) {
 			e.getStackTrace();
 		}

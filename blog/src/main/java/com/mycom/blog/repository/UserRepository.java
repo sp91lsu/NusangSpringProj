@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,7 +35,7 @@ public interface UserRepository extends JpaRepository<User, Integer>,JpaSpecific
 	List<User> findAll(Specification<User> spec,Sort sort);
 	
 	@Query(value = "SELECT * FROM USER1 ORDER BY USERNO", nativeQuery = true)
-	List<User> findAllSortByUserno();
+	Page<User> findAllSortByUserno(Pageable pageable);
 	
 
 	@Transactional

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +26,10 @@ public class SearchController {
 	private UserService userService;
 	
 	@GetMapping("search")
-	public void search(Model model) {
-		List<User> userList = userService.findAll_ASCUserno();
-		model.addAttribute("list",userList);
+	public void search(Model model,
+			@PageableDefault(size=100)Pageable pageable) {
+		Page<User> userList = userService.findAll_ASCUserno(pageable);
+		model.addAttribute("list",userList.getContent());
 	}
 	
 	@GetMapping("searchValues")
@@ -42,7 +46,7 @@ public class SearchController {
 	public String searchedList(@RequestParam(required = false) Map<String, Object> searchRequest, Model model) {
 		System.out.println("서치드-----------"+searchRequest.get("username"));
 		List<User> list = userService.searchedList(searchRequest);
-		model.addAttribute("list",list);
+		model.addAttribute("list",list);	
 	    return "/manager/member/search";
 	} 
 	

@@ -46,7 +46,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${searchedList.content }" var="user">
+					<c:forEach items="${list }" var="user">
 						<tr>
 							<td>${user.userno }</td>
 							<td>${user.username }</td>
