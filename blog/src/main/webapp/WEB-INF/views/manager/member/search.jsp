@@ -30,7 +30,7 @@
 				</thead>
 				<thead>
 					<tr>
-						<th><span>회원번호</span><div id="dd" class="caretBox"><i id="s2" class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>회원번호</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
 						<th><span>이름</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
 						<th><span>아이디</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
 						<th><span>비밀번호</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
@@ -42,10 +42,11 @@
 						<th><span>총결제금액</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
 						<th><span>이용가능토크</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
 						<th><span>회원가입일</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
+						<th><span>권한</span><div class="caretBox"><i class="caretdown fas fa-angle-double-down"></i><i class="caretup fas fa-angle-double-up"></i></div></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${list }" var="user">
+					<c:forEach items="${searchedList.content }" var="user">
 						<tr>
 							<td>${user.userno }</td>
 							<td>${user.username }</td>
@@ -64,9 +65,32 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
 		</div>
+		
+		<%-- 총 페이지: ${myPostList.getTotalPages()}<br>
+		현재 페이지 : ${myPostList.getNumber()+1}<br>
+		총 글 갯수 : ${myPostList.getTotalElements()}<br>
+		현재 페이지 글 갯수 : ${myPostList.toList().size()}<br> --%>
+		
+		<%-- <ul class="pagination justify-content-center">
+			<c:forEach var="i" begin="1" end="${searchedList.getTotalPages()}">
+			
+				<c:choose>
+					<c:when test="${searchedList.getNumber()+1 eq i}">
+						${i}
+					</c:when>
+					
+					<c:otherwise>
+						<a class="ml-2 mr-2 paging_num">${i}</a>
+					</c:otherwise>
+				</c:choose>
+				
+			</c:forEach>
+		</ul> --%>
 	</div>
 	<script type="text/javascript" src="/js/manager/search.js"></script>
+	<script type="text/javascript" src="/js/manager/paging.js"></script>
 	<%-- <%@ include file="../../layout/footer.jsp"%> --%>
 </body>
 </html>
