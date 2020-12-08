@@ -52,7 +52,7 @@
 									<td>
 										<div class="titleColor">${qna.title }</div>
 									</td>
-									<td align = "center" >일이삼사오</td>
+									<td align = "center" >${qna.me.nickname }</td>
 									<td align = "center" ><fmt:formatDate value="${qna.regdate}"
 											pattern="yy-MM-dd HH:mm" /></td>
 									<c:choose>
