@@ -21,11 +21,15 @@
 						'</td>' +
 						'<td>' +
 						'<div class="titleColor">'+element.title+'</div>'+
-						'<div class = "contents"><br>'+element.contents+'<br>'+
-							'<button style = "margin-right:3px;" type = "button" class = "btn btn-primary btn-sm deleteBtn"'+
-							'onclick="location.href=\'/manager/FAQ/faqUpdate?no='+element.no+'\'">수정</button>' +
-							'<input type="hidden"'+' name="no"'+' value="'+element.no +'" />'+
-							'<button type = "submit" class = "btn btn-secondary btn-sm updateBtn">삭제</button>' +
+						'<div class = "contents"><br>'+element.contents+'<br>';
+						if(user.role == 'ADMIN'){
+							post += 
+								'<button style = "margin-right:3px;" type = "button" class = "btn btn-primary btn-sm deleteBtn"'+
+								'onclick="location.href=\'/manager/FAQ/faqUpdate?no='+element.no+'\'">수정</button>' +
+								'<input type="hidden"'+' name="no"'+' value="'+element.no +'" />'+
+								'<button type = "submit" class = "btn btn-secondary btn-sm updateBtn">삭제</button>';
+						};
+						post +=
 						'</div>' +
 						'</td>' +
 					'</tr>'
