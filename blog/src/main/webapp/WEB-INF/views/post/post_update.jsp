@@ -4,7 +4,7 @@
 
 <div class="write_form container">
 	<h2>글 수정</h2>
-	<br><br>`
+	<br><br>
 	<form action="" method="post">
 		<div class="form-group">
 			<input  name="title" type="text" class="form-control" placeholder="제목을 입력하세요" id="title" value="${board.title}">

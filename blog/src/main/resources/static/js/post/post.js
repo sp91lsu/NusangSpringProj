@@ -9,7 +9,6 @@ function get_TitleContent(){
 	content = content.replace(/<p>/g , '');//치환(무시)할 문자들
 	content = content.replace(/&nbsp;/g , '');
 	content = content.replace(/<\/p>/g , '');
-	content = content.replace(/<br>/g , '');
 	content = content.trim();
 }
 
