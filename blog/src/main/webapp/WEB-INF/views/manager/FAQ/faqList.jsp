@@ -215,10 +215,10 @@
 										<br>${dto.contents }<br>
 										<c:choose>
 											<c:when test="${user.role == 'ADMIN' }">
-												<input type="hidden" name="no" value="${dto.no }" />
-												<button type="submit" class="btn btn-secondary btn-sm updateBtn">삭제</button>
-												<button type="button" class="btn btn-primary btn-sm deleteBtn"
+												<button type="button" class="btn btn-primary btn-sm"
 													onclick="location.href = '/manager/FAQ/faqUpdate?no=${dto.no}'">수정</button>
+												<input type="hidden" name="no" value="${dto.no }" />
+												<button type="submit" class="btn btn-secondary btn-sm">삭제</button>
 											</c:when>
 										</c:choose>
 									</div>

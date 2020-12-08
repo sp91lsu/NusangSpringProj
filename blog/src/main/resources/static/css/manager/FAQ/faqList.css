@@ -109,10 +109,10 @@ textarea:focus {
 	display:none;
 	word-break: break-all;
 }
-.updateBtn{
+/* .updateBtn{
 	float:right;
 }
 .deleteBtn{
 	float:right;
 	margin-right: 3px;
-}
+} */

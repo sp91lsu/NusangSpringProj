@@ -18,11 +18,11 @@
 	<!-- <h3 style = "margin-left:235px;">공지사항</h3><br><br> -->
 	<div id="container">
 
-		<div id="titleDate" align="center" class="col-sm-4">
+		<div id="titleDate" align="center" class="col-sm-3">
 			<span id="titleFont">${view.title } </span><br> ${view.regdate }
 			<br>
 		</div>
-		<div id="contents" class="col-sm-7">${view.contents }</div>
+		<div id="contents" class="col-sm-8">${view.contents }</div>
 		<hr>
 
 		<div align="center">

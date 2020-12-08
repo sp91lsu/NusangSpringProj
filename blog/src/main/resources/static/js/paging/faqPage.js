@@ -22,10 +22,10 @@
 						'<td>' +
 						'<div class="titleColor">'+element.title+'</div>'+
 						'<div class = "contents"><br>'+element.contents+'<br>'+
-							'<button type = "button" class = "btn btn-primary btn-sm"'+
+							'<button style = "margin-right:3px;" type = "button" class = "btn btn-primary btn-sm deleteBtn"'+
 							'onclick="location.href=\'/manager/FAQ/faqUpdate?no='+element.no+'\'">수정</button>' +
 							'<input type="hidden"'+' name="no"'+' value="'+element.no +'" />'+
-							'<button type = "submit" class = "btn btn-secondary btn-sm">삭제</button>' +
+							'<button type = "submit" class = "btn btn-secondary btn-sm updateBtn">삭제</button>' +
 						'</div>' +
 						'</td>' +
 					'</tr>'
