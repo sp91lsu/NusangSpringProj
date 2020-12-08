@@ -22,7 +22,8 @@
 						'<td>' +
 						'<div class="titleColor">'+element.title+'</div>'+
 						'<div class = "contents"><br>'+element.contents+'<br>';
-						if(user.role == 'ADMIN'){
+						if($("#page_owner").val() == 'manager'){
+							console.log("adminnininininini")
 							post += 
 								'<button style = "margin-right:3px;" type = "button" class = "btn btn-primary btn-sm deleteBtn"'+
 								'onclick="location.href=\'/manager/FAQ/faqUpdate?no='+element.no+'\'">수정</button>' +
