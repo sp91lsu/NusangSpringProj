@@ -32,6 +32,7 @@ import com.mycom.blog.model.ReplySaveReq;
 import com.mycom.blog.model.Response;
 import com.mycom.blog.service.BoardService;
 import com.mycom.blog.service.UserService;
+import com.mycom.blog.vo.BoardVO;
 
 @RestController
 public class BoardApiController {
@@ -44,12 +45,7 @@ public class BoardApiController {
 			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
 		System.out.println("페이징 컨트롤러");
 		System.out.println("page :" + pageable.getPageNumber());
-		Page<Board> pageList = boardService.getBoardList(pageable);
-//		System.out.println("getTotalPages" + pageList.getTotalPages());
-//		System.out.println("getNumber" + pageList.getNumber()); // 현재 페이지
-//		System.out.println("getSize" + pageList.getSize());// 페이 안의 최대 사이즈
-//		System.out.println("getNumberOfElements" + pageList.getNumberOfElements()); // 페이지 안의 실제 갯수
-//		System.out.println("isLast" + pageList.isLast()); // 페이지 안의 실제 갯수
+		Page<Board> pageList = boardService.getNearBoadList(pageable);
 //		
 		model.addAttribute("boards", pageList);
 

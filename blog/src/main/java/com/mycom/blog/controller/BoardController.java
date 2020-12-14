@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.mycom.blog.dto.Board;
 import com.mycom.blog.service.BoardService;
 import com.mycom.blog.vo.BoardVO;
 
@@ -22,7 +23,7 @@ public class BoardController {
 	public String index(Model model,
 			@PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-		Page<BoardVO> postList = boardService.getPostList(pageable);
+		Page<Board> postList = boardService.getNearBoadList(pageable);
 		model.addAttribute("myPostList", postList);
 
 		return "/index";

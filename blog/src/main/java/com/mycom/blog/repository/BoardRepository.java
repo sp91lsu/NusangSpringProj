@@ -22,7 +22,6 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	Page<Board> findByUser(User user,Pageable pageable);
 	
 	
-	
 	@Modifying
 	@Query(value =
 	"SELECT * FROM " + 
@@ -30,9 +29,10 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	"BOARD.userno IN " + 
 	"(SELECT userno " + 
 	" FROM USER1 " + 
-	" WHERE locationno IN " + 
-	" (SELECT loc.locationno FROM location loc WHERE calc_distance(?1, ?2,loc.latitude, loc.longtitude ) <= ?3 )) " + 
+	" WHERE userno IN " + 
+	" (SELECT loc.userno FROM location loc WHERE calc_distance(?1, ?2,loc.latitude, loc.longtitude ) <= ?3 )) " + 
 	" ORDER BY CREATE_DATE DESC",nativeQuery = true)
 	List<Board> getNearBoardList(double latitude, double longtitude , int distance);
+	
 	List<Board> findAllByOrderByCreateDateDesc(); 
 }

@@ -5,7 +5,7 @@
 
 
 <link rel="stylesheet" href="/css/near_userlist.css" />
-<div class="container display-4 mt-5 mb-5">
+<div class="container display-4 mt-5 mb-5" style="height: 800px;">
 
 	<h1>근처 회원</h1>
 	<input type="hidden" id="mylongtitude" value="${user.location.longtitude }" />
@@ -35,7 +35,6 @@
 	</c:forEach>
 
 </div>
-<br />
 <script>
 	var myLocation = {
 

@@ -3,8 +3,8 @@
 cos:  
   key: cos1234
   useTalk: 1
-  ip: http://localhost:8000
-
+  ip: http://192.168.0.3:8000
+  localhost: http://localhost:8000
 
 server:
   
@@ -27,7 +27,7 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
     password: 4521 
-    username: spbooter  
+    username: spbooter   
     
   jpa:
     database-platform: com.mycom.blog.config.OracleDialect
@@ -58,7 +58,7 @@ spring:
             client-name: kakao
             
            google:
-            redirect-uri: ${cos.ip}/login/oauth2/code/google
+            redirect-uri: ${cos.localhost}/login/oauth2/code/google
             client-id: 378173201540-1f2pka652mudef7odq6bsoqvjbo0iepf.apps.googleusercontent.com
             client-secret: CrcLpyQVvfYZfVas7Dm2Ar_L
             scope:            

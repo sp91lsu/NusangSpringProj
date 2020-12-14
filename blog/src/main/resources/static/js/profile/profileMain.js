@@ -133,12 +133,11 @@
 	var userno = $('#userno').val();
 
 	$(window).scroll(function() {
-	
 		maxHeight = $(document).height();
 		currentScroll = $(window).scrollTop() + $(window).height();
 		
 	   // if (maxHeight <= currentScroll) {
-	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+	    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100 ) {
 	      console.log('바로밑이 페이지 로그');
 	      console.log(++page);
 	      

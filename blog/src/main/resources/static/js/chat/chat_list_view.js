@@ -43,10 +43,10 @@
 			url : "/api/chat/updat_list_view",
 			type : "GET",
 			success : function(res) {
-
+				
 				$(".list-group").empty();
 
-				console.log(res)
+				console.log("fff" + res)
 
 				$
 						.each(
