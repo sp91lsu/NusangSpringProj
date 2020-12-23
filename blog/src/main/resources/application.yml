@@ -50,7 +50,7 @@ spring:
         registration:
            kakao:
             client-id: 08d4e0306ac821705c50a3083bf85370
-            redirect-uri: ${cos.ip}/login/oauth2/code/kakao
+            redirect-uri: ${cos.localhost}/login/oauth2/code/kakao
             client-authentication-method: POST
             authorization-grant-type: authorization_code
             scope:  
@@ -78,7 +78,7 @@ spring:
             - email
             client-name: Naver
             authorization-grant-type: authorization_code
-            redirect-uri: ${cos.ip}/login/oauth2/code/naver
+            redirect-uri: ${cos.localhost}/login/oauth2/code/naver
          
         provider:
           naver:
