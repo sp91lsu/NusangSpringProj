@@ -29,7 +29,7 @@
    테스트 데이터 생성 (프로젝트 기간의 약70% 할애)
    * 목적: DB의 USER Table과 PAYMENT Table에 각각 10000개 ROW 이상의 다양한 테스트 데이터를 삽입해서 회원검색과 매출통계를 수행할 때 실제처럼 대량의 데이터가 들어갔을 때에도 잘 작동하는지 확인하기 위함.
    * 사용예시: 
-     * 아래와 같이 Parameter를 Customizing한 URL로 접속하면 입력조건에 맞게 DB와 Transaction하여 데이터를 생성함. <br>localhost:8000/testdata/insert?uRowCnt=13000&pRowCnt=18000&uDateRange=1100&pDateRange=1100 
+     * 아래와 같이 Parameter를 Customizing한 URL로 접속하면 입력조건에 맞게 DB와 Transaction하여 데이터를 생성함. <br> localhost:8000/testdata/insert?uRowCnt=13000&pRowCnt=18000&uDateRange=1100&pDateRange=1100 
      * Parameter 설명: 
        * uRowCnt: 생성할 USER 테이블의 rowdata 개수
        * pRowCnt: 생성할 PAYMENT 테이블의 rowdata 개수
