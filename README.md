@@ -1,4 +1,4 @@
-### 커밋 아이디 : SunBi91
+### Commit Author : SunBi91 <sp91lsu@gmail.com> or 이성웅 <dev.lsw91@gmail.com>
 # 프로젝트 개요
 * 1km어플을 벤치마킹한 이성만남 플랫폼 사이트
 
